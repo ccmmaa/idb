@@ -1,0 +1,11 @@
+spotify-
+Client ID: 6fdfc639b23a4f5aa33d52dbb1832d73
+Client Secret: f8b5055e9e89439a9b65897cd75e8477
+
+musixmatch- a4eb641afe366d7ce6d2013779c11916
+
+last.fm-
+API key: 728b78b68a19a955765dd280c899c1f3
+Shared Secret: c314d65dbd8cd62ed653e13183079f98
+
+eventful- 9Vr6nJfN7b7p9dJp
