@@ -10,6 +10,32 @@
 
 		<link href="assets/css/carousel.css" type="text/css" rel="stylesheet">
 		<link href="assets/css/main.css" type="text/css" rel="stylesheet">
+		<style type="text/css">
+			.team-member-card {
+				text-align: center;
+				display: inline-block;
+				width: 30%;
+				border:1px solid #444444;
+				vertical-align: top;
+				margin:15px;
+    			box-shadow: 0px 5px 20px 0px #555555;
+    			box-shadow: 0px 10px 25px 5px #aaaaaa;
+    			padding:10px;
+			}
+			.team-member-card p, .team-member-cards h1 {
+				display:inline-block;
+
+			}
+			#our-team {
+			}
+			.statistics {
+				border-radius: 5px;
+				background-color: #6c757d;
+				color:white;
+				padding:5px;
+				margin:10px;
+			}
+		</style>
 	</head>
 	
 	<body>
@@ -33,54 +59,72 @@
 
 
 				<div class="row featurette">
-					<div class="col-md-7">
+					<div>
 						<h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
 						<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-					</div>
-					<div class="col-md-5">
-						<img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
 					</div>
 				</div>
 
 				<hr class="featurette-divider">
 
 				<div class="row featurette">
-					<div class="col-md-7 order-md-2">
+					<div>
 						<h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
 						<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-					</div>
-					<div class="col-md-5 order-md-1">
-						<img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
 					</div>
 				</div>
 
 				<hr class="featurette-divider">
 				<!-- Team -->
-				<div class="row">
-					<div class="col-lg-3">
-						<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-						<h2>Songs</h2>
-						<p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod magna care halore. </p>
-						<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-					</div><!-- /.col-lg-4 -->
-					<div class="col-lg-3">
-						<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-						<h2>Artists</h2>
-						<p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
-						<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-					</div><!-- /.col-lg-4 -->
-					<div class="col-lg-3">
-						<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-						<h2>Albums</h2>
-						<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas dalicale pascalo trabero.</p>
-						<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-					</div><!-- /.col-lg-4 -->
-					<div class="col-lg-3">
-						<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
-						<h2>Cities</h2>
-						<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas podio es tratare hasca.</p>
-						<p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-					</div><!-- /.col-lg-4 -->
+				<div class="row" id="our-team">
+					<center>
+						<div class="team-member-card">
+							<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" height="140">
+							<h2>Chia-Hua Lu</h2>
+							<p>Biography Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod magna care halore. </p>
+							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
+							<div class="statistics">Number of Commits: <span id="commits-chia">0</span><br>
+													Number of Issues: <span id="issues-chia">0</span><br>
+													Number of Tests: <span id="tests-chia">0</span>
+							</div>						</div><!-- /.col-lg-4 -->
+						<div class="team-member-card">
+							<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" height="140">
+							<h2>Cristina Anderson</h2>
+							<p>Biography Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
+							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
+							<div class="statistics">Number of Commits: <span id="commits-cris">0</span><br>
+													Number of Issues: <span id="issues-cris">0</span><br>
+													Number of Tests: <span id="tests-cris">0</span>
+							</div>						</div><!-- /.col-lg-4 -->
+						<div class="team-member-card">
+							<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" height="140">
+							<h2>Faiz Merchant</h2>
+							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas dalicale pascalo trabero.</p>
+							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
+							<div class="statistics">Number of Commits: <span id="commits-faiz">0</span><br>
+													Number of Issues: <span id="issues-faiz">0</span><br>
+													Number of Tests: <span id="tests-faiz">0</span>
+							</div>
+						</div><!-- /.col-lg-4 -->
+						<div class="team-member-card">
+							<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" height="140">
+							<h2>Laurence Zhang</h2>
+							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas podio es tratare hasca.</p>
+							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
+							<div class="statistics">Number of Commits: <span id="commits-laur">0</span><br>
+													Number of Issues: <span id="issues-laur">0</span><br>
+													Number of Tests: <span id="tests-laur">0</span>
+							</div>						</div><!-- /.col-lg-4 -->
+						<div class="team-member-card">
+							<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" height="140">
+							<h2>Sabrina Herrero</h2>
+							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas podio es tratare hasca.</p>
+							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
+							<div class="statistics">Number of Commits: <span id="commits-sabr">0</span><br>
+													Number of Issues: <span id="issues-sabr">0</span><br>
+													Number of Tests: <span id="tests-sabr">0</span>
+							</div>						</div><!-- /.col-lg-4 -->
+					</center>
 				</div><!-- /.row -->
 
 				<hr class="featurette-divider">
