@@ -8,7 +8,6 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-		<link href="assets/css/carousel.css" type="text/css" rel="stylesheet">
 		<link href="assets/css/main.css" type="text/css" rel="stylesheet">
 		<style type="text/css">
 			.team-member-card {
@@ -35,6 +34,9 @@
 				padding:5px;
 				margin:10px;
 			}
+			#statistics-all {
+				margin:auto;
+			}
 		</style>
 	</head>
 	
@@ -52,15 +54,12 @@
 
 			<div class="container marketing">
 
-				
-
-
 				<!-- START THE FEATURETTES -->
 
-
+				<br>
 				<div class="row featurette">
 					<div>
-						<h2 class="featurette-heading">First featurette heading. <span class="text-muted">It'll blow your mind.</span></h2>
+						<h2 class="featurette-heading">About this Site: <span class="text-muted">It'll blow your mind.</span></h2>
 						<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
 					</div>
 				</div>
@@ -69,7 +68,7 @@
 
 				<div class="row featurette">
 					<div>
-						<h2 class="featurette-heading">Oh yeah, it's that good. <span class="text-muted">See for yourself.</span></h2>
+						<h2 class="featurette-heading">Disparate Data, <span class="text-muted">It's very Interesting.</span></h2>
 						<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
 					</div>
 				</div>
@@ -78,6 +77,8 @@
 				<!-- Team -->
 				<div class="row" id="our-team">
 					<center>
+						<h2 class="featurette-heading">Requiem For Our Dreams</h2>
+						<br>
 						<div class="team-member-card">
 							<img class="rounded-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" height="140">
 							<h2>Chia-Hua Lu</h2>
@@ -123,23 +124,52 @@
 							<div class="statistics">Number of Commits: <span id="commits-sabr">0</span><br>
 													Number of Issues: <span id="issues-sabr">0</span><br>
 													Number of Tests: <span id="tests-sabr">0</span>
-							</div>						</div><!-- /.col-lg-4 -->
+							</div>						
+						</div><!-- /.col-lg-4 -->
 					</center>
 				</div><!-- /.row -->
 
 				<hr class="featurette-divider">
-
 				<div class="row featurette">
-					<div class="col-md-7">
-						<h2 class="featurette-heading">And lastly, this one. <span class="text-muted">Checkmate.</span></h2>
-						<p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
-					</div>
-					<div class="col-md-5">
-						<img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="Generic placeholder image">
+					<div id="statistics-all">
+						<h2 class="featurette-heading">Total Statistics</h2>
+						<br>
+						<div class="statistics">Number of Commits: <span id="commits-all">0</span><br>
+												Number of Issues: <span id="issues-all">0</span><br>
+												Number of Tests: <span id="tests-all">0</span>
+						</div>		
 					</div>
 				</div>
 
 				<hr class="featurette-divider">
+
+				<div class="row featurette">
+					<div>
+						<h2 class="featurette-heading">Data Sources</h2>
+						<p class="lead">The APIs we used, and description of how it was scraped</p>
+					</div>
+				</div>
+
+				<hr class="featurette-divider">
+
+				<div class="row featurette">
+					<div>
+						<h2 class="featurette-heading">Tools Used</h2>
+						<p class="lead">Tools used, describe their use. Focus especially on tools that are not required.</p>
+					</div>
+				</div>
+
+				<hr class="featurette-divider">
+
+				<div class="row featurette">
+					<div>
+						<h2 class="featurette-heading">Git References</h2>
+						<p class="lead">Link to GitBook Report and GitHub Repo.</p>
+					</div>
+				</div>
+
+				<hr class="featurette-divider">
+
 
 				<!-- /END THE FEATURETTES -->
 
@@ -147,10 +177,8 @@
 
 
 			<!-- FOOTER -->
-			<footer class="container">
-				<p class="float-right"><a href="#">Back to top</a></p>
-				<p>&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-			</footer>
+			<iframe src="footer.html" class="footer" frameborder="0" scrolling="no"></iframe>
+			
 		</main>
 
 		<!-- Optional JavaScript -->
