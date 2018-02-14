@@ -9,19 +9,23 @@ def index():
 
 @app.route('/about')
 def about():
-	cris_commits = requests.get(_url_commits('?author=ccmmaa'))
+	cris_commits_1 = requests.get(_url_commits('?author=ccmmaa'))
+	cris_commits_2 = requests.get(_url_commits('?author=ccmmaa@cs.utexas.edu'))
 	cris_issues = requests.get(_url_issues('?creator=ccmmaa;state=all'))
-	cris_commits_num = len(cris_commits.json())
+	cris_commits_num = len(cris_commits_1.json()) + len(cris_commits_2.json())
 	cris_issues_num = len(cris_issues.json())
 	
-	chia_commits = requests.get(_url_commits('?author=chiahualu'))
+	chia_commits_1 = requests.get(_url_commits('?author=chiahualu'))
+	chia_commits_2 = requests.get(_url_commits('?author=noreply@github.com'))
 	chia_issues = requests.get(_url_issues('?creator=chiahualu;state=all'))
-	chia_commits_num = len(chia_commits.json())
+	chia_commits_num = len(chia_commits_1.json()) +len(chia_commits_2.json())
 	chia_issues_num = len(chia_issues.json())
 	
-	faiz_commits = requests.get(_url_commits('?author=faizmerchant@fma.local'))
+	faiz_commits_1 = requests.get(_url_commits('?author=faizmerchant@fma.local'))
+	faiz_commits_2 = requests.get(_url_commits('?author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'))
+	faiz_commits_3 = requests.get(_url_commits('?author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'))
 	faiz_issues = requests.get(_url_issues('?creator=Faiz-Merchant;state=all'))
-	faiz_commits_num = len(faiz_commits.json())
+	faiz_commits_num = len(faiz_commits_1.json()) + len(faiz_commits_2.json()) + len(faiz_commits_3.json())
 	faiz_issues_num = len(faiz_issues.json())
 	
 	laur_commits = requests.get(_url_commits('?author=Laurencez'))
