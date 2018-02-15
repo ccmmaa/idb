@@ -2,10 +2,64 @@ from flask import render_template
 from app import app
 import requests
 
+
+
 @app.route('/')
 @app.route('/index')
 def index():
     return render_template('index.html')
+
+@app.route('/songs')
+def songsPage():
+    return render_template('songs/songmodel.html')
+
+@app.route('/songs/<song>')
+def song(song):
+    return render_template('songs/' + song)
+
+@app.route('/artists')
+def artistsPage():
+    return render_template('artists/artistmodel.html')
+
+@app.route('/artists/<artist>')
+def artist(artist):
+    return render_template('artists/'+ artist)
+
+@app.route('/albums')
+def albumsPage():
+    return render_template('albums/albummodel.html')
+
+@app.route('/albums/<album>')
+def album(album):
+    return render_template('albums/'+ album)
+
+@app.route('/cities/<city>')
+def city(city):
+    return render_template('cities/'+ city)
+    
+    
+    
+@app.route('/navigation')
+def header():
+    return render_template('navigation.html')
+
+@app.route('/footer')
+def footer():
+    return render_template('footer.html')
+
+@app.route('/assets/css/<style>')
+def stylesheet(style):
+    return render_template('assets/css/' + style)
+
+@app.route('/images/<image>')
+def image(image):
+    return render_template('images/' + image)
+
+@app.route('/images/portraits/<portrait>')
+def portraits(portrait):
+    return render_template('images/portraits/' + portrait)
+
+
 
 @app.route('/about')
 def about():
@@ -45,6 +99,8 @@ def about():
 	issues = {'cris' : cris_issues_num, 'chia' : chia_issues_num, 'faiz' : faiz_issues_num, 'laur' : laur_issues_num, 'sabr' : sabr_issues_num, 'total' : total_issues}
 	
 	return render_template('about.html', commits=commits, issues=issues)
+  
+  
   
 def _url_commits(path):
 	return 'https://api.github.com/repos/ccmmaa/idb/commits' + path
