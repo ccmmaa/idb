@@ -75,9 +75,10 @@ def about():
 	chia_commits_num = len(chia_commits_1.json()) +len(chia_commits_2.json())
 	chia_issues_num = len(chia_issues.json())
 	
-	faiz_commits_1 = requests.get(_url_commits('?author=faizmerchant@fma.local'))
+	faiz_commits_1 = requests.get(_url_commits('?author=faizm123'))
 	faiz_commits_2 = requests.get(_url_commits('?author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'))
 	faiz_commits_3 = requests.get(_url_commits('?author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'))
+	faiz_commits_4 = requests.get(_url_commits('?author=faizmerchant@fma.local'))
 	faiz_issues = requests.get(_url_issues('?creator=Faiz-Merchant;state=all'))
 	faiz_commits_num = len(faiz_commits_1.json()) + len(faiz_commits_2.json()) + len(faiz_commits_3.json())
 	faiz_issues_num = len(faiz_issues.json())
