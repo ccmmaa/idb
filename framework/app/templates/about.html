@@ -9,8 +9,11 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-		<link href="assets/css/main.css" type="text/css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/main.css') }}" type="text/css" rel="stylesheet">
 		<style type="text/css">
+			ul {
+				list-style: none;
+			}
 			.team-member-card {
 				text-align: center;
 				display: inline-block;
@@ -37,10 +40,12 @@
 			}
 			#statistics-all {
 				margin:auto;
+				text-align: center;
+
 			}
 			#statistics-all .statistics {
-				width:15vw;
-				padding: 20px;
+				width:25vw;
+				padding: 5px 20px;
 			}
 		</style>
 	</head>
@@ -85,49 +90,49 @@
 						<h2 class="featurette-heading">Requiem For Our Dreams</h2>
 						<br>
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/chiahua.jpg" alt="Chia-Hua Lu" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/chiahua.jpg') }}" alt="Chia-Hua Lu" height="140">
 							<h2>Chia-Hua Lu</h2>
-							<p>Biography Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod magna care halore. </p>
-							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
-							<div class="statistics">Number of Commits: <span id="commits-chia">0</span><br>
-													Number of Issues: <span id="issues-chia">0</span><br>
+							<p>I am a junior of Computer Science. I also serve as the Senior Officer of Webmastering for ACM.</p>
+							<p>I designed the About page, contributed to the design, layout, and style of many of the other pages, and assisting Cristina with managing the Python files and the server. </p>
+							<div class="statistics">Number of Commits: <span id="commits-chia">{{ commits.chia }}</span><br>
+													Number of Issues: <span id="issues-chia">{{ issues.chia }}</span><br>
 													Number of Tests: <span id="tests-chia">0</span>
 							</div>						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/cristina.jpg" alt="Cristina Anderson" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/cristina.jpg') }}" alt="Cristina Anderson" height="140">
 							<h2>Cristina Anderson</h2>
-							<p>Biography Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
-							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
-							<div class="statistics">Number of Commits: <span id="commits-cris">0</span><br>
-													Number of Issues: <span id="issues-cris">0</span><br>
+							<p>I am a senior Computer Science major with a focus in graphics. I am also the president of Crafter's Circle, the UT crafting club!</p>
+							<p>my major responsibilities were the backend, coding with Python and Flask</p>
+							<div class="statistics">Number of Commits: <span id="commits-cris">{{ commits.cris }}</span><br>
+													Number of Issues: <span id="issues-cris">{{ issues.cris }}</span><br>
 													Number of Tests: <span id="tests-cris">0</span>
 							</div>						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/faiz.jpg" alt="Faiz Merchant" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/faiz.jpg') }}" alt="Faiz Merchant" height="140">
 							<h2>Faiz Merchant</h2>
-							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas dalicale pascalo trabero.</p>
-							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
-							<div class="statistics">Number of Commits: <span id="commits-faiz">0</span><br>
-													Number of Issues: <span id="issues-faiz">0</span><br>
+							<p>I am a sophomore Computer Science major. I enjoy working on personal projects and have an interest in AI.</p>
+							<p>I worked mainly on frontend development. I created the pages for all the models where you can look at all the instances, and also creates the pages for the song instances.</p>
+							<div class="statistics">Number of Commits: <span id="commits-faiz">{{ commits.faiz }}</span><br>
+													Number of Issues: <span id="issues-faiz">{{ issues.faiz }}</span><br>
 													Number of Tests: <span id="tests-faiz">0</span>
 							</div>
 						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/laurence.jpg" alt="Laurence Zhang" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/laurence.jpg') }}" alt="Laurence Zhang" height="140">
 							<h2>Laurence Zhang</h2>
-							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas podio es tratare hasca.</p>
-							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
-							<div class="statistics">Number of Commits: <span id="commits-laur">0</span><br>
-													Number of Issues: <span id="issues-laur">0</span><br>
+							<p>I am a senior at UT majoring in Computer Science. Fun fact about me is that I'm a twin.</p>
+							<p>Designed the splash page with Bootstrap. Also designed the instances for Artists and Albums. Contributed to the website's API design and documentation.</p>
+							<div class="statistics">Number of Commits: <span id="commits-laur">{{ commits.laur }}</span><br>
+													Number of Issues: <span id="issues-laur">{{ issues.laur }}</span><br>
 													Number of Tests: <span id="tests-laur">0</span>
 							</div>						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/sabrina.jpg" alt="Sabrina Herrero" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/sabrina.jpg') }}" alt="Sabrina Herrero" height="140">
 							<h2>Sabrina Herrero</h2>
 							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas podio es tratare hasca.</p>
 							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
-							<div class="statistics">Number of Commits: <span id="commits-sabr">0</span><br>
-													Number of Issues: <span id="issues-sabr">0</span><br>
+							<div class="statistics">Number of Commits: <span id="commits-sabr">{{ commits.sabr }}</span><br>
+													Number of Issues: <span id="issues-sabr">{{ issues.sabr }}</span><br>
 													Number of Tests: <span id="tests-sabr">0</span>
 							</div>						
 						</div><!-- /.col-lg-4 -->
@@ -139,8 +144,8 @@
 					<div id="statistics-all">
 						<h2 class="featurette-heading-orange">Total Statistics</h2>
 						<br>
-						<div class="statistics">Number of Commits: <span id="commits-all">0</span><br>
-												Number of Issues: <span id="issues-all">0</span><br>
+						<div class="statistics">Number of Commits: <span id="commits-all">{{ commits.total }}</span><br>
+												Number of Issues: <span id="issues-all">{{ issues.total }}</span><br>
 												Number of Tests: <span id="tests-all">0</span>
 						</div>		
 					</div>
@@ -160,16 +165,19 @@
 				<div class="row featurette">
 					<div>
 						<h2 class="featurette-heading-orange">Tools Used</h2>
-						<p class="lead">Tools used, describe their use. Focus especially on tools that are not required.</p>
-					</div>
-				</div>
+						<p class="lead">
+							<ul>
+								<li><h3>Flask</h3><p>Web framework in Python</p></li>
+								<li><h3>Github</h3><p>Version Controll and collaboration tool</p></li>
+								<li><h3>Gitbook</h3><p>Documentation creation tool</p></li>
+								<li><h3>Bootstrap</h3><p>Website Templates</p></li>
+								<li><h3>Namecheap</h3><p>Domain Name for our website</p></li>
+								<li><h3>Amazon Web Services</h3><p>Web Server and hosting service</p></li>
+								<li><h3>Slack</h3><p>Team communication and collaboration application</p></li>
+								<li><h3>Doodle</h3><p>Tool to help with scheduling around classes</p></li>
+							</ul>
 
-				<hr>
-
-				<div class="row featurette">
-					<div>
-						<h2 class="featurette-heading-orange">Git References</h2>
-						<p class="lead">Link to GitBook Report and GitHub Repo.</p>
+						</p>
 					</div>
 				</div>
 
