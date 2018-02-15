@@ -8,8 +8,8 @@
             <!-- Bootstrap CSS -->
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-            <link href="../assets/css/main.css" type="text/css" rel="stylesheet">
-            <link href="../assets/css/album_instance.css" type="text/css" rel="stylesheet">
+            <link href="{{ url_for('static', filename='css/main.css') }}" type="text/css" rel="stylesheet">
+            <link href="{{ url_for('static', filename='css/album_instance.css') }}" type="text/css" rel="stylesheet">
         <title>American Teen - Khalid</title>
     </head>
 
@@ -24,7 +24,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-4">
-                            <img src="../images/khalid_americanteen.jpg" alt="Album Art Needed" class="img-thumbnail">
+                            <img src="{{ url_for('static', filename='images/khalid_americanteen.jpg') }}" alt="Album Art Needed" class="img-thumbnail">
                             <p class="h1">American Teen</p>
                             <p class="h3"><a href="../index.html">Khalid</a></p>
                         </div>

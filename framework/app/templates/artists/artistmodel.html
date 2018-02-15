@@ -9,9 +9,9 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             
-        <link href="../assets/css/modelpage.css" type="text/css" rel="stylesheet">
-		<link href="../assets/css/carousel.css" type="text/css" rel="stylesheet">
-		<link href="../assets/css/main.css" type="text/css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/modelpage.css') }}" type="text/css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/carousel.css') }}" type="text/css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/main.css') }}" type="text/css" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -24,7 +24,7 @@
             <div align="center">
                 
                 <div class="carousel-item titleImage active">
-                    <img class="second-slide" src="../images/carousel22.jpg" alt="Second slide">
+                    <img class="second-slide" src="{{ url_for('static', filename='images/carousel22.jpg') }}" alt="Second slide">
                         <div class="container">
                             <div class="carousel-caption">
                                 <h1><span>Explore</span> your favorite artists.</h1>
@@ -46,7 +46,7 @@
 				<div class="row">
                     <div class="col-lg-2">
                         <div class="ingrid" text-align="center">
-						  <img class="rounded-circle" src="../images/kesha2.jpg" alt="Generic placeholder image" width="140" height="140">
+						  <img class="rounded-circle" src="{{ url_for('static', filename='images/kesha2.jpg') }}" alt="Generic placeholder image" width="140" height="140">
 						  <h2>Kesha</h2>
 						  <p>A brash and driven pop singer/songwriter, Kesha was born in Los Angeles but moved to Nashville...</p>
 						  <p><a class="btn btn-secondary" href="artist1.html" role="button">View Kesha &raquo;</a></p>
@@ -55,7 +55,7 @@
                     
 					<div class="col-lg-2">
                         <div class="ingrid" text-align="center">
-						  <img class="rounded-circle" src="../images/travis2.jpg" alt="Generic placeholder image" width="140" height="140">
+						  <img class="rounded-circle" src="{{ url_for('static', filename='images/travis2.jpg') }}" alt="Generic placeholder image" width="140" height="140">
                           <h2>Travis Scott</h2>
 						  <p>Travis Scott is the stage name of Jacques Webster, a Houston-born hip-hop artist and producer...</p>
 						  <p><a class="btn btn-secondary" href="artist2.html" role="button">View Travis Scott &raquo;</a></p>
@@ -64,7 +64,7 @@
                     
 					<div class="col-lg-2">
                         <div class="ingrid" text-align="center">
-						  <img class="rounded-circle" src="../images/khalid2.jpg" alt="Generic placeholder image" width="140" height="140">
+						  <img class="rounded-circle" src="{{ url_for('static', filename='images/khalid2.jpg') }}" alt="Generic placeholder image" width="140" height="140">
 						  <h2>Khalid</h2>
 						  <p>Combining a voice that sounds made for classic soul with cutting-edge music, Khalid is a singer/songwriter...</p>
 						  <p><a class="btn btn-secondary" href="artist3.html" role="button">View Khalid &raquo;</a></p>
