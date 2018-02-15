@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, url_for
 from app import app
 import requests
 
@@ -39,11 +39,11 @@ def city(city):
     
     
     
-@app.route('/navigation')
+@app.route('/navigation.html')
 def header():
     return render_template('navigation.html')
 
-@app.route('/footer')
+@app.route('/footer.html')
 def footer():
     return render_template('footer.html')
 
