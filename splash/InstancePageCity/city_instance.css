@@ -23,7 +23,7 @@ a:hover{
 }
 
 #concerts{
-  width: 80%;
+  width: 55%;
 }
 .row{
   text-align: center;
@@ -45,3 +45,13 @@ a:hover{
 .shadow{
   box-shadow: 2px 2px 1px grey;
 }
+.concert-img{
+  height: 200px;
+}
+.concert-text{
+  width: 300px;
+  margin:0 10%;
+ }
+ .concert-text a{
+  color:#ff7777;
+ }
