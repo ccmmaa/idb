@@ -9,7 +9,7 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-		<link href="assets/css/main.css" type="text/css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/main.css') }}" type="text/css" rel="stylesheet">
 		<style type="text/css">
 			.team-member-card {
 				text-align: center;
@@ -85,7 +85,7 @@
 						<h2 class="featurette-heading">Requiem For Our Dreams</h2>
 						<br>
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/chiahua.jpg" alt="Chia-Hua Lu" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/chiahua.jpg') }}" alt="Chia-Hua Lu" height="140">
 							<h2>Chia-Hua Lu</h2>
 							<p>Biography Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod magna care halore. </p>
 							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
@@ -94,7 +94,7 @@
 													Number of Tests: <span id="tests-chia">0</span>
 							</div>						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/cristina.jpg" alt="Cristina Anderson" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/cristina.jpg') }}" alt="Cristina Anderson" height="140">
 							<h2>Cristina Anderson</h2>
 							<p>Biography Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
 							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
@@ -103,7 +103,7 @@
 													Number of Tests: <span id="tests-cris">0</span>
 							</div>						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/faiz.jpg" alt="Faiz Merchant" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/faiz.jpg') }}" alt="Faiz Merchant" height="140">
 							<h2>Faiz Merchant</h2>
 							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas dalicale pascalo trabero.</p>
 							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
@@ -113,7 +113,7 @@
 							</div>
 						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/laurence.jpg" alt="Laurence Zhang" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/laurence.jpg') }}" alt="Laurence Zhang" height="140">
 							<h2>Laurence Zhang</h2>
 							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas podio es tratare hasca.</p>
 							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
@@ -122,7 +122,7 @@
 													Number of Tests: <span id="tests-laur">0</span>
 							</div>						</div><!-- /.col-lg-4 -->
 						<div class="team-member-card">
-							<img class="rounded-circle" src="images/portraits/sabrina.jpg" alt="Sabrina Herrero" height="140">
+							<img class="rounded-circle" src="{{ url_for('static', filename='images/portraits/sabrina.jpg') }}" alt="Sabrina Herrero" height="140">
 							<h2>Sabrina Herrero</h2>
 							<p>Biography Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas podio es tratare hasca.</p>
 							<p>Major Responsibilities Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget ligula porlote harora.</p>
