@@ -108,7 +108,7 @@ def about():
   
   
 def _url_commits(path):
-	return 'https://api.github.com/repos/ccmmaa/idb/commits?access_token=fc177065e0ed0e318ac94799205a65b9270ce9b1;' + path
+	return 'https://api.github.com/repos/ccmmaa/idb/commits?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + path
 	
 def _url_issues(path):
-	return 'https://api.github.com/repos/ccmmaa/idb/issues?access_token=fc177065e0ed0e318ac94799205a65b9270ce9b1;' + path
+	return 'https://api.github.com/repos/ccmmaa/idb/issues?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + path
