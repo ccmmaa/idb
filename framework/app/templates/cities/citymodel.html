@@ -9,9 +9,9 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             
-        <link href="../assets/css/modelpage.css" type="text/css" rel="stylesheet">
-		<link href="../assets/css/carousel.css" type="text/css" rel="stylesheet">
-		<link href="../assets/css/main.css" type="text/css" rel="stylesheet">
+        <link href="{{ url_for('static', filename='css/modelpage.css') }}" type="text/css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/carousel.css') }}" type="text/css" rel="stylesheet">
+		<link href="{{ url_for('static', filename='css/main.css') }}" type="text/css" rel="stylesheet">
 	</head>
 	
 	<body>
@@ -24,11 +24,11 @@
             <div align="center">
                 
                 <div class="carousel-item titleImage active">
-                    <img class="fourth-slide" src="../images/carousel4.jpg" alt="Fourth slide">
+                    <img class="fourth-slide" src="{{ url_for('static', filename='images/carousel4.jpg') }}" alt="Fourth slide">
                     <div class="container">
                         <div class="carousel-caption text-right">
                             <h1><span style>Connect</span> with your city.</h1>
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+                           
                         </div>
                     </div>
                 </div>
@@ -44,32 +44,32 @@
             <div class="container2 marketing">
 				<!-- Four columns of text below the carousel -->
 				<div class="row">
-<!--                    <div class="col-lg-2">-->
-<!--                        <div class="ingrid" text-align="center">-->
-<!--						  <img class="rounded-circle" src="../images/kesha2.jpg" alt="Generic placeholder image" width="140" height="140">-->
-<!--						  <h2>Kesha</h2>-->
-<!--						  <p>A brash and driven pop singer/songwriter, Kesha was born in Los Angeles but moved to Nashville...</p>-->
-<!--						  <p><a class="btn btn-secondary" href="#" role="button">View Kesha &raquo;</a></p>-->
-<!--                        </div>-->
-<!--					</div><!-- /.col-lg-4 -->-->
-<!--                    -->
-<!--					<div class="col-lg-2">-->
-<!--                        <div class="ingrid" text-align="center">-->
-<!--						  <img class="rounded-circle" src="../images/travis2.jpg" alt="Generic placeholder image" width="140" height="140">-->
-<!--                          <h2>Travis Scott</h2>-->
-<!--						  <p>Travis Scott is the stage name of Jacques Webster, a Houston-born hip-hop artist and producer...</p>-->
-<!--						  <p><a class="btn btn-secondary" href="#" role="button">View Travis Scott &raquo;</a></p>-->
-<!--					    </div>-->
-<!--                    </div><!-- /.col-lg-4 -->-->
-<!--                    -->
-<!--					<div class="col-lg-2">-->
-<!--                        <div class="ingrid" text-align="center">-->
-<!--						  <img class="rounded-circle" src="../images/khalid2.jpg" alt="Generic placeholder image" width="140" height="140">-->
-<!--						  <h2>Khalid</h2>-->
-<!--						  <p>Combining a voice that sounds made for classic soul with cutting-edge music, Khalid is a singer/songwriter...</p>-->
-<!--						  <p><a class="btn btn-secondary" href="#" role="button">View Khalid &raquo;</a></p>-->
-<!--                        </div>-->
-<!--					</div><!-- /.col-lg-4 -->-->
+                    <div class="col-lg-2">
+                        <div class="ingrid" text-align="center">
+						  <img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Austin_Evening.jpg/1200px-Austin_Evening.jpg" alt="Austin, TX" width="140" height="140">
+						  <h2>Austin</h2>
+						  <p>Texas</p>
+						  <p><a class="btn btn-secondary" href="city1.html" role="button">View Austin &raquo;</a></p>
+                        </div>
+					</div><!-- /.col-lg-4 -->
+                  
+					<div class="col-lg-2">
+                        <div class="ingrid" text-align="center">
+						  <img class="rounded-circle" src="https://cdn.getyourguide.com/img/location_img-59-1224772867-148.jpg" alt="Generic placeholder image" width="140" height="140">
+                          <h2>New York</h2>
+                          <p>New York</p>
+						  <p><a class="btn btn-secondary" href="city2.html" role="button">View New York &raquo;</a></p>
+					    </div>
+                   </div><!-- /.col-lg-4-->
+                  
+					<div class="col-lg-2">
+                        <div class="ingrid" text-align="center">
+						  <img class="rounded-circle" src="http://s3.amazonaws.com/digitaltrends-uploads-prod/2015/05/houston-texas.jpg" alt="Generic placeholder image" width="140" height="140">
+						  <h2>Houston</h2>
+						  <p>Texas</p>
+						  <p><a class="btn btn-secondary" href="city3.html" role="button">View Houston &raquo;</a></p>
+                        </div>
+					</div><!-- /.col-lg-4 -->
 
 
                     

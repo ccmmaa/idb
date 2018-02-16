@@ -32,6 +32,10 @@ def albumsPage():
 @app.route('/albums/<album>')
 def album(album):
     return render_template('albums/'+ album)
+    
+@app.route('/cities')
+def citiesPage():
+    return render_template('cities/citymodel.html')
 
 @app.route('/cities/<city>')
 def city(city):
