@@ -1,0 +1,30 @@
+ul {
+	list-style: none;
+}
+.team-member-card {
+	text-align: center;
+	display: inline-block;
+	width: 30%;
+}
+.team-member-card p, .team-member-cards h1 {
+	display:inline-block;
+
+}
+#our-team {
+}
+.statistics {
+	border-radius: 5px;
+	background-color: #6c757d;
+	color:white;
+	padding:5px;
+	margin:10px;
+}
+#statistics-all {
+	margin:auto;
+	text-align: center;
+
+}
+#statistics-all .statistics {
+	width:25vw;
+	padding: 5px 20px;
+}

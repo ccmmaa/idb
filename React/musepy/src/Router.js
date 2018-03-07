@@ -1,13 +1,21 @@
-import React, {Component} from 'react'
-import {Route, Switch} from 'react-router-dom'
-import Something from './Somewhere'
+import React, {Component} from 'react';
+import {Route, Switch} from 'react-router-dom';
+import About from './About/About';
+// import Something from './Somewhere'
 
-export default class DefaultRouter extends Component {
+class Router extends Component {
 	render() {
 		return(
+			<Router>
 			<Switch>
-				<Route exact path="/" component={Something}/>
+				<Route path="/about" component={About}/>
+
 			</Switch>
+			</Router>
 		)
 	}
 }
+
+export default Router;
+
+//				<Route exact path="/" component={Something}/>

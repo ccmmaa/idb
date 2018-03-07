@@ -1,0 +1,57 @@
+a {
+  color: #5a5a5a;
+}
+a:hover{
+  color: #FF7777;
+}
+
+
+#playlist{
+  position: relative;
+  margin:5% 5%;
+  /*float: center;
+  right: 0;*/
+
+}
+#map{
+  /*position: relative;*/
+  /*float: center;*/
+  width: 450px;
+  margin:5% 5%;
+  border-radius: 3px;
+  border:4px solid grey;
+}
+
+#concerts{
+  width: 55%;
+}
+.row{
+  text-align: center;
+  /*border:1px solid blue;*/
+  padding:0 0 0 1% ;
+
+}
+
+.badge{
+  background-color: #ff7777;
+}
+
+.container{
+  padding-top: 5%;
+}
+.h2{
+  color:#FF7777;
+}
+.shadow{
+  box-shadow: 2px 2px 1px grey;
+}
+.concert-img{
+  height: 200px;
+}
+.concert-text{
+  width: 300px;
+  margin:0 10%;
+ }
+ .concert-text a{
+  color:#ff7777;
+ }
