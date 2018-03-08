@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '../HeaderAndFooter/Navigation';
+import Footer from '../HeaderAndFooter/Footer';
+
 
 
 class Albums extends Component {
@@ -11,6 +13,8 @@ class Albums extends Component {
 
 				<h1>Albums</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
+				
+				<Footer />
 			</div>
 		);
 	}

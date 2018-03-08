@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '../HeaderAndFooter/Navigation';
+import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/about.css';
 import ChiaHua from '../assets/images/portraits/chiahua.jpg';
 import Cristina from '../assets/images/portraits/cristina.jpg';
@@ -160,6 +161,7 @@ class About extends Component {
 						
 					</div>
 				</main>
+				<Footer />
 			</div>
 			
 		);

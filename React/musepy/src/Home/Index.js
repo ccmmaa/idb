@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '../HeaderAndFooter/Navigation';
+import Footer from '../HeaderAndFooter/Footer';
+
 
 
 class Index extends Component {
@@ -11,6 +13,9 @@ class Index extends Component {
 
 				<h1>Home</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
+				
+				<Footer />
+
 			</div>
 		);
 	}

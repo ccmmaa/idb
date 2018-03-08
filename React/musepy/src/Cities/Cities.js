@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import Navigation from '../Navigation/Navigation';
+import Navigation from '../HeaderAndFooter/Navigation';
+import Footer from '../HeaderAndFooter/Footer';
+
 
 
 class Cities extends Component {
@@ -11,6 +13,9 @@ class Cities extends Component {
 
 				<h1>Cities</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
+				
+				<Footer />
+
 			</div>
 		);
 	}

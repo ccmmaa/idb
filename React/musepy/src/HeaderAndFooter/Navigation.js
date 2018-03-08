@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import {a} from 'react-router-dom';
 import NavTabItem from './NavTabItem';
 
-import '../assets/css/about.css';
-
 class Navigation extends Component {
 	
 	render() {
