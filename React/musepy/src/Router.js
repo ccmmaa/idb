@@ -6,12 +6,12 @@ import About from './About/About';
 class Router extends Component {
 	render() {
 		return(
-			<Router>
 			<Switch>
+				<Route path="/" component={About}/>
+				<Route path="/songs" component={About}/>
 				<Route path="/about" component={About}/>
 
 			</Switch>
-			</Router>
 		)
 	}
 }

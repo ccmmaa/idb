@@ -10,9 +10,11 @@ import './assets/css/main.css';
 
 class App extends Component {
   render() {
+    //Set change the state of the "activeTab" to change which tab is highlighted
     return (
       <div className="App">
-        <Navigation activeTab={"songs"}/>
+        <Navigation activeTab={"songs"}/> 
+        <Router />
         
       </div>
     );
