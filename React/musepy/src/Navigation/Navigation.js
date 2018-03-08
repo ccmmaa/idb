@@ -9,11 +9,11 @@ class Navigation extends Component {
 	render() {
 		const tabs = [ 
 			{"id": "index", "href": "/index", "text": "Home"},
-			{"id": "songs", "href": "/songs/songmodel.html", "text": "Songs"},
-			{"id": "artists", "href": "/artists/artistmodel.html", "text": "Artists"},
-			{"id": "albums", "href": "/albums/albummodel.html", "text": "Albums"},
-			{"id": "cities", "href": "/cities/citymodel.html", "text": "Cities"},
-			{"id": "about", "href": "about", "text": "About"}
+			{"id": "songs", "href": "/songs", "text": "Songs"},
+			{"id": "artists", "href": "/artists", "text": "Artists"},
+			{"id": "albums", "href": "/albums", "text": "Albums"},
+			{"id": "cities", "href": "/cities", "text": "Cities"},
+			{"id": "about", "href": "/about", "text": "About"}
 		];
 		let tabItems = tabs.map(tab => {
 			return(

@@ -2,18 +2,17 @@ import React, { Component } from 'react';
 import Navigation from '../Navigation/Navigation';
 
 
-class About extends Component {
+class Artists extends Component {
 
 	render() {
-		console.log(this);
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"about"}/> 
+				<Navigation activeTab={"artists"}/> 
 
-				<h1>About</h1>
+				<h1>Artists</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
 			</div>
 		);
 	}
 } 
-export default About;
+export default Artists;
