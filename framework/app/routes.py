@@ -32,6 +32,10 @@ def albumsPage():
 @app.route('/albums/<album>')
 def album(album):
     return render_template('albums/'+ album)
+    
+@app.route('/cities')
+def citiesPage():
+    return render_template('cities/citymodel.html')
 
 @app.route('/cities/<city>')
 def city(city):
@@ -63,33 +67,33 @@ def portraits(portrait):
 
 @app.route('/about')
 def about():
-	cris_commits_1 = requests.get(_url_commits('?author=ccmmaa'))
-	cris_commits_2 = requests.get(_url_commits('?author=ccmmaa@cs.utexas.edu'))
-	cris_issues = requests.get(_url_issues('?creator=ccmmaa;state=all'))
+	cris_commits_1 = requests.get(_url_commits('author=ccmmaa'))
+	cris_commits_2 = requests.get(_url_commits('author=ccmmaa@cs.utexas.edu'))
+	cris_issues = requests.get(_url_issues('creator=ccmmaa;state=all'))
 	cris_commits_num = len(cris_commits_1.json()) + len(cris_commits_2.json())
 	cris_issues_num = len(cris_issues.json())
 	
-	chia_commits_1 = requests.get(_url_commits('?author=chiahualu'))
-	chia_commits_2 = requests.get(_url_commits('?author=noreply@github.com'))
-	chia_issues = requests.get(_url_issues('?creator=chiahualu;state=all'))
+	chia_commits_1 = requests.get(_url_commits('author=chiahualu'))
+	chia_commits_2 = requests.get(_url_commits('author=noreply@github.com'))
+	chia_issues = requests.get(_url_issues('creator=chiahualu;state=all'))
 	chia_commits_num = len(chia_commits_1.json()) +len(chia_commits_2.json())
 	chia_issues_num = len(chia_issues.json())
 	
-	faiz_commits_1 = requests.get(_url_commits('?author=faizm123'))
-	faiz_commits_2 = requests.get(_url_commits('?author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'))
-	faiz_commits_3 = requests.get(_url_commits('?author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'))
-	faiz_commits_4 = requests.get(_url_commits('?author=faizmerchant@fma.local'))
-	faiz_issues = requests.get(_url_issues('?creator=Faiz-Merchant;state=all'))
-	faiz_commits_num = len(faiz_commits_1.json()) + len(faiz_commits_2.json()) + len(faiz_commits_3.json())
+	faiz_commits_1 = requests.get(_url_commits('author=faizm123'))
+	faiz_commits_2 = requests.get(_url_commits('author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'))
+	faiz_commits_3 = requests.get(_url_commits('author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'))
+	faiz_commits_4 = requests.get(_url_commits('author=faizmerchant@fma.local'))
+	faiz_issues = requests.get(_url_issues('creator=Faiz-Merchant;state=all'))
+	faiz_commits_num = len(faiz_commits_1.json()) + len(faiz_commits_2.json()) + len(faiz_commits_3.json()) + len(faiz_commits_4.json())
 	faiz_issues_num = len(faiz_issues.json())
 	
-	laur_commits = requests.get(_url_commits('?author=Laurencez'))
-	laur_issues = requests.get(_url_issues('?creator=Laurencez;state=all'))
+	laur_commits = requests.get(_url_commits('author=Laurencez'))
+	laur_issues = requests.get(_url_issues('creator=Laurencez;state=all'))
 	laur_commits_num = len(laur_commits.json())
 	laur_issues_num = len(laur_issues.json())
 	
-	sabr_commits = requests.get(_url_commits('?author=SabrinaHerrero'))
-	sabr_issues = requests.get(_url_issues('?creator=SabrinaHerrero;state=all'))
+	sabr_commits = requests.get(_url_commits('author=SabrinaHerrero'))
+	sabr_issues = requests.get(_url_issues('creator=SabrinaHerrero;state=all'))
 	sabr_commits_num = len(sabr_commits.json())
 	sabr_issues_num = len(sabr_issues.json())
 	
@@ -104,7 +108,7 @@ def about():
   
   
 def _url_commits(path):
-	return 'https://api.github.com/repos/ccmmaa/idb/commits' + path
+	return 'https://api.github.com/repos/ccmmaa/idb/commits?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + path
 	
 def _url_issues(path):
-	return 'https://api.github.com/repos/ccmmaa/idb/issues' + path
+	return 'https://api.github.com/repos/ccmmaa/idb/issues?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + path
