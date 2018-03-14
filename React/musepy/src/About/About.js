@@ -16,29 +16,30 @@ class About extends Component {
 	constructor() {
 		super();
 		this.state = {
+			testing: "Initial",
 			commits: {
-				'cris' : 0,
-				'chia' : 0,
-				'faiz' : 0, 
-				'laur' : 0, 
-				'sabr' : 0, 
-				'total' : 0	
+				cris : 0,
+				chia : 0,
+				faiz : 0, 
+				laur : 0, 
+				sabr : 0, 
+				total : 0	
 			},
 			issues: {
-				'cris' : 0,
-				'chia' : 0,
-				'faiz' : 0, 
-				'laur' : 0, 
-				'sabr' : 0, 
-				'total' : 0	
+				cris : 0,
+				chia : 0,
+				faiz : 0, 
+				laur : 0, 
+				sabr : 0, 
+				total : 0	
 			},
 			tests: {
-				'cris' : 0,
-				'chia' : 0,
-				'faiz' : 0, 
-				'laur' : 0, 
-				'sabr' : 0, 
-				'total' : 0	
+				cris : 0,
+				chia : 0,
+				faiz : 0, 
+				laur : 0, 
+				sabr : 0, 
+				total : 0	
 			}
 			
 		}
@@ -50,20 +51,59 @@ class About extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				console.log("get data from api success");
-				this.setState((prevState) => {
-					prevState[item][user] += data.length;
-				});
-				console.log("State: " + this.state[item][user]);
-						console.log("After Api" + this.state.commits.cris);
 
-				this.render();
+				console.log("get data from api success");
+				switch(item) {
+						case "commits" :
+							var obj = {
+								cris : this.state[item]["cris"],
+								chia : this.state[item]["chia"],
+								faiz : this.state[item]["faiz"], 
+								laur : this.state[item]["laur"], 
+								sabr : this.state[item]["sabr"], 
+								total : 0	
+							};
+							obj[user] = this.state[item][user] + data.length;
+							this.setState({
+								commits: obj
+							});
+							break;
+						case "issues" :
+							var obj = {};
+							obj[user] = this.state[item][user] + data.length;
+							this.setState({
+								issues: obj
+							});
+							break;
+						case "tests" :
+							var obj = {};
+							obj[user] = this.state[item][user] + data.length;
+							this.setState({
+								tests: obj
+							});
+							break;
+						default :
+							break;
+						// case "issues" :
+						// 	issues[user] : this.state[item][user] + data.length;
+						// case "tests" :
+						// 	tests[user] : this.state[item][user] + data.length;
+					}
+				// this.setState((prevState) => {
+					
+
+				// 	// prevState[item][user] += data.length;
+				// });
+				// console.log("State: " + this.state[item][user]);
+				// 		console.log("After Api" + this.state.commits.cris);
+
+				// this.render();
 			}.bind(this),
 			error: function(xhr, status, error) {
 				console.log("Get ERROR: " + error);
-				this.setState((prevState) => {
-					prevState[item][user] = 0;
-				});
+				// this.setState((prevState) => {
+				// 	prevState[item][user] = 0;
+				// });
 			}
 		});
 	}
@@ -74,7 +114,10 @@ class About extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				console.log(data);
+				this.setState({
+					testing: data[0]["author"]["login"]
+				});
+				// console.log(data);
 			}.bind(this),
 			error: function(xhr, status, error) {
 				console.log("Get ERROR: " + error);
@@ -90,59 +133,39 @@ class About extends Component {
 		return 'https://api.github.com/repos/ccmmaa/idb/issues?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + specifier;
 	}
 
-	getGithubCommits() {
-		// this.get();
+	getGithubCommits() {		
+
+		var cris_commits_1 = this.getRequestLength(this.url_commits('author=ccmmaa'), "cris", "commits");
+		var cris_commits_2 = this.getRequestLength(this.url_commits('author=ccmmaa@cs.utexas.edu'), "cris", "commits");
 		
+		let chia_commits_1 = this.getRequestLength(this.url_commits('author=chiahualu'), "chia", "commits");
+		let chia_commits_2 = this.getRequestLength(this.url_commits('author=noreply@github.com'), "chia", "commits");
 
-		// var cris_commits_1 = this.getRequestLength(this.url_commits('author=ccmmaa'), "cris", "commits");
-		// var cris_commits_2 = this.getRequestLength(this.url_commits('author=ccmmaa@cs.utexas.edu'), "cris", "commits");
+		let faiz_commits_1 = this.getRequestLength(this.url_commits('author=faizm123'), "faiz", "commits");
+		let faiz_commits_2 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'), "faiz", "commits");
+		let faiz_commits_3 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'), "faiz", "commits");
+		let faiz_commits_4 = this.getRequestLength(this.url_commits('author=faizmerchant@fma.local'), "faiz", "commits");
 
-		// console.log(this.state.commits.cris + "in Get Github");
-		// var cris_commits_num = cris_commits_1 + cris_commits_2;
+		let laur_commits = this.getRequestLength(this.url_commits('author=Laurencez'), "laur", "commits");
 
-		
-		// let chia_commits_1 = this.getRequestLength(this.url_commits('author=chiahualu'));
-		// let chia_commits_2 = this.getRequestLength(this.url_commits('author=noreply@github.com'));
-		// let chia_commits_num = chia_commits_1 +chia_commits_2;
-
-		// let faiz_commits_1 = this.getRequestLength(this.url_commits('author=faizm123'));
-		// let faiz_commits_2 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'));
-		// let faiz_commits_3 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'));
-		// let faiz_commits_4 = this.getRequestLength(this.url_commits('author=faizmerchant@fma.local'));
-		// let faiz_commits_num = faiz_commits_1 + faiz_commits_2 + faiz_commits_3 + faiz_commits_4;
-
-		// let laur_commits = this.getRequestLength(this.url_commits('author=Laurencez'));
-		// let laur_commits_num = (laur_commits);
-
-		// let sabr_commits = this.getRequestLength(this.url_commits('author=SabrinaHerrero'));
-		// let sabr_commits_num = (sabr_commits);
-
-		// let total_commits = cris_commits_num + chia_commits_num + faiz_commits_num + laur_commits_num + sabr_commits_num;
-
-		// return {'cris' : cris_commits_num, 'chia' : chia_commits_num, 'faiz' : faiz_commits_num, 'laur' : laur_commits_num, 'sabr' : sabr_commits_num, 'total' : total_commits};
-
+		let sabr_commits = this.getRequestLength(this.url_commits('author=SabrinaHerrero'), "sabr", "commits");
 
 	}
 
-	// componentWillMount() {
-	// 	this.getGithubCommits();
-	// }
-	componentDidMount() {
+	componentWillMount() {
 		this.getGithubCommits();
-		// this.render();
+	}
+
+	sum(parameter) {
+		var result = 0;
+		for (let keys in parameter) {
+			result += parameter[keys];
+		}
+		return result;
 	}
 
 	render() {
-		console.log("rendering... " + this.state.commits.cris);
-
-		// console.log(this);
-		// let commits = this.getGithubCommits();
-		// console.log(commits);
-		// let issues_chia = 0;
-		// let issues_cris = 0;
-		// let issues_faiz = 0;
-		// let issues_laur = 0;
-		// let issues_sabr = 0;
+		let commits_total = this.sum(this.state.commits);
 		let issues_total = 0;
 
 
@@ -158,7 +181,6 @@ class About extends Component {
 		// let commits_faiz = 0;
 		// let commits_laur =0;
 		// let commits_sabr = 0;
-		let commits_total = 0;
 		var state = this.state;
 		var memberData = {
 			'chiahua': {
@@ -208,17 +230,18 @@ class About extends Component {
 			}
 
 		}
+		console.log("Data Dump: Chia: " + state.commits.chia + ",   Cris: " + state.commits.cris + ",    Faiz: " + state.commits.faiz + ",   Laur: " + state.commits.laur + ",   Sabr: " + state.commits.sabr);
 
 		let names = ["chiahua", "cristina", "faiz", "laurence", "sabrina"];
 
 		let allMembers = names.map(member => {
-			console.log("Experiment" + memberData[member].commits);
+			// console.log("Experiment" + memberData[member].commits);
 			return(
 				<div className="team-member-card card-shadows">
 					<img className="rounded-circle" src={memberData[member].image} alt={memberData[member].name} height="140" />
 					<h2>{memberData[member].name}</h2>
 					<p>{memberData[member].bio1}</p>
-					<p>{memberData[member].bio2}</p>				
+					<p>{memberData[member].bio2}</p>		
 					<div className="statistics">Number of Commits: <span>{memberData[member].commits}</span><br />
 											Number of Issues: <span>{memberData[member].issues}</span><br />
 											Number of Tests: <span>{memberData[member].issues}</span>
@@ -233,6 +256,7 @@ class About extends Component {
 				<Navigation activeTab={"about"}/> 
 
 				<main role="main">
+					<p>{ this.state.testing }</p>
 
 
 					<div className="container marketing">
