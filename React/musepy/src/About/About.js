@@ -16,7 +16,6 @@ class About extends Component {
 	constructor() {
 		super();
 		this.state = {
-			testing: "Initial",
 			commits: {
 				cris : 0,
 				chia : 0,
@@ -206,7 +205,6 @@ class About extends Component {
 				<Navigation activeTab={"about"}/> 
 
 				<main role="main">
-					<p>{ this.state.testing }</p>
 
 					<div className="container marketing">
 
