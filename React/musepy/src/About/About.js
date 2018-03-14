@@ -53,9 +53,7 @@ class About extends Component {
 			success: function(data) {
 
 				console.log("get data from api success");
-				switch(item) {
-						case "commits" :
-							var obj = {
+				var obj = {
 								cris : this.state[item]["cris"],
 								chia : this.state[item]["chia"],
 								faiz : this.state[item]["faiz"], 
@@ -63,20 +61,22 @@ class About extends Component {
 								sabr : this.state[item]["sabr"], 
 								total : 0	
 							};
+
+				switch(item) {
+						case "commits" :
+							
 							obj[user] = this.state[item][user] + data.length;
 							this.setState({
 								commits: obj
 							});
 							break;
 						case "issues" :
-							var obj = {};
 							obj[user] = this.state[item][user] + data.length;
 							this.setState({
 								issues: obj
 							});
 							break;
 						case "tests" :
-							var obj = {};
 							obj[user] = this.state[item][user] + data.length;
 							this.setState({
 								tests: obj
@@ -135,20 +135,26 @@ class About extends Component {
 
 	getGithubCommits() {		
 
-		var cris_commits_1 = this.getRequestLength(this.url_commits('author=ccmmaa'), "cris", "commits");
-		var cris_commits_2 = this.getRequestLength(this.url_commits('author=ccmmaa@cs.utexas.edu'), "cris", "commits");
+		let cris_commits_1 = this.getRequestLength(this.url_commits('author=ccmmaa'), "cris", "commits");
+		let cris_commits_2 = this.getRequestLength(this.url_commits('author=ccmmaa@cs.utexas.edu'), "cris", "commits");
+		let cris_issues = this.getRequestLength(this.url_issues('creator=ccmmaa;state=all'), "cris", "issues");
 		
 		let chia_commits_1 = this.getRequestLength(this.url_commits('author=chiahualu'), "chia", "commits");
 		let chia_commits_2 = this.getRequestLength(this.url_commits('author=noreply@github.com'), "chia", "commits");
+		let chia_issues = this.getRequestLength(this.url_issues('creator=chiahualu;state=all'), "chia", "issues");
 
 		let faiz_commits_1 = this.getRequestLength(this.url_commits('author=faizm123'), "faiz", "commits");
 		let faiz_commits_2 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'), "faiz", "commits");
 		let faiz_commits_3 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'), "faiz", "commits");
 		let faiz_commits_4 = this.getRequestLength(this.url_commits('author=faizmerchant@fma.local'), "faiz", "commits");
+		let faiz_issues = this.getRequestLength(this.url_issues('creator=Faiz-Merchant;state=all'), "faiz", "issues");
 
 		let laur_commits = this.getRequestLength(this.url_commits('author=Laurencez'), "laur", "commits");
+		let laur_issues = this.getRequestLength(this.url_issues('creator=Laurencez;state=all'), "laur", "issues");
 
 		let sabr_commits = this.getRequestLength(this.url_commits('author=SabrinaHerrero'), "sabr", "commits");
+		let sabr_issues = this.getRequestLength(this.url_issues('creator=SabrinaHerrero;state=all'),  "sabr", "issues");
+
 
 	}
 
@@ -166,7 +172,7 @@ class About extends Component {
 
 	render() {
 		let commits_total = this.sum(this.state.commits);
-		let issues_total = 0;
+		let issues_total = this.sum(this.state.issues);
 
 
 		// // let commits_chia = commits.chia;
@@ -244,7 +250,7 @@ class About extends Component {
 					<p>{memberData[member].bio2}</p>		
 					<div className="statistics">Number of Commits: <span>{memberData[member].commits}</span><br />
 											Number of Issues: <span>{memberData[member].issues}</span><br />
-											Number of Tests: <span>{memberData[member].issues}</span>
+											Number of Tests: <span>{memberData[member].tests}</span>
 					</div>						
 				</div>
 			);
