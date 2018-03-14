@@ -1,32 +1,232 @@
 import React, { Component } from 'react';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
+import TeamMember from './TeamMember';
 import '../assets/css/about.css';
 import ChiaHua from '../assets/images/portraits/chiahua.jpg';
 import Cristina from '../assets/images/portraits/cristina.jpg';
 import Faiz from '../assets/images/portraits/faiz.jpg';
 import Laurence from '../assets/images/portraits/laurence.jpg';
 import Sabrina from '../assets/images/portraits/sabrina.jpg';
-
+import $ from 'jquery';
 
 
 class About extends Component {
 
+	constructor() {
+		super();
+		this.state = {
+			commits: {
+				'cris' : 0,
+				'chia' : 0,
+				'faiz' : 0, 
+				'laur' : 0, 
+				'sabr' : 0, 
+				'total' : 0	
+			},
+			issues: {
+				'cris' : 0,
+				'chia' : 0,
+				'faiz' : 0, 
+				'laur' : 0, 
+				'sabr' : 0, 
+				'total' : 0	
+			},
+			tests: {
+				'cris' : 0,
+				'chia' : 0,
+				'faiz' : 0, 
+				'laur' : 0, 
+				'sabr' : 0, 
+				'total' : 0	
+			}
+			
+		}
+	}
+
+	getRequestLength(fullUrl, user, item) {
+		$.ajax({
+			url: fullUrl,
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				console.log("get data from api success");
+				this.setState((prevState) => {
+					prevState[item][user] += data.length;
+				});
+				console.log("State: " + this.state[item][user]);
+						console.log("After Api" + this.state.commits.cris);
+
+				this.render();
+			}.bind(this),
+			error: function(xhr, status, error) {
+				console.log("Get ERROR: " + error);
+				this.setState((prevState) => {
+					prevState[item][user] = 0;
+				});
+			}
+		});
+	}
+
+	get() {
+		$.ajax({
+			url: 'https://api.github.com/repos/ccmmaa/idb/stats/contributors',
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				console.log(data);
+			}.bind(this),
+			error: function(xhr, status, error) {
+				console.log("Get ERROR: " + error);
+				
+			}
+		});
+	}
+
+	url_commits(specifier) {
+		return 'https://api.github.com/repos/ccmmaa/idb/commits?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + specifier;
+	}
+	url_issues(specifier) {
+		return 'https://api.github.com/repos/ccmmaa/idb/issues?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + specifier;
+	}
+
+	getGithubCommits() {
+		// this.get();
+		
+
+		// var cris_commits_1 = this.getRequestLength(this.url_commits('author=ccmmaa'), "cris", "commits");
+		// var cris_commits_2 = this.getRequestLength(this.url_commits('author=ccmmaa@cs.utexas.edu'), "cris", "commits");
+
+		// console.log(this.state.commits.cris + "in Get Github");
+		// var cris_commits_num = cris_commits_1 + cris_commits_2;
+
+		
+		// let chia_commits_1 = this.getRequestLength(this.url_commits('author=chiahualu'));
+		// let chia_commits_2 = this.getRequestLength(this.url_commits('author=noreply@github.com'));
+		// let chia_commits_num = chia_commits_1 +chia_commits_2;
+
+		// let faiz_commits_1 = this.getRequestLength(this.url_commits('author=faizm123'));
+		// let faiz_commits_2 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-145-231-18.public.utexas.edu'));
+		// let faiz_commits_3 = this.getRequestLength(this.url_commits('author=faizmerchant@wireless-10-147-115-189.public.utexas.edu'));
+		// let faiz_commits_4 = this.getRequestLength(this.url_commits('author=faizmerchant@fma.local'));
+		// let faiz_commits_num = faiz_commits_1 + faiz_commits_2 + faiz_commits_3 + faiz_commits_4;
+
+		// let laur_commits = this.getRequestLength(this.url_commits('author=Laurencez'));
+		// let laur_commits_num = (laur_commits);
+
+		// let sabr_commits = this.getRequestLength(this.url_commits('author=SabrinaHerrero'));
+		// let sabr_commits_num = (sabr_commits);
+
+		// let total_commits = cris_commits_num + chia_commits_num + faiz_commits_num + laur_commits_num + sabr_commits_num;
+
+		// return {'cris' : cris_commits_num, 'chia' : chia_commits_num, 'faiz' : faiz_commits_num, 'laur' : laur_commits_num, 'sabr' : sabr_commits_num, 'total' : total_commits};
+
+
+	}
+
+	// componentWillMount() {
+	// 	this.getGithubCommits();
+	// }
+	componentDidMount() {
+		this.getGithubCommits();
+		// this.render();
+	}
+
 	render() {
-		console.log(this);
-		let issues_chia = 0;
-		let issues_cris = 0;
-		let issues_faiz = 0;
-		let issues_laur = 0;
-		let issues_sabr = 0;
+		console.log("rendering... " + this.state.commits.cris);
+
+		// console.log(this);
+		// let commits = this.getGithubCommits();
+		// console.log(commits);
+		// let issues_chia = 0;
+		// let issues_cris = 0;
+		// let issues_faiz = 0;
+		// let issues_laur = 0;
+		// let issues_sabr = 0;
 		let issues_total = 0;
 
-		let commits_chia = 0;
-		let commits_cris = 0;
-		let commits_faiz = 0;
-		let commits_laur = 0;
-		let commits_sabr = 0;
+
+		// // let commits_chia = commits.chia;
+		// // let commits_cris = commits.cris;
+		// // let commits_faiz = commits.faiz;
+		// // let commits_laur = commits.laur;
+		// // let commits_sabr = commits.sab;
+		// // let commits_total = commits.total;
+
+		// let commits_chia = 0;
+		// let commits_cris = this.state.commits.cris;
+		// let commits_faiz = 0;
+		// let commits_laur =0;
+		// let commits_sabr = 0;
 		let commits_total = 0;
+		var state = this.state;
+		var memberData = {
+			'chiahua': {
+				"image": ChiaHua,
+				"name": "Chia-Hua Lu",
+				"bio1": "I am a junior of Computer Science. I also serve as the Senior Officer of Webmastering for ACM.",
+				"bio2":"I designed the About page, contributed to the design, layout, and style of many of the other pages, and assisting Cristina with managing the Python files and the server.",
+				"commits": state.commits.chia,
+				"issues": state.issues.chia,
+				"tests": state.tests.chia
+			}, 
+			'cristina': {
+				"image": Cristina,
+				"name": "Cristina Anderson",
+				"bio1": "I am a senior Computer Science major with a focus in graphics. I am also the president of Crafter's Circle, the UT crafting club! A fun fact about me is that I committed two felonies in Canada",
+				"bio2":"My major responsibilities were the backend, coding with Python and Flask",
+				"commits": state.commits.cris,
+				"issues": state.issues.cris,
+				"tests": state.tests.cris
+			},
+			'faiz': {
+				"image": Faiz,
+				"name": "Faiz Merchant",
+				"bio1": "I am a sophomore Computer Science major. I enjoy working on personal projects and have an interest in AI. ",
+				"bio2":"I worked mainly on frontend development. I created the pages for all the models where you can look at all the instances, and also creates the pages for the song instances.",
+				"commits": state.commits.faiz,
+				"issues": state.issues.faiz,
+				"tests": state.tests.faiz
+			},
+			'laurence': {
+				"image": Laurence,
+				"name": "Laurence Zhang",
+				"bio1": "I am a senior at UT majoring in Computer Science. Fun fact about me is that I'm a twin.",
+				"bio2":"Designed the splash page with Bootstrap. Also designed the instances for Artists and Albums. Contributed to the website's API design and documentation.",
+				"commits": state.commits.laur,
+				"issues": state.issues.laur,
+				"tests": state.tests.laur
+			},
+			'sabrina': {
+				"image": Sabrina,
+				"name": "Sabrina Herrero",
+				"bio1": "I'm a junior Computer Science major. I am also the president of HACS, social officer in ACM, and communications officer in Crafter's Circle!",
+				"bio2":"I designed and created the pages for the city model. I also found APIs that we are using.",
+				"commits": state.commits.sabr,
+				"issues": state.issues.sabr,
+				"tests": state.tests.sabr
+			}
+
+		}
+
+		let names = ["chiahua", "cristina", "faiz", "laurence", "sabrina"];
+
+		let allMembers = names.map(member => {
+			console.log("Experiment" + memberData[member].commits);
+			return(
+				<div className="team-member-card card-shadows">
+					<img className="rounded-circle" src={memberData[member].image} alt={memberData[member].name} height="140" />
+					<h2>{memberData[member].name}</h2>
+					<p>{memberData[member].bio1}</p>
+					<p>{memberData[member].bio2}</p>				
+					<div className="statistics">Number of Commits: <span>{memberData[member].commits}</span><br />
+											Number of Issues: <span>{memberData[member].issues}</span><br />
+											Number of Tests: <span>{memberData[member].issues}</span>
+					</div>						
+				</div>
+			);
+		})
+		//<TeamMember key={member.name} member={member} />
 
 		return(
 			<div className="pageContent">
@@ -61,7 +261,69 @@ class About extends Component {
 							<center>
 								<h2 className="featurette-heading">Requiem For Our Dreams</h2>
 								<br />
-								<div className="team-member-card card-shadows">
+
+								{allMembers}
+								
+							</center>
+						</div>
+
+						<hr />
+						<div className="row featurette">
+							<div id="statistics-all">
+								<h2 className="featurette-heading-orange">Total Statistics</h2>
+								<br />
+								<div className="statistics">Number of Commits: <span id="commits-all">{ commits_total }</span><br />
+														Number of Issues: <span id="issues-all">{ issues_total }</span><br />
+														Number of Tests: <span id="tests-all">0</span>
+								</div>		
+							</div>
+						</div>
+
+		       			<hr />
+		        
+						<div className="row featurette">
+							<div>
+								<h2 className="featurette-heading-orange">Data Sources</h2>
+								<p className="lead">The APIs we used, and description of how it was scraped</p>
+							</div>
+						</div>
+
+						<hr />
+
+						<div className="row featurette">
+							<div>
+								<h2 className="featurette-heading-orange">Tools Used</h2>
+								<div className="lead">
+									<ul>
+										<li><h3>Flask</h3><p>Web framework in Python</p></li>
+										<li><h3>Github</h3><p>Version Control and collaboration tool</p></li>
+										<li><h3>Gitbook</h3><p>Documentation creation tool</p></li>
+										<li><h3>Bootstrap</h3><p>Website Templates</p></li>
+										<li><h3>Namecheap</h3><p>Domain Name for our website</p></li>
+										<li><h3>Amazon Web Services</h3><p>Web Server and hosting service</p></li>
+										<li><h3>Slack</h3><p>Team communication and collaboration application</p></li>
+										<li><h3>Doodle</h3><p>Tool to help with scheduling around classes</p></li>
+									</ul>
+
+								</div>
+							</div>
+						</div>
+
+						<hr className="featurette-divider" />
+						
+					</div>
+				</main>
+				<Footer />
+			</div>
+			
+		);
+	}
+} 
+export default About;
+
+/*
+
+<div className="team-member-card card-shadows">
 									<img className="rounded-circle" src={ChiaHua} alt="Chia-Hua Lu" height="140" />
 									<h2>Chia-Hua Lu</h2>
 									<p>I am a junior of Computer Science. I also serve as the Senior Officer of Webmastering for ACM.</p>
@@ -77,7 +339,7 @@ class About extends Component {
 									<h2>Cristina Anderson</h2>
 									<p>I am a senior Computer Science major with a focus in graphics. I am also the president of Crafter's Circle, the UT crafting club! A fun fact about me is that I committed two felonies in Canada</p>
 									<p>My major responsibilities were the backend, coding with Python and Flask</p>
-									<div className="statistics">Number of Commits: <span id="commits-cris">{commits_cris}</span><br />
+									<div className="statistics">Number of Commits: <span id="commits-cris">{this.state.commits.cris}</span><br />
 															Number of Issues: <span id="issues-cris">{issues_cris}</span><br />
 															Number of Tests: <span id="tests-cris">0</span>
 									</div>
@@ -112,59 +374,5 @@ class About extends Component {
 															Number of Tests: <span id="tests-sabr">0</span>
 									</div>						
 								</div>
-							</center>
-						</div>
 
-						<hr />
-						<div className="row featurette">
-							<div id="statistics-all">
-								<h2 className="featurette-heading-orange">Total Statistics</h2>
-								<br />
-								<div className="statistics">Number of Commits: <span id="commits-all">{ commits_total }</span><br />
-														Number of Issues: <span id="issues-all">{ issues_total }</span><br />
-														Number of Tests: <span id="tests-all">0</span>
-								</div>		
-							</div>
-						</div>
-
-		       			<hr />
-		        
-						<div className="row featurette">
-							<div>
-								<h2 className="featurette-heading-orange">Data Sources</h2>
-								<p className="lead">The APIs we used, and description of how it was scraped</p>
-							</div>
-						</div>
-
-						<hr />
-
-						<div className="row featurette">
-							<div>
-								<h2 className="featurette-heading-orange">Tools Used</h2>
-								<p className="lead">
-									<ul>
-										<li><h3>Flask</h3><p>Web framework in Python</p></li>
-										<li><h3>Github</h3><p>Version Control and collaboration tool</p></li>
-										<li><h3>Gitbook</h3><p>Documentation creation tool</p></li>
-										<li><h3>Bootstrap</h3><p>Website Templates</p></li>
-										<li><h3>Namecheap</h3><p>Domain Name for our website</p></li>
-										<li><h3>Amazon Web Services</h3><p>Web Server and hosting service</p></li>
-										<li><h3>Slack</h3><p>Team communication and collaboration application</p></li>
-										<li><h3>Doodle</h3><p>Tool to help with scheduling around classes</p></li>
-									</ul>
-
-								</p>
-							</div>
-						</div>
-
-						<hr className="featurette-divider" />
-						
-					</div>
-				</main>
-				<Footer />
-			</div>
-			
-		);
-	}
-} 
-export default About;
+								*/
