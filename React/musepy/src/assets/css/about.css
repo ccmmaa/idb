@@ -28,3 +28,31 @@ ul {
 	width:25vw;
 	padding: 5px 20px;
 }
+.card-shadows {
+	display: inline-block;
+	
+}
+#tools img {
+	position:relative;
+	width: 90%;
+	z-index: -1;
+	opacity: 0.3;
+	margin: 5%;
+	height: 90%;
+}
+#tools div {
+	position: absolute;
+	width:100%;
+	margin:0px;
+	padding:10px;
+	/*transform: translate(-50%, -50%);*/
+}
+
+#tools li {
+	vertical-align: center;
+	width: 22vw;
+	height: 22vw;
+	position: relative;
+	text-align: center;
+	padding:0px;
+}
