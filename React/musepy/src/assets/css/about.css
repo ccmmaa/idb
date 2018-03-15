@@ -29,7 +29,6 @@ ul {
 	padding: 5px 20px;
 }
 .card-shadows {
-	display: inline-block;
 	
 }
 #tools img {
@@ -55,4 +54,19 @@ ul {
 	position: relative;
 	text-align: center;
 	padding:0px;
+	border:none;
+	display: inline-block;
+}
+#tools p {
+	opacity: 0;
+	height: 16vw;
+	font-weight: bold;
+}
+#tools p:hover {
+	opacity: 1;
+	transition: opacity 0.2s ease-in;
+}
+#tools p:not(:hover) {
+	opacity: 0;
+	transition: opacity 0.2s ease-in;
 }
