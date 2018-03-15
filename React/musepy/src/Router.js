@@ -22,13 +22,13 @@ class Router extends Component {
 				<Route exact path="/index" component={Index} />
 				<Route exact path="/" component={Index} />
 				<Route exact path="/songs" component={Songs} />
-				<Route path="/songs/:songID" component={SongInstance} />
+				<Route exact path="/songs/:songID" component={SongInstance} />
 				<Route exact path="/artists" component={Artists} />
-				<Route path="/artists/:artistID" component={ArtistInstance} />
+				<Route exact path="/artists/:artistID" component={ArtistInstance} />
 				<Route exact path="/albums" component={Albums} />
-				<Route path="/albums/albumID" component={AlbumInstance} />
+				<Route exact path="/albums/:albumID" component={AlbumInstance} />
 				<Route exact path="/cities" component={Cities} />
-				<Route path="/cities/:cityID" component={CityInstance} />
+				<Route exact path="/cities/:cityID" component={CityInstance} />
 				<Route exact path="/about" component={About} />
 
 			</Switch>

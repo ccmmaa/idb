@@ -11,7 +11,7 @@ class Cities extends Component {
 			<div className="pageContent">
 				<Navigation activeTab={"cities"}/> 
 
-				<h1>City Instance</h1>
+				<h1>Cities</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
 				
 				<Footer />
