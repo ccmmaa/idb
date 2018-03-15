@@ -4,20 +4,19 @@ import Footer from '../HeaderAndFooter/Footer';
 
 
 
-class Cities extends Component {
+class AlbumInstance extends Component {
 
 	render() {
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"cities"}/> 
+				<Navigation activeTab={"albums"}/> 
 
-				<h1>City Instance</h1>
+				<h1>AlbumInstance</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
 				
 				<Footer />
-
 			</div>
 		);
 	}
 } 
-export default Cities;
+export default AlbumInstance;

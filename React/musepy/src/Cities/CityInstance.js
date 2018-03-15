@@ -4,14 +4,14 @@ import Footer from '../HeaderAndFooter/Footer';
 
 
 
-class Cities extends Component {
+class CityInstance extends Component {
 
 	render() {
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"cities"}/> 
 
-				<h1>City Instance</h1>
+				<h1>Cities</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
 				
 				<Footer />
@@ -20,4 +20,4 @@ class Cities extends Component {
 		);
 	}
 } 
-export default Cities;
+export default CityInstance;

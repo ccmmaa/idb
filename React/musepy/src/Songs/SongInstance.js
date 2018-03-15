@@ -1,23 +1,26 @@
 import React, { Component } from 'react';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
+import PageNotFound from '../PageNotFound';
 
 
 
-class Cities extends Component {
+class SongInstance extends Component {
 
 	render() {
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"cities"}/> 
+				<Navigation activeTab={"songs"}/> 
 
-				<h1>City Instance</h1>
+				<h1>Song Instance</h1>
 				<p>fdsaafdsadsffdsadsaffasd</p>
-				
+				<PageNotFound id="adsf" category="Songs" />
+
+
 				<Footer />
 
 			</div>
 		);
 	}
 } 
-export default Cities;
+export default SongInstance;
