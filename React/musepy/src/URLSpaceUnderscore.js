@@ -8,6 +8,19 @@ URL.toUrl("The Name or title of something") returns "The_Name_or_title_of_someth
 */
 class URLSpaceUnderscore {
 
+	static toString(url) {
+		return URLSpaceUnderscore.convert(url, '_', ' ');
+	}
+
+	static toUrl(string) {
+		return URLSpaceUnderscore.convert(string, ' ', '_');
+	}
+
+	static lastUrlItem() {
+		var result = window.location.href;
+		return result.substring(result.lastIndexOf("/")+1);
+	}
+
 	//Helper method. Use the other two methods instead
 	static convert(input, take, convert) {
 		console.log("URL Convert Test");
@@ -23,14 +36,6 @@ class URLSpaceUnderscore {
 		}
 		console.log("Output = " + result);
 		return result;
-	}
-
-	static toString(url) {
-		return URLSpaceUnderscore.convert(url, '_', ' ');
-	}
-
-	static toUrl(string) {
-		return URLSpaceUnderscore.convert(string, ' ', '_');
 	}
 
 	

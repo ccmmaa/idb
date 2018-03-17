@@ -50,7 +50,7 @@ class About extends Component {
 			cache: false,
 			success: function(data) {
 
-				console.log("get data from api success");
+				// console.log("get data from api success");
 				var obj = {
 					cris : this.state[item]["cris"],
 					chia : this.state[item]["chia"],
@@ -81,7 +81,7 @@ class About extends Component {
 					}
 			}.bind(this),
 			error: function(xhr, status, error) {
-				console.log("Get ERROR: " + error);
+				// console.log("Get ERROR: " + error);
 			}
 		});
 	}
@@ -181,7 +181,7 @@ class About extends Component {
 				"tests": state.tests.sabr
 			}
 		}
-		console.log("Data Dump: Chia: " + state.commits.chia + ",   Cris: " + state.commits.cris + ",    Faiz: " + state.commits.faiz + ",   Laur: " + state.commits.laur + ",   Sabr: " + state.commits.sabr);
+		// console.log("Data Dump: Chia: " + state.commits.chia + ",   Cris: " + state.commits.cris + ",    Faiz: " + state.commits.faiz + ",   Laur: " + state.commits.laur + ",   Sabr: " + state.commits.sabr);
 
 		let names = ["chiahua", "cristina", "faiz", "laurence", "sabrina"];
 
