@@ -40,7 +40,7 @@ class About extends Component {
 				sabr : 0, 
 				total : 0	
 			}
-		}
+		};
 	}
 
 	getRequestLength(fullUrl, user, item) {
@@ -198,7 +198,7 @@ class About extends Component {
 					</div>						
 				</div>
 			);
-		})
+		});
 
 		return(
 			<div className="pageContent">
