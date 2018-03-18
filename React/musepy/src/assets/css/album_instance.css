@@ -34,3 +34,13 @@ a:hover{
 .h6 span {
   color: #FF7777;
 }
+
+.row {
+  text-align: left;
+  display:block;
+}
+
+.albumsCol {
+    display: inline-block;
+vertical-align: top;
+}

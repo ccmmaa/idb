@@ -43,19 +43,19 @@ class AlbumInstance extends Component {
 						<div>
 							<div className="container">
 								<div className="row">
-									<div className="col-lg-4">
-										<img src={this.state.albumArt} alt="Album Art Needed" className="img-thumbnail" />
+									<div className="col-lg-4 albumsCol">
+										<img src={this.state.albumArt} alt="Album Art Needed" className="img-thumbnail card-shadows " />
 										<p className="h1">{this.state.albumName}</p>
 										<p className="h3"><a href={"/artists/"+URL.toUrl(this.state.albumArtist)}>{this.state.albumArtist}</a></p>
 									</div>
 
-									<div className="col-lg-5">
+									<div className="col-lg-5 albumsCol">
 											<p class = "h2">Song List</p>
 											<ul className="list-group list-group-flush">
 												{allSongs}
 											  </ul>
 									</div>
-									<div className="col-lg-3">
+									<div className="col-lg-3 albumsCol">
 										<p className="h6"><span>Genre: </span>{this.state.genra}</p>
 										<p className="h6"><span>Released: </span>{this.state.releaseDate}</p>
 										<p className="h6"><span>Label: </span>{this.state.labels}</p>
