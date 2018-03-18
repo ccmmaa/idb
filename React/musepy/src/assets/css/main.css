@@ -61,10 +61,10 @@ main {
 .card-shadows {
 	border:1px solid #444444;
 	vertical-align: top;
-	margin:15px;
+	
     box-shadow: 0px 5px 20px 0px #555555;
     box-shadow: 0px 10px 25px 5px #aaaaaa;
-    padding:10px;
+    
 }
 
 .spacer {

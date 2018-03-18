@@ -70,3 +70,8 @@ ul {
 	opacity: 0;
 	transition: opacity 0.2s ease-in;
 }
+
+.about-cards {
+	margin:15px;
+	padding:10px;
+}

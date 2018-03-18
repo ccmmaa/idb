@@ -4,6 +4,8 @@ import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/modelpage.css';
 import AlbumSlide from '../assets/images/albummodel.jpg';
 import URL from '../URLSpaceUnderscore';
+import Loading from '../assets/images/loadingHorizontal.gif';
+
 
 
 
@@ -13,7 +15,7 @@ class Albums extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: false,
+			doneLoading: true,
 			allAlbums: [
 				{
 					"name": "Birds in the Trap Sing McKnight",
@@ -206,18 +208,21 @@ class Albums extends Component {
 	}
 
 	render() {
-
-		let allAlbums = this.state.allAlbums.map(album => {
-			return(
-				<div className="card-shadows modelCard">
-					<div className="ingrid" text-align="center">
-						<img className="rounded-circle" src={album["album_art_url"]} alt={album["name"]} width="140" height="140" />
-						<h2>{album["name"]}</h2><h6>by <a href={"/artists/" + URL.toUrl(album["artist"])} >{album["artist"]}</a></h6>
-						<p><a className="btn btn-secondary" href={"/albums/" + URL.toUrl(album["name"])} role="button">View {album["name"]} &raquo;</a></p>
+		var allAlbums = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
+		if (this.state.doneLoading) {
+			allAlbums = this.state.allAlbums.map(album => {
+				return(
+					<div className="card-shadows model-cards modelCard">
+						<div className="ingrid" text-align="center">
+							<img className="rounded-circle" src={album["album_art_url"]} alt={album["name"]} width="140" height="140" />
+							<h2>{album["name"]}</h2><h6>by <a href={"/artists/" + URL.toUrl(album["artist"])} >{album["artist"]}</a></h6>
+							<p><a className="btn btn-secondary" href={"/albums/" + URL.toUrl(album["name"])} role="button">View Album &raquo;</a></p>
+						</div>
 					</div>
-				</div>
-			);
-		});
+				);
+			});
+		}
+		
 
 		return(
 			<div className="pageContent">
@@ -243,47 +248,17 @@ class Albums extends Component {
 					<div className="container2 marketing">
 					
 						<div className="row">
-							
-						{allAlbums}
-
-							
+							<center>{allAlbums}</center>
 						</div>
 					</div>
-
-
-
 					<div className="container">
 						<hr />
 					</div>
 
 				</main>
+				<Footer />
 			</div>
 		);
 	}
 } 
 export default Albums;
-/*
-<div className="col-lg-2">
-								<div className="ingrid" text-align="center">
-								  <img className="rounded-circle" src="/static/images/kesha_rainbow.jpg" alt="Generic placeholder image" width="140" height="140" />
-								  <h2>Rainbow</h2><h6>by Kesha</h6>
-								  <p><a className="btn btn-secondary" href="album1.html" role="button">View Rainbow &raquo;</a></p>
-								</div>
-							</div>
-							
-							<div className="col-lg-2">
-								<div className="ingrid" text-align="center">
-								  <img className="rounded-circle" src="/static/images/travis_scott_album.jpg" alt="Generic placeholder image" width="140" height="140" />
-								  <h2>Birds in the Trap Sing McKnight</h2><h6>by Travis Scott</h6>
-								  <p><a className="btn btn-secondary" href="album2.html" role="button">View Birds in the Trap... &raquo;</a></p>
-								</div>
-							</div>
-							
-							<div className="col-lg-2">
-								<div className="ingrid" text-align="center">
-								  <img className="rounded-circle" src="/static/images/khalid_americanteen.jpg" alt="Generic placeholder image" width="140" height="140" />
-								  <h2>American Teen</h2><h6>by Khalid</h6>
-								  <p><a className="btn btn-secondary" href="album3.html" role="button">View American Teen &raquo;</a></p>
-								</div>
-							</div>
-*/

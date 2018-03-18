@@ -187,7 +187,7 @@ class About extends Component {
 
 		let allMembers = names.map(member => {
 			return(
-				<div className="team-member-card card-shadows">
+				<div className="team-member-card card-shadows about-cards">
 					<img className="rounded-circle" src={memberData[member].image} alt={memberData[member].name} height="140" />
 					<h2>{memberData[member].name}</h2>
 					<p>{memberData[member].bio1}</p>
@@ -239,13 +239,16 @@ class About extends Component {
 
 						<hr />
 						<div className="row featurette">
+
 							<div id="statistics-all">
 								<h2 className="featurette-heading-orange">Total Statistics</h2>
 								<br />
-								<div className="statistics">Number of Commits: <span id="commits-all">{ commits_total }</span><br />
-														Number of Issues: <span id="issues-all">{ issues_total }</span><br />
-														Number of Tests: <span id="tests-all">0</span>
-								</div>		
+								<center>
+									<div className="statistics">Number of Commits: <span id="commits-all">{ commits_total }</span><br />
+															Number of Issues: <span id="issues-all">{ issues_total }</span><br />
+															Number of Tests: <span id="tests-all">0</span>
+									</div>	
+								</center>	
 							</div>
 						</div>
 
@@ -266,15 +269,15 @@ class About extends Component {
 								<div className="lead">
 									<center>
 										<ul id="tools">
-											<li className="card-shadows"><div><h3>Flask</h3><p>Web framework in Python</p></div><img src="https://opbeat.com/docs/static/images/stacks/logo_flask.svg" /></li>
-											<li className="card-shadows"><div><h3>Github</h3><p>Version Control and collaboration tool</p></div><img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-256.png" /></li>
-											<li className="card-shadows"><div><h3>Gitbook</h3><p>Documentation creation tool</p></div><img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/orgs%2Flogos%2Fgitbook%2FLogo.svg?alt=media&token=84da6255-53f6-443c-9ae6-de135cea8cee" /></li>
-											<li className="card-shadows"><div><h3>Bootstrap</h3><p>Website Templates</p></div><img src="https://getbootstrap.com/assets/img/bootstrap-stack.png" /></li>
-											<li className="card-shadows"><div><h3>Namecheap</h3><p>Domain Name for our website</p></div><img src="http://www.simplestartup.net/wp-content/uploads/2015/01/namecheap2.png" /></li>
-											<li className="card-shadows"><div><h3>Amazon Web Services</h3><p>Web Server and hosting service</p></div><img src="https://i2.wp.com/snowulf.com/wp-content/uploads/2013/05/aws-logo-square-02.png" /></li>
-											<li className="card-shadows"><div><h3>Slack</h3><p>Team communication and collaboration application</p></div><img src="http://blogs.newschool.edu/digitalhumanities/files/2016/02/Slack_Icon.png" /></li>
-											<li className="card-shadows"><div><h3>Doodle</h3><p>Tool to help with scheduling around classes</p></div><img src="https://cdn2.doodle.com/dist/i/7479b568749fca315a2969e30cbee4f5.png" /></li>
-											<li className="card-shadows"><div><h3>React</h3><p>Dynamic Frontend</p></div><img src="https://cdn-images-1.medium.com/max/1600/1*g6s1lvpfArJGorALkKNhvw.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Flask</h3><p>Web framework in Python</p></div><img src="https://opbeat.com/docs/static/images/stacks/logo_flask.svg" /></li>
+											<li className="card-shadows about-cards"><div><h3>Github</h3><p>Version Control and collaboration tool</p></div><img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-256.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Gitbook</h3><p>Documentation creation tool</p></div><img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/orgs%2Flogos%2Fgitbook%2FLogo.svg?alt=media&token=84da6255-53f6-443c-9ae6-de135cea8cee" /></li>
+											<li className="card-shadows about-cards"><div><h3>Bootstrap</h3><p>Website Templates</p></div><img src="https://getbootstrap.com/assets/img/bootstrap-stack.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Namecheap</h3><p>Domain Name for our website</p></div><img src="http://www.simplestartup.net/wp-content/uploads/2015/01/namecheap2.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Amazon Web Services</h3><p>Web Server and hosting service</p></div><img src="https://i2.wp.com/snowulf.com/wp-content/uploads/2013/05/aws-logo-square-02.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Slack</h3><p>Team communication and collaboration application</p></div><img src="http://blogs.newschool.edu/digitalhumanities/files/2016/02/Slack_Icon.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Doodle</h3><p>Tool to help with scheduling around classes</p></div><img src="https://cdn2.doodle.com/dist/i/7479b568749fca315a2969e30cbee4f5.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>React</h3><p>Dynamic Frontend</p></div><img src="https://cdn-images-1.medium.com/max/1600/1*g6s1lvpfArJGorALkKNhvw.png" /></li>
 										</ul>
 									</center>
 								</div>
