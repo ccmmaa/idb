@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
+import '../assets/css/carousel.css';
 import '../assets/css/modelpage.css';
 import AlbumSlide from '../assets/images/albummodel.jpg';
 import URL from '../URLSpaceUnderscore';
@@ -212,11 +213,11 @@ class Albums extends Component {
 		if (this.state.doneLoading) {
 			allAlbums = this.state.allAlbums.map(album => {
 				return(
-					<div className="card-shadows model-cards modelCard">
+					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 							<img className="rounded-circle" src={album["album_art_url"]} alt={album["name"]} width="140" height="140" />
 							<h2>{album["name"]}</h2><h6>by <a href={"/artists/" + URL.toUrl(album["artist"])} >{album["artist"]}</a></h6>
-							<p><a className="btn btn-secondary" href={"/albums/" + URL.toUrl(album["name"])} role="button">View Album &raquo;</a></p>
+							<p><a className="btn btn-secondary" href={"/albums/" + URL.toUrl(album["name"]) + "-" + URL.toUrl(album["artist"])} role="button">View Album &raquo;</a></p>
 						</div>
 					</div>
 				);

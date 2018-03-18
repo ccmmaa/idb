@@ -59,12 +59,17 @@ main {
 	overflow:hidden
 }
 .card-shadows {
-	border:1px solid #444444;
+	/*border:1px solid #444444;*/
 	vertical-align: top;
-	
     box-shadow: 0px 5px 20px 0px #555555;
     box-shadow: 0px 10px 25px 5px #aaaaaa;
-    
+}
+
+.card-shadows-orange {
+	border:3px solid #ff7777;
+	vertical-align: top;
+    /*box-shadow: 0px 5px 20px 0px #555555;
+    box-shadow: 0px 10px 25px 5px #aaaaaa;*/
 }
 
 .spacer {
