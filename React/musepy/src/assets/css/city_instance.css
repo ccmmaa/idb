@@ -55,3 +55,10 @@ a:hover{
  .concert-text a{
   color:#ff7777;
  }
+ .mapIframe {
+  border:0px;
+ }
+
+ div {
+  border: 1px solid red;
+ }
