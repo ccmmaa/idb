@@ -1,21 +1,24 @@
 import React, { Component } from 'react';
+import Router from './Router';
 import logo from './logo.svg';
-import './App.css';
+import { Link } from 'react-router';
+
+import './assets/css/bootstrap.min.css'; 
+import './assets/css/main.css';
+
 
 class App extends Component {
+
   render() {
+    //Set change the state of the "activeTab" to change which tab is highlighted
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="">
+        <Router />
       </div>
     );
   }
 }
 
 export default App;
+
+//<Router />
