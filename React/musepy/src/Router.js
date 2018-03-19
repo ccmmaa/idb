@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Index from './Home/Index';
+import Index from './Home/Home';
 import Songs from './Songs/Songs';
 import Artists from './Artists/Artists';
 import Albums from './Albums/Albums';
