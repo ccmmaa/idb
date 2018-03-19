@@ -16,8 +16,12 @@ class URLSpaceUnderscore {
 		return URLSpaceUnderscore.convert(string, ' ', '_');
 	}
 
-	static lastUrlItem() {
+	static lastUrlItem(itemNumber) {
 		var result = window.location.href;
+		if (itemNumber == 0)
+			return result.substring(result.lastIndexOf("/")+1, result.lastIndexOf("-"));
+		else if (itemNumber == 1)
+			return result.substring(result.lastIndexOf("-")+1);	
 		return result.substring(result.lastIndexOf("/")+1);
 	}
 
