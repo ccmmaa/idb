@@ -84,3 +84,6 @@ main {
 .pageNotFound {
 	text-align: center;
 }
+.row {
+	vertical-align: top;
+}

@@ -68,6 +68,9 @@ class AlbumInstance extends Component {
 							<br />
 						</div>
 					</main>
+					<div className="container">
+						<hr />
+					</div>
 					<Footer />
 				</div>
 			);
