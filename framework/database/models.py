@@ -1,9 +1,10 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE-URI'] = 'mysql://master:musepy.me@musepy.cmlur1dhu2fc.us-east-2.rds.amazonaws.com/musepy'
-db = SQLAlchemy(app)
+# app = Flask(__name__)
+# app.config['SQLALCHEMY_DATABASE-URI'] = 'mysql://master:musepy.me@musepy.cmlur1dhu2fc.us-east-2.rds.amazonaws.com/musepy'
+# db = SQLAlchemy(app)
+
 
 
 class Artist(db.Model):
@@ -55,7 +56,7 @@ class Concert(db.Model):
     time = db.Column(db.DateTime, nullable = False)
     venue = db.Column(db.String(500), nullable = False)
     cities = db.relationship('cities', backpopulates = 'artists')    
-    artists = db.relationship('artists', backref=db.backref('cities', lazy=True))
+    artists = db.relationship('artists', backpopulates = 'cities')
 
 class Playlist()
     __tableame__ = 'playlist'
@@ -63,7 +64,7 @@ class Playlist()
     song_id = db.Column(db.Integer, db.ForeignKey(song.id), primary_key = True)
     link = db.Column(db.String(500), nullable = False)
     cities = db.relationship('cities', backpopulates = 'songs')    
-    songs = db.relationship('songs', backref=db.backref('cities', lazy=True))
+    songs = db.relationship('songs', backpopulates = 'cities')
 
 
         
