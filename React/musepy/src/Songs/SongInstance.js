@@ -4,6 +4,8 @@ import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/song_instance.css';
 import URL from '../URLSpaceUnderscore';
+import $ from 'jquery';
+
 
 class SongInstance extends Component {
 
@@ -12,6 +14,7 @@ class SongInstance extends Component {
 		this.state = {
 			doneLoading: false,
 			video: "http://www.mksp.in/images/loading.gif",
+			itunesUrl: "#",
 			songName: URL.toString(URL.lastUrlItem(0)),
 			songArtist: URL.toString(URL.lastUrlItem(1)),
 			song: {
@@ -44,6 +47,25 @@ class SongInstance extends Component {
 				]
 			}
 		};
+	}
+
+	getiTunesUrl() {
+		$.ajax({
+			url: "https://itunes.apple.com/search?term=" + URL.convert(this.state.song.name, " ", "+") + "+" + URL.convert(this.state.song.artist, " ", "+") + "&limit=1",
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				this.setState({itunesUrl: data.results[0].trackViewUrl});
+			}.bind(this),
+			error: function(xhr, status, error) {
+				// console.log("Get ERROR: " + error);
+			}
+		});
+	}
+
+	componentWillMount() {
+		this.getiTunesUrl();
+
 	}
 
 
@@ -79,7 +101,7 @@ class SongInstance extends Component {
 							<div className="mediaCol">
 								<div className="ingrid" text-align="center">
 									<iframe src={this.state.song.url} frameborder="0" className="songPlayer" allowtransparency="true"></iframe>
-									
+									<p><a class="btn btn-success btn-sm" href={this.state.itunesUrl} role="button">View in iTunes »</a></p>
 									<hr />
 									<p align="left"><a className="btn btn-secondary btn-lg" href={"/artists/" + URL.toUrl(this.state.song.artist)} role="button">View this Artist &raquo;</a></p>
 									<p align="left"><a className="btn btn-secondary btn-lg" href={"/albums/" + URL.toUrl(this.state.song.album)} role="button">View this Album &raquo;</a></p>
