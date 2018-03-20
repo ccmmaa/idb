@@ -18,7 +18,7 @@ class Index extends Component {
 
 	render() {
 		return(
-			<div className="pageContent">	
+			<div className="pageContent">
 				<Navigation activeTab={"index"} />
 
 				<main role="main">
@@ -79,7 +79,7 @@ class Index extends Component {
 					</div>
 
 
-					
+
 
 					<div className="container marketing">
 
@@ -152,11 +152,10 @@ class Index extends Component {
 						</div>
 					</div>
 				</main>
-				<Footer />			
+				<Footer />
 			</div>
 		);
 	}
 
 }
 export default Index;
-
