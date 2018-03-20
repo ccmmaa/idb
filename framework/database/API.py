@@ -1,10 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-import os
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://master:musepy.me@musepy.cmlur1dhu2fc.us-east-2.rd.amazonaws.com/test'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://master:musepy.me@musepy.cmlur1dhu2fc.us-east-2.rds.amazonaws.com/test'
 db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
@@ -13,7 +12,7 @@ ma = Marshmallow(app)
 class Artist(db.Model):
     # Don't really have to set tablename because default is class name converted to lowercase
     __tableame__ = 'artist'
-    id = db.Column('id', db.Integer, primary_key = True, nullable = False)
+    id = db.Column(db.Integer, primary_key = True, nullable = False)
     name = db.Column(db.String(500), nullable = False)  
     bio = db.Column(db.String(5000),nullable = False)
     image = db.Column(db.String(500),nullable = False)
@@ -22,7 +21,7 @@ class Artist(db.Model):
     # albums = db.relationship('Album', backref = 'artist', lazy = True)
     # concerts = db.relationship('concerts', back_populates ='artists')
 
-    def __init__(self,name, bio, image, genre):#, songs, albums, concerts):
+    def __init__(self, name, bio, image, genre):#, songs, albums, concerts):
         self.name = name
         self.bio = bio
         self.image = image
@@ -35,6 +34,9 @@ class ArtistSchema(ma.Schema):
     class Meta:
         # Fields to expose
         fields = ('name', 'bio', 'image', 'genre')#, 'songs', 'albums', 'concerts')
+
+artist_schema = ArtistSchema()
+artists_schema = ArtistSchema(many=True)
 
 # class Album(db.Model):
 #     __tableame__ = 'album' 
@@ -178,12 +180,14 @@ def add_artist():
 
     return jsonify(new_artist)
 
+    # return jsonify(name=new_artist.name)
+
 
 # endpoint to show all users
 @app.route("/artist", methods=["GET"])
 def get_artist():
     all_artists = Artist.query.all()
-    result = artist_schema.dump(all_users)
+    result = artists_schema.dump(all_artists)
     return jsonify(result.data)
 
 
@@ -225,7 +229,7 @@ def artist_delete(id):
     db.session.delete(artist)
     db.session.commit()
 
-    return user_schema.jsonify(artist)
+    return artist_schema.jsonify(artist)
 
 
 if __name__ == '__main__':
