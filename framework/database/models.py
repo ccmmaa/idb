@@ -16,7 +16,7 @@ class Artist(db.Model):
     genre = db.Column(db.String(500),nullable = False)
     songs = db.relationship('Song', backref = 'artist', lazy = True, nullable = False)
     albums = db.relationship('Album', backref = 'artist', lazy = True, nullable = False)
-    concerts = db.relationship('concerts', backpopulates ='artists')
+    concerts = db.relationship('concerts', back_populates ='artists')
 
 class Album(db.Model):
     __tableame__ = 'album' 
@@ -36,7 +36,7 @@ class Song(db.Model):
     preview = db.Column(db.String(500), nullable = False) #embed info 
     artist_id = db.Column(db.Integer, db.ForeignKey(artist.id), nullable = False)
     album_id = db.Column(db.Integer, db.ForeignKey(album.id), nullable = False) 
-    concerts = db.relationship('playlist', backpopulates ='songs')
+    concerts = db.relationship('playlist', back_populates ='songs')
 
 class City(db.Model):
     __tableame__ = 'city'
@@ -45,8 +45,8 @@ class City(db.Model):
     map = db.Column(db.String(5000), nullable = False)   #embed info
     image = db.Column(db.String(500), nullable = False)
     name = db.Column(db.String(500), nullable = False)
-    concerts = db.relationship('concerts', backpopulates ='cities')
-    playlist = db.relationship('playlist', backpopulates ='cities')
+    concerts = db.relationship('concerts', back_populates ='cities')
+    playlist = db.relationship('playlist', back_populates ='cities')
 
 # association objects to hold the addition information for the many to many relationships
 class Concert(db.Model):
@@ -55,16 +55,16 @@ class Concert(db.Model):
     artist_id = db.Column(db.Integer, db.ForeignKey(artist.id), primary_key = True)
     time = db.Column(db.DateTime, nullable = False)
     venue = db.Column(db.String(500), nullable = False)
-    cities = db.relationship('cities', backpopulates = 'artists')    
-    artists = db.relationship('artists', backpopulates = 'cities')
+    cities = db.relationship('cities', back_populates = 'artists')    
+    artists = db.relationship('artists', back_populates = 'cities')
 
 class Playlist()
     __tableame__ = 'playlist'
     city_id = db.Column(db.Integer, db.ForeignKey(city.id), primary_key = True)
     song_id = db.Column(db.Integer, db.ForeignKey(song.id), primary_key = True)
     link = db.Column(db.String(500), nullable = False)
-    cities = db.relationship('cities', backpopulates = 'songs')    
-    songs = db.relationship('songs', backpopulates = 'cities')
+    cities = db.relationship('cities', back_populates = 'songs')    
+    songs = db.relationship('songs', back_populates = 'cities')
 
 
         
