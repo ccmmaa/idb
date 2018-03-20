@@ -13,7 +13,7 @@ class AlbumInstance extends Component {
 		this.state = {
 			songFound: false,
 			doneLoading: false,
-			albumArt: "http://www.mksp.in/images/loading.gif",
+			albumArt: Loading,
 			albumName: URL.toString(URL.lastUrlItem(0)),
 			albumArtist: URL.toString(URL.lastUrlItem(1)),
 			songs: ["song1", "song2", "song3", "song4"],
@@ -50,7 +50,7 @@ class AlbumInstance extends Component {
 									</div>
 
 									<div className="col-lg-5 albumsCol">
-											<p class = "h2">Song List</p>
+											<p className="h2">Song List</p>
 											<ul className="list-group list-group-flush">
 												{allSongs}
 											  </ul>
