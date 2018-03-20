@@ -208,7 +208,6 @@ class About extends Component {
 
 					<div className="container marketing">
 
-						<br />
 						<div className="row featurette">
 							<div>
 								<h2 className="featurette-heading-orange">About this Site, <span className="text-muted">MusePy:</span></h2>
@@ -284,8 +283,9 @@ class About extends Component {
 							</div>
 						</div>
 
-						<hr className="featurette-divider" />
-						
+						<div className="container">
+							<hr />
+						</div>						
 					</div>
 				</main>
 				<Footer />

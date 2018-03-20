@@ -163,6 +163,9 @@ class ArtistInstance extends Component {
 					</div>
 
 				</main>
+				<div className="container">
+					<hr />
+				</div>
 				
 				<Footer />
 

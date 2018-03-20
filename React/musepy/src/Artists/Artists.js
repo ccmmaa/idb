@@ -328,36 +328,36 @@ class Artists extends Component {
 			<div className="pageContent">
 				<Navigation activeTab={"artists"}/> 
 
-			<main role="main">
-				<div align="center">
-					
-					<div class="carousel-item titleImage active">
-						<img class="second-slide" src={ArtistSlide} alt="Second slide"/>
-						<div class="container">
-							<div class="carousel-caption">
-								<h1><span>Explore</span> your favorite artists.</h1>
+				<main role="main">
+					<div align="center">
+						
+						<div class="carousel-item titleImage active">
+							<img class="second-slide" src={ArtistSlide} alt="Second slide"/>
+							<div class="container">
+								<div class="carousel-caption">
+									<h1><span>Explore</span> your favorite artists.</h1>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				
-				<div class="container">
-					<hr/>
-					<center><h1>Artists</h1></center>
-					<hr/>
-				</div>
-				<div class="container2 marketing">
-					<div class="row">
-					   <center>
-							{allArtists}
-						</center> 
+					
+					<div class="container">
+						<hr/>
+						<center><h1>Artists</h1></center>
+						<hr/>
 					</div>
-				</div>
+					<div class="container2 marketing">
+						<div class="row">
+						   <center>
+								{allArtists}
+							</center> 
+						</div>
+					</div>
 
-				<div class="container">
-					<hr/>
-				</div>
-			</main>
+					<div class="container">
+						<hr/>
+					</div>
+				</main>
 
 				<Footer />
 

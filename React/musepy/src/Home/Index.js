@@ -19,7 +19,7 @@ class Index extends Component {
 	render() {
 		return(
 			<div className="pageContent">	
-				<Navigation activeTab={"home"} />
+				<Navigation activeTab={"index"} />
 
 				<main role="main">
 
@@ -106,7 +106,9 @@ class Index extends Component {
 							</div>
 						</div>
 
-						<hr />
+						<div className="container">
+							<hr />
+						</div>
 
 						<div className="row featurette index_descriptions">
 							<div className="col-md-7">
@@ -118,7 +120,9 @@ class Index extends Component {
 							</div>
 						</div>
 
-						<hr />
+						<div className="container">
+							<hr />
+						</div>
 
 						<div className="row featurette index_descriptions">
 							<div className="col-md-5 order-md-1">
@@ -130,7 +134,9 @@ class Index extends Component {
 							</div>
 						</div>
 
-						<hr />
+						<div className="container">
+							<hr />
+						</div>
 
 						<div className="row featurette index_descriptions">
 							<div className="col-md-7">
@@ -141,13 +147,10 @@ class Index extends Component {
 								<img className="featurette-image img-fluid mx-auto" src={bottom3} alt="Generic placeholder image" />
 							</div>
 						</div>
-						<hr />
-
-
+						<div className="container">
+							<hr />
+						</div>
 					</div>
-
-
-
 				</main>
 				<Footer />			
 			</div>
