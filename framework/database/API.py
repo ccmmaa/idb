@@ -178,7 +178,7 @@ def add_artist():
     db.session.add(new_artist)
     db.session.commit()
 
-    return jsonify(new_artist)
+    return artist_schema.jsonify(new_artist)
 
     # return jsonify(name=new_artist.name)
 
