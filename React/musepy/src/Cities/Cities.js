@@ -26,7 +26,7 @@ class Cities extends Component {
 						"Kesha",
 						"Khalid"
 					],
-					"image": "https://i.scdn.co/image/2efc93d7ee88435116093274980f04ebceb7b527",
+					"image": "https://assets3.thrillist.com/v1/image/1386839/size/tmg-article_default_mobile.jpg",
 					"concert venues": [
 						"House of Blues", 
 						"White Oak Music Hall"
@@ -49,7 +49,7 @@ class Cities extends Component {
 						"Kesha",
 						"Khalid"
 					],
-					"image": "https://i.scdn.co/image/2efc93d7ee88435116093274980f04ebceb7b527",
+					"image": "https://assets3.thrillist.com/v1/image/1386839/size/tmg-article_default_mobile.jpg",
 					"concert venues": [
 						"House of Blues", 
 						"White Oak Music Hall"
@@ -72,7 +72,7 @@ class Cities extends Component {
 						"Kesha",
 						"Khalid"
 					],
-					"image": "https://i.scdn.co/image/2efc93d7ee88435116093274980f04ebceb7b527",
+					"image": "https://assets3.thrillist.com/v1/image/1386839/size/tmg-article_default_mobile.jpg",
 					"concert venues": [
 						"House of Blues", 
 						"White Oak Music Hall"
