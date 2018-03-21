@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../assets/css/index.css';
+import '../assets/css/carousel.css';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import carousel1 from '../assets/images/carousel1.jpg';
@@ -21,7 +22,7 @@ class Index extends Component {
 			<div className="pageContent">
 				<Navigation activeTab={"index"} />
 
-				<main role="main">
+				<main role="main" onLoad="func()">
 
 					<div id="myCarousel" className="carousel slide" data-ride="carousel">
 						<ol className="carousel-indicators">
@@ -87,22 +88,22 @@ class Index extends Component {
 							<div className="col-lg-3">
 								<img className="rounded-circle" src={middle1} alt="Generic placeholder image" width="140" height="140" />
 								<h2>Songs</h2>
-								<p><a className="btn btn-secondary" href="songs/songmodel.html"  role="button">View songs &raquo;</a></p>
+								<p><a className="btn btn-secondary" href="songs"  role="button">View songs &raquo;</a></p>
 							</div>
 							<div className="col-lg-3">
 								<img className="rounded-circle" src={middle2} alt="Generic placeholder image" width="140" height="140" />
 								<h2>Artists</h2>
-								<p><a className="btn btn-secondary" href="artists/artistmodel.html"  role="button">View artists &raquo;</a></p>
+								<p><a className="btn btn-secondary" href="artists/"  role="button">View artists &raquo;</a></p>
 							</div>
 							<div className="col-lg-3">
 								<img className="rounded-circle" src={middle3} alt="Generic placeholder image" width="140" height="140" />
 								<h2>Albums</h2>
-								<p><a className="btn btn-secondary" href="albums/albummodel.html"  role="button">View albums &raquo;</a></p>
+								<p><a className="btn btn-secondary" href="albums"  role="button">View albums &raquo;</a></p>
 							</div>
 							<div className="col-lg-3">
 								<img className="rounded-circle" src={middle4} alt="Generic placeholder image" width="140" height="140" />
 								<h2>Cities</h2>
-								<p><a className="btn btn-secondary" href="cities/citymodel.html"  role="button">View cities &raquo;</a></p>
+								<p><a className="btn btn-secondary" href="cities"  role="button">View cities &raquo;</a></p>
 							</div>
 						</div>
 
@@ -152,7 +153,11 @@ class Index extends Component {
 						</div>
 					</div>
 				</main>
+
 				<Footer />
+				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
+				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
+				<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossOrigin="anonymous"></script>
 			</div>
 		);
 	}

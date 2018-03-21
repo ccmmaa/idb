@@ -18,14 +18,13 @@ class URLSpaceUnderscore {
 
 	static lastUrlItem(itemNumber) {
 		var result = window.location.href;
-		let indexOfSlash = result.lastIndexOf("/");
 		var indexOfDash = result.lastIndexOf("-");
-		if (itemNumber == 0) {
-			if (indexOfDash == -1)
+		if (itemNumber === 0) {
+			if (indexOfDash === -1)
 				indexOfDash = result.length;
 			return result.substring(result.lastIndexOf("/")+1, indexOfDash);
 		}
-		else if (itemNumber == 1 && indexOfDash != -1)
+		else if (itemNumber === 1 && indexOfDash !== -1)
 			return result.substring(result.lastIndexOf("-")+1);	
 		return result.substring(result.lastIndexOf("/")+1);
 	}
