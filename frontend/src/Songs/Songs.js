@@ -6,8 +6,7 @@ import '../assets/css/modelpage.css';
 import SongSlide from '../assets/images/songmodel.jpg';
 import URL from '../URLSpaceUnderscore';
 import Loading from '../assets/images/loadingHorizontal.gif';
-
-
+import $ from 'jquery';
 
 
 class Songs extends Component {
@@ -189,6 +188,20 @@ class Songs extends Component {
 
 			]
 		}
+	}
+
+	componentWillMount() {
+		$.ajax({
+			url: '/api/song',
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				this.setState({"allSongs": data, "doneLoading": true});
+			}.bind(this),
+			error: function(xhr, status, error) {
+				// console.log("Get ERROR: " + error);
+			}
+		});
 	}
 
 	render() {
