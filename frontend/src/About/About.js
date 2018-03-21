@@ -253,10 +253,11 @@ class About extends Component {
 
 		       			<hr />
 		        
+						
 						<div className="row featurette">
 							<div>
 								<h2 className="featurette-heading-orange">Data Sources</h2>
-								<p className="lead">The APIs we used, and description of how it was scraped</p>
+								<p className="lead">We used the APIs available for Spotify, Eventful, Musixmatch, and last.fm. The Spotify playlist gave us info about artists, albums, and songs. The Musixmatch API allowed for us to display lyrics for songs that had them available. Last.fm gave us the biographies of artists if available. All the APIs except eventful responsed in JSON, which we then made into a dict object. Eventful responded in XML so we used a python module xmljson to convert the XML to JSON</p>
 							</div>
 						</div>
 
