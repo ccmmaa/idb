@@ -3,7 +3,7 @@ import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/city_instance.css';
 import URL from '../URLSpaceUnderscore';
-
+import $ from 'jquery';
 
 class CityInstance extends Component {
 
@@ -20,6 +20,20 @@ class CityInstance extends Component {
 				"state": "Texas"
 			}
 		}
+	}
+
+	componentWillMount() {
+		$.ajax({
+			url: '/api/cities/' + URL.lastUrlItem(0),
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				this.setState("cityData": data);
+			}.bind(this),
+			error: function(xhr, status, error) {
+				// console.log("Get ERROR: " + error);
+			}
+		});
 	}
 
 	render() {
@@ -52,7 +66,7 @@ class CityInstance extends Component {
 					<div className="container">
 						<div className="row mapPart1">
 							<div id="map">
-								<iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + URL.convert(this.state.cityData.name + "+" + this.state.cityData.state), ' ', '+'} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+								<iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + URL.convert(this.state.cityData.name + "+" + this.state.cityData.state, ' ', '+')} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
 							</div>
 
 
