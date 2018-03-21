@@ -66,7 +66,8 @@ class ArtistInstance extends Component {
 									 <img className="first-slide" src={banner} alt="First slide"/>
 									 <div className="container">
 											 <div className="carousel-caption text-left">
-													 <h1>Travis Scott</h1>
+											 		<img src={this.state.artist.image_url} className="artistImage" />
+													<h1>Travis Scott</h1>
 											 </div>
 											 <div className="carousel-caption text-right">
 													 <h3><span>Genres:</span> Hip-hop</h3>

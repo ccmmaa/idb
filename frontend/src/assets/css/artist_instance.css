@@ -13,3 +13,8 @@ h2{
 .artistInstanceCarousel .carousel-item{
   height: 20rem;
 }
+
+.artistImage {
+	width: 30%;
+	
+}
