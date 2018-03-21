@@ -184,9 +184,9 @@ class ArtistInstance extends Component {
 							<br />
 
 							<div className="containerArtistBio">
-								<div className="row">
+								<div className="">
 									<p className="orange">Bio</p>
-									<p>{this.state.artist.bio}</p>
+									<p>{this.state.artistData.bio}</p>
 
 								</div>
 							</div>
