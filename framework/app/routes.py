@@ -9,11 +9,11 @@ import requests
 def index():
     return render_template('index.html')
 
-@app.route('/songs')
+@app.route('/songs', subdomain='old')
 def songsPage():
     return render_template('songs/songmodel.html')
 
-@app.route('/songs/<song>')
+@app.route('/songs/<song>'subdomain='old')
 def song(song):
     return render_template('songs/' + song)
 
