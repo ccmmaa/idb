@@ -3,6 +3,10 @@ import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/artist_instance.css';
 import Black from '../assets/images/black_background.jpg';
+import album1 from '../assets/images/travis_scott_huncho.jpg';
+import album2 from '../assets/images/travis_scott_album.jpg';
+import album3 from '../assets/images/travis_scott_rodeo.jpg';
+import banner from '../assets/images/banner.jpg';
 
 
 
@@ -53,75 +57,86 @@ class ArtistInstance extends Component {
 	render() {
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"artists"}/> 
+				<Navigation activeTab={"artists"}/>
 
 				<main role="main">
 
-					<div>
-						<div id="myCarousel" class="carousel" data-ride="carousel">
-							
+					<div className="carousel-inner">
+						 <div className="carousel-item active">
+								 <img className="first-slide" src={banner} alt="First slide"/>
+								 <div className="container">
+										 <div className="carousel-caption text-left">
+												 <h1>Travis Scott</h1>
+										 </div>
+										 <div className="carousel-caption text-right">
+												 <h3><span>Genres:</span> Hip-hop</h3>
+										 </div>
+								 </div>
+						 </div>
+						 </div>
 
-							<div class="container">
-								<div class="row">
-									<div class="col-lg-12">
-										<p class = "h2">Albums</p>
-										<div class="row">
-											<div class="col-lg-2">
-												<div class="ingrid" text-align="center">
-													<img class="rounded-0" src="/static/images/travis_scott_huncho.jpg" alt="Generic placeholder image" width="100%" height="100%" />
-													<h4><a href="album_error.html">Huncho Jack, Jack Huncho</a></h4>
-												</div>
-											</div>
-									
-											<div class="col-lg-2">
-												<div class="ingrid" text-align="center">
-													<img class="rounded-0" src="/static/images/travis_scott_album.jpg" alt="Generic placeholder image" width="100%" height="100%" />
-													<h4><a href="../albums/album2.html">Birds In The Trap Sing McKnight</a></h4>
-												</div>
-											</div>
-											
-											<div class="col-lg-2">
-												<div class="ingrid" text-align="center">
-													<img class="rounded-0" src="/static/images/travis_scott_rodeo.jpg" alt="Generic placeholder image" width="100%" height="100%" />
-													<h4><a href="album_error.html">Rodeo</a></h4>
-												</div>
-											</div>
-										</div>
+
+					<br />
+					<br />
+					<div className="container">
+						<div className="row">
+							<div className="col-lg-12">
+								<h2>Albums</h2>
+							</div>
+
+							<div className="row">
+								<div className="col-lg-2">
+									<div className="ingrid" text-align="center">
+										<img className="rounded-0" src={album1} alt="Generic placeholder image" width="100%" height="100%" />
+										<h4><a href="album_error.html">Huncho Jack, Jack Huncho</a></h4>
 									</div>
+								</div>
+								<div className="col-lg-2">
+									<div className="ingrid" text-align="center">
+										<img className="rounded-0" src={album2} alt="Generic placeholder image" width="100%" height="100%" />
+										<h4><a href="../albums/album2.html">Birds In The Trap Sing McKnight</a></h4>
+									</div>
+								</div>
+								<div className="col-lg-2">
+									<div className="ingrid" text-align="center">
+										<img className="rounded-0" src={album3} alt="Generic placeholder image" width="100%" height="100%" />
+										<h4><a href="album_error.html">Rodeo</a></h4>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+						<hr />
+						<br />
+						<div className="container">
+							<div className="row">
+								<div className="col-lg-4">
+									<p className= "h2">Popular Songs</p>
+									<ul className="list-group list-group-flush">
+										<li className="list-group-item"><a href="../songs/song2.html">goosebumps</a></li>
+										<li className="list-group-item"><a href="song_error.html">Butterfly Effect</a></li>
+										<li className="list-group-item"><a href="song_error.html">Saint</a></li>
+										<li className="list-group-item"><a href="song_error.html">beibs in the trap</a></li>
+										<li className="list-group-item"><a href="song_error.html">pick up the phone</a></li>
+									</ul>
+								</div>
+
+								<div className="col-lg-1"></div>
+
+								<div className="col-lg-7">
+									<p className = "h2">Upcoming Concerts</p>
+									<ul className="list-group">
+										<li className="list-group-item d-flex justify-content-between align-items-center"><a href="city_error.html">Okeechobee, FL</a>
+											<span className="badge badge-primary badge-pill">March 3, 2017</span>
+										</li>
+										<li className="list-group-item d-flex justify-content-between align-items-center"><a href="../cities/city2.html">New York, New York</a>
+											<span className="badge badge-primary badge-pill">June 2, 2017</span>
+										</li>
+									</ul>
 								</div>
 							</div>
 
-							<br />
-							<br />
-							<div class="container">
-								<div class="row">
-									<div class="col-lg-4">
-										<p class = "h2">Popular Songs</p>
-										<ul class="list-group list-group-flush">
-											<li class="list-group-item"><a href="../songs/song2.html">goosebumps</a></li>
-											<li class="list-group-item"><a href="song_error.html">Butterfly Effect</a></li>
-											<li class="list-group-item"><a href="song_error.html">Saint</a></li>
-											<li class="list-group-item"><a href="song_error.html">beibs in the trap</a></li>
-											<li class="list-group-item"><a href="song_error.html">pick up the phone</a></li>
-										</ul>
-									</div>
-
-									<div class="col-lg-1"></div>
-
-									<div class="col-lg-7">
-										<p class = "h2">Upcoming Concerts</p>
-										<ul class="list-group">
-											<li class="list-group-item d-flex justify-content-between align-items-center"><a href="city_error.html">Okeechobee, FL</a>
-												<span class="badge badge-primary badge-pill">March 3, 2017</span>
-											</li>
-											<li class="list-group-item d-flex justify-content-between align-items-center"><a href="../cities/city2.html">New York, New York</a>
-												<span class="badge badge-primary badge-pill">June 2, 2017</span>
-											</li>
-
-										</ul>
-									</div>
-								</div>
-							</div>
 							<br />
 							<br />
 						</div>
@@ -131,11 +146,11 @@ class ArtistInstance extends Component {
 				<div className="container">
 					<hr />
 				</div>
-				
+
 				<Footer />
 
 			</div>
 		);
 	}
-} 
+}
 export default ArtistInstance;
