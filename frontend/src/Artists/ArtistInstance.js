@@ -67,10 +67,10 @@ class ArtistInstance extends Component {
 									 <div className="container">
 											 <div className="carousel-caption text-left">
 											 		<img src={this.state.artist.image_url} className="artistImage" />
-													<h1>Travis Scott</h1>
+													<h1 className="orange">Travis Scott</h1>
 											 </div>
 											 <div className="carousel-caption text-right">
-													 <h3><span>Genres:</span> Hip-hop</h3>
+													 <h3><span className="orange">Genres:</span> Hip-hop</h3>
 											 </div>
 									 </div>
 							 </div>
@@ -83,7 +83,7 @@ class ArtistInstance extends Component {
 					<div className="container">
 						<div className="row">
 							<div className="col-lg-12">
-								<h2>Albums</h2>
+								<h2 className="orange">Albums</h2>
 							</div>
 
 							<div className="row">
@@ -114,7 +114,7 @@ class ArtistInstance extends Component {
 						<div className="container">
 							<div className="row">
 								<div className="col-lg-4">
-									<p className= "h2">Popular Songs</p>
+									<p className="orange">Popular Songs</p>
 									<ul className="list-group list-group-flush">
 										<li className="list-group-item"><a href="../songs/song2.html">goosebumps</a></li>
 										<li className="list-group-item"><a href="song_error.html">Butterfly Effect</a></li>
@@ -127,7 +127,7 @@ class ArtistInstance extends Component {
 								<div className="col-lg-1"></div>
 
 								<div className="col-lg-7">
-									<p className = "h2">Upcoming Concerts</p>
+									<p className="orange">Upcoming Concerts</p>
 									<ul className="list-group">
 										<li className="list-group-item d-flex justify-content-between align-items-center"><a href="city_error.html">Okeechobee, FL</a>
 											<span className="badge badge-primary badge-pill">March 3, 2017</span>
