@@ -7,9 +7,10 @@ import album1 from '../assets/images/travis_scott_huncho.jpg';
 import album2 from '../assets/images/travis_scott_album.jpg';
 import album3 from '../assets/images/travis_scott_rodeo.jpg';
 import banner from '../assets/images/banner.jpg';
-
-
-
+import Album from "./Album"
+import URL from '../URLSpaceUnderscore';
+import $ from 'jquery';
+import Loading from '../assets/images/loading.gif';
 
 
 class ArtistInstance extends Component {
@@ -18,43 +19,108 @@ class ArtistInstance extends Component {
 		this.state= {
 			songFound: false,
 			doneLoading: false,
-			artist: {
-			    "name": "Travis Scott",
-			    "age": 25,
-    			doneLoading: false,
-			    albums: [
-			        "Huncho Jack, Jack Huncho",
-			        "Birds in the Trap Sing McKnight",
-			        "Rodeo"
-			    ],
-			    popular_songs: [
-			        "goosebumps",
-			        "Butterfly Effect",
-			        "Saint",
-			        "beibs in the trap",
-			        "pick up the phone"
-			    ],
-			    birthplace: "Houston, TX",
-			    genres: [
-			        "Hip-Hop"
-			    ],
-			    gender: "male",
-			    image_url : "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-			    related_artists: [
-			        "Vic Mensa",
-			        "Mike WILL Made-it",
-			        "A$AP Rocky",
-			        "Young Thug",
-			        "Chief Keef",
-			        "Desiigner",
-			        "21 Savage"
-			    ],
-			    bio: "Travis Scott is the stage name of Jacques Webster, a Houston-born hip-hop artist and producer affiliated with Kanye West\'s GOOD Music and T.I.\'s Grand Hustle. Scott has a heavily Auto-Tuned half-sung/half-rapped vocal style, and refers to himself as a singer rather than a rapper. He\'s produced or co-produced tracks by Kanye West, Rihanna, and Drake, and he\'s appeared on tracks by Jay-Z, Pusha T, Meek Mill, and numerous others. Within four years of his 2012 mainstream arrival, Scott attained platinum singles as a lead artist and songwriter/producer, as well as a pair of Top Five studio albums, the latter of which went to number one. Scott grew up in a suburb of Houston and began making music as a teenager. He formed a duo called the Graduates with Chris Holloway, and they released an EP in 2009. The following year he formed another duo, the Classmates, with OG Chess. Scott produced the duo\'s two full-lengths, Buddy Rich and Cruis\'n USA, and the duo broke up by the end of 2011. After dropping out of college, Scott moved to Los Angeles and began recording music on his own. He met T.I. and eventually Kanye West. Scott was hired as an in-house producer for GOOD Music, and appeared on the label\'s Cruel Summer compilation in 2012. Scott\'s debut, Owl Pharaoh, was originally scheduled to be released as a free mixtape in 2012, but as his profile grew (including a placement in XXL Magazine\'s Freshman Class of 2013), and due to sample clearance issues, the album wasn\'t released until May of 2013. Featuring guest appearances by T.I. and 2 Chainz (on the single \"Upper Echelon\") as well as Toro y Moi and Justin Vernon of Bon Iver, the mixtape eventually garnered a nomination for Best Mixtape at the 2013 BET Hip Hop Awards. The buildup to Scott\'s first proper studio album involved the Days Before Rodeo mixtape, promoted with the singles \"Don\'t Play\" and \"Mamacita,\" and the March 2015 U.S. Rodeo Tour, for which Scott headlined, supported by Young Thug and Metro Boomin. Several of the dates sold out. During the same month, Rihanna\'s Scott-produced hit single \"Bitch Better Have My Money\" was released. \"3500\" and \"Antidote\" were released ahead of Rodeo, Scott\'s second full-length, which followed in September on Grand Hustle/Epic and debuted at number three on the Billboard 200. Toward the end of the year, \"Antidote\" peaked at number 16 on the Hot 100 and became Scott\'s first platinum single. Chatter regarding a follow-up, along with numerous delays, ensued throughout much of 2016. Meanwhile, Scott extended his commercial presence with featured spots on Wiz Khalifa\'s \"Bake Sale,\" Rihanna\'s \"Woo,\" and Kanye West\'s \"FML,\" as well as a collaboration with Young Thug and Quavo, \"Pick Up the Phone,\" a mid-year hit issued as the lead single of Young Thug\'s JEFFERY. Three months later, after \"Bitch Better Have My Money\" earned a platinum certification, Scott\'s second proper album arrived. Titled Birds in the Trap Sing McKnight, after one of Quavo\'s lines in \"Pick Up the Phone,\" the woozy, mostly midtempo set featured that hit and contributions from the likes of André 3000, Kid Cudi, and Kendrick Lamar. It went straight to the top of the Billboard 200. Leading up to his third LP, Scott appeared on \"Kelly Price\" from Migos\' Culture and on Drake\'s \"Portland\" from the More Life project. The latter track peaked within the Top Ten of the Hot 100, Scott\'s highest chart placement to date. In 2017 Scott dropped the hazy, Migos-esque single \"Butterfly Effect\" and Huncho Jack, Jack Huncho, a collaborative project with Quavo."
-			}
+			image: {Loading},
+			artistData: 
+				{
+					"albums": [
+						{
+							"album_id": 1,
+							"artist_id": 1,
+							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
+							"genre": "",
+							"name": "Son of Norma",
+							"producer": "Dope House Records",
+							"year": "2014"
+						},
+						{
+							"album_id": 2,
+							"artist_id": 1,
+							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
+							"genre": "",
+							"name": "Son of Norma",
+							"producer": "Dope House Records",
+							"year": "2014"
+						}
+					],
+					"artist_id": 1,
+					"bio": "Bio Not Available",
+					"concerts": [
+						{
+							"artist_id": 1,
+							"city_id": 16,
+							"concert_id": 1,
+							"tickets": "http://philadelphia.eventful.com/events/dumbfoundead-/E0-001-111507201-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+							"time": "2018-04-18T20:30:00",
+							"venue": "Union Transfer"
+						},
+						{
+							"artist_id": 1,
+							"city_id": 999,
+							"concert_id": 2,
+							"tickets": "http://baltimore.eventful.com/events/dumbfoundead-/E0-001-111507223-7?utm_source=apis&utm_medium=apim&utm_campaign=apic",
+							"time": "2018-04-17T20:00:00",
+							"venue": "Baltimore Soundstage"
+						}
+					],
+					"genre": "chicano rap",
+					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
+					"name": "South Park Mexican",
+					"songs": [
+						{
+							"album_id": 1,
+							"artist_id": 1,
+							"itunes": "https://www.apple.com/itunes/charts/songs/",
+							"lyrics": "Lyrics Not Available for This Song.",
+							"name": "K Luv Vs. SPM",
+							"song_id": 1,
+							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
+						},
+						{
+							"album_id": 1,
+							"artist_id": 1,
+							"itunes": "https://www.apple.com/itunes/charts/songs/",
+							"lyrics": "Lyrics Not Available for This Song.",
+							"name": "People",
+							"song_id": 2,
+							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
+						}
+					],
+				}
 		}
 	}
 
+	componentWillMount() {
+		$.ajax({
+			url: '/api/artists/' + URL.lastUrlItem(0),
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				this.setState("artistData": data);
+			}.bind(this),
+			error: function(xhr, status, error) {
+				// console.log("Get ERROR: " + error);
+			}
+		});
+	}
+
 	render() {
+
+		let artistAlbums = this.state.artistData.albums.map(album => {
+			return(
+				<Album albumId={album.album_id} albumArt={album.artwork} albumName={album.name}/>
+			);
+		});
+		let popularSongs = this.state.artistData.songs.map(song => {
+			return(
+				<li className="list-group-item"><a href={"/songs/" + song.song_id}>{song.name}</a></li>
+			);
+		});
+		let concerts = this.state.artistData.concerts.map(concert => {
+			return(
+				<li className="list-group-item d-flex justify-content-between align-items-center"><a href={"/city/" + concert.city_id}>{concert.venue}</a>
+					<span className="badge badge-primary badge-pill">{concert.time}</span></li>
+			);
+		});
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"artists"}/>
@@ -66,11 +132,11 @@ class ArtistInstance extends Component {
 									 <img className="first-slide" src={banner} alt="First slide"/>
 									 <div className="container">
 											 <div className="carousel-caption text-left">
-											 		<img src={this.state.artist.image_url} className="artistImage" />
-													<h1 className="orange">Travis Scott</h1>
+											 		<img src={this.state.artistData.image} className="artistImage" />
+													<h1 className="orange">{this.state.artistData.name}</h1>
 											 </div>
 											 <div className="carousel-caption text-right">
-													 <h3><span className="orange">Genres:</span> Hip-hop</h3>
+													 <h3><span className="orange">Genre:</span> {this.state.artistData.genre}</h3>
 											 </div>
 									 </div>
 							 </div>
@@ -87,24 +153,8 @@ class ArtistInstance extends Component {
 							</div>
 
 							<div className="row">
-								<div className="col-lg-2">
-									<div className="ingrid" text-align="center">
-										<img className="rounded-0" src={album1} alt="Generic placeholder image" width="100%" height="100%" />
-										<h4><a href="album_error.html">Huncho Jack, Jack Huncho</a></h4>
-									</div>
-								</div>
-								<div className="col-lg-2">
-									<div className="ingrid" text-align="center">
-										<img className="rounded-0" src={album2} alt="Generic placeholder image" width="100%" height="100%" />
-										<h4><a href="../albums/album2.html">Birds In The Trap Sing McKnight</a></h4>
-									</div>
-								</div>
-								<div className="col-lg-2">
-									<div className="ingrid" text-align="center">
-										<img className="rounded-0" src={album3} alt="Generic placeholder image" width="100%" height="100%" />
-										<h4><a href="album_error.html">Rodeo</a></h4>
-									</div>
-								</div>
+								
+								{artistAlbums}
 
 							</div>
 						</div>
@@ -116,11 +166,7 @@ class ArtistInstance extends Component {
 								<div className="col-lg-4">
 									<p className="orange">Popular Songs</p>
 									<ul className="list-group list-group-flush">
-										<li className="list-group-item"><a href="../songs/song2.html">goosebumps</a></li>
-										<li className="list-group-item"><a href="song_error.html">Butterfly Effect</a></li>
-										<li className="list-group-item"><a href="song_error.html">Saint</a></li>
-										<li className="list-group-item"><a href="song_error.html">beibs in the trap</a></li>
-										<li className="list-group-item"><a href="song_error.html">pick up the phone</a></li>
+										{popularSongs}
 									</ul>
 								</div>
 
@@ -129,12 +175,7 @@ class ArtistInstance extends Component {
 								<div className="col-lg-7">
 									<p className="orange">Upcoming Concerts</p>
 									<ul className="list-group">
-										<li className="list-group-item d-flex justify-content-between align-items-center"><a href="city_error.html">Okeechobee, FL</a>
-											<span className="badge badge-primary badge-pill">March 3, 2017</span>
-										</li>
-										<li className="list-group-item d-flex justify-content-between align-items-center"><a href="../cities/city2.html">New York, New York</a>
-											<span className="badge badge-primary badge-pill">June 2, 2017</span>
-										</li>
+										{concerts}
 									</ul>
 								</div>
 							</div>

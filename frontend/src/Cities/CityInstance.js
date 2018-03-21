@@ -10,12 +10,25 @@ class CityInstance extends Component {
 	constructor() {
 		super();
 		this.state = {
-			city:URL.toString(URL.lastUrlItem(0)),
-			state: URL.toString(URL.lastUrlItem(1))
+			cityData:
+			{
+				"city_id": 1,
+				"concerts": [],
+				"image": "http://www.celebrityslice.com/wp-content/uploads/2015/08/city-wallpaper-7.jpg",
+				"name": "Austin",
+				"playlist": "https://open.spotify.com/user/thesoundsofspotify/playlist/3gz7G6lax8nkXZ3vBr3n4i",
+				"state": "Texas"
+			}
 		}
 	}
 
 	render() {
+		let albumSongs = <li>Not Yet Implemented</li>;
+		// let albumSongs = this.state.cityData.albums.map(album => {
+		// 	return(
+		// 		<li className="list-group-item"><a href="../songs/song1.html">In My Arms Instead - Randy Rogers Band</a></li>
+		// 	);
+		// });
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"cities"}/> 
@@ -27,7 +40,7 @@ class CityInstance extends Component {
 							<img className="fourth-slide" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Austin_Evening.jpg/1200px-Austin_Evening.jpg" alt="Austin City Skyline" />
 							<div className="container">
 								<div className="carousel-caption text-right">
-									<h1><span>{this.state.city+ ","}</span> {this.state.state}</h1>
+									<h1><span>{this.state.cityData.name+ ","}</span> {this.state.cityData.state}</h1>
 								</div>
 							</div>
 						</div>
@@ -39,25 +52,17 @@ class CityInstance extends Component {
 					<div className="container">
 						<div className="row mapPart1">
 							<div id="map">
-								<iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + this.state.city + "+" + this.state.state} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+								<iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + URL.convert(this.state.cityData.name + "+" + this.state.cityData.state), ' ', '+'} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
 							</div>
 
 
 							<div id="playlist">
-								<p class = "h2">The Sound of <br />	{this.state.city}, {this.state.state}</p>
-								<iframe id="spotify" className="shadow" src="https://embed.spotify.com/?uri=spotify:user:thesoundsofspotify:playlist:3gz7G6lax8nkXZ3vBr3n4i&theme=white" width="450" height="80" frameborder="0" allowtransparency="true"></iframe>
+								<p class = "h2">The Sound of <br />	{this.state.cityData.name}, {this.state.cityData.state}</p>
+								<iframe id="spotify" className="shadow" src={this.state.cityData.playlist} width="450" height="80" frameborder="0" allowtransparency="true"></iframe>
 								
 								<ul className="list-group list-group-flush">
-									<li className="list-group-item"><a href="../songs/song1.html">In My Arms Instead - Randy Rogers Band</a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">Buy Mystelf A Chance - Randy Rogers Band</a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">Mo City Don - Z-Ro</a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">Kiss Me In The Dark - Randy Rogers Band</a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">Corpus Christi Bay - Robert Earl Keen </a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">My Texas(feat. Pat Green) - Josh Abbot Band</a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">She's Like Texas - Josh Abbot Band</a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">Sad Sad City - Ghostland Observatory </a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">Every Girl - Turnpike Troubadors </a></li>
-									<li className="list-group-item"><a href="../songs/song1.html">Feelin' Good Again - Robert Earl Keen </a></li>
+									{albumSongs}
+									
 								</ul>
 							</div>
 						</div>

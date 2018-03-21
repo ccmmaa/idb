@@ -6,7 +6,6 @@ import { Link } from 'react-router';
 import './assets/css/bootstrap.min.css'; 
 import './assets/css/main.css';
 
-
 class App extends Component {
 
   render() {

@@ -14,51 +14,51 @@ class SongInstance extends Component {
 		this.state = {
 			doneLoading: false,
 			video: "http://www.mksp.in/images/loading.gif",
-			itunesUrl: "#",
-			songName: URL.toString(URL.lastUrlItem(0)),
-			songArtist: URL.toString(URL.lastUrlItem(1)),
-			song: {
-				"name": "goosebumps",
-				"length": "4:03",
-				"genre": "hip hop", 
-				"artist": "Travis Scott", 
-				"url": "https://open.spotify.com/embed/track/6gBFPUFcJLzWGx4lenP6h2",
-				"producer": [
-					"Cardo", 
-					"Yung Exclusive", 
-					"Cubeatz", 
-					"Dean"
-				],
-				"release date": "December 13, 2016", 
-				"album": "Birds in the Trap Sing McKnight", 
-				"album art": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332",
-				"artist image": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-				"lyrics": "[Intro: Travis Scott]\n	Yeah\n	7:30 in the night\n	Ooooh ooh\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time, yeah\n	\n	[Verse 1: Travis Scott]\n	7-1-3 to the 2-8-1, yeah I'm riding\n	Why they on me? Why they on me? I'm flyin'\n	Sippin' lowkey I'm sipping lowkey in Onyx\n	Rider, rider when I'm pullin' up right beside ya\n	Popstar, lil' Mariah\n	When I text a cute game, wildness\n	Throw a stack on the Bible\n	Never Snapchat or took molly\n	She fall through plenty, her and all her ginnies\n	Yeah, we at the top floor, right there off Doheny\n	Oh no, I can't fuck with y'all\n	Yea, when I'm with my squad I cannot do no wrong\n	Yeah, saucing in the city, don't get misinformed, yea\n	They gon' pull up on you (brr, brr, brr)\n	Yeah, we gon' do some things, some things you can't relate\n	Yeah, cause we from a place, a place you cannot stay\n	Oh, you can't go, oh, I don't know\n	Oh, back the fuck up off me (brr, brr, brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n	\n	[Verse 2: Kendrick Lamar]\n	I want to press my like, yeah, I wanna press my\n	I want a green light, I wanna be like\n	I wanna press my line, yeah\n	I want to take that ride, yeah\n	I’m gonna press my line\n	I wanna green light, I wanna be like, I wanna press my\n	Mama, dear, spare your feelings\n	I'm reliving moments, peeling more residual\n	(I can) buy the building, burn the building, take your bitch, rebuild the building just to fuck some more\n	(I can) justify my love for you and touch the sky for God to stop, debating war\n	Put the pussy on a pedestal\n	Put the pussy on a high horse\n	That pussy to die for\n	That pussy to die for\n	Peter, piper, picked a pepper\n	So I could pick your brain and put your heart together\n	We depart the shady parts and party hard, the diamonds yours\n	The coupe forever\n	My best shots might shoot forever like (brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n",
-				"country of origin": "USA",
-				"features": [
-					"Kendrick Lamar"
-				],
-				"popular cities": [
-					"Austin", 
-					"Dallas", 
-					"Florida", 
-					"Houston", 
-					"New York"
-				]
+			songData: 
+			{
+				"Album": {
+					"album_id": 1,
+					"artist_id": 1,
+					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
+					"genre": "",
+					"name": "Son of Norma",
+					"producer": "Dope House Records",
+					"year": "2014"
+				},
+				"album_id": 1,
+				"artist": {
+					"artist_id": 1,
+					"bio": "Bio Not Available",
+					"genre": "chicano rap",
+					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
+					"name": "South Park Mexican"
+				},
+				"artist_id": 1,
+				"itunes": "https://www.apple.com/itunes/charts/songs/",
+				"lyrics": "Lyrics Not Available for This Song.",
+				"name": "K Luv Vs. SPM",
+				"song_id": 1,
+				"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
 			}
 		};
 	}
 
 	getiTunesUrl() {
 		$.ajax({
-			url: "https://itunes.apple.com/search?term=" + URL.convert(this.state.song.name, " ", "+") + "+" + URL.convert(this.state.song.artist, " ", "+") + "&limit=1",
+			url: "https://itunes.apple.com/search?term=" + URL.convert(this.state.songData.name + "+" + this.state.songData.artist.name, ' ', '+') + "&limit=1",
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({itunesUrl: data.results[0].trackViewUrl});
+				console.log(data);
+				if (data.resultCount === 0) {
+					this.setState({itunesUrl: "https://www.apple.com/itunes/charts/songs/"});
+				} else {
+					this.setState({itunesUrl: data.results[0].trackViewUrl});
+				}
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
+				console.log("error");
+				
 			}
 		});
 	}
@@ -68,10 +68,8 @@ class SongInstance extends Component {
 
 	}
 
-
-
 	render() {
-		let lyricsPartsArray = this.state.song.lyrics.split("\n");
+		let lyricsPartsArray = this.state.songData.lyrics.split("\n");
 		let allLyricsParts = lyricsPartsArray.map(lyricsPart => {
 			return(
 				<span>{lyricsPart} <br/></span>
@@ -84,7 +82,7 @@ class SongInstance extends Component {
 				<main role="main">
 					<div align="center">
 						<br />
-						<h1>{this.state.songName}</h1><h6>by {this.state.songArtist}</h6>
+						<h1>{this.state.songData.name}</h1><h6>by <a href={"/artists/"+this.state.songData.artist_id}>{this.state.songData.artist.name}</a></h6>
 					</div>
 					<div className="container">
 						<hr />
@@ -100,11 +98,11 @@ class SongInstance extends Component {
 							
 							<div className="mediaCol">
 								<div className="ingrid" text-align="center">
-									<iframe src={this.state.song.url} frameborder="0" className="songPlayer" allowtransparency="true"></iframe>
+									<iframe src={this.state.songData.spotify} frameborder="0" className="songPlayer" allowtransparency="true"></iframe>
 									<p><a class="btn btn-success btn-sm" href={this.state.itunesUrl} role="button">View in iTunes »</a></p>
 									<hr />
-									<p align="left"><a className="btn btn-secondary btn-lg" href={"/artists/" + URL.toUrl(this.state.song.artist)} role="button">View this Artist &raquo;</a></p>
-									<p align="left"><a className="btn btn-secondary btn-lg" href={"/albums/" + URL.toUrl(this.state.song.album)} role="button">View this Album &raquo;</a></p>
+									<p align="left"><a className="btn btn-secondary btn-lg" href={"/artists/" + this.state.songData.artist_id} role="button">View this Artist &raquo;</a></p>
+									<p align="left"><a className="btn btn-secondary btn-lg" href={"/albums/" + this.state.songData.album_id} role="button">View this Album &raquo;</a></p>
 									</div>
 							</div>
 						</div>
