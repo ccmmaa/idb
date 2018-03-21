@@ -39,6 +39,7 @@ class Song(db.Model):
     spotify = db.Column(db.String(500), nullable = False) #embed info 
     artist_id = db.Column(db.Integer, db.ForeignKey('artist.artist_id'), nullable = False)
     album_id = db.Column(db.Integer, db.ForeignKey('album.album_id'), nullable = False) 
+    city_id = db.Column(db.Integer, db.ForeignKey('city.city_id')) 
 
 class City(db.Model):
     __tableame__ = 'city'
@@ -48,6 +49,7 @@ class City(db.Model):
     playlist = db.Column(db.String(500), nullable = False)
     image = db.Column(db.String(500), nullable = False)
     concerts = db.relationship('Concert', back_populates ='cities')
+    songs = db.relationship('Song', backref = 'city', lazy = True)
 
 # association object to hold the addition information for the many to many relationships
 class Concert(db.Model):
@@ -73,7 +75,7 @@ manager.create_api(City)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=3000)
 
 
 

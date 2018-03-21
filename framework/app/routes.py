@@ -1,10 +1,11 @@
-from flask import render_template, url_for
+from flask import render_template, url_for, request
 from app import app
 import requests
 
 
 
 @app.route('/')
+
 @app.route('/index')
 def index():
     return render_template('index.html')
@@ -112,3 +113,45 @@ def _url_commits(path):
 	
 def _url_issues(path):
 	return 'https://api.github.com/repos/ccmmaa/idb/issues?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + path
+
+
+#### API Calls ####
+
+@app.route('/<model>')#, subdomain="api")
+def all_api(model):
+    both = False
+    requestString = 'http://localhost:3000/api/' + model
+    if(request.args.get('page') is not None):
+        requestString += '?page='+request.args.get('page')
+        both = True
+
+    if(request.args.get('results_per_page') is not None):
+        if(both):
+            requestString += '&'
+        else:
+            requestString += '?'
+        requestString += 'results_per_page='+request.args.get('results_per_page')
+
+    response = requests.get(requestString)
+    return response.content
+
+@app.route('/<model>/<id_num>')#, subdomain="api")
+def instance_api(model,id_num):
+    both = False
+    requestString = 'http://localhost:3000/api/' + model + '/' + id_num
+    if(request.args.get('page') is not None):
+        requestString += '?page='+request.args.get('page')
+        both = True
+
+    if(request.args.get('results_per_page') is not None):
+        if(both):
+            requestString += '&'
+        else:
+            requestString += '?'
+        requestString += 'results_per_page='+request.args.get('results_per_page')
+
+    response = requests.get(requestString)
+    return response.content
+
+
+
