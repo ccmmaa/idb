@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Router from './Router';
-import logo from './logo.svg';
+// import logo from './assets/images/musicNote.png';
 import { Link } from 'react-router';
 
 import './assets/css/bootstrap.min.css'; 
