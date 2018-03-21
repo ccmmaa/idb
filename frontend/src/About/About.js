@@ -270,6 +270,8 @@ class About extends Component {
 									<center>
 										<ul id="tools">
 											<li className="card-shadows about-cards"><div><h3>Flask</h3><p>Web framework in Python</p></div><img src="https://opbeat.com/docs/static/images/stacks/logo_flask.svg" /></li>
+											<li className="card-shadows about-cards"><div><h3>Flask SQL Alchemy</h3><p>Extension for Flask that aims to simplify using SQLAlchemy with Flask</p></div><img src="http://flask-sqlalchemy.pocoo.org/2.3/_static/flask-sqlalchemy-logo.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Flask Restless</h3><p>provides simple generation of ReSTful APIs that send and receive messages in JSON format.</p></div><img src="http://flask-restless.readthedocs.io/en/stable/_static/flask-restless-small.png" /></li>
 											<li className="card-shadows about-cards"><div><h3>Github</h3><p>Version Control and collaboration tool</p></div><img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-256.png" /></li>
 											<li className="card-shadows about-cards"><div><h3>Gitbook</h3><p>Documentation creation tool</p></div><img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/orgs%2Flogos%2Fgitbook%2FLogo.svg?alt=media&token=84da6255-53f6-443c-9ae6-de135cea8cee" /></li>
 											<li className="card-shadows about-cards"><div><h3>Bootstrap</h3><p>Website Templates</p></div><img src="https://getbootstrap.com/assets/img/bootstrap-stack.png" /></li>
@@ -278,6 +280,10 @@ class About extends Component {
 											<li className="card-shadows about-cards"><div><h3>Slack</h3><p>Team communication and collaboration application</p></div><img src="http://blogs.newschool.edu/digitalhumanities/files/2016/02/Slack_Icon.png" /></li>
 											<li className="card-shadows about-cards"><div><h3>Doodle</h3><p>Tool to help with scheduling around classes</p></div><img src="https://cdn2.doodle.com/dist/i/7479b568749fca315a2969e30cbee4f5.png" /></li>
 											<li className="card-shadows about-cards"><div><h3>React</h3><p>Dynamic Frontend</p></div><img src="https://cdn-images-1.medium.com/max/1600/1*g6s1lvpfArJGorALkKNhvw.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Selenium</h3><p>Web applications testing</p></div><img src="https://www.seleniumhq.org/images/big-logo.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>MySQL</h3><p>Database to store scraped data</p></div><img src="https://pbs.twimg.com/profile_images/1240079072/logo-mysql-170x170_400x400.png" /></li>
+											<li className="card-shadows about-cards"><div><h3>Postman</h3><p>Application to document and test API</p></div><img src="https://i1.wp.com/thecuriousdev.org/wp-content/uploads/2017/12/gI_62552_200x200_360-logo.png?fit=201%2C201&ssl=1" /></li>
+											
 										</ul>
 									</center>
 								</div>
