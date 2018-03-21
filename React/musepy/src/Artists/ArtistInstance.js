@@ -60,20 +60,21 @@ class ArtistInstance extends Component {
 				<Navigation activeTab={"artists"}/>
 
 				<main role="main">
-
-					<div className="carousel-inner">
-						 <div className="carousel-item active">
-								 <img className="first-slide" src={banner} alt="First slide"/>
-								 <div className="container">
-										 <div className="carousel-caption text-left">
-												 <h1>Travis Scott</h1>
-										 </div>
-										 <div className="carousel-caption text-right">
-												 <h3><span>Genres:</span> Hip-hop</h3>
-										 </div>
-								 </div>
-						 </div>
-						 </div>
+					<div className="artistInstanceCarousel">
+						<div className="carousel-inner">
+							 <div className="carousel-item active">
+									 <img className="first-slide" src={banner} alt="First slide"/>
+									 <div className="container">
+											 <div className="carousel-caption text-left">
+													 <h1>Travis Scott</h1>
+											 </div>
+											 <div className="carousel-caption text-right">
+													 <h3><span>Genres:</span> Hip-hop</h3>
+											 </div>
+									 </div>
+							 </div>
+						</div>
+					</div>
 
 
 					<br />
