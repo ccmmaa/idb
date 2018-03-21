@@ -1,4 +1,4 @@
-from database import app
+from database import app, s, manager
 from database.models import Artist, Album, Song, City, Concert, Playlist
 
 

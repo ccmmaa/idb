@@ -25,6 +25,6 @@ from controllers import artist_api_blueprint, album_api_blueprint, song_api_blue
 app.register_blueprint(artist_api_blueprint)
 app.register_blueprint(album_api_blueprint)
 app.register_blueprint(song_api_blueprint)
-app.register_blueprint(city_api_blueprint)
+app.register_blueprint(city_api_blueprint) 
 app.register_blueprint(concert_api_blueprint)
 app.register_blueprint(playlist_api_blueprint)
