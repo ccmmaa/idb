@@ -59,42 +59,7 @@ class ArtistInstance extends Component {
 
 					<div>
 						<div id="myCarousel" class="carousel" data-ride="carousel">
-							<ol class="carousel-indicators">
-								<li data-target="#myCarousel" data-slide-to="0"></li>
-								<li data-target="#myCarousel" data-slide-to="1"></li>
-							</ol>
-							<div class="carousel-inner">
-								<div class="carousel-item active">
-									<img class="first-slide" src="/static/images/Travis_scott.jpg" alt="First slide" />
-									<div class="container">
-										<div class="carousel-caption text-left">
-											<h1>{this.state.artist.name}</h1>
-										</div>
-										<div class="carousel-caption text-right">
-											<h3><span>Genres:</span>{this.state.artist.genres}</h3>
-										</div>
-									</div>
-								</div>
-								<div class="carousel-item">
-									<img class="second-slide" src={Black} alt="Second slide" />
-									<div class="container">
-										<div class="carousel-caption text-left">
-											<span>Bio:</span>
-											<p>{this.state.artist.bio}</p>
-										</div>
-									</div>
-								</div>
-								<a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-									<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span class="sr-only">Previous</span>
-								</a>
-								<a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-									<span class="carousel-control-next-icon" aria-hidden="true"></span>
-									<span class="sr-only">Next</span>
-								</a>
-							</div>
-							<br />
-							<br />
+							
 
 							<div class="container">
 								<div class="row">
