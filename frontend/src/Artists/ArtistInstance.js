@@ -180,8 +180,16 @@ class ArtistInstance extends Component {
 								</div>
 							</div>
 
+							<hr />
 							<br />
-							<br />
+
+							<div className="containerArtistBio">
+								<div className="row">
+									<p className="orange">Bio</p>
+									<p>{this.state.artist.bio}</p>
+
+								</div>
+							</div>
 						</div>
 					</div>
 
