@@ -36,7 +36,7 @@ class Song(db.Model):
     preview = db.Column(db.String(500), nullable = False) #embed info 
     artist_id = db.Column(db.Integer, db.ForeignKey(artist.id), nullable = False)
     album_id = db.Column(db.Integer, db.ForeignKey(album.id), nullable = False) 
-    concerts = db.relationship('playlist', back_populates ='songs')
+    cities = db.relationship('playlist', back_populates ='songs')
 
 class City(db.Model):
     __tableame__ = 'city'

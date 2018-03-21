@@ -12,7 +12,7 @@ ma = Marshmallow(app)
 class Artist(db.Model):
     # Don't really have to set tablename because default is class name converted to lowercase
     __tableame__ = 'artist'
-    id = db.Column(db.Integer, primary_key = True, nullable = False)
+    artist_id = db.Column("id",db.Integer, primary_key = True, nullable = False)
     name = db.Column(db.String(500), nullable = False)  
     bio = db.Column(db.String(5000),nullable = False)
     image = db.Column(db.String(500),nullable = False)
@@ -37,6 +37,8 @@ class ArtistSchema(ma.Schema):
 
 artist_schema = ArtistSchema()
 artists_schema = ArtistSchema(many=True)
+
+db.create_all()
 
 # class Album(db.Model):
 #     __tableame__ = 'album' 
@@ -180,6 +182,8 @@ def add_artist():
 
     return artist_schema.jsonify(new_artist)
 
+
+
     # return jsonify(name=new_artist.name)
 
 
@@ -195,6 +199,7 @@ def get_artist():
 @app.route("/artist/<id>", methods=["GET"])
 def artist_detail(id):
     artist = Artist.query.get(id)
+
     return artist_schema.jsonify(artist)
 
 
