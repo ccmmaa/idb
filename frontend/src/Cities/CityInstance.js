@@ -57,7 +57,7 @@ class CityInstance extends Component {
 	render() {
 		let albumSongs = this.state.cityData.songs.map(song => {
 			return(
-				<li className="list-group-item"><a href={"/song/" + song.song_id}>{song.name}</a></li>
+				<li className="list-group-item"><a href={"/songs/" + song.song_id}>{song.name}</a></li>
 			);
 		});
 		let concerts = this.state.cityData.concerts.map(concert => {

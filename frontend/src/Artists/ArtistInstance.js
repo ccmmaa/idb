@@ -87,7 +87,7 @@ class ArtistInstance extends Component {
 			let day = date.substring(lastDash + 1);
 			let time = concert.time.substring(concert.time.indexOf('T') + 1);
 			return(
-				<li className="list-group-item d-flex justify-content-between align-items-center"><a href={"/city/" + concert.city_id}>{concert.venue}</a>
+				<li className="list-group-item d-flex justify-content-between align-items-center"><a href={"/cities/" + concert.city_id}>{concert.venue}</a>
 					<span className="badge badge-primary badge-pill">{months[month] + " " + day + ", " + year + " " + time}</span></li>
 			);
 		});
