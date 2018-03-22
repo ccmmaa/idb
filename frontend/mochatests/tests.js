@@ -69,5 +69,16 @@ describe("MusePy unit tests", function() {
     expect(CityInstance.prototype).to.not.be.null;
   });
 
+  it('should have a carousel', function () {
+    const wrapper = shallow(<Index />);
+    expect(wrapper.find('img')).to.have.length(1);
+  });
+
+  it('should have props for email and src', function () {
+    const wrapper = shallow(<Avatar/>);
+    expect(wrapper.props().email).to.be.defined;
+    expect(wrapper.props().src).to.be.defined;
+  });
+
 
 });
