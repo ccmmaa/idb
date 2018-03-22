@@ -168,7 +168,7 @@ class Cities extends Component {
 							<img class="fourth-slide" src={CitySlide} alt="Fourth slide"/>
 							<div class="container">
 								<div class="carousel-caption text-right">
-									<h1><span>Connect</span> with your city.</h1>
+									<h1><span className="orange">Connect</span> with your city.</h1>
 								   
 								</div>
 							</div>

@@ -80,7 +80,7 @@ class Albums extends Component {
 							<img className="third-slide" src={AlbumSlide} alt="Third slide" />
 							<div className="container">
 								<div className="carousel-caption">
-									<h1><span>Discover</span> new albums.</h1>
+									<h1><span className="orange">Discover</span> new albums.</h1>
 								</div>
 							</div>
 						</div>	

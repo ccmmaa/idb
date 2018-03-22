@@ -128,7 +128,7 @@ class Artists extends Component {
 							<img class="second-slide" src={ArtistSlide} alt="Second slide"/>
 							<div class="container">
 								<div class="carousel-caption">
-									<h1><span>Explore</span> your favorite artists.</h1>
+									<h1><span className="orange">Explore</span> your favorite artists.</h1>
 								</div>
 							</div>
 						</div>

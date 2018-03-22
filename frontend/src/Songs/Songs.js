@@ -109,7 +109,7 @@ class Songs extends Component {
 							<img className="first-slide" src={SongSlide} alt="First slide" />
 							<div className="container">
 								<div className="carousel-caption text-left">
-									<h1><span>Search</span> your city's top songs.</h1>
+									<h1><span className="orange">Search</span> your city's top songs.</h1>
 								</div>
 							</div>
 						</div>
