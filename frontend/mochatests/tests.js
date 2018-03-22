@@ -10,6 +10,10 @@ import Artists from '../src/Artists/Artists';
 import Albums from '../src/Albums/Albums';
 import Cities from '../src/Cities/Cities';
 import About from '../src/About/About';
+import SongInstance from '../src/Songs/SongInstance';
+import ArtistInstance from '../src/Artists/ArtistInstance';
+import AlbumInstance from '../src/Albums/AlbumInstance';
+import CityInstance from '../src/Cities/CityInstance';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -47,6 +51,22 @@ describe("MusePy unit tests", function() {
   it("should create About object", function() {
     const wrapper = mount(<About />);
     expect(About.prototype).to.not.be.null;
+  });
+  it("should create Song Instance object", function() {
+    const wrapper = mount(<SongInstance />);
+    expect(SongInstance.prototype).to.not.be.null;
+  });
+  it("should create Artist Instance object", function() {
+    const wrapper = mount(<ArtistInstance />);
+    expect(ArtistInstance.prototype).to.not.be.null;
+  });
+  it("should create Album Instance object", function() {
+    const wrapper = mount(<AlbumInstance />);
+    expect(AlbumInstance.prototype).to.not.be.null;
+  });
+  it("should create City Instance object", function() {
+    const wrapper = mount(<CityInstance />);
+    expect(CityInstance.prototype).to.not.be.null;
   });
 
 
