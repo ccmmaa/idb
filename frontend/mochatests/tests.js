@@ -71,13 +71,13 @@ describe("MusePy unit tests", function() {
 
   it('should have a carousel', function () {
     const wrapper = shallow(<Index />);
-    expect(wrapper.find('img')).to.have.length(1);
+    expect(wrapper.contains(<MyCarousel />)).to.equal(true);
   });
 
-  it('should have props for email and src', function () {
-    const wrapper = shallow(<Avatar/>);
-    expect(wrapper.props().email).to.be.defined;
-    expect(wrapper.props().src).to.be.defined;
+  it('should have marketing and featurettes', function () {
+    const wrapper = shallow(<Index />);
+    expect(wrapper.find('container marketing')).to.have.length(1);
+    expect(wrapper.find('row featurette index_descriptions')).to.have.length(3);
   });
 
 
