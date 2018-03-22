@@ -8,7 +8,7 @@ class Browser:
     def gotoMusepy(self):
         global browser
         browser = webdriver.Chrome()
-        browser.get("http://localhost:3000/")
+        browser.get("http://musepy.me/")
 
     def close(self):
         browser.close()
