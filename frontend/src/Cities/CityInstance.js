@@ -124,7 +124,7 @@ class CityInstance extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/cities/' + URL.lastUrlItem(0),
+			url: 'http://api.musepy.me/city/' + URL.lastUrlItem(0),
 			dataType: 'json',
 			cache: false,
 			success: function(data) {

@@ -193,7 +193,7 @@ class Songs extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: 'http://musepy.me:5000/api/song?results_per_page=12&page=' + this.state.page,
+			url: 'http://api.musepy.me/song?results_per_page=12&page=' + this.state.page,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {

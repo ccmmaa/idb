@@ -412,11 +412,11 @@ class Artists extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/artist',
+			url: 'http://api.musepy.me/artist',
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"allArtists": data, "doneLoading": true});
+				this.setState({"allArtists": data["objects"], "doneLoading": true});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);

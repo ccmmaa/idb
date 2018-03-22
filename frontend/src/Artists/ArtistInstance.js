@@ -91,7 +91,7 @@ class ArtistInstance extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/artists/' + URL.lastUrlItem(0),
+			url: 'http://api.musepy.me/artist/' + URL.lastUrlItem(0),
 			dataType: 'json',
 			cache: false,
 			success: function(data) {

@@ -65,6 +65,17 @@ class SongInstance extends Component {
 
 	componentWillMount() {
 		this.getiTunesUrl();
+		$.ajax({
+			url: 'http://api.musepy.me/song/' + URL.lastUrlItem(0),
+			dataType: 'json',
+			cache: false,
+			success: function(data) {
+				this.setState({"songData": data, "doneLoading": true});
+			}.bind(this),
+			error: function(xhr, status, error) {
+				// console.log("Get ERROR: " + error);
+			}
+		});
 
 	}
 

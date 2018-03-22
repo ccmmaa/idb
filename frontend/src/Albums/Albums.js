@@ -201,7 +201,7 @@ class Albums extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/album',
+			url: 'http://api.musepy.me/album',
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
