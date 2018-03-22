@@ -65,11 +65,33 @@ class ArtistInstance extends Component {
 			);
 		});
 		let concerts = this.state.artistData.concerts.map(concert => {
+			let date = concert.time.substring(0, concert.time.indexOf('T'));
+			let firstDash = date.indexOf('-');
+			let lastDash = date.lastIndexOf('-');
+			let months = {
+				"01": "Jan",
+				"02": "Feb",
+				"03": "Mar",
+				"04": "Apr",
+				"05": "May",
+				"06": "Jun",
+				"07": "Jul",
+				"08": "Aug",
+				"09": "Sep",
+				"10": "Oct",
+				"11": "Nov",
+				"12": "Dec"
+			}
+			let year = date.substring(0, firstDash);
+			let month = date.substring(firstDash + 1, lastDash);
+			let day = date.substring(lastDash + 1);
+			let time = concert.time.substring(concert.time.indexOf('T') + 1);
 			return(
 				<li className="list-group-item d-flex justify-content-between align-items-center"><a href={"/city/" + concert.city_id}>{concert.venue}</a>
-					<span className="badge badge-primary badge-pill">{concert.time}</span></li>
+					<span className="badge badge-primary badge-pill">{months[month] + " " + day + ", " + year + " " + time}</span></li>
 			);
 		});
+
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"artists"}/>
