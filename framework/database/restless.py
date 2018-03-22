@@ -1,9 +1,12 @@
-from flask import Flask
+from flask import Flask, request
 from flask_restless import APIManager
 from flask_sqlalchemy import SQLAlchemy
+from flask_cors import CORS, cross_origin
+import requests
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://master:musepy.me@musepy.cmlur1dhu2fc.us-east-2.rds.amazonaws.com/musepydb'
+CORS(app)
 db = SQLAlchemy(app)
 manager = APIManager(app, flask_sqlalchemy_db=db)
 
@@ -68,14 +71,15 @@ class Concert(db.Model):
 db.create_all()
 
 # Created the basic API calls for each model 
-manager.create_api(Artist)
-manager.create_api(Album)
-manager.create_api(Song)
-manager.create_api(City)
+manager.create_api(Artist, methods=['GET'], url_prefix=None)
+manager.create_api(Album, methods=['GET'], url_prefix=None)
+manager.create_api(Song, methods=['GET'], url_prefix=None)
+manager.create_api(City, methods=['GET'], url_prefix=None)
+
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=3000)
+    app.run(debug=True, host='0.0.0.0', port=80)
 
 
 
