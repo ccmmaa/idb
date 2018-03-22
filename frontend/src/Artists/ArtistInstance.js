@@ -17,7 +17,7 @@ class ArtistInstance extends Component {
 	constructor() {
 		super();
 		this.state= {
-			songFound: false,
+			artistFound: false,
 			doneLoading: false,
 			image: {Loading},
 			artistData: 
@@ -95,7 +95,7 @@ class ArtistInstance extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState("artistData": data);
+				this.setState({"artistData": data, "artistFound": true, "doneLoading": true});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);

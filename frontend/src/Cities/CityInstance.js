@@ -4,6 +4,9 @@ import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/city_instance.css';
 import URL from '../URLSpaceUnderscore';
 import $ from 'jquery';
+import LoadingH from '../assets/images/loadingHorizontal.gif';
+import Loading from '../assets/images/loading.gif';
+
 import Concert from "./Concert"
 
 
@@ -13,28 +16,13 @@ class CityInstance extends Component {
 		super();
 		this.state = {
 			cityData:{
+				"doneLoading": false,
 				"city_id": 1,
 				"concerts": [
-					{
-						"artist_id": 10,
-						"city_id": 1,
-						"concert_id": 98,
-						"tickets": "http://houston.eventful.com/events/ray-wylie-hubbard-/E0-001-112040343-1?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-						"time": "2018-04-07T19:00:00",
-						"venue": "The Heights Theater"
-					},
-					{
-						"artist_id": 14,
-						"city_id": 1,
-						"concert_id": 127,
-						"tickets": "http://dallas.eventful.com/events/jon-wolfe-/E0-001-111995850-0?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-						"time": "2018-04-14T00:00:00",
-						"venue": "Gas Monkey Live!"
-					}
 				],
 				"image": "http://www.celebrityslice.com/wp-content/uploads/2015/08/city-wallpaper-7.jpg",
-				"name": "Austin",
-				"playlist": "https://open.spotify.com/user/thesoundsofspotify/playlist/3gz7G6lax8nkXZ3vBr3n4i",
+				"name": "",
+				"playlist": LoadingH,
 				"songs": [
 					{
 						"album_id": 1,
@@ -45,79 +33,9 @@ class CityInstance extends Component {
 						"name": "Cody Canada Tells IT Like It Is",
 						"song_id": 1,
 						"spotify": "https://open.spotify.com/embed?uri=spotify:track:65Z8nMFjEc3DBRwKMduBzr"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"city_id": 1,
-						"itunes": "https://itunes.apple.com/us/album/feelin-good-again-live/508941748?i=508942085&uo=4",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "Feelin' Good Again",
-						"song_id": 2,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:0Nypbyz6YYQSaHG44mk3Q6"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"city_id": 1,
-						"itunes": "https://itunes.apple.com/us/album/gringo-honeymoon-live/42336939?i=42336900&uo=4",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "Gringo Honeymoon",
-						"song_id": 3,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:2IUj1twwM5fK1L5OZLRCiT"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"city_id": 1,
-						"itunes": "https://itunes.apple.com/us/album/state-of-thanks-address-live/1160443435?i=1160443747&uo=4",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "State Of Thanks Address",
-						"song_id": 4,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:0AGlXTY41fQHwJ3hoMgThP"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"city_id": 1,
-						"itunes": "https://itunes.apple.com/us/album/i-gotta-go/455054438?i=455054596&uo=4",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "I Gotta Go",
-						"song_id": 5,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:6kA0YoWtz5M0VmRNcZhyvw"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"city_id": 1,
-						"itunes": "https://itunes.apple.com/us/album/feelin-good-again-live/508941748?i=508942085&uo=4",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "Feelin' Good Again",
-						"song_id": 2,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:0Nypbyz6YYQSaHG44mk3Q6"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"city_id": 1,
-						"itunes": "https://itunes.apple.com/us/album/gringo-honeymoon-live/42336939?i=42336900&uo=4",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "Gringo Honeymoon",
-						"song_id": 3,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:2IUj1twwM5fK1L5OZLRCiT"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"city_id": 1,
-						"itunes": "https://itunes.apple.com/us/album/state-of-thanks-address-live/1160443435?i=1160443747&uo=4",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "State Of Thanks Address",
-						"song_id": 4,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:0AGlXTY41fQHwJ3hoMgThP"
 					}
 				],
-				"state": "Texas"
+				"state": ""
 			}
 		}
 	}
@@ -128,7 +46,7 @@ class CityInstance extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState("cityData": data);
+				this.setState({"cityData": data, "doneLoading": true});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);
@@ -145,6 +63,10 @@ class CityInstance extends Component {
 		let concerts = this.state.cityData.concerts.map(concert => {
 			return (<Concert concert={concert} />);
 		});
+		var map = <img src={Loading} />;
+		if (this.state.doneLoading === true) {
+			map = <iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + URL.convert(this.state.cityData.name + "+" + this.state.cityData.state, ' ', '+')} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>;
+		}
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"cities"}/> 
@@ -168,7 +90,7 @@ class CityInstance extends Component {
 					<div className="container">
 						<div className="row mapPart1">
 							<div id="map">
-								<iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + URL.convert(this.state.cityData.name + "+" + this.state.cityData.state, ' ', '+')} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>
+								{map}
 							</div>
 
 

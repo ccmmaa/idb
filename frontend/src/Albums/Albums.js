@@ -6,6 +6,7 @@ import '../assets/css/modelpage.css';
 import AlbumSlide from '../assets/images/albummodel.jpg';
 import URL from '../URLSpaceUnderscore';
 import Loading from '../assets/images/loadingHorizontal.gif';
+import LoadingH from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 
 class Albums extends Component {
@@ -13,187 +14,26 @@ class Albums extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: true,
+			doneLoading: false,
 			allAlbums: [
 				{
 					"album_id": 1,
 					"artist": {
 						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
+						"bio": "",
+						"genre": "",
+						"image": Loading,
 						"name": "South Park Mexican"
 					},
 					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
+					"artwork": Loading,
 					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
+					"name": "...",
+					"producer": "",
 					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
+						
 					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
+					"year": ""
 				}
 			]
 		}
@@ -205,7 +45,7 @@ class Albums extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"allAlbums": data, "doneLoading": true});
+				this.setState({"allAlbums": data["objects"], "doneLoading": true});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);

@@ -4,6 +4,7 @@ import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/song_instance.css';
 import URL from '../URLSpaceUnderscore';
+import Loading from '../assets/images/loading.gif';
 import $ from 'jquery';
 
 
@@ -13,7 +14,7 @@ class SongInstance extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
-			video: "http://www.mksp.in/images/loading.gif",
+			video: Loading,
 			songData: 
 			{
 				"Album": {
@@ -29,16 +30,16 @@ class SongInstance extends Component {
 				"artist": {
 					"artist_id": 1,
 					"bio": "Bio Not Available",
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican"
+					"genre": "",
+					"image": "",
+					"name": "Loading Artist..."
 				},
 				"artist_id": 1,
 				"itunes": "https://www.apple.com/itunes/charts/songs/",
-				"lyrics": "Lyrics Not Available for This Song.",
-				"name": "K Luv Vs. SPM",
+				"lyrics": "Loading...",
+				"name": "Loading Song...",
 				"song_id": 1,
-				"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
+				"spotify": Loading
 			}
 		};
 	}
@@ -86,6 +87,7 @@ class SongInstance extends Component {
 				<span>{lyricsPart} <br/></span>
 			);
 		});
+		let loaded = this.state.doneLoading;
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"songs"}/> 
