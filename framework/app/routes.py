@@ -3,13 +3,18 @@ from app import app
 import requests
 
 
-
+'''
 @app.route('/')
-
 @app.route('/index')
 def index():
     return render_template('index.html')
+'''
+@app.route('/')
+@app.route('/index')
+def api():
+    return render_template('api.html')
 
+'''
 @app.route('/songs')
 def songsPage():
     return render_template('songs/songmodel.html')
@@ -114,7 +119,7 @@ def _url_commits(path):
 def _url_issues(path):
 	return 'https://api.github.com/repos/ccmmaa/idb/issues?client_id=a08ccbc00587ed5ca731;client_secret=13e2285176b791bc3ebed203d4c627fa6f2d3d80;' + path
 
-
+'''
 #### API Calls ####
 
 @app.route('/<model>')#, subdomain="api")
