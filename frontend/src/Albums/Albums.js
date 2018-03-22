@@ -14,7 +14,7 @@ class Albums extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: true,
+			doneLoading: false,
 			allAlbums: [
 				{
 					"album_id": 1,

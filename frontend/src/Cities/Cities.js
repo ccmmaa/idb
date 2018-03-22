@@ -13,7 +13,7 @@ class Cities extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: true,
+			doneLoading: false,
 			allCities:[ 
 				
 				{
