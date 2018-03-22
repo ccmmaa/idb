@@ -207,7 +207,7 @@ class Songs extends Component {
 
 	nextPage() {
 		$.ajax({
-			url: 'http://musepy.me:5000/api/song?results_per_page=12&page=' + (this.state.page + 1),
+			url: 'http://api.musepy.me/api/song?results_per_page=12&page=' + (this.state.page + 1),
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
