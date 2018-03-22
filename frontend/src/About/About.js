@@ -257,7 +257,8 @@ class About extends Component {
 						<div className="row featurette">
 							<div>
 								<h2 className="featurette-heading-orange">Data Sources</h2>
-								<p className="lead">We used the APIs available for Spotify, Eventful, Musixmatch, and last.fm. The Spotify playlist gave us info about artists, albums, and songs. The Musixmatch API allowed for us to display lyrics for songs that had them available. Last.fm gave us the biographies of artists if available. All the APIs except eventful responsed in JSON, which we then made into a dict object. Eventful responded in XML so we used a python module xmljson to convert the XML to JSON</p>
+								<p className="lead">We used the APIs available for <a href="https://developer.spotify.com/web-api/endpoint-reference/">Spotify</a>, <a href="http://api.eventful.com/docs">Eventful</a>, <a href="https://developer.musixmatch.com/documentation/api-methods">Musixmatch</a>, and <a href="https://www.last.fm/api/intro">last.fm</a>. The Spotify playlist gave us info about artists, albums, and songs. The Musixmatch API allowed for us to display lyrics for songs that had them available. Last.fm gave us the biographies of artists if available. All the APIs except eventful responsed in JSON, which we then made into a dict object. Eventful responded in XML so we used a python module xmljson to convert the XML to JSON</p>
+								<p className="lead">We first started with a list of hardcoded Cities. Using Spotify API, we looked for the playlists of those cities. This gave us a lot of songs. We can then populate our database with those songs' albums and artists. </p>
 							</div>
 						</div>
 
