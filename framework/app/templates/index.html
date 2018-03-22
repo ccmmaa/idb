@@ -10,9 +10,14 @@
 
 		<link href="{{ url_for('static', filename='css/carousel.css') }}" type="text/css" rel="stylesheet">
 		<link href="{{ url_for('static', filename='css/main.css') }}" type="text/css" rel="stylesheet">
+
+		<script type="text/javascript">
+			window.location.replace('http://musepy.me:3000');
+		</script>
 	</head>
 	
-	<body>
+	<body onLoad="blah()">
+		<script type="script/javascript">function blah() {window.location.href.replace("http://musepy.me:3000");}</script>
 
 		<header>
 		<iframe src="navigation.html?index" class="navbar" frameborder="0" scrolling="no"></iframe>

@@ -120,7 +120,7 @@ def _url_issues(path):
 @app.route('/<model>')#, subdomain="api")
 def all_api(model):
     both = False
-    requestString = 'http://localhost:3000/api/' + model
+    requestString = 'http://localhost:5000/api/' + model
     if(request.args.get('page') is not None):
         requestString += '?page='+request.args.get('page')
         both = True
@@ -138,7 +138,7 @@ def all_api(model):
 @app.route('/<model>/<id_num>')#, subdomain="api")
 def instance_api(model,id_num):
     both = False
-    requestString = 'http://localhost:3000/api/' + model + '/' + id_num
+    requestString = 'http://localhost:5000/api/' + model + '/' + id_num
     if(request.args.get('page') is not None):
         requestString += '?page='+request.args.get('page')
         both = True

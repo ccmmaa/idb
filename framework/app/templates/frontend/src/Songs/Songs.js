@@ -14,8 +14,7 @@ class Songs extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: false,
-			page: 1,
+			doneLoading: true,
 			allSongs:[
 				{
 					"name": "goosebumps",
@@ -193,25 +192,11 @@ class Songs extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: 'http://localhost:5000/api/song?results_per_page=12&page=' + this.state.page,
+			url: '/api/song',
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"allSongs": data["objects"], "doneLoading": true, "page": this.state.page});
-			}.bind(this),
-			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
-		});
-	}
-
-	nextPage() {
-		$.ajax({
-			url: 'http://localhost:5000/api/song?results_per_page=12&page=' + (this.state.page + 1),
-			dataType: 'json',
-			cache: false,
-			success: function(data) {
-				this.setState({"allSongs": data["objects"], "doneLoading": true, "page": (this.state.page+1)});
+				this.setState({"allSongs": data, "doneLoading": true});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);
@@ -227,9 +212,9 @@ class Songs extends Component {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
-						  <img className="rounded-circle" src={song["Album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
-						  <h2>{song["name"]}</h2><h6>by {song["artist"]["name"]}</h6><br />
-						  <p><a className="btn btn-secondary" href={"/songs/" + song["song_id"]} role="button">View &raquo;</a></p>
+						  <img className="rounded-circle" src={song["album art"]} alt="Generic placeholder image" width="140" height="140" />
+						  <h2>{song["name"]}</h2><h6>by {song["artist"]}</h6><br />
+						  <p><a className="btn btn-secondary" href={"/songs/" + URL.toUrl(song["name"])+"-"+ URL.toUrl(song["artist"])} role="button">View &raquo;</a></p>
 						</div>
 					</div>
 				);
@@ -268,7 +253,7 @@ class Songs extends Component {
 							<center>
 								{allSongs}
 							</center>
-							<button onClick={this.nextPage.bind(this)}>NEXT</button>
+							
 						</div>
 					</div>
 

@@ -1,0 +1,11 @@
+.index_row div{
+	display: inline-block;
+}
+.index_row {
+	padding:0px;
+}
+.index_descriptions div {
+	display:inline-block;
+	vertical-align: top;
+	text-align: left;
+}

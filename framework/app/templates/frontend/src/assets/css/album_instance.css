@@ -1,0 +1,46 @@
+a {
+  color: #5a5a5a;
+}
+a:hover{
+  color: #FF7777;
+}
+
+.col-lg-4 {
+  text-align: center;
+}
+.col-lg-4 > img {
+  margin-top: 5rem;
+  width: 100%;
+}
+
+.col-lg-5 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+.col-lg-5 .h2 {
+  color: #FF7777;
+  margin-top: 27px;
+  margin-bottom: 1rem;
+}
+
+.col-lg-5 .list-group-item {
+  padding: 5px;
+}
+
+.col-lg-3 {
+  margin-top: 75px;
+}
+
+.h6 span {
+  color: #FF7777;
+}
+
+.row {
+  text-align: left;
+  display:block;
+}
+
+.albumsCol {
+    display: inline-block;
+vertical-align: top;
+}
