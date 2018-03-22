@@ -14,7 +14,7 @@ class Albums extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: false,
+			doneLoading: true,
 			allAlbums: [
 				{
 					"album_id": 1,
@@ -55,7 +55,7 @@ class Albums extends Component {
 
 	render() {
 		var allAlbums = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.doneLoading) {
+		if (this.state.doneLoading === true) {
 			allAlbums = this.state.allAlbums.map(album => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">

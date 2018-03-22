@@ -101,7 +101,7 @@ class Artists extends Component {
 
 	render() {
 		var allArtists = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.doneLoading) {
+		if (this.state.doneLoading === true) {
 			allArtists = this.state.allArtists.map(artist => {
 				var bio = artist.bio.substring(0, 100) + "...";
 				return(

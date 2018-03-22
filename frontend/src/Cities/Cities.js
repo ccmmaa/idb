@@ -143,7 +143,7 @@ class Cities extends Component {
 
 	render() {
 		var allCities = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.doneLoading) {
+		if (this.state.doneLoading === true) {
 			allCities = this.state.allCities.map(city => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">

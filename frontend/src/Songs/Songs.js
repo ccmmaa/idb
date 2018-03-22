@@ -222,7 +222,7 @@ class Songs extends Component {
 	render() {
 
 		var allSongs = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.doneLoading) {
+		if (this.state.doneLoading === true) {
 			allSongs = this.state.allSongs.map(song => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
