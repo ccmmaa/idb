@@ -153,5 +153,13 @@ describe("MusePy unit tests", function() {
     const wrapper = shallow(<CityInstance />);
     expect(wrapper.find('#concerts')).to.have.length(1);
   });
+  it('About page should have About this Site, Disparate Data, Total Statistics, Data Sources, Tools Used sections', function () {
+    const wrapper = shallow(<About />);
+    expect(wrapper.find('div.featurette')).to.have.length(5);
+  });
+  it('About page should have Team section', function () {
+    const wrapper = shallow(<About />);
+    expect(wrapper.find('#our-team')).to.have.length(1);
+  });
 
 });
