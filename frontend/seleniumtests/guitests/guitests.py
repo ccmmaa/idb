@@ -1,15 +1,5 @@
-from TestSuite.ApplicationPages import *
+from guitests.ApplicationPages import *
 import unittest
-
-# Browser().gotoMusepy()
-# Navigation().isHomePage()
-#
-# HomePage().Marketing().viewSongs()
-# Navigation().isSongsPage()
-# SongsPage().selectInstance()
-# Navigation().isSongInstancePage()
-# SongInstancePage().viewAlbum()
-# Navigation().isAlbumInstancePage()
 
 class GuiTests(unittest.TestCase):
 
