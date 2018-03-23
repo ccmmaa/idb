@@ -36,7 +36,7 @@ class About extends Component {
 				cris : 0,
 				chia : 0,
 				faiz : 0, 
-				laur : 0, 
+				laur : 43, 
 				sabr : 0, 
 				total : 0	
 			}
@@ -132,6 +132,7 @@ class About extends Component {
 	render() {
 		let commits_total = this.sum(this.state.commits);
 		let issues_total = this.sum(this.state.issues);
+		let tests_total = this.sum(this.state.tests);
 
 		var state = this.state;
 		var memberData = {
@@ -245,7 +246,7 @@ class About extends Component {
 								<center>
 									<div className="statistics">Number of Commits: <span id="commits-all">{ commits_total }</span><br />
 															Number of Issues: <span id="issues-all">{ issues_total }</span><br />
-															Number of Tests: <span id="tests-all">0</span>
+															Number of Tests: <span id="tests-all">{ tests_total }</span>
 									</div>	
 								</center>	
 							</div>
@@ -258,7 +259,7 @@ class About extends Component {
 							<div>
 								<h2 className="featurette-heading-orange">Data Sources</h2>
 								<p className="lead">We used the APIs available for <a href="https://developer.spotify.com/web-api/endpoint-reference/">Spotify</a>, <a href="http://api.eventful.com/docs">Eventful</a>, <a href="https://developer.musixmatch.com/documentation/api-methods">Musixmatch</a>, and <a href="https://www.last.fm/api/intro">last.fm</a>. The Spotify playlist gave us info about artists, albums, and songs. The Musixmatch API allowed for us to display lyrics for songs that had them available. Last.fm gave us the biographies of artists if available. All the APIs except eventful responsed in JSON, which we then made into a dict object. Eventful responded in XML so we used a python module xmljson to convert the XML to JSON</p>
-								<p className="lead">We first started with a list of hardcoded Cities. Using Spotify API, we looked for the playlists of those cities. This gave us a lot of songs. We can then populate our database with those songs' albums and artists. </p>
+								<p className="lead">We first started with a list of hardcoded Cities. Using Spotify API, we looked for the playlists of those cities. This gave us a lot of songs. We can then populate our database with those songs' albums and artists. Next, we used the other APIs Eventful, Musixmatch, and last.fm as described above, on the songs in order to populate our database.</p>
 							</div>
 						</div>
 

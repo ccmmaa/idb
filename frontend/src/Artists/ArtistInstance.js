@@ -11,6 +11,7 @@ import Album from "./Album"
 import URL from '../URLSpaceUnderscore';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
+import Concert from './Concert';
 
 
 class ArtistInstance extends Component {
@@ -86,9 +87,9 @@ class ArtistInstance extends Component {
 			let month = date.substring(firstDash + 1, lastDash);
 			let day = date.substring(lastDash + 1);
 			let time = concert.time.substring(concert.time.indexOf('T') + 1);
+			let dateandtime = months[month] + " " + day + ", " + year + " " + time;
 			return(
-				<li className="list-group-item d-flex justify-content-between align-items-center"><a href={"/cities/" + concert.city_id}>{concert.venue}</a>
-					<span className="badge badge-primary badge-pill">{months[month] + " " + day + ", " + year + " " + time}</span></li>
+				<Concert venue={concert.venue} cityId={concert.city_id} time={dateandtime} />
 			);
 		});
 

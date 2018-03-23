@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import URL from '../URLSpaceUnderscore';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
+import '../assets/css/concertComponent.css';
 
 
 class Concert extends Component {
@@ -10,13 +11,13 @@ class Concert extends Component {
 		super();
 		this.state = {
 			artistName: "Artist",
-			artistImage: {Loading}
+			artistImage: Loading
 		}
 	}
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/artist/' + this.props.concert.artist_id,
+			url: 'http://api.musepy.me/artist/' + this.props.concert.artist_id,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {

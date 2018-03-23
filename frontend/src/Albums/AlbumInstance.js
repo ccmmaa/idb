@@ -62,6 +62,10 @@ class AlbumInstance extends Component {
 				<h1>Song Not Found</h1>);
 		}
 		else {
+			var genre = this.state.albumData.genre;
+			if (genre == "") {
+				genre = "None";
+			}
 			return(
 				<div className="pageContent">
 					<Navigation activeTab={"albums"}/> 
@@ -84,7 +88,7 @@ class AlbumInstance extends Component {
 											  </ul>
 									</div>
 									<div className="col-lg-3 albumsCol">
-										<p className="h6"><span>Genre: </span>{this.state.albumData.genre}</p>
+										<p className="h6"><span>Genre: </span>{genre}</p>
 										<p className="h6"><span>Released: </span>{this.state.albumData.year}</p>
 
 									</div>

@@ -78,7 +78,7 @@ class CityInstance extends Component {
 							<img className="fourth-slide" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Austin_Evening.jpg/1200px-Austin_Evening.jpg" alt="Austin City Skyline" />
 							<div className="container">
 								<div className="carousel-caption text-right">
-									<h1><span>{this.state.cityData.name+ ","}</span> {this.state.cityData.state}</h1>
+									<h1><span className="orange">{this.state.cityData.name+ ","}</span> {this.state.cityData.state}</h1>
 								</div>
 							</div>
 						</div>
