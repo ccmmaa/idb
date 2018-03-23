@@ -29,6 +29,11 @@ class URLSpaceUnderscore {
 		return result.substring(result.lastIndexOf("/")+1);
 	}
 
+	static lastItem(item) {
+		var result = item;
+		return result.substring(result.lastIndexOf("/")+1);
+	}
+
 	//Helper method. Use the other two methods instead
 	static convert(input, take, convert) {
 		console.log("URL Convert Test");

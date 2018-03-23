@@ -54,6 +54,10 @@ class CityInstance extends Component {
 		});
 	}
 
+	BuildSpotifyEmbedUrl() {
+		return "https://embed.spotify.com/?uri=spotify:user:thesoundsofspotify:playlist:" + URL.lastItem(this.state.cityData.playlist) + "&theme=white";
+	}
+
 	render() {
 		let albumSongs = this.state.cityData.songs.map(song => {
 			return(
@@ -96,7 +100,7 @@ class CityInstance extends Component {
 
 							<div id="playlist">
 								<p class = "h2">The Sound of <br />	{this.state.cityData.name}, {this.state.cityData.state}</p>
-								<iframe id="spotify" className="shadow" src={this.state.cityData.playlist} width="450" height="80" frameborder="0" allowtransparency="true"></iframe>
+								<iframe id="spotify" className="shadow" src={this.BuildSpotifyEmbedUrl()} width="450" height="80" frameborder="0" allowtransparency="true"></iframe>
 								
 								<ul className="list-group list-group-flush citySongList">
 									{albumSongs}
