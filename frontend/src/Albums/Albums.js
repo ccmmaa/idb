@@ -6,7 +6,6 @@ import '../assets/css/modelpage.css';
 import AlbumSlide from '../assets/images/albummodel.jpg';
 import URL from '../URLSpaceUnderscore';
 import Loading from '../assets/images/loadingHorizontal.gif';
-import LoadingH from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 
 class Albums extends Component {
@@ -15,25 +14,44 @@ class Albums extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
+			page: 1,
+			lastpage:0,
 			allAlbums: [
 				{
 					"album_id": 1,
 					"artist": {
 						"artist_id": 1,
-						"bio": "",
-						"genre": "",
-						"image": Loading,
-						"name": "South Park Mexican"
+						"bio": "Loading...",
+						"genre": "Loading...",
+						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
+						"name": "Loading..."
 					},
 					"artist_id": 1,
-					"artwork": Loading,
-					"genre": "",
-					"name": "...",
-					"producer": "",
+					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
+					"genre": "Loading...",
+					"name": "Son of Norma",
+					"producer": "Dope House Records",
 					"songs": [
-						
+						{
+							"album_id": 1,
+							"artist_id": 1,
+							"itunes": "https://www.apple.com/itunes/charts/songs/",
+							"lyrics": "Lyrics Not Available for This Song.",
+							"name": "K Luv Vs. SPM",
+							"song_id": 1,
+							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
+						},
+						{
+							"album_id": 1,
+							"artist_id": 1,
+							"itunes": "https://www.apple.com/itunes/charts/songs/",
+							"lyrics": "Lyrics Not Available for This Song.",
+							"name": "People",
+							"song_id": 2,
+							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
+						}
 					],
-					"year": ""
+					"year": "2014"
 				}
 			]
 		}
@@ -41,11 +59,11 @@ class Albums extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: 'http://api.musepy.me/album',
+			url: 'http://api.musepy.me/album?results_per_page=12&page=' + this.state.page,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"allAlbums": data["objects"], "doneLoading": true});
+				this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": this.state.page, "lastpage": data["total_pages"]});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);
@@ -53,9 +71,42 @@ class Albums extends Component {
 		});
 	}
 
+	lastPage() {
+		 if((this.state.page - 1) > 0){
+			$.ajax({
+				url: 'http://api.musepy.me/album?results_per_page=12&page=' + (this.state.page - 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (this.state.page-1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		 }
+		
+	}
+
+	nextPage() {
+		if((this.state.page + 1)<= this.state.lastpage){
+			$.ajax({
+				url: 'http://api.musepy.me/album?results_per_page=12&page=' + (this.state.page + 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (this.state.page+1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		}
+	}
+
 	render() {
 		var allAlbums = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.doneLoading === true) {
+		if (this.state.doneLoading) {
 			allAlbums = this.state.allAlbums.map(album => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
@@ -92,8 +143,10 @@ class Albums extends Component {
 						<hr />
 					</div>
 					<div className="container2 marketing">
-					
 						<div className="row">
+							<button onClick={this.lastPage.bind(this)}>BACK </button>
+							<button onClick={this.nextPage.bind(this)}> NEXT</button>
+							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
 							<center>{allAlbums}</center>
 						</div>
 					</div>
