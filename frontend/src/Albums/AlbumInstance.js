@@ -14,7 +14,7 @@ class AlbumInstance extends Component {
 		this.state = {
 			songFound: false,
 			doneLoading: false,
-			albumData: 
+			albumData:
 			{
 				"album_id": 1,
 				"artist": {
@@ -30,7 +30,7 @@ class AlbumInstance extends Component {
 				"name": "Loading...",
 				"producer": "",
 				"songs": [
-					
+
 				],
 				"year": ""
 			}
@@ -64,7 +64,7 @@ class AlbumInstance extends Component {
 		else {
 			return(
 				<div className="pageContent">
-					<Navigation activeTab={"albums"}/> 
+					<Navigation activeTab={"albums"}/>
 
 					<main role="main">
 
@@ -81,7 +81,7 @@ class AlbumInstance extends Component {
 											<p className="h2">Song List</p>
 											<ul className="list-group list-group-flush">
 												{allSongs}
-											  </ul>
+											</ul>
 									</div>
 									<div className="col-lg-3 albumsCol">
 										<p className="h6"><span>Genre: </span>{this.state.albumData.genre}</p>
@@ -103,5 +103,5 @@ class AlbumInstance extends Component {
 			);
 		}
 	}
-} 
+}
 export default AlbumInstance;

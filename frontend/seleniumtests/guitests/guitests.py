@@ -1,4 +1,4 @@
-from TestSuite.ApplicationPages import *
+from guitests.ApplicationPages import *
 import unittest
 
 class GuiTests(unittest.TestCase):

@@ -105,7 +105,53 @@ describe("MusePy unit tests", function() {
     const wrapper = shallow(<SongInstance />);
     expect(wrapper.find('.songPlayer')).to.have.length(1);
   });
-
-
+  it('Artist instance should have artist image', function () {
+    const wrapper = shallow(<ArtistInstance />);
+    expect(wrapper.find('.artistImage')).to.have.length(1);
+  });
+  it('Artist instance should have genre', function () {
+    const wrapper = shallow(<ArtistInstance />);
+    expect(wrapper.find('div.text-right')).to.have.length(1);
+  });
+  it('Artist instance should have bio', function () {
+    const wrapper = shallow(<ArtistInstance />);
+    expect(wrapper.find('div.containerArtistBio')).to.have.length(1);
+  });
+  it('Artist instance should have albums generated', function () {
+    const wrapper = shallow(<ArtistInstance />);
+    expect(wrapper.find('h2.orange')).to.have.length(1);
+  });
+  it('Artist instance should have popular songs generated', function () {
+    const wrapper = shallow(<ArtistInstance />);
+    expect(wrapper.find('ul.list-group-flush')).to.have.length(1);
+  });
+  it('Artist instance should have upcoming concerts generated', function () {
+    const wrapper = shallow(<ArtistInstance />);
+    expect(wrapper.find('ul.list-group')).to.have.length(2);
+  });
+  it('Album instance should have album image', function () {
+    const wrapper = shallow(<AlbumInstance />);
+    expect(wrapper.find('img.img-thumbnail')).to.have.length(1);
+  });
+  it('Album instance should have genre and release date', function () {
+    const wrapper = shallow(<AlbumInstance />);
+    expect(wrapper.find('p.h6')).to.have.length(2);
+  });
+  it('Album instance should have song list generated', function () {
+    const wrapper = shallow(<AlbumInstance />);
+    expect(wrapper.find('ul.list-group')).to.have.length(1);
+  });
+  it('City instance should have a map', function () {
+    const wrapper = shallow(<CityInstance />);
+    expect(wrapper.find('#map')).to.have.length(1);
+  });
+  it('City instance should have a city song list', function () {
+    const wrapper = shallow(<CityInstance />);
+    expect(wrapper.find('.citySongList')).to.have.length(1);
+  });
+  it('City instance should have an upcoming concerts list', function () {
+    const wrapper = shallow(<CityInstance />);
+    expect(wrapper.find('#concerts')).to.have.length(1);
+  });
 
 });
