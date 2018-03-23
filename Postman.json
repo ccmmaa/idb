@@ -1,0 +1,1669 @@
+{
+	"info": {
+		"_postman_id": "c82edeb4-c9c8-4237-ad41-9c3a4711527c",
+		"name": "musepy api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Albums",
+			"description": "",
+			"item": [
+				{
+					"name": "All Albums",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ffa07196-4d74-4020-8c51-891dd9b40b7c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							]
+						},
+						"description": "list all of the albumns along with their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Correct Specific Album Call",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album/27",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album",
+								"27"
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific Album Call 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa883315-20db-4bd6-9299-b0891826161c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album/x",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album",
+								"x"
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific Album Call 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa883315-20db-4bd6-9299-b0891826161c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album/1000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album",
+								"1000"
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Album Call with Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?page=1",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Album Call with Page Query 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5693e7f-c9d5-41b8-8b16-dd4926607b96",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?page=aasd",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "aasd"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Album Call with Page Query 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ccd915f2-eed3-4b00-bacc-2f23a64c9fac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?page=100000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "100000"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Album Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?request-per-page=3000000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "request-per-page",
+									"value": "3000000"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Album Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?result-per-page=abc",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "result-per-page",
+									"value": "abc"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Album Call with Page and Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?page=1&result-per-page=3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "result-per-page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Artists",
+			"description": "",
+			"item": [
+				{
+					"name": "All Artists",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "89661230-96d4-41ea-9362-3fa04524aabb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							]
+						},
+						"description": "Get a list of all artists and their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Correct Specific Artist Call",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "777cf9b4-00d7-479f-b4e8-43ed041fc988",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist/13",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist",
+								"13"
+							]
+						},
+						"description": "Get one artist and all their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific Artist Call 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2d877eed-333a-4986-be0a-859723c16e9b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist/5.5",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist",
+								"5.5"
+							]
+						},
+						"description": "Get one artist and all their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific Artist Call 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa883315-20db-4bd6-9299-b0891826161c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist/1000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist",
+								"1000"
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Artist Call with Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?page=1",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Artist Call with Page Query 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5693e7f-c9d5-41b8-8b16-dd4926607b96",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?page=aasd",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "aasd"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Artist Call with Page Query 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ccd915f2-eed3-4b00-bacc-2f23a64c9fac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?page=100000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "100000"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Artist Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?request-per-page=3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "request-per-page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Artist Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?result-per-page=abc",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "result-per-page",
+									"value": "abc"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Artist Call with Page and Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?page=1&request-per-page=3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "request-per-page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cities",
+			"description": "",
+			"item": [
+				{
+					"name": "All Cities",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "cf59297e-b966-4a38-8f2e-b0cd066d8f50",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							]
+						},
+						"description": "Get a list of all cities and their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Correct Specific City Call",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "97fe1187-7a9d-4a9a-a66b-ec499854acda",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city/3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city",
+								"3"
+							]
+						},
+						"description": "get the details of one city"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific City Call 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "95d2dbdd-90df-4d44-af99-2ea519bc71cb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city/Austin",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city",
+								"Austin"
+							]
+						},
+						"description": "get the details of one city"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific City Call 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa883315-20db-4bd6-9299-b0891826161c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city/1000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city",
+								"1000"
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "City Call with Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?page=1",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect City Call with Page Query 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5693e7f-c9d5-41b8-8b16-dd4926607b96",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?page=aasd",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "aasd"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect City Call with Page Query 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ccd915f2-eed3-4b00-bacc-2f23a64c9fac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?page=100000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "100000"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "City Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?request-per-page=3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "request-per-page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid City Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?result-per-page=abc",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "result-per-page",
+									"value": "abc"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "City Call with Page and Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?page=1&request-per-page=3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "request-per-page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Songs",
+			"description": "",
+			"item": [
+				{
+					"name": "All Songs",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a7d436f-dade-4701-9ade-63260e241078",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							]
+						},
+						"description": "Get a list of all songs and their details"
+					},
+					"response": []
+				},
+				{
+					"name": "Correct Specific Song Call",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "079e62d7-52c7-4909-a283-59dc1d8dbb90",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song/81",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song",
+								"81"
+							]
+						},
+						"description": "Get the details of one song"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific Song Call 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8914cd7b-082c-428f-8dfe-258c4fc9508b",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song/hello",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song",
+								"hello"
+							]
+						},
+						"description": "Get the details of one song"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Specific Song Call 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fa883315-20db-4bd6-9299-b0891826161c",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(404);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song/1000000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song",
+								"1000000"
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Song Call with Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?page=1",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Song Call with Page Query 1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e5693e7f-c9d5-41b8-8b16-dd4926607b96",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(500);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?page=aasd",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "aasd"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Incorrect Song Call with Page Query 2",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ccd915f2-eed3-4b00-bacc-2f23a64c9fac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(400);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?page=100000",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "100000"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Song Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?request-per-page=3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "request-per-page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Invalid Song Call with Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?result-per-page=abc",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "result-per-page",
+									"value": "abc"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				},
+				{
+					"name": "Song Call with Page and Request Per Page Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"response is ok\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?page=1&request-per-page=3",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "request-per-page",
+									"value": "3"
+								}
+							]
+						},
+						"description": "get the details of the specific album"
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "7733656d-ac5e-4630-89c3-d40acc45b467",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "32c92f64-011d-4286-8496-8978d14b974e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
