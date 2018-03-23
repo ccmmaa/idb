@@ -33,10 +33,10 @@ class About extends Component {
 				total : 0	
 			},
 			tests: {
-				cris : 0,
+				cris : 40,
 				chia : 0,
 				faiz : 0, 
-				laur : 43, 
+				laur : 56, 
 				sabr : 0, 
 				total : 0	
 			}
