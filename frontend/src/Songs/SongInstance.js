@@ -65,7 +65,6 @@ class SongInstance extends Component {
 	}
 
 	componentWillMount() {
-		this.getiTunesUrl();
 		$.ajax({
 			url: 'http://api.musepy.me/song/' + URL.lastUrlItem(0),
 			dataType: 'json',
@@ -81,6 +80,8 @@ class SongInstance extends Component {
 	}
 
 	render() {
+		this.getiTunesUrl();
+		console.log(this.state.itunesUrl);
 		let lyricsPartsArray = this.state.songData.lyrics.split("\n");
 		let allLyricsParts = lyricsPartsArray.map(lyricsPart => {
 			return(
