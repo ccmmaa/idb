@@ -15,9 +15,9 @@ class Artists extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoadingH: false,
+			doneLoading: false,
 			page: 1,
-			lastpage:0,
+			lastpage:1,
 			allArtists:[
 				{
 					"albums": [
@@ -36,56 +36,41 @@ class Artists extends Component {
 		}
 	}
 
-	componentWillMount() {
-		$.ajax({
-			url: 'http://api.musepy.me/artist?results_per_page=12&page=' + this.state.page,
-			dataType: 'json',
-			cache: false,
-			success: function(data) {
-				this.setState({"allArtists":data["objects"], "doneLoadingH": true, "page": this.state.page, "lastpage": data["total_pages"]});
-			}.bind(this),
-			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
-		});
+
+
+	getPage(pageNumber) {
+		console.log("Request page " + pageNumber);
+		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
+			$.ajax({
+					url: 'http://api.musepy.me/artist?results_per_page=12&page=' + pageNumber,
+					dataType: 'json',
+					cache: false,
+					success: function(data) {
+						this.setState({"allArtists":data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
+					}.bind(this),
+					error: function(xhr, status, error) {
+						// console.log("Get ERROR: " + error);
+					}
+				});
 	}
 
-	lastPage() {
-		 if((this.state.page - 1) > 0){
-			$.ajax({
-				url: 'http://api.musepy.me/artist?results_per_page=12&page=' + (this.state.page - 1),
-				dataType: 'json',
-				cache: false,
-				success: function(data) {
-					this.setState({"allArtists": data["objects"], "doneLoadingH": true, "page": (this.state.page-1), "lastpage": data["total_pages"]});
-				}.bind(this),
-				error: function(xhr, status, error) {
-					// console.log("Get ERROR: " + error);
-				}
-			});
-		 }
-		
+	componentWillMount() {
+		this.getPage(1);
+	}
+
+	prevPage() {
+		if (this.state.page != 1)
+		this.getPage(this.state.page - 1);
 	}
 
 	nextPage() {
-		if((this.state.page + 1)<= this.state.lastpage){
-			$.ajax({
-				url: 'http://api.musepy.me/artist?results_per_page=12&page=' + (this.state.page + 1),
-				dataType: 'json',
-				cache: false,
-				success: function(data) {
-					this.setState({"allArtists": data["objects"], "doneLoadingH": true, "page": (this.state.page+1), "lastpage": data["total_pages"]});
-				}.bind(this),
-				error: function(xhr, status, error) {
-					// console.log("Get ERROR: " + error);
-				}
-			});
-		}
+		if (this.state.page != this.state.lastpage)
+		this.getPage(this.state.page + 1);
 	}
 
 	render() {
 		var allArtists = <center><img src={LoadingH} className="pageLoadingHIndicator" /></center>;
-		if (this.state.doneLoadingH) {
+		if (this.state.doneLoading) {
 			allArtists = this.state.allArtists.map(artist => {
 				var bio = artist.bio.substring(0, 100) + "...";
 				return(
@@ -125,7 +110,7 @@ class Artists extends Component {
 					</div>
 					<div class="container2 marketing">
 						<div class="row">
-							<button onClick={this.lastPage.bind(this)}>BACK </button>
+							<button onClick={this.prevPage.bind(this)}>BACK </button>
 							<button onClick={this.nextPage.bind(this)}> NEXT</button>
 							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
 							

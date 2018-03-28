@@ -15,7 +15,7 @@ class Albums extends Component {
 		this.state = {
 			doneLoading: false,
 			page: 1,
-			lastpage:0,
+			lastpage:1,
 			allAlbums: [
 				{
 					"album_id": 1,
@@ -58,50 +58,33 @@ class Albums extends Component {
 	}
 
 	componentWillMount() {
-		$.ajax({
-			url: 'http://api.musepy.me/album?results_per_page=12&page=' + this.state.page,
-			dataType: 'json',
-			cache: false,
-			success: function(data) {
-				this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": this.state.page, "lastpage": data["total_pages"]});
-			}.bind(this),
-			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
-		});
+		this.getPage(1);
 	}
 
-	lastPage() {
-		 if((this.state.page - 1) > 0){
-			$.ajax({
-				url: 'http://api.musepy.me/album?results_per_page=12&page=' + (this.state.page - 1),
-				dataType: 'json',
-				cache: false,
-				success: function(data) {
-					this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (this.state.page-1), "lastpage": data["total_pages"]});
-				}.bind(this),
-				error: function(xhr, status, error) {
-					// console.log("Get ERROR: " + error);
-				}
-			});
-		 }
-		
+	prevPage() {
+		if (this.state.page != 1)
+		this.getPage(this.state.page - 1);
 	}
 
 	nextPage() {
-		if((this.state.page + 1)<= this.state.lastpage){
+		if (this.state.page != this.state.lastpage)
+		this.getPage(this.state.page + 1);
+	}
+
+	getPage(pageNumber) {
+		console.log("Request page " + pageNumber);
+		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
-				url: 'http://api.musepy.me/album?results_per_page=12&page=' + (this.state.page + 1),
-				dataType: 'json',
-				cache: false,
-				success: function(data) {
-					this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (this.state.page+1), "lastpage": data["total_pages"]});
-				}.bind(this),
-				error: function(xhr, status, error) {
-					// console.log("Get ERROR: " + error);
-				}
-			});
-		}
+					url: 'http://api.musepy.me/album?results_per_page=12&page=' + pageNumber,
+					dataType: 'json',
+					cache: false,
+					success: function(data) {
+						this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
+					}.bind(this),
+					error: function(xhr, status, error) {
+						// console.log("Get ERROR: " + error);
+					}
+				});
 	}
 
 	render() {
@@ -144,7 +127,7 @@ class Albums extends Component {
 					</div>
 					<div className="container2 marketing">
 						<div className="row">
-							<button onClick={this.lastPage.bind(this)}>BACK </button>
+							<button onClick={this.prevPage.bind(this)}>BACK </button>
 							<button onClick={this.nextPage.bind(this)}> NEXT</button>
 							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
 							<center>{allAlbums}</center>

@@ -51,6 +51,21 @@ class URLSpaceUnderscore {
 		return result;
 	}
 
+	static urlPageNumber(totalPages) {
+		let url = window.location.href;
+		let indexOfP = url.lastIndexOf("?p=");
+		if (indexOfP == -1)
+			return 1;
+		let pageNumber = url.substring(indexOfP + 3);
+		if (pageNumber < 1)
+			return 1;
+		// else if (pageNumber > totalPages)
+		// 	return totalPages;
+		else return pageNumber;
+
+
+	}
+
 	
 } 
 export default URLSpaceUnderscore;
