@@ -85,7 +85,7 @@ class Artists extends Component {
 			}
 		}
 		else {
-			for (var index = currentPage-scale/2+1; index <= currentPage + scale/2; index++) {
+			for (var index = currentPage-scale/2; index <= currentPage + scale/2; index++) {
 				if (index != 0)
 				bar.push(this.pageBarHelper(index, currentPage));
 			}

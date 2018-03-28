@@ -61,6 +61,39 @@ class Cities extends Component {
 				});
 	}
 
+	paginationBar(currentPage, lastPage, scale) {
+		var bar = [];
+		if (currentPage!=1)
+			bar.push(<span><span onClick={() => this.prevPage()} class="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		if (currentPage < scale/2)
+			for (var index = 1; index <= lastPage && index <= scale; index++) {
+				bar.push(this.pageBarHelper(index, currentPage));
+			}
+		else if (currentPage > lastPage-scale/2) {
+			var start = lastPage-scale+1;
+			if (start < 1)
+				start = 1;
+			for (var index = start; index <= lastPage; index++) {
+				bar.push(this.pageBarHelper(index, currentPage));
+			}
+		}
+		else {
+			for (var index = currentPage-scale/2+1; index <= currentPage + scale/2; index++) {
+				if (index != 0)
+				bar.push(this.pageBarHelper(index, currentPage));
+			}
+		}
+		if (currentPage!=lastPage)
+			bar.push(<span><span onClick={() => this.nextPage()} class="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		return bar;
+	}
+	
+	pageBarHelper(index, currentPage) {
+		if (index == currentPage) 
+			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
+		else return(<span><span onClick={() => this.getPage(index)} class="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
+	}
+
 	render() {
 		var allCities = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		if (this.state.doneLoading) {
@@ -104,9 +137,8 @@ class Cities extends Component {
 					</div>
 					<div class="container2 marketing">
 						<div class="row">
-						<button onClick={this.prevPage.bind(this)}>BACK </button>
-						<button onClick={this.nextPage.bind(this)}> NEXT</button>
-						<p>Page: {this.state.page} out of {this.state.lastpage}</p>
+						<p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}</p>
+							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
 						<center>
 						   {allCities}
 						</center>
