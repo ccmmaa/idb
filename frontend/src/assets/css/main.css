@@ -87,3 +87,8 @@ main {
 .row {
 	vertical-align: top;
 }
+
+.paginationClickable {
+	color: orange;
+	text-decoration: underline;
+}
