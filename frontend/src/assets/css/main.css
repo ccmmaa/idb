@@ -88,6 +88,13 @@ main {
 	vertical-align: top;
 }
 
-.paginationClickable {
-	text-decoration: underline;
+.paginationClickable span:hover {
+	color: green;
 }
+
+.paginationClickable {
+	color: #FF7777;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
