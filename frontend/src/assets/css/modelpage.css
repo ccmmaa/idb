@@ -164,6 +164,9 @@ body {
   display: inline-block;
 }
 .orderDirection {
-  color: #FF7777;;
+  color: #FF7777;
+}
+
+.clickable {
   cursor: pointer;
 }

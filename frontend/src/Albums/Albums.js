@@ -18,6 +18,7 @@ class Albums extends Component {
 			lastpage:1,
 			sort: "id",
 			orderAsc: true,
+			filters: [],
 			allAlbums: [
 				{
 					"album_id": 1,
@@ -140,6 +141,25 @@ class Albums extends Component {
 		this.setState(state);
 	}
 
+	addRemoveFilter(filter) {
+		var state = this.state;
+		if (!state.filters.includes(filter)) {
+			state.filters.push(filter);
+		}
+		else {
+			var index = state.filters.indexOf(filter);
+			state.filters.splice(index, 1);
+		}
+		// alert(state.filters);
+		this.setState(state);	
+	}
+
+	clearFilters() {
+		var state = this.state;
+		state.filters = [];
+		this.setState(state);
+	}
+
 	render() {
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
@@ -163,14 +183,27 @@ class Albums extends Component {
 									<option value="genre">Genre</option>
 									<option value="producer">Producer</option>
 								</select>;
-			var orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
+			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
+			// let allFilters = this.state.filters.map(filter => {
+			// 	return(filter + ", ");
+			// });
+			let filterItems = {"Item1":"item1", "Item2":"item2", "Item3":"item3", "Item4":"item4", "Item5":"item5"};
+			let allFilters = Object.keys(filterItems).map(filter => {
+				if (this.state.filters.includes(filterItems[filter]))
+					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
+				else {
+					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
+				}
+			});
 			if (this.state.order == false)
-				orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
+				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
 			internalContent = <div>
 								<div className="sortAndFilter">
-									<span>Sort by<br /></span>
+									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
-									{orderButton}
+									{orderButton}<br/><br/>
+									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
+									{allFilters}<br />
 								</div>
 								<div className="allThings">
 									<center>
