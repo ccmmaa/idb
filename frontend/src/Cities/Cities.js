@@ -124,15 +124,15 @@ class Cities extends Component {
 				}
 			});
 			internalContent = <div>
-				            	<div className="sortAndFilter">
-					                <span id="sort_by_text" className="a-size-base">Sort by&nbsp;</span>
-				                	<select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
-				                		<option value="id asc" >Unique ID: Asc</option>
-		                                <option value="city">City Name</option>
-		                                <option value="state">State</option>
-		                            </select>
-				            	</div>
-					            <div className="allThings">
+								<div className="sortAndFilter">
+									<span id="sort_by_text" className="a-size-base">Sort by&nbsp;</span>
+									<select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
+										<option value="id asc" >Unique ID: Asc</option>
+										<option value="city">City Name</option>
+										<option value="state">State</option>
+									</select>
+								</div>
+								<div className="allThings">
 									<center>
 									   {allCities}
 									</center>
@@ -172,7 +172,7 @@ class Cities extends Component {
 								
 							{pagination}
 
-				            {internalContent}
+							{internalContent}
 
 							{pagination}
 

@@ -108,7 +108,7 @@ class Artists extends Component {
 	}
 
 	render() {
-		var internalContent = <center><img src={LoadingH} className="pageLoadingHIndicator" /></center>;
+		var internalContent = <center><img src={LoadingH} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
 		if (this.state.doneLoading) {
