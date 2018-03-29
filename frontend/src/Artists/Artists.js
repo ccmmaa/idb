@@ -42,7 +42,7 @@ class Artists extends Component {
 		console.log("Request page " + pageNumber);
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
-					url: 'http://api.musepy.me/artist?results_per_page=12&page=' + pageNumber,
+					url: 'http://api.musepy.me/artist?results_per_page=16&page=' + pageNumber,
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -72,6 +72,9 @@ class Artists extends Component {
 		var bar = [];
 		if (currentPage!=1)
 			bar.push(<span><span onClick={() => this.prevPage()} class="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		else {
+			bar.push(<span><span class="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		if (currentPage < scale/2)
 			for (var index = 1; index <= lastPage && index <= scale; index++) {
 				bar.push(this.pageBarHelper(index, currentPage));
@@ -85,13 +88,16 @@ class Artists extends Component {
 			}
 		}
 		else {
-			for (var index = currentPage-scale/2; index <= currentPage + scale/2; index++) {
+			for (var index = currentPage-scale/2+1; index <= currentPage + scale/2; index++) {
 				if (index != 0)
 				bar.push(this.pageBarHelper(index, currentPage));
 			}
 		}
 		if (currentPage!=lastPage)
 			bar.push(<span><span onClick={() => this.nextPage()} class="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		else {
+			bar.push(<span><span class="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		return bar;
 	}
 	
@@ -103,6 +109,8 @@ class Artists extends Component {
 
 	render() {
 		var allArtists = <center><img src={LoadingH} className="pageLoadingHIndicator" /></center>;
+		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
+			Page {this.state.page} out of {this.state.lastpage}</p>;
 		if (this.state.doneLoading) {
 			allArtists = this.state.allArtists.map(artist => {
 				var bio = artist.bio.substring(0, 100) + "...";
@@ -143,12 +151,12 @@ class Artists extends Component {
 					</div>
 					<div class="container2 marketing">
 						<div class="row">
-							<p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}</p>
-							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
+							{pagination}
 							
 						   <center>
 								{allArtists}
 							</center> 
+							{pagination}
 						</div>
 					</div>
 

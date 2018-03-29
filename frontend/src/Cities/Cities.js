@@ -49,7 +49,7 @@ class Cities extends Component {
 		console.log("Request page " + pageNumber);
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
-					url: 'http://api.musepy.me/city?results_per_page=12&page=' + pageNumber,
+					url: 'http://api.musepy.me/city?results_per_page=16&page=' + pageNumber,
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -65,6 +65,9 @@ class Cities extends Component {
 		var bar = [];
 		if (currentPage!=1)
 			bar.push(<span><span onClick={() => this.prevPage()} class="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		else {
+			bar.push(<span><span class="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		if (currentPage < scale/2)
 			for (var index = 1; index <= lastPage && index <= scale; index++) {
 				bar.push(this.pageBarHelper(index, currentPage));
@@ -85,6 +88,9 @@ class Cities extends Component {
 		}
 		if (currentPage!=lastPage)
 			bar.push(<span><span onClick={() => this.nextPage()} class="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		else {
+			bar.push(<span><span class="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		return bar;
 	}
 	
@@ -111,6 +117,8 @@ class Cities extends Component {
 				}
 			});
 		}
+		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
+								Page {this.state.page} out of {this.state.lastpage}</p>;
 
 		return(
 			<div className="pageContent">
@@ -136,12 +144,24 @@ class Cities extends Component {
 						<hr/>
 					</div>
 					<div class="container2 marketing">
+						
 						<div class="row">
-						<p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}</p>
-							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
-						<center>
-						   {allCities}
-						</center>
+								
+							{pagination}
+
+							<form id="searchSortForm" method="get" action="/s/ref=sr_st" className="s-inline-form a-spacing-none">
+				                <span id="sort_by_text" class="a-size-base">Sort by&nbsp;</span>
+			                	<select className="a-spacing-top-mini" name="sort" id="sort" onchange="" aria-labelledby="sort_by_text">
+			                		<option value="relevanceblender">Unique ID</option>
+	                                <option value="price-asc-rank">City Name</option>
+	                                <option value="price-desc-rank">State</option>
+	                            </select>
+				            </form>
+							<center>
+							   {allCities}
+							</center>
+							{pagination}
+
 						</div>
 					</div>
 					<div class="container">
