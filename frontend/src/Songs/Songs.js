@@ -148,7 +148,7 @@ class Songs extends Component {
 				var index = state.filters.indexOf(filter);
 				state.filters.splice(index, 1);
 			}
-			// alert(state.filters);
+			alert(state.filters);
 			this.setState(state);	
 		}
 
@@ -178,12 +178,12 @@ class Songs extends Component {
 			// let allFilters = this.state.filters.map(filter => {
 			// 	return(filter + ", ");
 			// });
-			let filterItems = ["Item1", "Item2", "Item3", "Item4", "Item5"];
-			let allFilters = filterItems.map(filter => {
-				if (this.state.filters.includes(filter))
-					return (<span onClick={() => this.addRemoveFilter(filter)}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
+			let filterItems = {"Item1":"item1", "Item2":"item2", "Item3":"item3", "Item4":"item4", "Item5":"item5"};
+			let allFilters = Object.keys(filterItems).map(filter => {
+				if (this.state.filters.includes(filterItems[filter]))
+					return (<span onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
 				else {
-					return(<span onClick={() => this.addRemoveFilter(filter)}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
+					return(<span onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
 				}
 			});
 			if (this.state.order == false)
