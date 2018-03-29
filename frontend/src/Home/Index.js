@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import '../assets/css/index.css';
 import '../assets/css/carousel.css';
+import MyCarousel from './MyCarousel';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
-import carousel1 from '../assets/images/carousel1.jpg';
-import carousel2 from '../assets/images/carousel2.jpg';
-import carousel3 from '../assets/images/carousel3.jpg';
-import carousel4 from '../assets/images/carousel4.jpg';
 import middle1 from '../assets/images/middle1.jpg';
 import middle2 from '../assets/images/middle2.jpg';
 import middle3 from '../assets/images/middle3.jpg';
@@ -24,63 +21,7 @@ class Index extends Component {
 
 				<main role="main" onLoad="func()">
 
-					<div id="myCarousel" className="carousel slide" data-ride="carousel">
-						<ol className="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" className="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-							<li data-target="#myCarousel" data-slide-to="3"></li>
-						</ol>
-						<div className="carousel-inner">
-							<div className="carousel-item active">
-								<img className="first-slide" src={carousel1} alt="First slide" />
-								<div className="container">
-									<div className="carousel-caption text-left">
-										<h1><span>Search</span> your city's top songs.</h1>
-										<p><a className="btn btn-lg btn-primary" href={"/songs"}  role="button">Songs</a></p>
-									</div>
-								</div>
-							</div>
-							<div className="carousel-item">
-								<img className="second-slide" src={carousel2} alt="Second slide" />
-								<div className="container">
-									<div className="carousel-caption">
-										<h1><span>Explore</span> your favorite artists.</h1>
-										<p><a className="btn btn-lg btn-primary" href={"/artists"}  role="button">Artists</a></p>
-									</div>
-								</div>
-							</div>
-							<div className="carousel-item">
-								<img className="third-slide" src={carousel3} alt="Third slide" />
-								<div className="container">
-									<div className="carousel-caption">
-										<h1><span>Discover</span> new albums.</h1>
-										<p><a className="btn btn-lg btn-primary" href={"/albums"}  role="button">Albums</a></p>
-									</div>
-								</div>
-							</div>
-							<div className="carousel-item">
-								<img className="fourth-slide" src={carousel4} alt="Fourth slide" />
-								<div className="container">
-									<div className="carousel-caption text-right">
-										<h1><span>Connect</span> with your city.</h1>
-										<p><a className="btn btn-lg btn-primary" href={"/cities"} role="button">Cities</a></p>
-									</div>
-								</div>
-							</div>
-						</div>
-						<a className="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-							<span className="carousel-control-prev-icon" aria-hidden="true"></span>
-							<span className="sr-only">Previous</span>
-						</a>
-						<a className="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-							<span className="carousel-control-next-icon" aria-hidden="true"></span>
-							<span className="sr-only">Next</span>
-						</a>
-					</div>
-
-
-
+					<MyCarousel />
 
 					<div className="container marketing">
 
@@ -93,7 +34,7 @@ class Index extends Component {
 							<div className="col-lg-3">
 								<img className="rounded-circle" src={middle2} alt="Generic placeholder image" width="140" height="140" />
 								<h2>Artists</h2>
-								<p><a className="btn btn-secondary" href="artists/"  role="button">View artists &raquo;</a></p>
+								<p><a className="btn btn-secondary" href="artists"  role="button">View artists &raquo;</a></p>
 							</div>
 							<div className="col-lg-3">
 								<img className="rounded-circle" src={middle3} alt="Generic placeholder image" width="140" height="140" />
@@ -106,6 +47,7 @@ class Index extends Component {
 								<p><a className="btn btn-secondary" href="cities"  role="button">View cities &raquo;</a></p>
 							</div>
 						</div>
+						<br />
 
 						<div className="container">
 							<hr />

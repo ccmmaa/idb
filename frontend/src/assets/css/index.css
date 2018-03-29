@@ -1,11 +1,16 @@
-.index_row div{
+.marketing > .index_row div{
 	display: inline-block;
+	text-align: center;
+	margin-top: 2rem;
 }
-.index_row {
+.marketing > .index_row {
 	padding:0px;
 }
 .index_descriptions div {
 	display:inline-block;
 	vertical-align: top;
 	text-align: left;
+}
+.featurette-heading-orange{
+	margin-left: 0px;
 }

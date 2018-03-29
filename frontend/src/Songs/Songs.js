@@ -16,188 +16,52 @@ class Songs extends Component {
 		this.state = {
 			doneLoading: false,
 			page: 1,
+			lastpage:0,
 			allSongs:[
 				{
-					"name": "goosebumps",
-					"length": "4:03",
-					"genre": "hip hop", 
-					"artist": "Travis Scott", 
-					"producer": [
-						"Cardo", 
-						"Yung Exclusive", 
-						"Cubeatz", 
-						"Dean"
-					],
-					"release date": "December 13, 2016", 
-					"album": "Birds in the Trap Sing McKnight", 
-					"album art": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332",
-					"artist image": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-					"lyrics": "[Intro: Travis Scott]\n	Yeah\n	7:30 in the night\n	Ooooh ooh\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time, yeah\n	\n	[Verse 1: Travis Scott]\n	7-1-3 to the 2-8-1, yeah I'm riding\n	Why they on me? Why they on me? I'm flyin'\n	Sippin' lowkey I'm sipping lowkey in Onyx\n	Rider, rider when I'm pullin' up right beside ya\n	Popstar, lil' Mariah\n	When I text a cute game, wildness\n	Throw a stack on the Bible\n	Never Snapchat or took molly\n	She fall through plenty, her and all her ginnies\n	Yeah, we at the top floor, right there off Doheny\n	Oh no, I can't fuck with y'all\n	Yea, when I'm with my squad I cannot do no wrong\n	Yeah, saucing in the city, don't get misinformed, yea\n	They gon' pull up on you (brr, brr, brr)\n	Yeah, we gon' do some things, some things you can't relate\n	Yeah, cause we from a place, a place you cannot stay\n	Oh, you can't go, oh, I don't know\n	Oh, back the fuck up off me (brr, brr, brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n	\n	[Verse 2: Kendrick Lamar]\n	I want to press my like, yeah, I wanna press my\n	I want a green light, I wanna be like\n	I wanna press my line, yeah\n	I want to take that ride, yeah\n	I’m gonna press my line\n	I wanna green light, I wanna be like, I wanna press my\n	Mama, dear, spare your feelings\n	I'm reliving moments, peeling more residual\n	(I can) buy the building, burn the building, take your bitch, rebuild the building just to fuck some more\n	(I can) justify my love for you and touch the sky for God to stop, debating war\n	Put the pussy on a pedestal\n	Put the pussy on a high horse\n	That pussy to die for\n	That pussy to die for\n	Peter, piper, picked a pepper\n	So I could pick your brain and put your heart together\n	We depart the shady parts and party hard, the diamonds yours\n	The coupe forever\n	My best shots might shoot forever like (brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n",
-					"country of origin": "USA",
-					"features": [
-						"Kendrick Lamar"
-					],
-					"popular cities": [
-						"Austin", 
-						"Dallas", 
-						"Florida", 
-						"Houston", 
-						"New York"
-					]
-				},
-				{
-					"name": "goosebumps",
-					"length": "4:03",
-					"genre": "hip hop", 
-					"artist": "Travis Scott", 
-					"producer": [
-						"Cardo", 
-						"Yung Exclusive", 
-						"Cubeatz", 
-						"Dean"
-					],
-					"release date": "December 13, 2016", 
-					"album": "Birds in the Trap Sing McKnight", 
-					"album art": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332",
-					"artist image": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-					"lyrics": "[Intro: Travis Scott]\n	Yeah\n	7:30 in the night\n	Ooooh ooh\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time, yeah\n	\n	[Verse 1: Travis Scott]\n	7-1-3 to the 2-8-1, yeah I'm riding\n	Why they on me? Why they on me? I'm flyin'\n	Sippin' lowkey I'm sipping lowkey in Onyx\n	Rider, rider when I'm pullin' up right beside ya\n	Popstar, lil' Mariah\n	When I text a cute game, wildness\n	Throw a stack on the Bible\n	Never Snapchat or took molly\n	She fall through plenty, her and all her ginnies\n	Yeah, we at the top floor, right there off Doheny\n	Oh no, I can't fuck with y'all\n	Yea, when I'm with my squad I cannot do no wrong\n	Yeah, saucing in the city, don't get misinformed, yea\n	They gon' pull up on you (brr, brr, brr)\n	Yeah, we gon' do some things, some things you can't relate\n	Yeah, cause we from a place, a place you cannot stay\n	Oh, you can't go, oh, I don't know\n	Oh, back the fuck up off me (brr, brr, brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n	\n	[Verse 2: Kendrick Lamar]\n	I want to press my like, yeah, I wanna press my\n	I want a green light, I wanna be like\n	I wanna press my line, yeah\n	I want to take that ride, yeah\n	I’m gonna press my line\n	I wanna green light, I wanna be like, I wanna press my\n	Mama, dear, spare your feelings\n	I'm reliving moments, peeling more residual\n	(I can) buy the building, burn the building, take your bitch, rebuild the building just to fuck some more\n	(I can) justify my love for you and touch the sky for God to stop, debating war\n	Put the pussy on a pedestal\n	Put the pussy on a high horse\n	That pussy to die for\n	That pussy to die for\n	Peter, piper, picked a pepper\n	So I could pick your brain and put your heart together\n	We depart the shady parts and party hard, the diamonds yours\n	The coupe forever\n	My best shots might shoot forever like (brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n",
-					"country of origin": "USA",
-					"features": [
-						"Kendrick Lamar"
-					],
-					"popular cities": [
-						"Austin", 
-						"Dallas", 
-						"Florida", 
-						"Houston", 
-						"New York"
-					]
-				},
-				{
-					"name": "goosebumps",
-					"length": "4:03",
-					"genre": "hip hop", 
-					"artist": "Travis Scott", 
-					"producer": [
-						"Cardo", 
-						"Yung Exclusive", 
-						"Cubeatz", 
-						"Dean"
-					],
-					"release date": "December 13, 2016", 
-					"album": "Birds in the Trap Sing McKnight", 
-					"album art": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332",
-					"artist image": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-					"lyrics": "[Intro: Travis Scott]\n	Yeah\n	7:30 in the night\n	Ooooh ooh\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time, yeah\n	\n	[Verse 1: Travis Scott]\n	7-1-3 to the 2-8-1, yeah I'm riding\n	Why they on me? Why they on me? I'm flyin'\n	Sippin' lowkey I'm sipping lowkey in Onyx\n	Rider, rider when I'm pullin' up right beside ya\n	Popstar, lil' Mariah\n	When I text a cute game, wildness\n	Throw a stack on the Bible\n	Never Snapchat or took molly\n	She fall through plenty, her and all her ginnies\n	Yeah, we at the top floor, right there off Doheny\n	Oh no, I can't fuck with y'all\n	Yea, when I'm with my squad I cannot do no wrong\n	Yeah, saucing in the city, don't get misinformed, yea\n	They gon' pull up on you (brr, brr, brr)\n	Yeah, we gon' do some things, some things you can't relate\n	Yeah, cause we from a place, a place you cannot stay\n	Oh, you can't go, oh, I don't know\n	Oh, back the fuck up off me (brr, brr, brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n	\n	[Verse 2: Kendrick Lamar]\n	I want to press my like, yeah, I wanna press my\n	I want a green light, I wanna be like\n	I wanna press my line, yeah\n	I want to take that ride, yeah\n	I’m gonna press my line\n	I wanna green light, I wanna be like, I wanna press my\n	Mama, dear, spare your feelings\n	I'm reliving moments, peeling more residual\n	(I can) buy the building, burn the building, take your bitch, rebuild the building just to fuck some more\n	(I can) justify my love for you and touch the sky for God to stop, debating war\n	Put the pussy on a pedestal\n	Put the pussy on a high horse\n	That pussy to die for\n	That pussy to die for\n	Peter, piper, picked a pepper\n	So I could pick your brain and put your heart together\n	We depart the shady parts and party hard, the diamonds yours\n	The coupe forever\n	My best shots might shoot forever like (brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n",
-					"country of origin": "USA",
-					"features": [
-						"Kendrick Lamar"
-					],
-					"popular cities": [
-						"Austin", 
-						"Dallas", 
-						"Florida", 
-						"Houston", 
-						"New York"
-					]
-				},
-				{
-					"name": "goosebumps",
-					"length": "4:03",
-					"genre": "hip hop", 
-					"artist": "Travis Scott", 
-					"producer": [
-						"Cardo", 
-						"Yung Exclusive", 
-						"Cubeatz", 
-						"Dean"
-					],
-					"release date": "December 13, 2016", 
-					"album": "Birds in the Trap Sing McKnight", 
-					"album art": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332",
-					"artist image": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-					"lyrics": "[Intro: Travis Scott]\n	Yeah\n	7:30 in the night\n	Ooooh ooh\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time, yeah\n	\n	[Verse 1: Travis Scott]\n	7-1-3 to the 2-8-1, yeah I'm riding\n	Why they on me? Why they on me? I'm flyin'\n	Sippin' lowkey I'm sipping lowkey in Onyx\n	Rider, rider when I'm pullin' up right beside ya\n	Popstar, lil' Mariah\n	When I text a cute game, wildness\n	Throw a stack on the Bible\n	Never Snapchat or took molly\n	She fall through plenty, her and all her ginnies\n	Yeah, we at the top floor, right there off Doheny\n	Oh no, I can't fuck with y'all\n	Yea, when I'm with my squad I cannot do no wrong\n	Yeah, saucing in the city, don't get misinformed, yea\n	They gon' pull up on you (brr, brr, brr)\n	Yeah, we gon' do some things, some things you can't relate\n	Yeah, cause we from a place, a place you cannot stay\n	Oh, you can't go, oh, I don't know\n	Oh, back the fuck up off me (brr, brr, brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n	\n	[Verse 2: Kendrick Lamar]\n	I want to press my like, yeah, I wanna press my\n	I want a green light, I wanna be like\n	I wanna press my line, yeah\n	I want to take that ride, yeah\n	I’m gonna press my line\n	I wanna green light, I wanna be like, I wanna press my\n	Mama, dear, spare your feelings\n	I'm reliving moments, peeling more residual\n	(I can) buy the building, burn the building, take your bitch, rebuild the building just to fuck some more\n	(I can) justify my love for you and touch the sky for God to stop, debating war\n	Put the pussy on a pedestal\n	Put the pussy on a high horse\n	That pussy to die for\n	That pussy to die for\n	Peter, piper, picked a pepper\n	So I could pick your brain and put your heart together\n	We depart the shady parts and party hard, the diamonds yours\n	The coupe forever\n	My best shots might shoot forever like (brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n",
-					"country of origin": "USA",
-					"features": [
-						"Kendrick Lamar"
-					],
-					"popular cities": [
-						"Austin", 
-						"Dallas", 
-						"Florida", 
-						"Houston", 
-						"New York"
-					]
-				},
-				{
-					"name": "goosebumps",
-					"length": "4:03",
-					"genre": "hip hop", 
-					"artist": "Travis Scott", 
-					"producer": [
-						"Cardo", 
-						"Yung Exclusive", 
-						"Cubeatz", 
-						"Dean"
-					],
-					"release date": "December 13, 2016", 
-					"album": "Birds in the Trap Sing McKnight", 
-					"album art": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332",
-					"artist image": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-					"lyrics": "[Intro: Travis Scott]\n	Yeah\n	7:30 in the night\n	Ooooh ooh\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time, yeah\n	\n	[Verse 1: Travis Scott]\n	7-1-3 to the 2-8-1, yeah I'm riding\n	Why they on me? Why they on me? I'm flyin'\n	Sippin' lowkey I'm sipping lowkey in Onyx\n	Rider, rider when I'm pullin' up right beside ya\n	Popstar, lil' Mariah\n	When I text a cute game, wildness\n	Throw a stack on the Bible\n	Never Snapchat or took molly\n	She fall through plenty, her and all her ginnies\n	Yeah, we at the top floor, right there off Doheny\n	Oh no, I can't fuck with y'all\n	Yea, when I'm with my squad I cannot do no wrong\n	Yeah, saucing in the city, don't get misinformed, yea\n	They gon' pull up on you (brr, brr, brr)\n	Yeah, we gon' do some things, some things you can't relate\n	Yeah, cause we from a place, a place you cannot stay\n	Oh, you can't go, oh, I don't know\n	Oh, back the fuck up off me (brr, brr, brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n	\n	[Verse 2: Kendrick Lamar]\n	I want to press my like, yeah, I wanna press my\n	I want a green light, I wanna be like\n	I wanna press my line, yeah\n	I want to take that ride, yeah\n	I’m gonna press my line\n	I wanna green light, I wanna be like, I wanna press my\n	Mama, dear, spare your feelings\n	I'm reliving moments, peeling more residual\n	(I can) buy the building, burn the building, take your bitch, rebuild the building just to fuck some more\n	(I can) justify my love for you and touch the sky for God to stop, debating war\n	Put the pussy on a pedestal\n	Put the pussy on a high horse\n	That pussy to die for\n	That pussy to die for\n	Peter, piper, picked a pepper\n	So I could pick your brain and put your heart together\n	We depart the shady parts and party hard, the diamonds yours\n	The coupe forever\n	My best shots might shoot forever like (brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n",
-					"country of origin": "USA",
-					"features": [
-						"Kendrick Lamar"
-					],
-					"popular cities": [
-						"Austin", 
-						"Dallas", 
-						"Florida", 
-						"Houston", 
-						"New York"
-					]
-				},
-				{
-					"name": "goosebumps",
-					"length": "4:03",
-					"genre": "hip hop", 
-					"artist": "Travis Scott", 
-					"producer": [
-						"Cardo", 
-						"Yung Exclusive", 
-						"Cubeatz", 
-						"Dean"
-					],
-					"release date": "December 13, 2016", 
-					"album": "Birds in the Trap Sing McKnight", 
-					"album art": "https://i.scdn.co/image/2f91c3cace3c5a6a48f3d0e2fd21364d4911b332",
-					"artist image": "https://i.scdn.co/image/eb266625dab075341e8c4378a177a27370f91903",
-					"lyrics": "[Intro: Travis Scott]\n	Yeah\n	7:30 in the night\n	Ooooh ooh\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time, yeah\n	\n	[Verse 1: Travis Scott]\n	7-1-3 to the 2-8-1, yeah I'm riding\n	Why they on me? Why they on me? I'm flyin'\n	Sippin' lowkey I'm sipping lowkey in Onyx\n	Rider, rider when I'm pullin' up right beside ya\n	Popstar, lil' Mariah\n	When I text a cute game, wildness\n	Throw a stack on the Bible\n	Never Snapchat or took molly\n	She fall through plenty, her and all her ginnies\n	Yeah, we at the top floor, right there off Doheny\n	Oh no, I can't fuck with y'all\n	Yea, when I'm with my squad I cannot do no wrong\n	Yeah, saucing in the city, don't get misinformed, yea\n	They gon' pull up on you (brr, brr, brr)\n	Yeah, we gon' do some things, some things you can't relate\n	Yeah, cause we from a place, a place you cannot stay\n	Oh, you can't go, oh, I don't know\n	Oh, back the fuck up off me (brr, brr, brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n	\n	[Verse 2: Kendrick Lamar]\n	I want to press my like, yeah, I wanna press my\n	I want a green light, I wanna be like\n	I wanna press my line, yeah\n	I want to take that ride, yeah\n	I’m gonna press my line\n	I wanna green light, I wanna be like, I wanna press my\n	Mama, dear, spare your feelings\n	I'm reliving moments, peeling more residual\n	(I can) buy the building, burn the building, take your bitch, rebuild the building just to fuck some more\n	(I can) justify my love for you and touch the sky for God to stop, debating war\n	Put the pussy on a pedestal\n	Put the pussy on a high horse\n	That pussy to die for\n	That pussy to die for\n	Peter, piper, picked a pepper\n	So I could pick your brain and put your heart together\n	We depart the shady parts and party hard, the diamonds yours\n	The coupe forever\n	My best shots might shoot forever like (brr)\n	\n	[Hook: Travis Scott]\n	I get those goosebumps every time, yeah, you come around, yeah\n	You ease my mind, you make everything feel fine\n	Worry about those comments\n	I'm way too numb, yeah, it's way too dumb, yeah\n	I get those goosebumps every time, I need the Heimlich\n	Throw that to the side, yeah\n	I get those goosebumps every time, yeah, when you're not around\n	When you throw that to the side, yeah\n	I get those goosebumps every time\n",
-					"country of origin": "USA",
-					"features": [
-						"Kendrick Lamar"
-					],
-					"popular cities": [
-						"Austin", 
-						"Dallas", 
-						"Florida", 
-						"Houston", 
-						"New York"
-					]
+					"Album": {
+						"album_id": 1,
+						"artist_id": 1,
+						"artwork": "https://i.scdn.co/image/6648942a9d93699f0b7c06267ef66d462669ceb7",
+						"genre": "Loading...",
+						"name": "Loading...",
+						"producer": "Loading...",
+						"year": "Loading..."
+					},
+					"album_id": 1,
+					"artist": {
+						"artist_id": 1,
+						"bio": "Loading...",
+						"genre": "Loading...",
+						"image": "https://i.scdn.co/image/81de8d707c6dc167c5d7f6c46cd02686bfdbd04b",
+						"name": "Loading..."
+					},
+					"artist_id": 1,
+					"city": {
+						"city_id": 1,
+						"image": "http://www.celebrityslice.com/wp-content/uploads/2015/08/city-wallpaper-7.jpg",
+						"name": "Loading...",
+						"playlist": "https://open.spotify.com/user/thesoundsofspotify/playlist/3gz7G6lax8nkXZ3vBr3n4i",
+						"state": "Loading..."
+					},
+					"city_id": 1,
+					"itunes": "https://itunes.apple.com/us/album/cody-canada-tells-it-like-it-is-live/1160443435?i=1160443744&uo=4",
+					"lyrics": "Loading...",
+					"name": "Loading...",
+					"song_id": 1,
+					"spotify": "https://open.spotify.com/embed?uri=spotify:track:65Z8nMFjEc3DBRwKMduBzr"
 				}
-
-
 			]
 		}
 	}
 
 	componentWillMount() {
 		$.ajax({
-			url: 'http://musepy.me:5000/api/song?results_per_page=12&page=' + this.state.page,
+			url: 'http://api.musepy.me/song?results_per_page=12&page=' + this.state.page,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"allSongs": data["objects"], "doneLoading": true, "page": this.state.page});
+				this.setState({"allSongs": data["objects"], "doneLoading": true, "page": this.state.page, "lastpage": data["total_pages"]});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);
@@ -205,18 +69,38 @@ class Songs extends Component {
 		});
 	}
 
+
+	lastPage() {
+		 if((this.state.page - 1) > 0){
+			$.ajax({
+				url: 'http://api.musepy.me/song?results_per_page=12&page=' + (this.state.page - 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allSongs": data["objects"], "doneLoading": true, "page": (this.state.page-1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		 }
+		
+	}
+
 	nextPage() {
-		$.ajax({
-			url: 'http://musepy.me:5000/api/song?results_per_page=12&page=' + (this.state.page + 1),
-			dataType: 'json',
-			cache: false,
-			success: function(data) {
-				this.setState({"allSongs": data["objects"], "doneLoading": true, "page": (this.state.page+1)});
-			}.bind(this),
-			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
-		});
+		if((this.state.page + 1)<= this.state.lastpage){
+			$.ajax({
+				url: 'http://api.musepy.me/song?results_per_page=12&page=' + (this.state.page + 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allSongs": data["objects"], "doneLoading": true, "page": (this.state.page+1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		}
 	}
 
 	render() {
@@ -228,7 +112,7 @@ class Songs extends Component {
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 						  <img className="rounded-circle" src={song["Album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
-						  <h2>{song["name"]}</h2><h6>by {song["artist"]["name"]}</h6><br />
+						  <h2>{song["name"]}</h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6><br />
 						  <p><a className="btn btn-secondary" href={"/songs/" + song["song_id"]} role="button">View &raquo;</a></p>
 						</div>
 					</div>
@@ -251,7 +135,7 @@ class Songs extends Component {
 							<img className="first-slide" src={SongSlide} alt="First slide" />
 							<div className="container">
 								<div className="carousel-caption text-left">
-									<h1><span>Search</span> your city's top songs.</h1>
+									<h1><span className="orange">Search</span> your city's top songs.</h1>
 								</div>
 							</div>
 						</div>
@@ -264,11 +148,13 @@ class Songs extends Component {
 					</div>
 					<div className="container2 marketing">
 						<div className="row">
-							
+							<button onClick={this.lastPage.bind(this)}>BACK </button>
+							<button onClick={this.nextPage.bind(this)}> NEXT</button>
+							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
 							<center>
 								{allSongs}
 							</center>
-							<button onClick={this.nextPage.bind(this)}>NEXT</button>
+							
 						</div>
 					</div>
 

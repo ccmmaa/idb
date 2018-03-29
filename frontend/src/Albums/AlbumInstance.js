@@ -14,53 +14,36 @@ class AlbumInstance extends Component {
 		this.state = {
 			songFound: false,
 			doneLoading: false,
-			albumData: 
+			albumData:
 			{
 				"album_id": 1,
 				"artist": {
 					"artist_id": 1,
-					"bio": "Bio Not Available",
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican"
+					"bio": "",
+					"genre": "",
+					"image": Loading,
+					"name": "Loading Artist..."
 				},
 				"artist_id": 1,
-				"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
+				"artwork": Loading,
 				"genre": "",
-				"name": "Son of Norma",
-				"producer": "Dope House Records",
+				"name": "Loading...",
+				"producer": "",
 				"songs": [
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"itunes": "https://www.apple.com/itunes/charts/songs/",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "K Luv Vs. SPM",
-						"song_id": 1,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-					},
-					{
-						"album_id": 1,
-						"artist_id": 1,
-						"itunes": "https://www.apple.com/itunes/charts/songs/",
-						"lyrics": "Lyrics Not Available for This Song.",
-						"name": "People",
-						"song_id": 2,
-						"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-					}
+
 				],
-				"year": "2014"
+				"year": ""
 			}
 		};
 	}
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/albums/' + URL.lastUrlItem(0),
+			url: 'http://api.musepy.me/album/' + URL.lastUrlItem(0),
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState("albumData": data);
+				this.setState({"albumData": data, "doneLoading": true, "songFound": true});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);
@@ -79,9 +62,13 @@ class AlbumInstance extends Component {
 				<h1>Song Not Found</h1>);
 		}
 		else {
+			var genre = this.state.albumData.genre;
+			if (genre == "") {
+				genre = "None";
+			}
 			return(
 				<div className="pageContent">
-					<Navigation activeTab={"albums"}/> 
+					<Navigation activeTab={"albums"}/>
 
 					<main role="main">
 
@@ -98,10 +85,10 @@ class AlbumInstance extends Component {
 											<p className="h2">Song List</p>
 											<ul className="list-group list-group-flush">
 												{allSongs}
-											  </ul>
+											</ul>
 									</div>
 									<div className="col-lg-3 albumsCol">
-										<p className="h6"><span>Genre: </span>{this.state.albumData.genre}</p>
+										<p className="h6"><span>Genre: </span>{genre}</p>
 										<p className="h6"><span>Released: </span>{this.state.albumData.year}</p>
 
 									</div>
@@ -120,5 +107,5 @@ class AlbumInstance extends Component {
 			);
 		}
 	}
-} 
+}
 export default AlbumInstance;

@@ -13,164 +13,22 @@ class Albums extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: true,
+			doneLoading: false,
+			page: 1,
+			lastpage:0,
 			allAlbums: [
 				{
 					"album_id": 1,
 					"artist": {
 						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
+						"bio": "Loading...",
+						"genre": "Loading...",
 						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
+						"name": "Loading..."
 					},
 					"artist_id": 1,
 					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
-					"name": "Son of Norma",
-					"producer": "Dope House Records",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-					"year": "2014"
-				},
-				{
-					"album_id": 1,
-					"artist": {
-						"artist_id": 1,
-						"bio": "Bio Not Available",
-						"genre": "chicano rap",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-						"name": "South Park Mexican"
-					},
-					"artist_id": 1,
-					"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-					"genre": "",
+					"genre": "Loading...",
 					"name": "Son of Norma",
 					"producer": "Dope House Records",
 					"songs": [
@@ -201,16 +59,49 @@ class Albums extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/album',
+			url: 'http://api.musepy.me/album?results_per_page=12&page=' + this.state.page,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"allAlbums": data, "doneLoading": true});
+				this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": this.state.page, "lastpage": data["total_pages"]});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);
 			}
 		});
+	}
+
+	lastPage() {
+		 if((this.state.page - 1) > 0){
+			$.ajax({
+				url: 'http://api.musepy.me/album?results_per_page=12&page=' + (this.state.page - 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (this.state.page-1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		 }
+		
+	}
+
+	nextPage() {
+		if((this.state.page + 1)<= this.state.lastpage){
+			$.ajax({
+				url: 'http://api.musepy.me/album?results_per_page=12&page=' + (this.state.page + 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (this.state.page+1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		}
 	}
 
 	render() {
@@ -240,7 +131,7 @@ class Albums extends Component {
 							<img className="third-slide" src={AlbumSlide} alt="Third slide" />
 							<div className="container">
 								<div className="carousel-caption">
-									<h1><span>Discover</span> new albums.</h1>
+									<h1><span className="orange">Discover</span> new albums.</h1>
 								</div>
 							</div>
 						</div>	
@@ -252,8 +143,10 @@ class Albums extends Component {
 						<hr />
 					</div>
 					<div className="container2 marketing">
-					
 						<div className="row">
+							<button onClick={this.lastPage.bind(this)}>BACK </button>
+							<button onClick={this.nextPage.bind(this)}> NEXT</button>
+							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
 							<center>{allAlbums}</center>
 						</div>
 					</div>

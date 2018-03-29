@@ -9,7 +9,7 @@ class Album extends Component {
 			<div className="col-lg-2">
 				<div className="ingrid" text-align="center">
 					<img className="rounded-0" src={this.props.albumArt} alt="Album Art" width="100%" height="100%" />
-					<h4><a href={"/albums/" + this.props.albumID}>{this.props.albumName}</a></h4>
+					<h4><a href={"/albums/" + this.props.albumId}>{this.props.albumName}</a></h4>
 				</div>
 			</div>
 		);

@@ -5,7 +5,8 @@ import PageNotFound from '../PageNotFound';
 import '../assets/css/modelpage.css';
 import ArtistSlide from '../assets/images/artistmodel.jpg';
 import URL from '../URLSpaceUnderscore';
-import Loading from '../assets/images/loadingHorizontal.gif';
+import LoadingH from '../assets/images/loadingHorizontal.gif';
+import Loading from '../assets/images/loading.gif';
 import $ from 'jquery';
 
 
@@ -14,396 +15,21 @@ class Artists extends Component {
 	constructor() {
 		super();
 		this.state = {
-			doneLoading: true,
+			doneLoadingH: false,
+			page: 1,
+			lastpage:0,
 			allArtists:[
 				{
 					"albums": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						},
-						{
-							"album_id": 2,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						}
 					],
 					"artist_id": 1,
-					"bio": "Bio Not Available",
+					"bio": "",
 					"concerts": [
-						{
-							"artist_id": 1,
-							"city_id": 16,
-							"concert_id": 1,
-							"tickets": "http://philadelphia.eventful.com/events/dumbfoundead-/E0-001-111507201-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-18T20:30:00",
-							"venue": "Union Transfer"
-						},
-						{
-							"artist_id": 1,
-							"city_id": 999,
-							"concert_id": 2,
-							"tickets": "http://baltimore.eventful.com/events/dumbfoundead-/E0-001-111507223-7?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-17T20:00:00",
-							"venue": "Baltimore Soundstage"
-						}
 					],
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican",
+					"genre": "",
+					"image": "https://retchhh.files.wordpress.com/2015/03/loading10.gif?w=300&h=285",
+					"name": "Loading...",
 					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-				},
-				{
-					"albums": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						},
-						{
-							"album_id": 2,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						}
-					],
-					"artist_id": 1,
-					"bio": "Bio Not Available",
-					"concerts": [
-						{
-							"artist_id": 1,
-							"city_id": 16,
-							"concert_id": 1,
-							"tickets": "http://philadelphia.eventful.com/events/dumbfoundead-/E0-001-111507201-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-18T20:30:00",
-							"venue": "Union Transfer"
-						},
-						{
-							"artist_id": 1,
-							"city_id": 999,
-							"concert_id": 2,
-							"tickets": "http://baltimore.eventful.com/events/dumbfoundead-/E0-001-111507223-7?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-17T20:00:00",
-							"venue": "Baltimore Soundstage"
-						}
-					],
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-				},
-				{
-					"albums": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						},
-						{
-							"album_id": 2,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						}
-					],
-					"artist_id": 1,
-					"bio": "Bio Not Available",
-					"concerts": [
-						{
-							"artist_id": 1,
-							"city_id": 16,
-							"concert_id": 1,
-							"tickets": "http://philadelphia.eventful.com/events/dumbfoundead-/E0-001-111507201-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-18T20:30:00",
-							"venue": "Union Transfer"
-						},
-						{
-							"artist_id": 1,
-							"city_id": 999,
-							"concert_id": 2,
-							"tickets": "http://baltimore.eventful.com/events/dumbfoundead-/E0-001-111507223-7?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-17T20:00:00",
-							"venue": "Baltimore Soundstage"
-						}
-					],
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-				},
-				{
-					"albums": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						},
-						{
-							"album_id": 2,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						}
-					],
-					"artist_id": 1,
-					"bio": "Bio Not Available",
-					"concerts": [
-						{
-							"artist_id": 1,
-							"city_id": 16,
-							"concert_id": 1,
-							"tickets": "http://philadelphia.eventful.com/events/dumbfoundead-/E0-001-111507201-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-18T20:30:00",
-							"venue": "Union Transfer"
-						},
-						{
-							"artist_id": 1,
-							"city_id": 999,
-							"concert_id": 2,
-							"tickets": "http://baltimore.eventful.com/events/dumbfoundead-/E0-001-111507223-7?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-17T20:00:00",
-							"venue": "Baltimore Soundstage"
-						}
-					],
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-				},
-				{
-					"albums": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						},
-						{
-							"album_id": 2,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						}
-					],
-					"artist_id": 1,
-					"bio": "Bio Not Available",
-					"concerts": [
-						{
-							"artist_id": 1,
-							"city_id": 16,
-							"concert_id": 1,
-							"tickets": "http://philadelphia.eventful.com/events/dumbfoundead-/E0-001-111507201-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-18T20:30:00",
-							"venue": "Union Transfer"
-						},
-						{
-							"artist_id": 1,
-							"city_id": 999,
-							"concert_id": 2,
-							"tickets": "http://baltimore.eventful.com/events/dumbfoundead-/E0-001-111507223-7?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-17T20:00:00",
-							"venue": "Baltimore Soundstage"
-						}
-					],
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
-					],
-				},
-				{
-					"albums": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						},
-						{
-							"album_id": 2,
-							"artist_id": 1,
-							"artwork": "https://i.scdn.co/image/627b725b85b62ae2953e3864146f75da6d2e309f",
-							"genre": "",
-							"name": "Son of Norma",
-							"producer": "Dope House Records",
-							"year": "2014"
-						}
-					],
-					"artist_id": 1,
-					"bio": "Bio Not Available",
-					"concerts": [
-						{
-							"artist_id": 1,
-							"city_id": 16,
-							"concert_id": 1,
-							"tickets": "http://philadelphia.eventful.com/events/dumbfoundead-/E0-001-111507201-5?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-18T20:30:00",
-							"venue": "Union Transfer"
-						},
-						{
-							"artist_id": 1,
-							"city_id": 999,
-							"concert_id": 2,
-							"tickets": "http://baltimore.eventful.com/events/dumbfoundead-/E0-001-111507223-7?utm_source=apis&utm_medium=apim&utm_campaign=apic",
-							"time": "2018-04-17T20:00:00",
-							"venue": "Baltimore Soundstage"
-						}
-					],
-					"genre": "chicano rap",
-					"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
-					"name": "South Park Mexican",
-					"songs": [
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "K Luv Vs. SPM",
-							"song_id": 1,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:5EaiHel50lN4V177MFvdZ0"
-						},
-						{
-							"album_id": 1,
-							"artist_id": 1,
-							"itunes": "https://www.apple.com/itunes/charts/songs/",
-							"lyrics": "Lyrics Not Available for This Song.",
-							"name": "People",
-							"song_id": 2,
-							"spotify": "https://open.spotify.com/embed?uri=spotify:track:2O8nlliwTKtcZo0KBVxvBK"
-						}
 					],
 				}
 			]
@@ -412,11 +38,11 @@ class Artists extends Component {
 
 	componentWillMount() {
 		$.ajax({
-			url: '/api/artist',
+			url: 'http://api.musepy.me/artist?results_per_page=12&page=' + this.state.page,
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"allArtists": data, "doneLoading": true});
+				this.setState({"allArtists":data["objects"], "doneLoadingH": true, "page": this.state.page, "lastpage": data["total_pages"]});
 			}.bind(this),
 			error: function(xhr, status, error) {
 				// console.log("Get ERROR: " + error);
@@ -424,9 +50,42 @@ class Artists extends Component {
 		});
 	}
 
+	lastPage() {
+		 if((this.state.page - 1) > 0){
+			$.ajax({
+				url: 'http://api.musepy.me/artist?results_per_page=12&page=' + (this.state.page - 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allArtists": data["objects"], "doneLoadingH": true, "page": (this.state.page-1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		 }
+		
+	}
+
+	nextPage() {
+		if((this.state.page + 1)<= this.state.lastpage){
+			$.ajax({
+				url: 'http://api.musepy.me/artist?results_per_page=12&page=' + (this.state.page + 1),
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({"allArtists": data["objects"], "doneLoadingH": true, "page": (this.state.page+1), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					// console.log("Get ERROR: " + error);
+				}
+			});
+		}
+	}
+
 	render() {
-		var allArtists = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.doneLoading) {
+		var allArtists = <center><img src={LoadingH} className="pageLoadingHIndicator" /></center>;
+		if (this.state.doneLoadingH) {
 			allArtists = this.state.allArtists.map(artist => {
 				var bio = artist.bio.substring(0, 100) + "...";
 				return(
@@ -453,7 +112,7 @@ class Artists extends Component {
 							<img class="second-slide" src={ArtistSlide} alt="Second slide"/>
 							<div class="container">
 								<div class="carousel-caption">
-									<h1><span>Explore</span> your favorite artists.</h1>
+									<h1><span className="orange">Explore</span> your favorite artists.</h1>
 								</div>
 							</div>
 						</div>
@@ -466,6 +125,10 @@ class Artists extends Component {
 					</div>
 					<div class="container2 marketing">
 						<div class="row">
+							<button onClick={this.lastPage.bind(this)}>BACK </button>
+							<button onClick={this.nextPage.bind(this)}> NEXT</button>
+							<p>Page: {this.state.page} out of {this.state.lastpage}</p>
+							
 						   <center>
 								{allArtists}
 							</center> 
