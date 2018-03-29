@@ -18,7 +18,7 @@ class Songs extends Component {
 			page: 1,
 			lastpage:1,
 			sort: "id",
-			order: "asc",
+			orderAsc: true,
 			allSongs:[
 				{
 					"Album": {
@@ -156,10 +156,11 @@ class Songs extends Component {
 				);
 			});
 			let sortDropDown = <select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
-										<option value="id asc" >Unique ID: Asc</option>
-										<option value="city">City Name</option>
-										<option value="state">State</option>
-									</select>;
+									<option value="id" >ID</option>
+									<option value="name">Title</option>
+									<option value="artist">Artist</option>
+									<option value="album">Album</option>
+								</select>;
 			var orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>

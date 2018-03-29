@@ -154,7 +154,6 @@ body {
 
 .sortAndFilter {
   width:15%;
-  border: 1px solid green;
   padding: 10px 0px 10px 10px;
 }
 .pagination {
@@ -166,4 +165,5 @@ body {
 }
 .orderDirection {
   color: #FF7777;;
+  cursor: pointer;
 }
