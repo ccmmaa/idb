@@ -16,7 +16,8 @@ class Cities extends Component {
 			doneLoading: false,
 			page: 1,
 			lastpage:1,
-			sort: "id asc",
+			sort: "id",
+			orderAsc: true,
 			allCities:[ 
 				{
 					"city_id": 1,
@@ -102,9 +103,15 @@ class Cities extends Component {
 	}
 
 	changeSort(value) {
-		var object = this.state;
-		object.sort = value;
-		this.setState(object);
+		var state = this.state;
+		state.sort = value;
+		this.setState(state);
+	}
+
+	toggleAscDec() {
+		var state = this.state;
+		state.order = !state.order;
+		this.setState(state);
 	}
 
 	render() {
@@ -123,14 +130,19 @@ class Cities extends Component {
 				);
 				}
 			});
-			internalContent = <div>
-								<div className="sortAndFilter">
-									<span id="sort_by_text" className="a-size-base">Sort by&nbsp;</span>
-									<select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
+			let sortDropDown = <select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
 										<option value="id asc" >Unique ID: Asc</option>
 										<option value="city">City Name</option>
 										<option value="state">State</option>
-									</select>
+									</select>;
+			var orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
+			if (this.state.order == false)
+				orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
+			internalContent = <div>
+								<div className="sortAndFilter">
+									<span>Sort by<br /></span>
+									{sortDropDown}&nbsp;
+									{orderButton}
 								</div>
 								<div className="allThings">
 									<center>
