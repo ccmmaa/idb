@@ -19,6 +19,7 @@ class Songs extends Component {
 			lastpage:1,
 			sort: "id",
 			orderAsc: true,
+			filters: [],
 			allSongs:[
 				{
 					"Album": {
@@ -138,6 +139,18 @@ class Songs extends Component {
 		this.setState(state);
 	}
 
+	addRemoveFilter(filter) {
+			var state = this.state;
+			if (!state.filters.includes(filter)) {
+				state.filters.push(filter);
+			}
+			else {
+				var index = state.filters.indexOf(filter);
+				state.filters.splice(index, 1);
+			}
+			// alert(state.filters);
+			this.setState(state);	
+		}
 
 	render() {
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
@@ -162,13 +175,26 @@ class Songs extends Component {
 									<option value="album">Album</option>
 								</select>;
 			var orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
+			// let allFilters = this.state.filters.map(filter => {
+			// 	return(filter + ", ");
+			// });
+			let filterItems = ["Item1", "Item2", "Item3", "Item4", "Item5"];
+			let allFilters = filterItems.map(filter => {
+				if (this.state.filters.includes(filter))
+					return (<span onClick={() => this.addRemoveFilter(filter)}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
+				else {
+					return(<span onClick={() => this.addRemoveFilter(filter)}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
+				}
+			});
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
 			internalContent = <div>
 								<div className="sortAndFilter">
-									<span>Sort by<br /></span>
+									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
-									{orderButton}
+									{orderButton}<br/><br/>
+									<strong>Filters</strong><br />
+									{allFilters}<br />
 								</div>
 								<div className="allThings">
 									<center>
