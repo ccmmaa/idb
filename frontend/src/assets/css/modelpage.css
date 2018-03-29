@@ -128,7 +128,7 @@ body {
   }
 
 .modelCard {
-    width: 22%;
+    width: 23.5%;
     display: inline-block;
     border-radius: 2vw;
 }
@@ -136,7 +136,30 @@ body {
     width: 15%;
 }
 .model-cards {
-    margin:10px;
+    margin:5px;
     padding:1vw;
     padding-top:;
+}
+
+.allThings, .sortAndFilter {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.allThings {
+  width: 80%;
+  /*border: 1px solid black;*/
+  padding: 0px;
+}
+
+.sortAndFilter {
+  width:20%;
+  /*border: 1px solid green;*/
+  padding: 10px;
+}
+.pagination {
+}
+
+.sort-drop-down {
+  width: 70%;
 }

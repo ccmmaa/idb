@@ -90,9 +90,9 @@ class Albums extends Component {
 	paginationBar(currentPage, lastPage, scale) {
 		var bar = [];
 		if (currentPage!=1)
-			bar.push(<span><span onClick={() => this.prevPage()} class="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.prevPage()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
-			bar.push(<span><span class="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
 			for (var index = 1; index <= lastPage && index <= scale; index++) {
@@ -113,9 +113,9 @@ class Albums extends Component {
 			}
 		}
 		if (currentPage!=lastPage)
-			bar.push(<span><span onClick={() => this.nextPage()} class="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.nextPage()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
-			bar.push(<span><span class="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -123,15 +123,15 @@ class Albums extends Component {
 	pageBarHelper(index, currentPage) {
 		if (index == currentPage) 
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
-		else return(<span><span onClick={() => this.getPage(index)} class="paginationClickable orange">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
+		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable orange">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
 
 	render() {
-		var allAlbums = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
+		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
 		if (this.state.doneLoading) {
-			allAlbums = this.state.allAlbums.map(album => {
+			var allAlbums = this.state.allAlbums.map(album => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
@@ -142,6 +142,21 @@ class Albums extends Component {
 					</div>
 				);
 			});
+			internalContent = <div>
+				            	<div className="sortAndFilter">
+					                <span id="sort_by_text" className="a-size-base">Sort by&nbsp;</span>
+				                	<select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
+				                		<option value="id asc" >Unique ID: Asc</option>
+		                                <option value="city">City Name</option>
+		                                <option value="state">State</option>
+		                            </select>
+				            	</div>
+					            <div className="allThings">
+									<center>
+									   {allAlbums}
+									</center>
+								</div>
+							</div>;
 		}
 		
 
@@ -169,7 +184,9 @@ class Albums extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-							<center>{allAlbums}</center>
+							
+							{internalContent}
+
 							{pagination}
 						</div>
 					</div>

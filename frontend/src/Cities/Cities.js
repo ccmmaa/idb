@@ -16,6 +16,7 @@ class Cities extends Component {
 			doneLoading: false,
 			page: 1,
 			lastpage:1,
+			sort: "id asc",
 			allCities:[ 
 				{
 					"city_id": 1,
@@ -64,9 +65,9 @@ class Cities extends Component {
 	paginationBar(currentPage, lastPage, scale) {
 		var bar = [];
 		if (currentPage!=1)
-			bar.push(<span><span onClick={() => this.prevPage()} class="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.prevPage()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
-			bar.push(<span><span class="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
 			for (var index = 1; index <= lastPage && index <= scale; index++) {
@@ -87,9 +88,9 @@ class Cities extends Component {
 			}
 		}
 		if (currentPage!=lastPage)
-			bar.push(<span><span onClick={() => this.nextPage()} class="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.nextPage()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
-			bar.push(<span><span class="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -97,13 +98,19 @@ class Cities extends Component {
 	pageBarHelper(index, currentPage) {
 		if (index == currentPage) 
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
-		else return(<span><span onClick={() => this.getPage(index)} class="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
+		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
+	}
+
+	changeSort(value) {
+		var object = this.state;
+		object.sort = value;
+		this.setState(object);
 	}
 
 	render() {
-		var allCities = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
+		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		if (this.state.doneLoading) {
-			allCities = this.state.allCities.map(city => {
+			var allCities = this.state.allCities.map(city => {
 				if (city.name != "n/a") {
 					return(
 					<div className="card-shadows-orange model-cards modelCard">
@@ -116,6 +123,22 @@ class Cities extends Component {
 				);
 				}
 			});
+			internalContent = <div>
+				            	<div className="sortAndFilter">
+					                <span id="sort_by_text" className="a-size-base">Sort by&nbsp;</span>
+				                	<select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
+				                		<option value="id asc" >Unique ID: Asc</option>
+		                                <option value="city">City Name</option>
+		                                <option value="state">State</option>
+		                            </select>
+				            	</div>
+					            <div className="allThings">
+									<center>
+									   {allCities}
+									</center>
+								</div>
+							</div>;
+
 		}
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 								Page {this.state.page} out of {this.state.lastpage}</p>;
@@ -127,10 +150,10 @@ class Cities extends Component {
 				<main role="main">
 					<div align="center">
 						
-						<div class="carousel-item titleImage active">
-							<img class="fourth-slide" src={CitySlide} alt="Fourth slide"/>
-							<div class="container">
-								<div class="carousel-caption text-right">
+						<div className="carousel-item titleImage active">
+							<img className="fourth-slide" src={CitySlide} alt="Fourth slide"/>
+							<div className="container">
+								<div className="carousel-caption text-right">
 									<h1><span className="orange">Connect</span> with your city.</h1>
 								   
 								</div>
@@ -138,33 +161,24 @@ class Cities extends Component {
 						</div>
 					</div>
 					
-					<div class="container">
+					<div className="container">
 						<hr/>
 						<center><h1>Cities</h1></center>
 						<hr/>
 					</div>
-					<div class="container2 marketing">
+					<div className="container2 marketing">
 						
-						<div class="row">
+						<div className="row">
 								
 							{pagination}
 
-							<form id="searchSortForm" method="get" action="/s/ref=sr_st" className="s-inline-form a-spacing-none">
-				                <span id="sort_by_text" class="a-size-base">Sort by&nbsp;</span>
-			                	<select className="a-spacing-top-mini" name="sort" id="sort" onchange="" aria-labelledby="sort_by_text">
-			                		<option value="relevanceblender">Unique ID</option>
-	                                <option value="price-asc-rank">City Name</option>
-	                                <option value="price-desc-rank">State</option>
-	                            </select>
-				            </form>
-							<center>
-							   {allCities}
-							</center>
+				            {internalContent}
+
 							{pagination}
 
 						</div>
 					</div>
-					<div class="container">
+					<div className="container">
 						<hr/>
 					</div>
 				</main>

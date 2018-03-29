@@ -71,9 +71,9 @@ class Artists extends Component {
 	paginationBar(currentPage, lastPage, scale) {
 		var bar = [];
 		if (currentPage!=1)
-			bar.push(<span><span onClick={() => this.prevPage()} class="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.prevPage()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
-			bar.push(<span><span class="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
 			for (var index = 1; index <= lastPage && index <= scale; index++) {
@@ -94,9 +94,9 @@ class Artists extends Component {
 			}
 		}
 		if (currentPage!=lastPage)
-			bar.push(<span><span onClick={() => this.nextPage()} class="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.nextPage()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
-			bar.push(<span><span class="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -104,15 +104,15 @@ class Artists extends Component {
 	pageBarHelper(index, currentPage) {
 		if (index == currentPage) 
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
-		else return(<span><span onClick={() => this.getPage(index)} class="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
+		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
 
 	render() {
-		var allArtists = <center><img src={LoadingH} className="pageLoadingHIndicator" /></center>;
+		var internalContent = <center><img src={LoadingH} className="pageLoadingHIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
 		if (this.state.doneLoading) {
-			allArtists = this.state.allArtists.map(artist => {
+			var allArtists = this.state.allArtists.map(artist => {
 				var bio = artist.bio.substring(0, 100) + "...";
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
@@ -125,6 +125,21 @@ class Artists extends Component {
 					</div>
 				);
 			});
+			internalContent = <div>
+				            	<div className="sortAndFilter">
+					                <span id="sort_by_text" className="a-size-base">Sort by&nbsp;</span>
+				                	<select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
+				                		<option value="id asc" >Unique ID: Asc</option>
+		                                <option value="city">City Name</option>
+		                                <option value="state">State</option>
+		                            </select>
+				            	</div>
+					            <div className="allThings">
+									<center>
+									   {allArtists}
+									</center>
+								</div>
+							</div>;
 		}
 
 		return(
@@ -134,33 +149,32 @@ class Artists extends Component {
 				<main role="main">
 					<div align="center">
 						
-						<div class="carousel-item titleImage active">
-							<img class="second-slide" src={ArtistSlide} alt="Second slide"/>
-							<div class="container">
-								<div class="carousel-caption">
+						<div className="carousel-item titleImage active">
+							<img className="second-slide" src={ArtistSlide} alt="Second slide"/>
+							<div className="container">
+								<div className="carousel-caption">
 									<h1><span className="orange">Explore</span> your favorite artists.</h1>
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					<div class="container">
+					<div className="container">
 						<hr/>
 						<center><h1>Artists</h1></center>
 						<hr/>
 					</div>
-					<div class="container2 marketing">
-						<div class="row">
+					<div className="container2 marketing">
+						<div className="row">
 							{pagination}
 							
-						   <center>
-								{allArtists}
-							</center> 
+							{internalContent}
+
 							{pagination}
 						</div>
 					</div>
 
-					<div class="container">
+					<div className="container">
 						<hr/>
 					</div>
 				</main>
