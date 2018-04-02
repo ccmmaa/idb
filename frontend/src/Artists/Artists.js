@@ -18,7 +18,7 @@ class Artists extends Component {
 			doneLoading: false,
 			page: 1,
 			lastpage:1,
-			sort: "id",
+			sort: "artist_id",
 			order: true,
 			filters: [],
 			allArtists:[
@@ -43,9 +43,13 @@ class Artists extends Component {
 
 	getPage(pageNumber) {
 		console.log("Request page " + pageNumber);
+		var orderDirection = 'asc';
+		if (!this.state.order)
+			orderDirection = 'desc';
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
-					url: 'http://api.musepy.me/artist?results_per_page=16&page=' + pageNumber,
+					// url: 'http://api.musepy.me/artist?results_per_page=16&page=' + pageNumber,
+					url: 'http://api.musepy.me/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -114,12 +118,14 @@ class Artists extends Component {
 		var state = this.state;
 		state.sort = value;
 		this.setState(state);
+		this.getPage(this.state.page);
 	}
 
 	toggleAscDec() {
 		var state = this.state;
 		state.order = !state.order;
 		this.setState(state);
+		this.getPage(this.state.page);
 	}
 
 	addRemoveFilter(filter) {
@@ -133,12 +139,14 @@ class Artists extends Component {
 		}
 		// alert(state.filters);
 		this.setState(state);	
+		this.getPage(this.state.page);
 	}
 
 	clearFilters() {
 		var state = this.state;
 		state.filters = [];
 		this.setState(state);
+		this.getPage(this.state.page);
 	}
 
 	render() {
@@ -153,16 +161,17 @@ class Artists extends Component {
 						<div className="ingrid" text-align="center">
 						  <img className="rounded-circle" src={artist.image} alt="Artist photo" width="140" height="140" />
 						  <h2>{artist.name}</h2>
-						  <p>Genre: {artist.genre}</p>
+						  <p>Genre: {artist.gen_genre}</p>
+						  <p>{artist.albums.length} albums, {artist.songs.length} songs</p>
 						  <p><a className="btn btn-secondary" href={"/artists/" + artist.artist_id} role="button">View &raquo;</a></p>
 						</div>
 					</div>
 				);
 			});
 			let sortDropDown = <select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
-									<option value="id" >ID</option>
+									<option value="artist_id" >ID</option>
 									<option value="name">Name</option>
-									<option value="genre">Genre</option>
+									<option value="gen_genre">Genre</option>
 								</select>;
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
