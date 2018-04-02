@@ -18,7 +18,7 @@ class Songs extends Component {
 			page: 1,
 			lastpage:1,
 			sort: "id",
-			orderAsc: true,
+			order: true,
 			filters: [],
 			allSongs:[
 				{
@@ -181,6 +181,8 @@ class Songs extends Component {
 									<option value="album">Album</option>
 								</select>;
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
+			if (this.state.order == false)
+				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
 			// let allFilters = this.state.filters.map(filter => {
 			// 	return(filter + ", ");
 			// });
@@ -192,8 +194,7 @@ class Songs extends Component {
 					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
 				}
 			});
-			if (this.state.order == false)
-				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
+			
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
