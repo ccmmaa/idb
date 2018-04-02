@@ -16,7 +16,7 @@ class Cities extends Component {
 			doneLoading: false,
 			page: 1,
 			lastpage:1,
-			sort: "id",
+			sort: "city_id",
 			order: true,
 			filters: [],
 			allCities:[ 
@@ -50,9 +50,13 @@ class Cities extends Component {
 
 	getPage(pageNumber) {
 		console.log("Request page " + pageNumber);
+		var orderDirection = 'asc';
+		if (!this.state.order)
+			orderDirection = 'desc';
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
-					url: 'http://api.musepy.me/city?results_per_page=16&page=' + pageNumber,
+					// url: 'http://api.musepy.me/city?results_per_page=16&page=' + pageNumber,
+					url: 'http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -107,12 +111,14 @@ class Cities extends Component {
 		var state = this.state;
 		state.sort = value;
 		this.setState(state);
+		this.getPage(this.state.page);
 	}
 
 	toggleAscDec() {
 		var state = this.state;
 		state.order = !state.order;
 		this.setState(state);
+		this.getPage(this.state.page);
 	}
 
 	addRemoveFilter(filter) {
@@ -125,13 +131,15 @@ class Cities extends Component {
 			state.filters.splice(index, 1);
 		}
 		alert(state.filters);
-		this.setState(state);	
+		this.setState(state);
+		this.getPage(this.state.page);	
 	}
 
 	clearFilters() {
 		var state = this.state;
 		state.filters = [];
 		this.setState(state);
+		this.getPage(this.state.page);
 	}
 
 	render() {
@@ -151,11 +159,9 @@ class Cities extends Component {
 				}
 			});
 			let sortDropDown = <select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
-									<option value="id" >ID</option>
-									<option value="city">City Name</option>
+									<option value="city_id" >ID</option>
+									<option value="name">City Name</option>
 									<option value="state">State</option>
-									<option value="numConcerts"># of Concerts</option>
-									<option value="numSongs"># of Songs</option>
 								</select>;
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
