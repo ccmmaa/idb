@@ -124,7 +124,7 @@ class Cities extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		// alert(state.filters);
+		alert(state.filters);
 		this.setState(state);	
 	}
 
