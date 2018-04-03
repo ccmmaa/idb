@@ -51,12 +51,28 @@ class Cities extends Component {
 	getPage(pageNumber) {
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
+		var filterString = '';
+		if (this.state.filters.length > 0) {
+			filterString = ',"filters":[{"or":[';
+			var index = 0;
+			for (var filter of this.state.filters) {
+				if (index !== 0) {
+					filterString +=",";
+				}
+				filterString += '{"name":"state","op":"eq","val":"' + filter + '"}';
+				index++;
+				console.log(filter);
+			}
+			filterString += ']}]';
+		}
+		
 		if (!this.state.order)
 			orderDirection = 'desc';
+		console.log("URL: " + 'http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
 					// url: 'http://api.musepy.me/city?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]}&results_per_page=16&page=' + pageNumber, 
+					url: 'http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -130,14 +146,14 @@ class Cities extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		alert(state.filters);
+		// alert(state.filters);
 		this.setState(state);
 		this.getPage(this.state.page);	
 	}
 
 	clearFilters() {
 		var state = this.state;
-		state.filters = [];
+		state.filters = [];http://api.musepy.me/city?q={"order_by":[{"field":"city_id","direction":"asc"}],"filters":[{"or":[{"name":"state","op":"eq","val":"0"}]}]}&results_per_page=16&page=1
 		this.setState(state);
 		this.getPage(this.state.page);
 	}
@@ -169,7 +185,23 @@ class Cities extends Component {
 			// let allFilters = this.state.filters.map(filter => {
 			// 	return(filter + ", ");
 			// });
-			let filterItems = {"Item1":"item1", "Item2":"item2", "Item3":"item3", "Item4":"item4", "Item5":"item5"};
+			let filterItems = {Arizona: "Arizona",
+				California: "California",
+				Colorado: "Colorado",
+				Florida: "Florida",
+				Georgia: "Georgia",
+				Illinois: "Illinois",
+				Indiana: "Indiana",
+				Massachusetts: "Massachusetts",
+				Minnesota: "Minnesota",
+				"North Carolina": "North%20Carolina",
+				Ohio: "Ohio",
+				Oregon: "Oregon",
+				Pennsylvania: "Pennsylvania",
+				Tennessee: "Tennessee",
+				Texas: "Texas",
+				Washington: "Washington"
+				};
 			let allFilters = Object.keys(filterItems).map(filter => {
 				if (this.state.filters.includes(filterItems[filter]))
 					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
