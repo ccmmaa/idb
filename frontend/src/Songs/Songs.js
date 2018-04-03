@@ -63,10 +63,25 @@ class Songs extends Component {
 		var orderDirection = 'asc';
 		if (!this.state.order)
 			orderDirection = 'desc';
+		var filterString = '';
+		if (this.state.filters.length > 0) {
+			filterString = ',"filters":[{"or":[';
+			var index = 0;
+			for (var filter of this.state.filters) {
+				if (index !== 0) {
+					filterString +=",";
+				}
+				filterString += '{"name":"city_id","op":"eq","val":"' + filter + '"}';
+				index++;
+				console.log(filter);
+			}
+			filterString += ']}]';
+		}
+		console.log('http://api.musepy.me/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
 					// url: 'http://api.musepy.me/song?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]}&results_per_page=16&page=' + pageNumber, 
+					url: 'http://api.musepy.me/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -192,7 +207,30 @@ class Songs extends Component {
 			// let allFilters = this.state.filters.map(filter => {
 			// 	return(filter + ", ");
 			// });
-			let filterItems = {"Item1":"item1", "Item2":"item2", "Item3":"item3", "Item4":"item4", "Item5":"item5"};
+			let filterItems = {
+				"Atlanta":"4",
+				"Austin":"1", 
+				"Boston":"8",
+				"Charlotte":"21",
+				"Chicago":"19",
+				"Columbus":"14",
+				"Dallas":"3",
+				"Denver":"10",
+				"Houston":"2", 
+				"Indianapolis":"12",
+				"Jacksonville":"11",
+				"Los Angeles":"7",
+				"Memphis":"15",
+				"Miami":"18",
+				"Minneapolis":"5",
+				"Oakland":"22",
+				"Philadelphia":"16",
+				"Phoenix":"17",
+				"Portland":"20",
+				"San Antonio":"9",
+				"San Diego":"6",
+				"Seattle":"13"
+				};
 			let allFilters = Object.keys(filterItems).map(filter => {
 				if (this.state.filters.includes(filterItems[filter]))
 					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
