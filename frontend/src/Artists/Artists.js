@@ -46,10 +46,24 @@ class Artists extends Component {
 		var orderDirection = 'asc';
 		if (!this.state.order)
 			orderDirection = 'desc';
+		var filterString = '';
+		if (this.state.filters.length > 0) {
+			filterString = ',"filters":[{"or":[';
+			var index = 0;
+			for (var filter of this.state.filters) {
+				if (index !== 0) {
+					filterString +=",";
+				}
+				filterString += '{"name":"gen_genre","op":"eq","val":"' + filter + '"}';
+				index++;
+				console.log(filter);
+			}
+			filterString += ']}]';
+		}
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
 					// url: 'http://api.musepy.me/artist?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]}&results_per_page=16&page=' + pageNumber, 
+					url: 'http://api.musepy.me/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -179,7 +193,22 @@ class Artists extends Component {
 			// let allFilters = this.state.filters.map(filter => {
 			// 	return(filter + ", ");
 			// });
-			let filterItems = {"Item1":"item1", "Item2":"item2", "Item3":"item3", "Item4":"item4", "Item5":"item5"};
+			let filterItems = 
+			{country: "country",
+			pop: "pop",
+			trap: "trap",
+			other: "other",
+			"hip hop": "hip hop",
+			indie: "indie",
+			rap: "rap",
+			metal: "metal",
+			mexican: "mexican",
+			funk: "funk",
+			electronic: "electronic",
+			jazz: "jazz",
+			rock: "rock",
+			latin: "latin"
+			};
 			let allFilters = Object.keys(filterItems).map(filter => {
 				if (this.state.filters.includes(filterItems[filter]))
 					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
