@@ -20,3 +20,8 @@ h2{
 .orange {
 	color: #FF7777!important;
 }
+
+.popularSongsList {
+	max-height: 150vh;
+	overflow-y: scroll;
+}

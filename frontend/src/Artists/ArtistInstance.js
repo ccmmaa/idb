@@ -137,7 +137,7 @@ class ArtistInstance extends Component {
 							<div className="row">
 								<div className="col-lg-4">
 									<p className="orange">Popular Songs</p>
-									<ul className="list-group list-group-flush">
+									<ul className="list-group list-group-flush popularSongsList">
 										{popularSongs}
 									</ul>
 								</div>
