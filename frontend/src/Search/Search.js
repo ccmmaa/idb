@@ -3,7 +3,9 @@ import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/carousel.css';
 import '../assets/css/modelpage.css';
+import './search.css';
 import URL from '../URLSpaceUnderscore';
+import Highlighter from 'react-highlight-words';
 import $ from 'jquery';
 
 class Search extends Component {
@@ -312,9 +314,18 @@ class Search extends Component {
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 							<img className="rounded-circle" src={album.artwork} alt={album.name} width="140" height="140" />
-							<h2><a href={"/albums/" + album.album_id}>{album.name}</a></h2>
-							<h6>By <a href={"/artists/" + album.artist_id}>{album.artist.name}</a></h6>
-
+							<h2><a href={"/albums/" + album.album_id}><Highlighter
+ 						 	 highlightStyle={{padding: '0em'}}
+ 							 searchWords={[this.state.query]}
+ 							 autoEscape={true}
+ 							 textToHighlight={album.name}
+ 						 	/></a></h2>
+							<h6>By <a href={"/artists/" + album.artist_id}><Highlighter
+ 						 	 highlightStyle={{padding: '0em'}}
+ 							 searchWords={[this.state.query]}
+ 							 autoEscape={true}
+ 							 textToHighlight={album.artist.name}
+ 						 /></a></h6>
 						</div>
 					</div>
 
@@ -331,8 +342,24 @@ class Search extends Component {
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 						  <img className="rounded-circle" src={artist.image} alt="Artist photo" width="140" height="140" />
-						  <h2><a href={"/artists/" + artist.artist_id}>{artist.name}</a></h2>
-						  <p>Genre: {artist.genre}</p>
+						  <h2><a href={"/artists/" + artist.artist_id}><Highlighter
+							  highlightStyle={{padding: '0em'}}
+								searchWords={[this.state.query]}
+								autoEscape={true}
+								textToHighlight={artist.name}
+							/></a></h2>
+						  <p>Genre: <Highlighter
+							  highlightStyle={{padding: '0em'}}
+								searchWords={[this.state.query]}
+								autoEscape={true}
+								textToHighlight={artist.genre}
+							/></p>
+							<p className="scrollInfo"><Highlighter
+							  highlightStyle={{padding: '0em'}}
+								searchWords={[this.state.query]}
+								autoEscape={true}
+								textToHighlight={artist.bio}
+							/></p>
 						</div>
 					</div>
   			);
@@ -347,9 +374,26 @@ class Search extends Component {
        return(
 				 <div className="card-shadows-orange model-cards modelCard">
 					 <div className="ingrid" text-align="center">
-						 <img className="rounded-circle" src={song["Album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
-						 <h2><a href={"/songs/" + song["song_id"]} role="button">{song["name"]}</a></h2>
-						 <h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6><br />
+						 <img className="rounded-circle" src={song["album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
+						 <h2><a href={"/songs/" + song["song_id"]} role="button"><Highlighter
+						 	 highlightStyle={{padding: '0em'}}
+							 searchWords={[this.state.query]}
+							 autoEscape={true}
+							 textToHighlight={song["name"]}
+						 /></a></h2>
+						 <h6>By <a href={"/artists/" + song["artist"]["artist_id"]}><Highlighter
+						 	 highlightStyle={{padding: '0em'}}
+							 searchWords={[this.state.query]}
+							 autoEscape={true}
+							 textToHighlight={song["artist"]["name"]}
+						 /></a></h6><br />
+						 <p className="scrollInfo"><Highlighter
+						 	 highlightStyle={{padding: '0em'}}
+							 searchWords={[this.state.query]}
+							 autoEscape={true}
+							 textToHighlight={song["lyrics"]}
+						 /></p>
+
 					 </div>
 				 </div>
        );
@@ -365,8 +409,18 @@ class Search extends Component {
 						<div className="card-shadows-orange model-cards modelCard">
 							<div className="ingrid" text-align="center">
 							  <img className="rounded-circle" src={city["image"]} alt="Generic placeholder image" width="140" height="140" />
-							  <h2><a href={"/cities/" + city["city_id"]}>{city["name"]}</a></h2>
-								<p>{city["state"]}</p>
+							  <h2><a href={"/cities/" + city["city_id"]}><Highlighter
+	 						 	 highlightStyle={{padding: '0em'}}
+	 							 searchWords={[this.state.query]}
+	 							 autoEscape={true}
+	 							 textToHighlight={city["name"]}
+	 						 	 /></a></h2>
+								<p><Highlighter
+	 						 	 highlightStyle={{padding: '0em'}}
+	 							 searchWords={[this.state.query]}
+	 							 autoEscape={true}
+	 							 textToHighlight={city["state"]}
+	 						 	 /></p>
 							</div>
 						</div>
 	      	);

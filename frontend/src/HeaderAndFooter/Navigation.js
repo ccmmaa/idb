@@ -13,6 +13,8 @@ class Navigation extends Component {
 	handleSearch(e){
 		if(this.refs.input.value === ""){
 			alert('Search input must not be empty.');
+		} else if(this.refs.input.value.includes('%')){
+			alert('"%" is not an allowed character.');
 		} else {
 			this.setState({queryInput:this.refs.input.value}, function(){
 				window.location = '/search?q=' + this.state.queryInput;			});
