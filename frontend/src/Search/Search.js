@@ -374,7 +374,7 @@ class Search extends Component {
       });
     }
 		else{
-      allArtists = <h5>Loading...</h5>
+      allCities = <h5>Loading...</h5>
     }
 
 		let paginationAlbum = <p>{this.paginationBarAlbum(this.state.pageAlbum, this.state.lastpageAlbum, 10)}</p>;
