@@ -179,14 +179,13 @@ class Artists extends Component {
 			Page {this.state.page} out of {this.state.lastpage}</p>;
 		if (this.state.doneLoading) {
 			var allArtists = this.state.allArtists.map(artist => {
-				var bio = artist.bio.substring(0, 100) + "...";
+				// var bio = artist.bio.substring(0, 100) + "...";
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 						  <img className="rounded-circle" src={artist.image} alt="Artist photo" width="140" height="140" />
 						  <h2>{artist.name}</h2>
 						  <p>Genre: {URL.capitalizeWords(artist.genre)}</p>
-						  <p>{artist.albums.length} albums, {artist.songs.length} songs</p>
 						  <p><a className="btn btn-secondary" href={"/artists/" + artist.artist_id} role="button">View &raquo;</a></p>
 						</div>
 					</div>
