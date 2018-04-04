@@ -111,9 +111,12 @@ class Albums extends Component {
 
 	paginationBar(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1)
+		if (currentPage!=1) {
+			bar.push(<span><span onClick={() => this.getPage(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPage()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
+			bar.push(<span><span className="paginationUnclickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
@@ -134,10 +137,13 @@ class Albums extends Component {
 				bar.push(this.pageBarHelper(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage)
+		if (currentPage!=lastPage) {
 			bar.push(<span><span onClick={() => this.nextPage()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getPage(this.state.lastpage)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}

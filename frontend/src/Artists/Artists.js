@@ -92,9 +92,12 @@ class Artists extends Component {
 
 	paginationBar(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1)
+		if (currentPage!=1) {
+			bar.push(<span><span onClick={() => this.getPage(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPage()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
+			bar.push(<span><span className="paginationUnclickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
@@ -115,10 +118,13 @@ class Artists extends Component {
 				bar.push(this.pageBarHelper(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage)
+		if (currentPage!=lastPage) {
 			bar.push(<span><span onClick={() => this.nextPage()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getPage(this.state.lastpage)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -195,20 +201,20 @@ class Artists extends Component {
 			// 	return(filter + ", ");
 			// });
 			let filterItems = 
-			{country: "country",
-			pop: "pop",
-			trap: "trap",
-			other: "other",
-			"hip hop": "hip hop",
-			indie: "indie",
-			rap: "rap",
-			metal: "metal",
-			mexican: "mexican",
-			funk: "funk",
-			electronic: "electronic",
-			jazz: "jazz",
-			rock: "rock",
-			latin: "latin"
+			{Country: "country",
+			Pop: "pop",
+			Trap: "trap",
+			Other: "other",
+			"Hip Hop": "hip hop",
+			Indie: "indie",
+			Rap: "rap",
+			Metal: "metal",
+			Mexican: "mexican",
+			Funk: "funk",
+			Electronic: "electronic",
+			Jazz: "jazz",
+			Rock: "rock",
+			Latin: "latin"
 			};
 			let allFilters = Object.keys(filterItems).map(filter => {
 				if (this.state.filters.includes(filterItems[filter]))
