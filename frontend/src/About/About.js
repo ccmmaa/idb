@@ -50,7 +50,7 @@ class About extends Component {
 			cache: false,
 			success: function(data) {
 
-				// console.log("get data from api success");
+				console.log(fullUrl);
 				var obj = {
 					cris : this.state[item]["cris"],
 					chia : this.state[item]["chia"],
