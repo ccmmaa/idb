@@ -79,7 +79,10 @@ manager.create_api(City, methods=['GET'], url_prefix=None)
 # Create API calls for reduced info
 manager.create_api(Artist, methods=['GET'], url_prefix="/grid",include_columns=['artist_id','name','gen_genre','genre','image'])
 manager.create_api(Album, methods=['GET'], url_prefix="/grid",include_columns=['album_id','name','artwork','year','producer','artist'])
-manager.create_api(Song, methods=['GET'], url_prefix="/grid",include_columns=['song_id','name','artist','album','city'])
+manager.create_api(Song, methods=['GET'], url_prefix="/grid",include_columns=['song_id','name',
+   'artist','artist.artist_id','artist.name','artist.genre','artist.gen_genre',
+   'album_id','album','album.artwork','album.name','album.year',
+   'city','city.name'])
 manager.create_api(City, methods=['GET'], url_prefix="/grid",include_columns=['city_id','name','state','image'])
 
 
