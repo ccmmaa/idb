@@ -11,7 +11,7 @@ class Search extends Component {
 	constructor() {
 		super();
 		this.state = {
-      query: "Austin",
+      query: decodeURI(window.location.href.substring(window.location.href.lastIndexOf("=") + 1)),
 			doneLoadingAlbum: false,
 			doneLoadingArtist: false,
 			doneLoadingSongs: false,
@@ -299,8 +299,13 @@ class Search extends Component {
 		else return(<span><span onClick={() => this.getCities(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
 
+	handleAddSearch(query){
+		console.log(query);
+	}
+
 
 	render() {
+		console.log(this.props.query)
 		if (this.state.doneLoadingAlbum) {
 			var allAlbums = this.state.albumData.map(album => {
 				return(
@@ -369,15 +374,13 @@ class Search extends Component {
       });
     }
 		else{
-      allArtists = <h5>Loading...</h5>
+      allCities = <h5>Loading...</h5>
     }
 
 		let paginationAlbum = <p>{this.paginationBarAlbum(this.state.pageAlbum, this.state.lastpageAlbum, 10)}</p>;
 		let paginationArtist = <p>{this.paginationBarArtist(this.state.pageArtist, this.state.lastpageArtist, 10)}</p>;
 		let paginationSong = <p>{this.paginationBarSong(this.state.pageSong, this.state.lastpageSong, 10)}</p>;
 		let paginationCity= <p>{this.paginationBarCity(this.state.pageCity, this.state.lastpageCity, 10)}</p>;
-
-
 
 		return(
 			<div className="pageContent">
