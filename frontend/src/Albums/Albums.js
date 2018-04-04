@@ -79,10 +79,24 @@ class Albums extends Component {
 		var orderDirection = 'asc';
 		if (!this.state.order)
 			orderDirection = 'desc';
+		var filterString = '';
+		if (this.state.filters.length > 0) {
+			filterString = ',"filters":[{"or":[';
+			var index = 0;
+			for (var filter of this.state.filters) {
+				if (index !== 0) {
+					filterString +=",";
+				}
+				filterString += '{"name":"year","op":"eq","val":"' + filter + '"}';
+				index++;
+				console.log(filter);
+			}
+			filterString += ']}]';
+		}
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
 					// url: 'http://api.musepy.me/album?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]}&results_per_page=16&page=' + pageNumber, 
+					url: 'http://api.musepy.me/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -199,7 +213,34 @@ class Albums extends Component {
 			// let allFilters = this.state.filters.map(filter => {
 			// 	return(filter + ", ");
 			// });
-			let filterItems = {"Item1":"item1", "Item2":"item2", "Item3":"item3", "Item4":"item4", "Item5":"item5"};
+			let filterItems = {
+				"1973":"1973",
+				"1976":"1976",
+				"1979":"1979",
+				"1980":"1980",
+				"1982":"1982",
+				"1983":"1983",
+				"1987":"1987",
+				"1994":"1994",
+				"1997":"1997",
+				"2000":"2000",
+				"2002":"2002",
+				"2004":"2004",
+				"2005":"2005",
+				"2006":"2006",
+				"2007":"2007",
+				"2008":"2008",
+				"2009":"2009",
+				"2010":"2010",
+				"2011":"2011",
+				"2012":"2012",
+				"2013":"2013",
+				"2014":"2014",
+				"2015":"2015",
+				"2016":"2016",
+				"2017":"2017",
+				"2018":"2018"
+				};
 			let allFilters = Object.keys(filterItems).map(filter => {
 				if (this.state.filters.includes(filterItems[filter]))
 					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
