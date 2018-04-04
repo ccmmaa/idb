@@ -195,7 +195,8 @@ class Albums extends Component {
 							<img className="rounded-circle" src={album.artwork} alt={album.name} width="140" height="140" />
 							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist_id}>{album.artist.name}</a></h6>
 							<p>{album.producer}
-							 <br />{album.year}</p>
+							 <br />{album.year}<br />
+							 {album.artist.gen_genre}</p>
 							<p><a className="btn btn-secondary" href={"/albums/" + album.album_id} role="button">View Album &raquo;</a></p>
 						</div>
 					</div>
@@ -204,7 +205,8 @@ class Albums extends Component {
 			let sortDropDown = <select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
 									<option value="album_id">Album ID</option>
 									<option value="name">Album Name</option>
-									<option value="artist_id">Artist</option>
+									<option value="artist__name">Artist Name</option>
+									<option value="artist__gen_genre">Genre</option>
 									<option value="year">Released Year</option>
 									<option value="producer">Producer</option>
 								</select>;
