@@ -88,6 +88,32 @@ class URLSpaceUnderscore {
 		return result;
 	}
 
+	static queryString() {
+		var result = "";
+		let Url = window.location.href;
+		if (Url.includes("?")) {
+			let queryString = Url.substring(Url.indexOf("?") + 1,Url.length);
+			result = queryString;
+		}
+		return result;
+	}
+
+	static getSortItem() {
+
+	}
+
+	static getSortDirection() {
+
+	}
+
+	static getFilters() {
+
+	}
+
+	static getPage() {
+		
+	}
+
 	
 } 
 export default URLSpaceUnderscore;
