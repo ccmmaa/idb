@@ -192,6 +192,7 @@ class Songs extends Component {
 						<div className="ingrid" text-align="center">
 						  <img className="rounded-circle" src={song["Album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
 						  <h2>{song["name"]}</h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6><br />
+						  <p>{song["city"]["name"]}</p>
 						  <p><a className="btn btn-secondary" href={"/songs/" + song["song_id"]} role="button">View &raquo;</a></p>
 						</div>
 					</div>
