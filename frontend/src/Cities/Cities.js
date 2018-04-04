@@ -71,7 +71,7 @@ class Cities extends Component {
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
 					// url: 'http://api.musepy.me/city?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+					url: 'http://api.musepy.me/grid/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {

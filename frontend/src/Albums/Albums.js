@@ -97,7 +97,7 @@ class Albums extends Component {
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
 					// url: 'http://api.musepy.me/album?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+					url: 'http://api.musepy.me/grid/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
