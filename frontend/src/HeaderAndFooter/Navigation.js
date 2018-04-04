@@ -3,9 +3,25 @@ import {a} from 'react-router-dom';
 import NavTabItem from './NavTabItem';
 
 class Navigation extends Component {
-	
+	constructor(){
+		super();
+		this.state = {
+			queryInput: ""
+		}
+	}
+
+	handleSearch(e){
+		if(this.refs.input.value === ""){
+			alert('Search input must not be empty.');
+		} else {
+			this.setState({queryInput:this.refs.input.value}, function(){
+				window.location = '/search?q=' + this.state.queryInput;			});
+		}
+		e.preventDefault();
+	}
+
 	render() {
-		const tabs = [ 
+		const tabs = [
 			{"id": "index", "href": "/index", "text": "Home"},
 			{"id": "songs", "href": "/songs", "text": "Songs"},
 			{"id": "artists", "href": "/artists", "text": "Artists"},
@@ -31,8 +47,8 @@ class Navigation extends Component {
 						{tabItems}
 
 					</ul>
-					<form className="form-inline mt-2 mt-md-0">
-						<input className="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />
+					<form className="form-inline mt-2 mt-md-0" onSubmit={this.handleSearch.bind(this)}>
+						<input className="form-control mr-sm-2" ref="input" type="text" placeholder="Search" aria-label="Search" />
 						<button className="btn btn-outline-success my-2 my-sm-0 color" type="submit">Search</button>
 						<span className="spacer">....</span>
 					</form>
@@ -40,5 +56,5 @@ class Navigation extends Component {
 			</nav>
 		);
 	}
-} 
+}
 export default Navigation;
