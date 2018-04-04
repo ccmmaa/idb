@@ -66,6 +66,28 @@ class URLSpaceUnderscore {
 
 	}
 
+	static capitalizeWords(words) {
+		var index = 0; 
+		var result="";
+		var afterSpace = false;
+		for (;index < words.length; index++) {
+			if (index === 0)
+				result += words.charAt(index).toUpperCase();
+			else if (words.charAt(index) === " ") {
+				afterSpace = true;
+				result += words.charAt(index);
+			}
+			else if (afterSpace) {
+				result += words.charAt(index).toUpperCase();
+				afterSpace = false;
+			}
+			else {
+				result += words.charAt(index);
+			}
+		}
+		return result;
+	}
+
 	
 } 
 export default URLSpaceUnderscore;

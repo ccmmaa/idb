@@ -108,7 +108,7 @@ class ArtistInstance extends Component {
 													<h1 className="orange">{this.state.artistData.name}</h1>
 											 </div>
 											 <div className="carousel-caption text-right">
-													 <h3><span className="orange">Genre:</span> {this.state.artistData.genre}</h3>
+													 <h3><span className="orange">Genre:</span> {URL.capitalizeWords(this.state.artistData.genre)}</h3>
 											 </div>
 									 </div>
 							 </div>

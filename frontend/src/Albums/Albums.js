@@ -196,7 +196,7 @@ class Albums extends Component {
 							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist_id}>{album.artist.name}</a></h6>
 							<p>{album.producer}
 							 <br />{album.year}<br />
-							 {album.artist.genre}</p>
+							 {URL.capitalizeWords(album.artist.genre)}</p>
 							<p><a className="btn btn-secondary" href={"/albums/" + album.album_id} role="button">View Album &raquo;</a></p>
 						</div>
 					</div>

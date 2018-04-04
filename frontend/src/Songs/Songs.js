@@ -193,7 +193,7 @@ class Songs extends Component {
 						  <img className="rounded-circle" src={song["Album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
 						  <h2>{song["name"]}</h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6>
 						  <span><a href={"/albums/" + song.album_id}>{song.Album.name}</a>, {song.Album.year}<br />
-						  {song.artist.genre}<br />{song["city"]["name"]}</span>
+						  {URL.capitalizeWords(song.artist.genre)}<br />{song["city"]["name"]}</span>
 						  <p><a className="btn btn-secondary" href={"/songs/" + song["song_id"]} role="button">View &raquo;</a></p>
 						</div>
 					</div>
