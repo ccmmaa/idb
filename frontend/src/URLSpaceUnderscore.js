@@ -98,20 +98,107 @@ class URLSpaceUnderscore {
 		return result;
 	}
 
-	static getSortItem() {
-
+	static test() {
+		alert(this.getSortItem("default") + "\n"+
+			this.getSortDirection(true) + "\n" + 
+			"[" + this.getFilters([]) + "]" + "\n" + 
+			this.getPage(1));
 	}
 
-	static getSortDirection() {
-
+	static getSortItem(standard, options) {
+		var result = standard;
+		let paramName = "sort=";
+		let qs = this.queryString().split("&");
+		try {
+			for (var param of qs) {
+				if (param.includes(paramName)) {
+					let entry = param.substring(paramName.length);
+					if (options.includes(entry))
+					result = entry;
+				}
+			}
+		} catch(err) {}
+		return result;
 	}
 
-	static getFilters() {
-
+	static getSortDirection(standard) {
+		var result = standard;
+		let paramName = "dir=";
+		let qs = this.queryString().split("&");
+		try {
+			for (var param of qs) {
+				if (param.includes(paramName)) {
+					let entry = param.substring(paramName.length);
+					if (entry=="true" || entry=="false")
+					result = entry=="true";
+					console.log(result);
+				}
+			}
+		} catch(err){}
+		return result;
 	}
 
-	static getPage() {
-		
+	static getFilters(standard, options) {
+		var result = standard;
+		let paramName = "filters=";
+		let qs = this.queryString().split("&");
+		try {
+			for (var param of qs) {
+				if (param.includes(paramName)) {
+					let entry = param.substring(paramName.length+1, param.length-1);
+					result = [];
+					let filters = (entry.split(","));
+					for (var filter of filters) {
+						if (options.includes(filter)){
+							result.push(filter);
+						}
+					}	
+				}
+			}
+		} catch (err){}	
+		console.log(result);
+		return result;
+	}
+
+	static getPage(standard) {
+		var result = standard;
+		let paramName = "p=";
+		let qs = this.queryString().split("&");
+		for (var param of qs) {
+			if (param.includes(paramName)) {
+				result = param.substring(paramName.length);
+
+			}
+		}
+		return result;
+	}
+
+	static encodeSortFilter(state, defSort) {
+		var edited = false;
+		var result = "?";
+		if (state.sort!=defSort) {
+			edited = true;
+			result += "sort=" + state.sort + "&";
+		} 
+		if (!state.order) {
+			edited = true;
+			result += "dir=" + state.order + "&";
+
+		}
+		if (state.filters.length>0) {
+			edited = true;
+			result += "filters=[" + state.filters + "]" + "&";
+
+		}
+		if (state.page != 1) {
+			edited = true;
+			result += "p=" + state.page + "&";
+
+		}
+		if (edited)
+			return result.substring(0, result.length-1);
+		else return "";
+
 	}
 
 	

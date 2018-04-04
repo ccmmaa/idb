@@ -22,7 +22,7 @@ class Songs extends Component {
 			filters: [],
 			allSongs:[
 				{
-					"Album": {
+					"album": {
 						"album_id": 1,
 						"artist_id": 1,
 						"artwork": "https://i.scdn.co/image/6648942a9d93699f0b7c06267ef66d462669ceb7",
@@ -196,9 +196,9 @@ class Songs extends Component {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
-						  <img className="rounded-circle" src={song["Album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
+						  <img className="rounded-circle" src={song["album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
 						  <h2>{song["name"]}</h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6>
-						  <span><a href={"/albums/" + song.album_id}>{song.Album.name}</a>, {song.Album.year}<br />
+						  <span><a href={"/albums/" + song.album_id}>{song.album.name}</a>, {song.album.year}<br />
 						  {URL.capitalizeWords(song.artist.genre)}<br />{song["city"]["name"]}</span>
 						  <p><a className="btn btn-secondary" href={"/songs/" + song["song_id"]} role="button">View &raquo;</a></p>
 						</div>
@@ -208,8 +208,8 @@ class Songs extends Component {
 			let sortDropDown = <select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
 									<option value="song_id" >ID</option>
 									<option value="name">Title</option>
-									<option value="Album__name">Album Name</option>
-									<option value="Album__year">Album Year</option>
+									<option value="album__name">album Name</option>
+									<option value="album__year">album Year</option>
 									<option value="artist__gen_genre">Artist Genre</option>
 									<option value="artist__name">Artist Name</option>
 								</select>;
