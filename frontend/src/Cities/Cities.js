@@ -65,7 +65,7 @@ class Cities extends Component {
 			}
 			filterString += ']}]';
 		}
-		
+		console.log('http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (!this.state.order)
 			orderDirection = 'desc';
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)

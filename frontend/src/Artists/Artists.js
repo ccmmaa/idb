@@ -60,6 +60,7 @@ class Artists extends Component {
 			}
 			filterString += ']}]';
 		}
+		console.log('http://api.musepy.me/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
 			$.ajax({
 					// url: 'http://api.musepy.me/artist?results_per_page=16&page=' + pageNumber,
