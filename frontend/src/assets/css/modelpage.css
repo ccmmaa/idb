@@ -131,15 +131,13 @@ body {
     width: 23.5%;
     display: inline-block;
     border-radius: 2vw;
+    margin:5px;
+    padding:1vw;
 }
 .pageLoadingIndicator {
     width: 20%;
 }
-.model-cards {
-    margin:5px;
-    padding:1vw;
-    padding-top:;
-}
+
 
 .allThings, .sortAndFilter {
   vertical-align: top;
