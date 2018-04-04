@@ -129,8 +129,8 @@ class URLSpaceUnderscore {
 			for (var param of qs) {
 				if (param.includes(paramName)) {
 					let entry = param.substring(paramName.length);
-					if (entry=="true" || entry=="false")
-					result = entry=="true";
+					if (entry=="asc" || entry=="dec")
+					result = entry=="asc";
 					console.log(result);
 				}
 			}
@@ -160,6 +160,29 @@ class URLSpaceUnderscore {
 		return result;
 	}
 
+	static getFiltersInt(standard, options) {
+		var result = standard;
+		let paramName = "filters=";
+		let qs = this.queryString().split("&");
+		try {
+			for (var param of qs) {
+				if (param.includes(paramName)) {
+					let entry = param.substring(paramName.length+1, param.length-1);
+					result = [];
+					let filters = (entry.split(","));
+					for (var filter of filters) {
+						let intFilter = parseInt(filter);
+						if (options.includes(intFilter)){
+							result.push(intFilter);
+						}
+					}	
+				}
+			}
+		} catch (err){}	
+		console.log(result);
+		return result;
+	}
+
 	static getPage(standard) {
 		var result = standard;
 		let paramName = "p=";
@@ -170,7 +193,7 @@ class URLSpaceUnderscore {
 
 			}
 		}
-		return result;
+		return parseInt(result);
 	}
 
 	static encodeSortFilter(state, defSort) {
@@ -182,7 +205,7 @@ class URLSpaceUnderscore {
 		} 
 		if (!state.order) {
 			edited = true;
-			result += "dir=" + state.order + "&";
+			result += "dir=" + "dec" + "&";
 
 		}
 		if (state.filters.length>0) {

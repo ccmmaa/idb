@@ -9,6 +9,8 @@ import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 
 
+
+
 class Songs extends Component {
 
 	constructor() {
@@ -16,10 +18,11 @@ class Songs extends Component {
 		this.state = {
 			doneLoading: false,
 			page: 1,
+			page: URL.getPage(1),
 			lastpage:1,
-			sort: "song_id",
-			order: true,
-			filters: [],
+			sort: URL.getSortItem("song_id", ["song_id","name","album__name","album__year","artist__gen_genre","artist__name"]),
+			order: URL.getSortDirection("asc"),
+			filters: URL.getFilters([], ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22"]),
 			allSongs:[
 				{
 					"album": {
@@ -78,7 +81,7 @@ class Songs extends Component {
 			filterString += ']}]';
 		}
 		console.log('http://api.musepy.me/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
-		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
+		if (pageNumber > 0)
 			$.ajax({
 					// url: 'http://api.musepy.me/song?results_per_page=16&page=' + pageNumber,
 					url: 'http://api.musepy.me/grid/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
@@ -94,7 +97,7 @@ class Songs extends Component {
 	}
 
 	componentWillMount() {
-		this.getPage(1);
+		this.getPage(this.state.page);
 	}
 
 	prevPage() {
@@ -188,6 +191,7 @@ class Songs extends Component {
 	}
 
 	render() {
+		window.history.pushState("","", "/songs"+URL.encodeSortFilter(this.state, "song_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
