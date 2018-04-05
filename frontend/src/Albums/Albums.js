@@ -178,6 +178,7 @@ class Albums extends Component {
 			state.filters.splice(index, 1);
 		}
 		// alert(state.filters);
+		state.page=1;
 		this.setState(state);	
 		this.getPage(this.state.page);
 	}
@@ -185,6 +186,7 @@ class Albums extends Component {
 	clearFilters() {
 		var state = this.state;
 		state.filters = [];
+		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);
 	}
@@ -199,7 +201,9 @@ class Albums extends Component {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
+							<a className="btn btn-secondary" href={"/albums/" + album.album_id} role="button">
 							<img className="rounded-circle" src={album.artwork} alt={album.name} width="140" height="140" />
+							</a>
 							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist_id}>{album.artist.name}</a></h6>
 							<p>{album.producer}
 							 <br />{album.year}<br />

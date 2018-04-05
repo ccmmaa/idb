@@ -45,7 +45,7 @@ class About extends Component {
 
 	getRequestLength(fullUrl, user, item) {
 		$.ajax({
-			url: fullUrl,
+			url: fullUrl + "&per_page=999",
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
