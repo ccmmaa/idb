@@ -220,7 +220,7 @@ class Search extends Component {
 		}
 		if (currentPage<lastPage) {
 			bar.push(<span><span onClick={() => this.nextPageArtist()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
-			bar.push(<span><span onClick={() => this.getArtists(this.state.lastpageAlbum)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getArtists(this.state.lastpageArtist)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
@@ -265,7 +265,7 @@ class Search extends Component {
 		}
 		if (currentPage<lastPage) {
 			bar.push(<span><span onClick={() => this.nextPageSong()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
-			bar.push(<span><span onClick={() => this.getSongs(this.state.lastpageAlbum)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getSongs(this.state.lastpageSong)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
@@ -310,7 +310,7 @@ class Search extends Component {
 		}
 		if (currentPage<lastPage) {
 			bar.push(<span><span onClick={() => this.nextPageCity()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
-			bar.push(<span><span onClick={() => this.getCities(this.state.lastpageAlbum)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getCities(this.state.lastpageCity)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
