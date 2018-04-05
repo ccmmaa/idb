@@ -170,7 +170,7 @@ class Search extends Component {
 				bar.push(this.pageBarHelperAlbum(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage)
+		if (currentPage!=lastPage && this.state.albumData.length > 0)
 			bar.push(<span><span onClick={() => this.nextPageAlbum()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
@@ -209,7 +209,7 @@ class Search extends Component {
 				bar.push(this.pageBarHelperArtist(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage)
+		if (currentPage!=lastPage && this.state.artistData.length > 0)
 			bar.push(<span><span onClick={() => this.nextPageArtist()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
@@ -248,7 +248,7 @@ class Search extends Component {
 				bar.push(this.pageBarHelperSong(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage)
+		if (currentPage!=lastPage && this.state.songData.length > 0)
 			bar.push(<span><span onClick={() => this.nextPageSong()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
@@ -287,7 +287,7 @@ class Search extends Component {
 				bar.push(this.pageBarHelperCity(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage)
+		if (currentPage!=lastPage && this.state.cityData.length > 0)
 			bar.push(<span><span onClick={() => this.nextPageCity()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
