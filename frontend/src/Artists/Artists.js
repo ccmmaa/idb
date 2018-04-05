@@ -16,10 +16,10 @@ class Artists extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
-			page: parseInt(URL.getPage(1)),
+			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("artist_id", ["artist_id", "name", "gen_genre"]),
-			order: URL.getSortDirection(true),
+			order: URL.getSortDirection("asc"),
 			filters: URL.getFilters([], ["country",
 			"pop",
 			"trap",

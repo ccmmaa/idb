@@ -8,17 +8,17 @@ import URL from '../URLSpaceUnderscore';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 
-
 class Cities extends Component {
+
 	constructor() {
 		super();
 		this.state = {
 			doneLoading: false,
-			page: 1,
+			page: URL.getPage(1),
 			lastpage:1,
-			sort: "city_id",
-			order: true,
-			filters: [],
+			sort: URL.getSortItem("city_id", ["city_id","name","state"]),
+			order: URL.getSortDirection("asc"),
+			filters: URL.getFilters([], ["Arizona","California","Colorado","Florida","Georgia","Illinois","Indiana","Massachusetts","Minnesota","North%20Carolina","Ohio","Oregon","Pennsylvania","Tennessee","Texas","Washington"]),
 			allCities:[ 
 				{
 					"city_id": 1,
@@ -35,7 +35,7 @@ class Cities extends Component {
 	}
 
 	componentWillMount() {
-		this.getPage(1);
+		this.getPage(this.state.page);
 	}
 
 	prevPage() {
@@ -68,7 +68,7 @@ class Cities extends Component {
 		console.log('http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (!this.state.order)
 			orderDirection = 'desc';
-		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
+		if (pageNumber > 0)
 			$.ajax({
 					// url: 'http://api.musepy.me/city?results_per_page=16&page=' + pageNumber,
 					url: 'http://api.musepy.me/grid/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
@@ -158,12 +158,13 @@ class Cities extends Component {
 
 	clearFilters() {
 		var state = this.state;
-		state.filters = [];http://api.musepy.me/city?q={"order_by":[{"field":"city_id","direction":"asc"}],"filters":[{"or":[{"name":"state","op":"eq","val":"0"}]}]}&results_per_page=16&page=1
+		state.filters = [];//http://api.musepy.me/city?q={"order_by":[{"field":"city_id","direction":"asc"}],"filters":[{"or":[{"name":"state","op":"eq","val":"0"}]}]}&results_per_page=16&page=1
 		this.setState(state);
 		this.getPage(this.state.page);
 	}
 
 	render() {
+		window.history.pushState("","", "/cities"+URL.encodeSortFilter(this.state, "city_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		if (this.state.doneLoading) {
 			var allCities = this.state.allCities.map(city => {

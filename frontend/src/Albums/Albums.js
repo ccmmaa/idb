@@ -14,11 +14,11 @@ class Albums extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
-			page: 1,
+			page: URL.getPage(1),
 			lastpage:1,
-			sort: "album_id",
-			order: true,
-			filters: [],
+			sort: URL.getSortItem("album_id", ["album_id","name","artist__name","artist__gen_genre","year","producer"]),
+			order: URL.getSortDirection("asc"),
+			filters: URL.getFiltersInt([], [1973,1976,1979,1980,1982,1983,1987,1994,1997,2000,2002,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]),
 			allAlbums: [
 				{
 					"album_id": 1,
@@ -61,7 +61,7 @@ class Albums extends Component {
 	}
 
 	componentWillMount() {
-		this.getPage(1);
+		this.getPage(this.state.page);
 	}
 
 	prevPage() {
@@ -94,7 +94,7 @@ class Albums extends Component {
 			filterString += ']}]';
 		}
 		console.log('http://api.musepy.me/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
-		if (pageNumber > 0 && pageNumber <= this.state.lastpage)
+		if (pageNumber > 0)
 			$.ajax({
 					// url: 'http://api.musepy.me/album?results_per_page=16&page=' + pageNumber,
 					url: 'http://api.musepy.me/grid/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
@@ -190,6 +190,7 @@ class Albums extends Component {
 	}
 
 	render() {
+		window.history.pushState("","", "/albums"+URL.encodeSortFilter(this.state, "album_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
