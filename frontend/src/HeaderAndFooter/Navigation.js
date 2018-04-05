@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {a} from 'react-router-dom';
 import NavTabItem from './NavTabItem';
+import URL from '../URLSpaceUnderscore';
 
 class Navigation extends Component {
 	constructor(){
@@ -35,8 +36,7 @@ class Navigation extends Component {
 			return(
 				<NavTabItem key={tab.id} tab={tab} activeTab={this.props.activeTab} />
 			);
-		})
-
+		});
 		return(
 			<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 				<a className="navbar-brand" href="/index" target="_parent"><span className="spacer">...</span>Muse<span className="orange">Py</span></a>
@@ -50,7 +50,7 @@ class Navigation extends Component {
 
 					</ul>
 					<form className="form-inline mt-2 mt-md-0" onSubmit={this.handleSearch.bind(this)}>
-						<input id="searchField" className="form-control mr-sm-2" ref="input" type="text" value={this.props.query} placeholder="Search" aria-label="Search" />
+						<input id="searchField" className="form-control mr-sm-2" ref="input" defaultValue={this.props.query} type="text" placeholder="Search" aria-label="Search" />
 						<button className="btn btn-outline-success my-2 my-sm-0 color" type="submit">Search</button>
 						<span className="spacer">....</span>
 					</form>
