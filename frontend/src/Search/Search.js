@@ -462,7 +462,7 @@ class Search extends Component {
 
 		return(
 			<div className="pageContent">
-				<Navigation />
+				<Navigation query={this.state.query}/>
 					<div className="container">
 						<hr />
 						<center><h1>Search</h1></center>
