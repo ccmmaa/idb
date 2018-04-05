@@ -145,7 +145,7 @@ class URLSpaceUnderscore {
 			for (var param of qs) {
 				if (param.includes(paramName)) {
 					let entry = param.substring(paramName.length);
-					if (entry=="asc" || entry=="dec")
+					if (entry=="asc" || entry=="desc")
 					result = entry=="asc";
 					console.log(result);
 				}
@@ -221,7 +221,7 @@ class URLSpaceUnderscore {
 		} 
 		if (!state.order) {
 			edited = true;
-			result += "dir=" + "dec" + "&";
+			result += "dir=" + "desc" + "&";
 
 		}
 		if (state.filters.length>0) {
