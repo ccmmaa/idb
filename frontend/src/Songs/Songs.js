@@ -179,6 +179,7 @@ class Songs extends Component {
 			state.filters.splice(index, 1);
 		}
 		// alert(state.filters);
+		state.page=1;
 		this.setState(state);	
 		this.getPage(this.state.page);
 	}
@@ -186,6 +187,7 @@ class Songs extends Component {
 	clearFilters() {
 		var state = this.state;
 		state.filters = [];
+		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);
 	}
@@ -200,10 +202,15 @@ class Songs extends Component {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
+						  <a className="" href={"/songs/" + song["song_id"]} role="button">
 						  <img className="rounded-circle" src={song["album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
+						  </a>
 						  <h2>{song["name"]}</h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6>
-						  <span><a href={"/albums/" + song.album_id}>{song.album.name}</a>, {song.album.year}<br />
-						  {URL.capitalizeWords(song.artist.genre)}<br />{song["city"]["name"]}</span>
+						  <span>
+							  <a href={"/albums/" + song.album_id}>{song.album.name}</a>, {song.album.year}<br />
+							  {URL.capitalizeWords(song.artist.genre)}<br />
+							  <a href={"/cities/" + song["city"]["city_id"]}>{song["city"]["name"]}</a>
+						  </span>
 						  <p><a className="btn btn-secondary" href={"/songs/" + song["song_id"]} role="button">View &raquo;</a></p>
 						</div>
 					</div>

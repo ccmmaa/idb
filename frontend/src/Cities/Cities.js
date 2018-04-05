@@ -152,13 +152,15 @@ class Cities extends Component {
 			state.filters.splice(index, 1);
 		}
 		// alert(state.filters);
+		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);	
 	}
 
 	clearFilters() {
 		var state = this.state;
-		state.filters = [];//http://api.musepy.me/city?q={"order_by":[{"field":"city_id","direction":"asc"}],"filters":[{"or":[{"name":"state","op":"eq","val":"0"}]}]}&results_per_page=16&page=1
+		state.filters = [];
+		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);
 	}
@@ -172,7 +174,9 @@ class Cities extends Component {
 					return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
+						  <a className="" href={"/cities/" + city["city_id"]} role="button">
 						  <img className="rounded-circle" src={city["image"]} alt="Generic placeholder image" width="140" height="140" />
+						  </a>
 						  <h2>{city["name"]}</h2><p>{city["state"]}</p>
 						  <p><a className="btn btn-secondary" href={"/cities/" + city["city_id"]} role="button">View &raquo;</a></p>
 						</div>

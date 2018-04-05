@@ -24,9 +24,7 @@ class Albums extends Component {
 					"album_id": 1,
 					"artist": {
 						"artist_id": 1,
-						"bio": "Loading...",
-						"genre": "Loading...",
-						"image": "https://i.scdn.co/image/392bdc3df99b6483be4dc7e9477464bc3effaf6a",
+						"gen_genre": "Loading...",
 						"name": "Loading..."
 					},
 					"artist_id": 1,
@@ -178,6 +176,7 @@ class Albums extends Component {
 			state.filters.splice(index, 1);
 		}
 		// alert(state.filters);
+		state.page=1;
 		this.setState(state);	
 		this.getPage(this.state.page);
 	}
@@ -185,6 +184,7 @@ class Albums extends Component {
 	clearFilters() {
 		var state = this.state;
 		state.filters = [];
+		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);
 	}
@@ -199,11 +199,13 @@ class Albums extends Component {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
+							<a className="" href={"/albums/" + album.album_id} role="button">
 							<img className="rounded-circle" src={album.artwork} alt={album.name} width="140" height="140" />
-							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist_id}>{album.artist.name}</a></h6>
+							</a>
+							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist.artist_id}>{album.artist.name}</a></h6>
 							<p>{album.producer}
 							 <br />{album.year}<br />
-							 {URL.capitalizeWords(album.artist.genre)}</p>
+							 {URL.capitalizeWords(album.artist.gen_genre)}</p>
 							<p><a className="btn btn-secondary" href={"/albums/" + album.album_id} role="button">View Album &raquo;</a></p>
 						</div>
 					</div>
