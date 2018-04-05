@@ -174,7 +174,7 @@ class Cities extends Component {
 					return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
-						  <a className="btn btn-secondary" href={"/cities/" + city["city_id"]} role="button">
+						  <a className="" href={"/cities/" + city["city_id"]} role="button">
 						  <img className="rounded-circle" src={city["image"]} alt="Generic placeholder image" width="140" height="140" />
 						  </a>
 						  <h2>{city["name"]}</h2><p>{city["state"]}</p>

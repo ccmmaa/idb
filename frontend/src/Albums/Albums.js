@@ -201,7 +201,7 @@ class Albums extends Component {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
-							<a className="btn btn-secondary" href={"/albums/" + album.album_id} role="button">
+							<a className="" href={"/albums/" + album.album_id} role="button">
 							<img className="rounded-circle" src={album.artwork} alt={album.name} width="140" height="140" />
 							</a>
 							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist_id}>{album.artist.name}</a></h6>

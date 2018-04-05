@@ -198,7 +198,7 @@ class Artists extends Component {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
-						  <a className="btn btn-secondary" href={"/artists/" + artist.artist_id} role="button">
+						  <a className="" href={"/artists/" + artist.artist_id} role="button">
 						  <img className="rounded-circle" src={artist.image} alt="Artist photo" width="140" height="140" />
 						  </a>
 						  <h2>{artist.name}</h2>
