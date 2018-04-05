@@ -83,9 +83,10 @@ class Search extends Component {
 
 	getAlbums(pageNumber) {
 		console.log("Request page " + pageNumber);
+		let url = encodeURI('http://api.musepy.me/album?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"year","op":"like","val":"%' + this.state.query + '%"}, {"name":"producer","op":"like","val":"%' + this.state.query + '%"}]}]}');
 		if (pageNumber > 0 && pageNumber <= this.state.lastpageAlbum)
 			$.ajax({
-		  url: 'http://api.musepy.me/album?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"year","op":"like","val":"%' + this.state.query + '%"}, {"name":"producer","op":"like","val":"%' + this.state.query + '%"}]}]}',
+		  			url: url,
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -99,9 +100,10 @@ class Search extends Component {
 
   getArtists(pageNumber) {
 		console.log("Request page " + pageNumber);
+		let url = encodeURI('http://api.musepy.me/artist?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"bio","op":"like","val":"%' + this.state.query + '%"}, {"name":"genre","op":"like","val":"%' + this.state.query + '%"}]}]}');
 	if (pageNumber > 0 && pageNumber <= this.state.lastpageArtist)
 			$.ajax({
-					url: 'http://api.musepy.me/artist?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"bio","op":"like","val":"%' + this.state.query + '%"}, {"name":"genre","op":"like","val":"%' + this.state.query + '%"}]}]}',
+					url: url,
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -115,9 +117,10 @@ class Search extends Component {
 
   getSongs(pageNumber) {
 		console.log("Request page " + pageNumber);
+		let url = encodeURI('http://api.musepy.me/song?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"lyrics","op":"like","val":"%' + this.state.query + '%"}]}]}');
 		if (pageNumber > 0 && pageNumber <= this.state.lastpageSong)
 			$.ajax({
-					url: 'http://api.musepy.me/song?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"lyrics","op":"like","val":"%' + this.state.query + '%"}]}]}',
+					url: url,
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -131,9 +134,10 @@ class Search extends Component {
 
   getCities(pageNumber) {
 		console.log("Request page " + pageNumber);
+		let url = encodeURI('http://api.musepy.me/city?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"state","op":"like","val":"%' + this.state.query + '%"}]}]}');
 		if (pageNumber > 0 && pageNumber <= this.state.lastpageCity)
 			$.ajax({
-					url: 'http://api.musepy.me/city?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"state","op":"like","val":"%' + this.state.query + '%"}]}]}',
+					url: url,
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
