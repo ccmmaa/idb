@@ -50,7 +50,7 @@ class Navigation extends Component {
 
 					</ul>
 					<form className="form-inline mt-2 mt-md-0" onSubmit={this.handleSearch.bind(this)}>
-						<input className="form-control mr-sm-2" ref="input" type="text" placeholder="Search" aria-label="Search" />
+						<input id="searchField" className="form-control mr-sm-2" ref="input" type="text" placeholder="Search" aria-label="Search" />
 						<button className="btn btn-outline-success my-2 my-sm-0 color" type="submit">Search</button>
 						<span className="spacer">....</span>
 					</form>

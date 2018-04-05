@@ -13,7 +13,7 @@ class Search extends Component {
 	constructor() {
 		super();
 		this.state = {
-      query: decodeURI(window.location.href.substring(window.location.href.lastIndexOf("=") + 1)),
+	  		query: URL.getSearchQuery(),//decodeURI(window.location.href.substring(window.location.href.lastIndexOf("=") + 1)),
 			doneLoadingAlbum: false,
 			doneLoadingArtist: false,
 			doneLoadingSongs: false,
@@ -23,22 +23,22 @@ class Search extends Component {
 			pageSong: 1,
 			pageCity: 1,
 			lastpageAlbum:1,
-      lastpageArtist:1,
-      lastpageSong:1,
-      lastpageCity:1,
+			lastpageArtist:1,
+			lastpageSong:1,
+			lastpageCity:1,
 			albumData: [],
-      artistData: [],
-      songData:[],
-      cityData:[]
-		}
+			artistData: [],
+			songData:[],
+			cityData:[]
+		};
 
 	}
 
 	componentWillMount() {
 		this.getAlbums(1);
-    this.getArtists(1);
-    this.getSongs(1);
-    this.getCities(1);
+		this.getArtists(1);
+		this.getSongs(1);
+		this.getCities(1);
 	}
 
 	prevPageAlbum() {
@@ -85,7 +85,7 @@ class Search extends Component {
 		console.log("Request page " + pageNumber);
 		if (pageNumber > 0 && pageNumber <= this.state.lastpageAlbum)
 			$.ajax({
-          url: 'http://api.musepy.me/album?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"year","op":"like","val":"%' + this.state.query + '%"}, {"name":"producer","op":"like","val":"%' + this.state.query + '%"}]}]}',
+		  url: 'http://api.musepy.me/album?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"year","op":"like","val":"%' + this.state.query + '%"}, {"name":"producer","op":"like","val":"%' + this.state.query + '%"}]}]}',
 					dataType: 'json',
 					cache: false,
 					success: function(data) {
@@ -99,7 +99,7 @@ class Search extends Component {
 
   getArtists(pageNumber) {
 		console.log("Request page " + pageNumber);
-    if (pageNumber > 0 && pageNumber <= this.state.lastpageArtist)
+	if (pageNumber > 0 && pageNumber <= this.state.lastpageArtist)
 			$.ajax({
 					url: 'http://api.musepy.me/artist?results_per_page=8&page=' + pageNumber + '&q={"filters":[{"or":[{"name":"name","op":"like","val":"%' + this.state.query + '%"}, {"name":"bio","op":"like","val":"%' + this.state.query + '%"}, {"name":"genre","op":"like","val":"%' + this.state.query + '%"}]}]}',
 					dataType: 'json',
@@ -147,9 +147,12 @@ class Search extends Component {
 
 	paginationBarAlbum(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1)
+		if (currentPage!=1) {
+			bar.push(<span><span onClick={() => this.getAlbums(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageAlbum()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
+			bar.push(<span><span className="paginationUnclickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
@@ -170,10 +173,13 @@ class Search extends Component {
 				bar.push(this.pageBarHelperAlbum(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage && this.state.albumData.length > 0)
+		if (currentPage<lastPage) {
 			bar.push(<span><span onClick={() => this.nextPageAlbum()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getAlbums(this.state.lastpageAlbum)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -186,9 +192,12 @@ class Search extends Component {
 
 	paginationBarArtist(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1)
+		if (currentPage!=1) {
+			bar.push(<span><span onClick={() => this.getArtists(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageArtist()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
+			bar.push(<span><span className="paginationUnclickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
@@ -209,10 +218,13 @@ class Search extends Component {
 				bar.push(this.pageBarHelperArtist(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage && this.state.artistData.length > 0)
+		if (currentPage<lastPage) {
 			bar.push(<span><span onClick={() => this.nextPageArtist()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getArtists(this.state.lastpageAlbum)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -225,9 +237,12 @@ class Search extends Component {
 
 	paginationBarSong(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1)
+		if (currentPage!=1) {
+			bar.push(<span><span onClick={() => this.getSongs(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageSong()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
+			bar.push(<span><span className="paginationUnclickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
@@ -248,10 +263,13 @@ class Search extends Component {
 				bar.push(this.pageBarHelperSong(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage && this.state.songData.length > 0)
+		if (currentPage<lastPage) {
 			bar.push(<span><span onClick={() => this.nextPageSong()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getSongs(this.state.lastpageAlbum)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -264,9 +282,12 @@ class Search extends Component {
 
 	paginationBarCity(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1)
+		if (currentPage!=1) {
+			bar.push(<span><span onClick={() => this.getCities(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageCity()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
+			bar.push(<span><span className="paginationUnclickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span className="paginationUnclickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		if (currentPage < scale/2)
@@ -287,10 +308,13 @@ class Search extends Component {
 				bar.push(this.pageBarHelperCity(index, currentPage));
 			}
 		}
-		if (currentPage!=lastPage && this.state.cityData.length > 0)
+		if (currentPage<lastPage) {
 			bar.push(<span><span onClick={() => this.nextPageCity()} className="paginationClickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span onClick={() => this.getCities(this.state.lastpageAlbum)} className="paginationClickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
+		}
 		else {
 			bar.push(<span><span className="paginationUnclickable">{"Next >"}</span>&nbsp;&nbsp;&nbsp;</span>);
+			bar.push(<span><span className="paginationUnclickable">{"Last >>"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
 		return bar;
 	}
@@ -330,14 +354,14 @@ class Search extends Component {
 					</div>
 
 				);
-      });
-    }
-    else{
-      allAlbums = <h5>Loading...</h5>
-    }
+	  });
+	}
+	else{
+	  allAlbums = <h5>Loading...</h5>
+	}
 
-    if (this.state.doneLoadingArtist) {
-      var allArtists = this.state.artistData.map(artist => {
+	if (this.state.doneLoadingArtist) {
+	  var allArtists = this.state.artistData.map(artist => {
   			return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
@@ -364,14 +388,14 @@ class Search extends Component {
 					</div>
   			);
   		});
-    }
+	}
 		else{
-      allArtists = <h5>Loading...</h5>
-    }
+	  allArtists = <h5>Loading...</h5>
+	}
 
-    if (this.state.doneLoadingSong) {
-      var allSongs = this.state.songData.map(song => {
-       return(
+	if (this.state.doneLoadingSong) {
+	  var allSongs = this.state.songData.map(song => {
+	   return(
 				 <div className="card-shadows-orange model-cards modelCard">
 					 <div className="ingrid" text-align="center">
 						 <img className="rounded-circle" src={song["album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
@@ -396,16 +420,16 @@ class Search extends Component {
 
 					 </div>
 				 </div>
-       );
-     });
-    }
+	   );
+	 });
+	}
 		else{
-      allSongs = <h5>Loading...</h5>
-    }
-    if (this.state.doneLoadingCity) {
-      var allCities = this.state.cityData.map(city => {
-        if (city.name != "n/a") {
-          return(
+	  allSongs = <h5>Loading...</h5>
+	}
+	if (this.state.doneLoadingCity) {
+	  var allCities = this.state.cityData.map(city => {
+		if (city.name != "n/a") {
+		  return(
 						<div className="card-shadows-orange model-cards modelCard">
 							<div className="ingrid" text-align="center">
 							  <img className="rounded-circle" src={city["image"]} alt="Generic placeholder image" width="140" height="140" />
@@ -423,13 +447,13 @@ class Search extends Component {
 	 						 	 /></p>
 							</div>
 						</div>
-	      	);
-	    	}
-      });
-    }
+		  	);
+			}
+	  });
+	}
 		else{
-      allCities = <h5>Loading...</h5>
-    }
+	  allCities = <h5>Loading...</h5>
+	}
 
 		let paginationAlbum = <p>{this.paginationBarAlbum(this.state.pageAlbum, this.state.lastpageAlbum, 10)}</p>;
 		let paginationArtist = <p>{this.paginationBarArtist(this.state.pageArtist, this.state.lastpageArtist, 10)}</p>;
@@ -446,29 +470,29 @@ class Search extends Component {
 					</div>
 					<div className="container2 marketing">
 						<div className="row">
-              <center><h3>Album Results</h3></center>
+			  <center><h3>Album Results</h3></center>
 							{allAlbums}
 							{paginationAlbum}
 							<div className="container">
 								<hr />
 							</div>
 
-              <center><h3>Artist Results</h3></center>
-              {allArtists}
+			  <center><h3>Artist Results</h3></center>
+			  {allArtists}
 							{paginationArtist}
 							<div className="container">
 								<hr />
 							</div>
 
-              <center><h3>Song Results</h3></center>
-              {allSongs}
+			  <center><h3>Song Results</h3></center>
+			  {allSongs}
 							{paginationSong}
 							<div className="container">
 								<hr />
 							</div>
 
-              <center><h3>City Results</h3></center>
-              {allCities}
+			  <center><h3>City Results</h3></center>
+			  {allCities}
 							{paginationCity}
 						</div>
 					</div>

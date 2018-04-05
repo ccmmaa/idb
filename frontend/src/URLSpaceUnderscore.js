@@ -70,6 +70,7 @@ class URLSpaceUnderscore {
 		var index = 0; 
 		var result="";
 		var afterSpace = false;
+		if (words != undefined)
 		for (;index < words.length; index++) {
 			if (index === 0)
 				result += words.charAt(index).toUpperCase();
@@ -103,6 +104,21 @@ class URLSpaceUnderscore {
 			this.getSortDirection(true) + "\n" + 
 			"[" + this.getFilters([]) + "]" + "\n" + 
 			this.getPage(1));
+	}
+
+	static getSearchQuery() {
+		var result = "";
+		let paramName = "q=";
+		let qs = this.queryString().split("&");
+		try {
+			for (var param of qs) {
+				if (param.includes(paramName)) {
+					let entry = param.substring(paramName.length);
+					result = entry;
+				}
+			}
+		} catch(err) {}
+		return result;
 	}
 
 	static getSortItem(standard, options) {
