@@ -20,7 +20,6 @@ class Album extends Component {
 	}
 
 	getiTunesUrl(searchTerm) {
-		alert("https://itunes.apple.com/search?term=" + searchTerm + "&limit=1");
 		$.ajax({
 			url: "https://itunes.apple.com/search?term=" + searchTerm + "&limit=1",
 			dataType: 'json',
@@ -29,10 +28,8 @@ class Album extends Component {
 				console.log(data);
 				if (data.resultCount === 0) {
 					this.setState({itunesUrl: "https://www.apple.com/itunes/charts/songs/"});
-					alert("failed");
 				} else {
 					this.setState({itunesUrl: data.results[0].trackViewUrl});
-					alert("success");
 				}
 			}.bind(this),
 			error: function(xhr, status, error) {
