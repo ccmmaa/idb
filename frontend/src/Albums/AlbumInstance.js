@@ -62,7 +62,7 @@ class AlbumInstance extends Component {
 				<h1>Song Not Found</h1>);
 		}
 		else {
-			var genre = this.state.albumData.genre;
+			var genre = URL.capitalizeWords(this.state.albumData.artist.genre);
 			if (genre == "") {
 				genre = "None";
 			}

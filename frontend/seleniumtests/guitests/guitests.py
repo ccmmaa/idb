@@ -1,5 +1,6 @@
-from guitests.ApplicationPages import *
+from TestSuite.ApplicationPages import *
 import unittest
+
 
 class GuiTests(unittest.TestCase):
 
@@ -292,6 +293,230 @@ class GuiTests(unittest.TestCase):
         self.assertTrue(Navigation().isAlbumInstancePage())
         Browser().forward()
         self.assertTrue(Navigation().isArtistInstancePage())
+        Browser().close()
+
+    def test_searchAlbum(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        self.assertTrue(Navigation().hasSearchFunction())
+        Navigation().inputSearchQuery("hi")
+        self.assertTrue(Navigation().isSearchResultsPage())
+        SearchResultsPage().selectAlbumInstance()
+        self.assertTrue(Navigation().isAlbumInstancePage())
+        Browser().close()
+
+    def test_searchArtist(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        self.assertTrue(Navigation().hasSearchFunction())
+        Navigation().inputSearchQuery("robert")
+        self.assertTrue(Navigation().isSearchResultsPage())
+        SearchResultsPage().selectArtistInstance()
+        self.assertTrue(Navigation().isArtistInstancePage())
+        Browser().close()
+
+    def test_searchSong(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        self.assertTrue(Navigation().hasSearchFunction())
+        Navigation().inputSearchQuery("hello")
+        self.assertTrue(Navigation().isSearchResultsPage())
+        SearchResultsPage().selectSongInstance()
+        self.assertTrue(Navigation().isSongInstancePage())
+        Browser().close()
+
+    def test_searchCity(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        self.assertTrue(Navigation().hasSearchFunction())
+        Navigation().inputSearchQuery("seattle")
+        self.assertTrue(Navigation().isSearchResultsPage())
+        SearchResultsPage().selectCityInstance()
+        self.assertTrue(Navigation().isCityInstancePage())
+        Browser().close()
+
+    def test_sortArtistPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoArtists()
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectSortBy("Name")
+        self.assertTrue(Navigation().isArtistsPage())
+        Browser().close()
+
+    def test_sortAlbumPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoAlbums()
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectSortBy("Album Name")
+        self.assertTrue(Navigation().isAlbumsPage())
+        Browser().close()
+
+    def test_sortSongPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoSongs()
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectSortBy("Title")
+        self.assertTrue(Navigation().isSongsPage())
+        Browser().close()
+
+    def test_sortCityPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoCities()
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectSortBy("City Name")
+        self.assertTrue(Navigation().isCitiesPage())
+        Browser().close()
+
+    def test_filterArtistPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoArtists()
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectFilter()
+        self.assertTrue(Navigation().isArtistsPage())
+        Browser().close()
+
+    def test_filterAlbumPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoAlbums()
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectFilter()
+        self.assertTrue(Navigation().isAlbumsPage())
+        Browser().close()
+
+    def test_filterSongPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoSongs()
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectFilter()
+        self.assertTrue(Navigation().isSongsPage())
+        Browser().close()
+
+    def test_filterCityPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoCities()
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectFilter()
+        self.assertTrue(Navigation().isCitiesPage())
+        Browser().close()
+
+    def test_filterAndSortArtistPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoArtists()
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectFilter()
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectSortBy("Name")
+        self.assertTrue(Navigation().isArtistsPage())
+        Browser().close()
+
+    def test_filterAndSortAlbumPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoAlbums()
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectFilter()
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectSortBy("Album Name")
+        self.assertTrue(Navigation().isAlbumsPage())
+        Browser().close()
+
+    def test_filterSongPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoSongs()
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectFilter()
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectSortBy("Title")
+        self.assertTrue(Navigation().isSongsPage())
+        Browser().close()
+
+    def test_filterCityPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoCities()
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectFilter()
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectSortBy("City Name")
+        self.assertTrue(Navigation().isCitiesPage())
+        Browser().close()
+
+    def test_paginationArtistPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoArtists()
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectPagination("2")
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectPagination("<< First")
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectPagination("Next >")
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectPagination("Last >>")
+        self.assertTrue(Navigation().isArtistsPage())
+        ArtistsPage().selectPagination("< Previous")
+        self.assertTrue(Navigation().isArtistsPage())
+        Browser().close()
+
+    def test_paginationAlbumPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoAlbums()
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectPagination("2")
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectPagination("<< First")
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectPagination("Next >")
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectPagination("Last >>")
+        self.assertTrue(Navigation().isAlbumsPage())
+        AlbumsPage().selectPagination("< Previous")
+        self.assertTrue(Navigation().isAlbumsPage())
+        Browser().close()
+
+    def test_paginationSongPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoSongs()
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectPagination("2")
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectPagination("<< First")
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectPagination("Next >")
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectPagination("Last >>")
+        self.assertTrue(Navigation().isSongsPage())
+        SongsPage().selectPagination("< Previous")
+        self.assertTrue(Navigation().isSongsPage())
+        Browser().close()
+
+    def test_paginationCityPage(self):
+        Browser().gotoMusepy()
+        self.assertTrue(Navigation().isHomePage())
+        Navigation().gotoCities()
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectPagination("2")
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectPagination("<< First")
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectPagination("Next >")
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectPagination("Last >>")
+        self.assertTrue(Navigation().isCitiesPage())
+        CitiesPage().selectPagination("< Previous")
+        self.assertTrue(Navigation().isCitiesPage())
         Browser().close()
 
 

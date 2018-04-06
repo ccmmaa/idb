@@ -31,7 +31,7 @@ class Album(db.Model):
    year = db.Column(db.String(4), nullable = False)
    producer = db.Column(db.String(500), nullable = False)
    artist_id = db.Column(db.Integer, db.ForeignKey('artist.artist_id'), nullable = False)
-   songs = db.relationship('Song', backref = 'Album', lazy = True)
+   songs = db.relationship('Song', backref = 'album', lazy = True)
 
 class Song(db.Model):
    __tableame__ = 'song'
@@ -76,6 +76,15 @@ manager.create_api(Album, methods=['GET'], url_prefix=None)
 manager.create_api(Song, methods=['GET'], url_prefix=None)
 manager.create_api(City, methods=['GET'], url_prefix=None)
 
+# Create API calls for reduced info
+manager.create_api(Artist, methods=['GET'], url_prefix="/grid",include_columns=['artist_id','name','gen_genre','genre','image'])
+manager.create_api(Album, methods=['GET'], url_prefix="/grid",include_columns=['album_id','name','artwork','year','producer',
+   'artist','artist.name','artist.artist_id', 'artist.genre'])
+manager.create_api(Song, methods=['GET'], url_prefix="/grid",include_columns=['song_id','name',
+   'artist','artist.artist_id','artist.name','artist.genre','artist.gen_genre',
+   'album_id','album','album.artwork','album.name','album.year',
+   'city','city.name','city.city_id'])
+manager.create_api(City, methods=['GET'], url_prefix="/grid",include_columns=['city_id','name','state','image'])
 
 
 if __name__ == '__main__':

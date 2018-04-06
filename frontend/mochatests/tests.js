@@ -14,6 +14,7 @@ import SongInstance from '../src/Songs/SongInstance';
 import ArtistInstance from '../src/Artists/ArtistInstance';
 import AlbumInstance from '../src/Albums/AlbumInstance';
 import CityInstance from '../src/Cities/CityInstance';
+import Search from '..src/Search/Search';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -51,6 +52,10 @@ describe("MusePy unit tests", function() {
   it("should create About object", function() {
     const wrapper = mount(<About />);
     expect(About.prototype).to.not.be.null;
+  });
+  it("should create Search object", function() {  //IDB 3
+    const wrapper = mount(<Search />);
+    expect(Search.prototype).to.not.be.null;
   });
   it("should create Song Instance object", function() {
     const wrapper = mount(<SongInstance />);
@@ -92,6 +97,42 @@ describe("MusePy unit tests", function() {
   it('Cities page should load a list of city instances', function () {
     const wrapper = shallow(<Cities />);
     expect(wrapper.find('.pageLoadingIndicator')).to.have.length(1);
+  });
+  // it('Search page should load search items and pagination bars', function () {    //IDB 3
+  //   const wrapper = shallow(<Search />);
+  //   expect(wrapper.find('.pageLoadingIndicator')).to.have.length(1);
+  // });
+  it('Songs page should have a sort-drop-down', function () {   //IDB 3
+    const wrapper = shallow(<Songs />);
+    expect(wrapper.find('.sort-drop-down')).to.have.length(1);
+  });
+  it('Artists page should have a sort-drop-down', function () {   //IDB 3
+    const wrapper = shallow(<Artists />);
+    expect(wrapper.find('.sort-drop-down')).to.have.length(1);
+  });
+  it('Albums page should have a sort-drop-down', function () {   //IDB 3
+    const wrapper = shallow(<Albums />);
+    expect(wrapper.find('.sort-drop-down')).to.have.length(1);
+  });
+  it('Cities page should have a sort-drop-down', function () {    //IDB 3
+    const wrapper = shallow(<Cities />);
+    expect(wrapper.find('.sort-drop-down')).to.have.length(1);
+  });
+  it('Songs page should have a sortAndFilter Div', function () {   //IDB 3
+    const wrapper = shallow(<Songs />);
+    expect(wrapper.find('.sortAndFilter')).to.have.length(1);
+  });
+  it('Artists page should have a sortAndFilter Div', function () {   //IDB 3
+    const wrapper = shallow(<Artists />);
+    expect(wrapper.find('.sortAndFilter')).to.have.length(1);
+  });
+  it('Albums page should have a sortAndFilter Div', function () {   //IDB 3
+    const wrapper = shallow(<Albums />);
+    expect(wrapper.find('.sortAndFilter')).to.have.length(1);
+  });
+  it('Cities page should have a sortAndFilter Div', function () {    //IDB 3
+    const wrapper = shallow(<Cities />);
+    expect(wrapper.find('.sortAndFilter')).to.have.length(1);
   });
   it('Song instance should have a view artist and view album button', function () {
     const wrapper = shallow(<SongInstance />);

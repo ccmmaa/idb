@@ -45,12 +45,12 @@ class About extends Component {
 
 	getRequestLength(fullUrl, user, item) {
 		$.ajax({
-			url: fullUrl,
+			url: fullUrl + "&per_page=999",
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
 
-				// console.log("get data from api success");
+				console.log(fullUrl);
 				var obj = {
 					cris : this.state[item]["cris"],
 					chia : this.state[item]["chia"],

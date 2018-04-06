@@ -128,15 +128,43 @@ body {
   }
 
 .modelCard {
-    width: 22%;
+    width: 23.5%;
     display: inline-block;
     border-radius: 2vw;
+    margin:5px;
+    padding:1vw;
 }
 .pageLoadingIndicator {
-    width: 15%;
+    width: 20%;
 }
-.model-cards {
-    margin:10px;
-    padding:1vw;
-    padding-top:;
+
+
+.allThings, .sortAndFilter {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.allThings {
+  width: 80vw;
+  /*border: 1px solid black;*/
+  padding: 0px;
+}
+
+.sortAndFilter {
+  width:15vw;
+  padding: 10px 0px 10px 10px;
+}
+.pagination {
+}
+
+.sort-drop-down {
+  width: 75%;
+  display: inline-block;
+}
+.orderDirection {
+  color: #FF7777;
+}
+
+.clickable {
+  cursor: pointer;
 }
