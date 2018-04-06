@@ -57,7 +57,7 @@ class ArtistInstance extends Component {
 
 		let artistAlbums = this.state.artistData.albums.map(album => {
 			return(
-				<Album albumId={album.album_id} albumArt={album.artwork} albumName={album.name}/>
+				<Album albumId={album.album_id} albumArt={album.artwork} albumName={album.name} artist={this.state.artistData.name}/>
 			);
 		});
 		let popularSongs = this.state.artistData.songs.map(song => {
