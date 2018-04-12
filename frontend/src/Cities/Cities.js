@@ -24,7 +24,7 @@ class Cities extends Component {
 			sort: URL.getSortItem("city_id", ["city_id","name","state"]),
 			order: URL.getSortDirection("asc"),
 			filters: URL.getFilters([], ["Arizona","California","Colorado","Florida","Georgia","Illinois","Indiana","Massachusetts","Minnesota","North%20Carolina","Ohio","Oregon","Pennsylvania","Tennessee","Texas","Washington"]),
-			allItems:[ 
+			allItems:[
 				{
 					"city_id": 1,
 					"concerts": [],
@@ -77,7 +77,7 @@ class Cities extends Component {
 		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
-				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
 				dataType: 'json',
 				cache: false,
 				success: function(data) {
@@ -129,9 +129,9 @@ class Cities extends Component {
 		}
 		return bar;
 	}
-	
+
 	pageBarHelper(index, currentPage) {
-		if (index == currentPage) 
+		if (index == currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -161,7 +161,7 @@ class Cities extends Component {
 		}
 		state.page=1;
 		this.setState(state);
-		this.getPage(this.state.page);	
+		this.getPage(this.state.page);
 	}
 
 	clearFilters() {
@@ -188,7 +188,7 @@ class Cities extends Component {
 						  <a className="" href={"/cities/" + city["city_id"]} role="button">
 						  <img className="rounded-circle" src={city["image"]} alt="Generic placeholder image" width="140" height="140" />
 						  </a>
-						  <h2>{city["name"]}</h2><p>{city["state"]}</p>
+						  <h2><a href={"/cities/" + city["city_id"]}>{city["name"]}</a></h2><p>{city["state"]}</p>
 						  <p><a className="btn btn-secondary" href={"/cities/" + city["city_id"]} role="button">View &raquo;</a></p>
 						</div>
 					</div>
@@ -227,7 +227,7 @@ class Cities extends Component {
 					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
 				}
 			});
-			
+
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
@@ -249,31 +249,31 @@ class Cities extends Component {
 
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"cities"}/> 
+				<Navigation activeTab={"cities"}/>
 
 				<main role="main">
 					<div align="center">
-						
+
 						<div className="carousel-item titleImage active">
 							<img className="fourth-slide" src={CitySlide} alt="Fourth slide"/>
 							<div className="container">
 								<div className="carousel-caption text-right">
 									<h1><span className="orange">Connect</span> with your city.</h1>
-								   
+
 								</div>
 							</div>
 						</div>
 					</div>
-					
+
 					<div className="container">
 						<hr/>
 						<center><h1>Cities</h1></center>
 						<hr/>
 					</div>
 					<div className="container2 marketing">
-						
+
 						<div className="row">
-								
+
 							{pagination}
 
 							{internalContent}
@@ -286,11 +286,11 @@ class Cities extends Component {
 						<hr/>
 					</div>
 				</main>
-				
+
 				<Footer />
 
 			</div>
 		);
 	}
-} 
+}
 export default Cities;
