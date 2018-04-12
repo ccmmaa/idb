@@ -96,7 +96,7 @@ class Albums extends Component {
 		}
 		if (pageNumber > 0)
 			$.ajax({
-				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
 				dataType: 'json',
 				cache: false,
 				success: function(data) {
@@ -148,9 +148,9 @@ class Albums extends Component {
 		}
 		return bar;
 	}
-	
+
 	pageBarHelper(index, currentPage) {
-		if (index == currentPage) 
+		if (index == currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable orange">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -179,7 +179,7 @@ class Albums extends Component {
 			state.filters.splice(index, 1);
 		}
 		state.page=1;
-		this.setState(state);	
+		this.setState(state);
 		this.getPage(this.state.page);
 	}
 
@@ -207,7 +207,7 @@ class Albums extends Component {
 							<a className="" href={"/albums/" + album.album_id} role="button">
 							<img className="rounded-circle" src={album.artwork} alt={album.name} width="140" height="140" />
 							</a>
-							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist.artist_id}>{album.artist.name}</a></h6>
+							<h2><a href={"/albums/" + album.album_id}>{album.name}</a></h2><h6>by <a href={"/artists/" + album.artist.artist_id}>{album.artist.name}</a></h6>
 							<p>{album.producer}
 							 <br />{album.year}<br />
 							 {URL.capitalizeWords(album.artist.gen_genre)}</p>
@@ -262,7 +262,7 @@ class Albums extends Component {
 					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
 				}
 			});
-			
+
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
@@ -277,14 +277,14 @@ class Albums extends Component {
 									</center>
 								</div>
 							</div>;
-		}		
+		}
 
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"albums"}/>
 				<main role="main">
 					<div align="center">
-						
+
 						<div className="carousel-item titleImage active">
 							<img className="third-slide" src={AlbumSlide} alt="Third slide" />
 							<div className="container">
@@ -292,9 +292,9 @@ class Albums extends Component {
 									<h1><span className="orange">Discover</span> new albums.</h1>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
-					
+
 					<div className="container">
 						<hr />
 						<center><h1>Albums</h1></center>
@@ -303,7 +303,7 @@ class Albums extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-							
+
 							{internalContent}
 
 							{pagination}
@@ -318,5 +318,5 @@ class Albums extends Component {
 			</div>
 		);
 	}
-} 
+}
 export default Albums;

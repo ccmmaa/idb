@@ -76,7 +76,7 @@ class Artists extends Component {
 		}
 		if (pageNumber > 0)
 			$.ajax({
-				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
 				dataType: 'json',
 				cache: false,
 				success: function(data) {
@@ -142,9 +142,9 @@ class Artists extends Component {
 		}
 		return bar;
 	}
-	
+
 	pageBarHelper(index, currentPage) {
-		if (index == currentPage) 
+		if (index == currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -173,7 +173,7 @@ class Artists extends Component {
 			state.filters.splice(index, 1);
 		}
 		state.page=1;
-		this.setState(state);	
+		this.setState(state);
 		this.getPage(this.state.page);
 	}
 
@@ -201,7 +201,7 @@ class Artists extends Component {
 						  <a className="" href={"/artists/" + artist.artist_id} role="button">
 						  <img className="rounded-circle" src={artist.image} alt="Artist photo" width="140" height="140" />
 						  </a>
-						  <h2>{artist.name}</h2>
+						  <h2><a href={"/artists/" + artist.artist_id}>{artist.name}</a></h2>
 						  <p>Genre: {URL.capitalizeWords(artist.genre)}</p>
 						  <p><a className="btn btn-secondary" href={"/artists/" + artist.artist_id} role="button">View &raquo;</a></p>
 						</div>
@@ -216,7 +216,7 @@ class Artists extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			let filterItems = 
+			let filterItems =
 			{Country: "country",
 			Pop: "pop",
 			Trap: "trap",
@@ -257,11 +257,11 @@ class Artists extends Component {
 
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"artists"}/> 
+				<Navigation activeTab={"artists"}/>
 
 				<main role="main">
 					<div align="center">
-						
+
 						<div className="carousel-item titleImage active">
 							<img className="second-slide" src={ArtistSlide} alt="Second slide"/>
 							<div className="container">
@@ -271,7 +271,7 @@ class Artists extends Component {
 							</div>
 						</div>
 					</div>
-					
+
 					<div className="container">
 						<hr/>
 						<center><h1>Artists</h1></center>
@@ -280,7 +280,7 @@ class Artists extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-							
+
 							{internalContent}
 
 							{pagination}
@@ -297,5 +297,5 @@ class Artists extends Component {
 			</div>
 		);
 	}
-} 
+}
 export default Artists;

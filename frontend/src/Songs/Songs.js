@@ -85,7 +85,7 @@ class Songs extends Component {
 		}
 		if (pageNumber > 0)
 			$.ajax({
-				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
 				dataType: 'json',
 				cache: false,
 				success: function(data) {
@@ -151,9 +151,9 @@ class Songs extends Component {
 		}
 		return bar;
 	}
-	
+
 	pageBarHelper(index, currentPage) {
-		if (index == currentPage) 
+		if (index == currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable orange">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -182,7 +182,7 @@ class Songs extends Component {
 			state.filters.splice(index, 1);
 		}
 		state.page=1;
-		this.setState(state);	
+		this.setState(state);
 		this.getPage(this.state.page);
 	}
 
@@ -202,7 +202,7 @@ class Songs extends Component {
 		if (this.state.error) {
 			internalContent = <Error />;
 		}
-		else if (this.state.doneLoading) {			 
+		else if (this.state.doneLoading) {
 			var allItems = this.state.allItems.map(song => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
@@ -210,7 +210,7 @@ class Songs extends Component {
 						  <a className="" href={"/songs/" + song["song_id"]} role="button">
 						  <img className="rounded-circle" src={song["album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
 						  </a>
-						  <h2>{song["name"]}</h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6>
+						  <h2><a href={"/songs/" + song["song_id"]}>{song["name"]}</a></h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6>
 						  <span>
 							  <a href={"/albums/" + song.album_id}>{song.album.name}</a>, {song.album.year}<br />
 							  {URL.capitalizeWords(song.artist.genre)}<br />
@@ -234,14 +234,14 @@ class Songs extends Component {
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
 			let filterItems = {
 				"Atlanta":"4",
-				"Austin":"1", 
+				"Austin":"1",
 				"Boston":"8",
 				"Charlotte":"21",
 				"Chicago":"19",
 				"Columbus":"14",
 				"Dallas":"3",
 				"Denver":"10",
-				"Houston":"2", 
+				"Houston":"2",
 				"Indianapolis":"12",
 				"Jacksonville":"11",
 				"Los Angeles":"7",
@@ -263,7 +263,7 @@ class Songs extends Component {
 					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
 				}
 			});
-			
+
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
@@ -279,14 +279,14 @@ class Songs extends Component {
 								</div>
 							</div>;
 		}
-		
+
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"songs"}/> 
+				<Navigation activeTab={"songs"}/>
 
 				<main role="main">
 					<div align="center">
-						
+
 						<div className="carousel-item titleImage active">
 							<img className="first-slide" src={SongSlide} alt="First slide" />
 							<div className="container">
@@ -296,7 +296,7 @@ class Songs extends Component {
 							</div>
 						</div>
 					</div>
-					
+
 					<div className="container">
 						<hr />
 						<center><h1>Songs</h1></center>
@@ -305,7 +305,7 @@ class Songs extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-							
+
 							{internalContent}
 
 							{pagination}
@@ -323,5 +323,5 @@ class Songs extends Component {
 			</div>
 		);
 	}
-} 
+}
 export default Songs;
