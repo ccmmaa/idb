@@ -356,9 +356,11 @@ class Search extends Component {
  						 /></a></h6>
 						</div>
 					</div>
-
 				);
 	  });
+		if(this.state.albumData.length === 0){
+ 		 allAlbums = <h5> No results found. </h5>
+ 	 }
 	}
 	else{
 	  allAlbums = <h5>Loading...</h5>
@@ -392,6 +394,9 @@ class Search extends Component {
 					</div>
   			);
   		});
+			if(this.state.artistData.length === 0){
+	 		 allArtists = <h5> No results found. </h5>
+	 	 }
 	}
 		else{
 	  allArtists = <h5>Loading...</h5>
@@ -426,6 +431,9 @@ class Search extends Component {
 				 </div>
 	   );
 	 });
+	 if(this.state.songData.length === 0){
+		 allSongs = <h5> No results found. </h5>
+	 }
 	}
 		else{
 	  allSongs = <h5>Loading...</h5>
@@ -454,6 +462,9 @@ class Search extends Component {
 		  	);
 			}
 	  });
+		if(this.state.cityData.length === 0){
+ 		 allCities = <h5> No results found. </h5>
+ 	 }
 	}
 		else{
 	  allCities = <h5>Loading...</h5>
