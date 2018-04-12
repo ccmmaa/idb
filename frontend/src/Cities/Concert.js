@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
 import '../assets/css/concertComponent.css';

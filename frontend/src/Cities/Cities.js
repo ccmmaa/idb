@@ -4,9 +4,11 @@ import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/modelpage.css';
 import CitySlide from '../assets/images/citymodel.jpg';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
+import Error from '../Error';
+
 
 class Cities extends Component {
 
@@ -14,12 +16,13 @@ class Cities extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
+			error: false,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("city_id", ["city_id","name","state"]),
 			order: URL.getSortDirection("asc"),
 			filters: URL.getFilters([], ["Arizona","California","Colorado","Florida","Georgia","Illinois","Indiana","Massachusetts","Minnesota","North%20Carolina","Ohio","Oregon","Pennsylvania","Tennessee","Texas","Washington"]),
-			allCities:[ 
+			allItems:[ 
 				{
 					"city_id": 1,
 					"concerts": [],
@@ -49,8 +52,11 @@ class Cities extends Component {
 	}
 
 	getPage(pageNumber) {
+		var model = "city";
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
+		if (!this.state.order)
+			orderDirection = 'desc';
 		var filterString = '';
 		if (this.state.filters.length > 0) {
 			filterString = ',"filters":[{"or":[';
@@ -59,28 +65,26 @@ class Cities extends Component {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"state","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"year","op":"eq","val":"' + filter + '"}';
 				index++;
 				console.log(filter);
 			}
 			filterString += ']}]';
 		}
-		console.log('http://api.musepy.me/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
-		if (!this.state.order)
-			orderDirection = 'desc';
 		if (pageNumber > 0)
 			$.ajax({
-					// url: 'http://api.musepy.me/city?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/grid/city?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({"allCities": data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
-					}.bind(this),
-					error: function(xhr, status, error) {
-						// console.log("Get ERROR: " + error);
-					}
-				});
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({allItems: data["objects"], "doneLoading": true, "error": false, "page": (pageNumber), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					var state = this.state;
+					state.error = true;
+					this.setState(state);
+				}.bind(this)
+			});
 	}
 
 	paginationBar(currentPage, lastPage, scale) {
@@ -151,7 +155,6 @@ class Cities extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		// alert(state.filters);
 		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);	
@@ -168,8 +171,11 @@ class Cities extends Component {
 	render() {
 		window.history.pushState("","", "/cities"+URL.encodeSortFilter(this.state, "city_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.doneLoading) {
-			var allCities = this.state.allCities.map(city => {
+		if (this.state.error) {
+			internalContent = <Error />;
+		}
+		else if (this.state.doneLoading) {
+			var allItems = this.state.allItems.map(city => {
 				if (city.name != "n/a") {
 					return(
 					<div className="card-shadows-orange model-cards modelCard">
@@ -192,9 +198,6 @@ class Cities extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			// let allFilters = this.state.filters.map(filter => {
-			// 	return(filter + ", ");
-			// });
 			let filterItems = {Arizona: "Arizona",
 				California: "California",
 				Colorado: "Colorado",
@@ -230,7 +233,7 @@ class Cities extends Component {
 								</div>
 								<div className="allThings">
 									<center>
-									   {allCities}
+									   {allItems}
 									</center>
 								</div>
 							</div>;

@@ -4,10 +4,11 @@ import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/modelpage.css';
 import ArtistSlide from '../assets/images/artistmodel.jpg';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import LoadingH from '../assets/images/loadingHorizontal.gif';
 import Loading from '../assets/images/loading.gif';
 import $ from 'jquery';
+import Error from '../Error';
 
 
 class Artists extends Component {
@@ -16,6 +17,7 @@ class Artists extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
+			error: false,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("artist_id", ["artist_id", "name", "gen_genre"]),
@@ -34,7 +36,7 @@ class Artists extends Component {
 			"jazz",
 			"rock",
 			"latin"]),
-			allArtists:[
+			allItems:[
 				{
 					"albums": [
 					],
@@ -50,13 +52,10 @@ class Artists extends Component {
 				}
 			]
 		}
-		// window.history.pushState("","", "test");
-		// window.history.pushState("","", "test2");
 	}
 
-
-
 	getPage(pageNumber) {
+		var model = "artist";
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
@@ -69,26 +68,26 @@ class Artists extends Component {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"gen_genre","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"year","op":"eq","val":"' + filter + '"}';
 				index++;
 				console.log(filter);
 			}
 			filterString += ']}]';
 		}
-		console.log('http://api.musepy.me/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
-					// url: 'http://api.musepy.me/artist?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/grid/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({"allArtists":data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
-					}.bind(this),
-					error: function(xhr, status, error) {
-						// console.log("Get ERROR: " + error);
-					}
-				});
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({allItems: data["objects"], "doneLoading": true, "error": false, "page": (pageNumber), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					var state = this.state;
+					state.error = true;
+					this.setState(state);
+				}.bind(this)
+			});
 	}
 
 	componentWillMount() {
@@ -173,7 +172,6 @@ class Artists extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		// alert(state.filters);
 		state.page=1;
 		this.setState(state);	
 		this.getPage(this.state.page);
@@ -192,9 +190,11 @@ class Artists extends Component {
 		var internalContent = <center><img src={LoadingH} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
-		if (this.state.doneLoading) {
-			var allArtists = this.state.allArtists.map(artist => {
-				// var bio = artist.bio.substring(0, 100) + "...";
+		if (this.state.error) {
+			internalContent = <Error />;
+		}
+		else if (this.state.doneLoading) {
+			var allItems = this.state.allItems.map(artist => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
@@ -216,9 +216,6 @@ class Artists extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			// let allFilters = this.state.filters.map(filter => {
-			// 	return(filter + ", ");
-			// });
 			let filterItems = 
 			{Country: "country",
 			Pop: "pop",
@@ -252,7 +249,7 @@ class Artists extends Component {
 								</div>
 								<div className="allThings">
 									<center>
-									   {allArtists}
+									   {allItems}
 									</center>
 								</div>
 							</div>;

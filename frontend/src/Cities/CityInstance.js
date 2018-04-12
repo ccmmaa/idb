@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/city_instance.css';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import LoadingH from '../assets/images/loadingHorizontal.gif';
 import Loading from '../assets/images/loading.gif';

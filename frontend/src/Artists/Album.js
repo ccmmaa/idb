@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 
 
 

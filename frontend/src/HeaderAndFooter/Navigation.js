@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {a} from 'react-router-dom';
 import NavTabItem from './NavTabItem';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 
 class Navigation extends Component {
 	constructor(){

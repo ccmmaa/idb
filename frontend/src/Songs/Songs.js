@@ -4,9 +4,10 @@ import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/modelpage.css';
 import SongSlide from '../assets/images/songmodel.jpg';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
+import Error from '../Error';
 
 
 
@@ -17,13 +18,14 @@ class Songs extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
+			error: false,
 			page: 1,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("song_id", ["song_id","name","album__name","album__year","artist__gen_genre","artist__name"]),
 			order: URL.getSortDirection("asc"),
 			filters: URL.getFilters([], ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22"]),
-			allSongs:[
+			allItems:[
 				{
 					"album": {
 						"album_id": 1,
@@ -62,6 +64,7 @@ class Songs extends Component {
 	}
 
 	getPage(pageNumber) {
+		var model = "song";
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
@@ -74,26 +77,26 @@ class Songs extends Component {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"city_id","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"year","op":"eq","val":"' + filter + '"}';
 				index++;
 				console.log(filter);
 			}
 			filterString += ']}]';
 		}
-		console.log('http://api.musepy.me/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
-					// url: 'http://api.musepy.me/song?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/grid/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({"allSongs": data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
-					}.bind(this),
-					error: function(xhr, status, error) {
-						// console.log("Get ERROR: " + error);
-					}
-				});
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({allItems: data["objects"], "doneLoading": true, "error": false, "page": (pageNumber), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					var state = this.state;
+					state.error = true;
+					this.setState(state);
+				}.bind(this)
+			});
 	}
 
 	componentWillMount() {
@@ -178,7 +181,6 @@ class Songs extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		// alert(state.filters);
 		state.page=1;
 		this.setState(state);	
 		this.getPage(this.state.page);
@@ -197,8 +199,11 @@ class Songs extends Component {
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
-		if (this.state.doneLoading) {
-			 var allSongs = this.state.allSongs.map(song => {
+		if (this.state.error) {
+			internalContent = <Error />;
+		}
+		else if (this.state.doneLoading) {			 
+			var allItems = this.state.allItems.map(song => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
@@ -227,9 +232,6 @@ class Songs extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			// let allFilters = this.state.filters.map(filter => {
-			// 	return(filter + ", ");
-			// });
 			let filterItems = {
 				"Atlanta":"4",
 				"Austin":"1", 
@@ -272,7 +274,7 @@ class Songs extends Component {
 								</div>
 								<div className="allThings">
 									<center>
-									   {allSongs}
+									   {allItems}
 									</center>
 								</div>
 							</div>;

@@ -3,7 +3,7 @@ import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/song_instance.css';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loading.gif';
 import $ from 'jquery';
 

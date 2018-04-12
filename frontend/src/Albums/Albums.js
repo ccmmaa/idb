@@ -4,9 +4,10 @@ import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/carousel.css';
 import '../assets/css/modelpage.css';
 import AlbumSlide from '../assets/images/albummodel.jpg';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
+import Error from '../Error';
 
 class Albums extends Component {
 
@@ -14,12 +15,13 @@ class Albums extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
+			error: false,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("album_id", ["album_id","name","artist__name","artist__gen_genre","year","producer"]),
 			order: URL.getSortDirection("asc"),
 			filters: URL.getFiltersInt([], [1973,1976,1979,1980,1982,1983,1987,1994,1997,2000,2002,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]),
-			allAlbums: [
+			allItems: [
 				{
 					"album_id": 1,
 					"artist": {
@@ -73,6 +75,7 @@ class Albums extends Component {
 	}
 
 	getPage(pageNumber) {
+		var model = "album";
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
@@ -91,20 +94,20 @@ class Albums extends Component {
 			}
 			filterString += ']}]';
 		}
-		console.log('http://api.musepy.me/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
-					// url: 'http://api.musepy.me/album?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/grid/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
-					}.bind(this),
-					error: function(xhr, status, error) {
-						// console.log("Get ERROR: " + error);
-					}
-				});
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({allItems: data["objects"], "doneLoading": true, "error": false, "page": (pageNumber), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					var state = this.state;
+					state.error = true;
+					this.setState(state);
+				}.bind(this)
+			});
 	}
 
 	paginationBar(currentPage, lastPage, scale) {
@@ -175,7 +178,6 @@ class Albums extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		// alert(state.filters);
 		state.page=1;
 		this.setState(state);	
 		this.getPage(this.state.page);
@@ -194,8 +196,11 @@ class Albums extends Component {
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
-		if (this.state.doneLoading) {
-			var allAlbums = this.state.allAlbums.map(album => {
+		if (this.state.error) {
+			internalContent = <Error />;
+		}
+		else if (this.state.doneLoading) {
+			var allItems = this.state.allItems.map(album => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
@@ -222,9 +227,6 @@ class Albums extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			// let allFilters = this.state.filters.map(filter => {
-			// 	return(filter + ", ");
-			// });
 			let filterItems = {
 				"1973":1973,
 				"1976":1976,
@@ -271,12 +273,11 @@ class Albums extends Component {
 								</div>
 								<div className="allThings">
 									<center>
-									   {allAlbums}
+									   {allItems}
 									</center>
 								</div>
 							</div>;
-		}
-		
+		}		
 
 		return(
 			<div className="pageContent">

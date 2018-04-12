@@ -3,7 +3,7 @@ import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/album_instance.css';
 import Loading from '../assets/images/loading.gif';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 
 
@@ -11,6 +11,8 @@ class AlbumInstance extends Component {
 
 	constructor() {
 		super();
+		console.log("Album instance.super");
+		console.log(super());
 		this.state = {
 			songFound: false,
 			doneLoading: false,
@@ -30,7 +32,6 @@ class AlbumInstance extends Component {
 				"name": "Loading...",
 				"producer": "",
 				"songs": [
-
 				],
 				"year": ""
 			}

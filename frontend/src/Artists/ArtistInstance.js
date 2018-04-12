@@ -8,7 +8,7 @@ import album2 from '../assets/images/travis_scott_album.jpg';
 import album3 from '../assets/images/travis_scott_rodeo.jpg';
 import banner from '../assets/images/banner.jpg';
 import Album from "./Album"
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
 import Concert from './Concert';

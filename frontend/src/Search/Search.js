@@ -4,7 +4,7 @@ import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/carousel.css';
 import '../assets/css/modelpage.css';
 import './search.css';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Highlighter from 'react-highlight-words';
 import $ from 'jquery';
 
