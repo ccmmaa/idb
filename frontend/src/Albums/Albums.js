@@ -14,6 +14,8 @@ class Albums extends Component {
 	constructor() {
 		super();
 		this.state = {
+			model: "album",
+			filterBy: "year",
 			doneLoading: false,
 			error: false,
 			page: URL.getPage(1),
@@ -75,7 +77,8 @@ class Albums extends Component {
 	}
 
 	getPage(pageNumber) {
-		var model = "album";
+		let model = this.state.model;
+		let filterFieldName = this.state.filterBy;
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
@@ -88,12 +91,13 @@ class Albums extends Component {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"year","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}';
 				index++;
 				console.log(filter);
 			}
 			filterString += ']}]';
 		}
+		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
 				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 

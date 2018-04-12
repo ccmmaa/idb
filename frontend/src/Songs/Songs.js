@@ -17,6 +17,8 @@ class Songs extends Component {
 	constructor() {
 		super();
 		this.state = {
+			model: "song",
+			filterBy: "city_id",
 			doneLoading: false,
 			error: false,
 			page: 1,
@@ -64,7 +66,8 @@ class Songs extends Component {
 	}
 
 	getPage(pageNumber) {
-		var model = "song";
+		let model = this.state.model;
+		let filterFieldName = this.state.filterBy;
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
@@ -77,12 +80,13 @@ class Songs extends Component {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"year","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}';
 				index++;
 				console.log(filter);
 			}
 			filterString += ']}]';
 		}
+		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
 				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
