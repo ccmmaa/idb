@@ -9,7 +9,7 @@ import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 import Error from '../Error';
 
-
+//city","op":"has","val":{"name":"name
 
 
 class Songs extends Component {
@@ -18,7 +18,7 @@ class Songs extends Component {
 		super();
 		this.state = {
 			model: "song",
-			filterBy: "city_id",
+			filterBy: 'city","op":"has","val":{"name":"name',
 			doneLoading: false,
 			error: false,
 			page: 1,
@@ -80,7 +80,7 @@ class Songs extends Component {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}}';
 				index++;
 				console.log(filter);
 			}
@@ -237,28 +237,28 @@ class Songs extends Component {
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
 			let filterItems = {
-				"Atlanta":"4",
-				"Austin":"1",
-				"Boston":"8",
-				"Charlotte":"21",
-				"Chicago":"19",
-				"Columbus":"14",
-				"Dallas":"3",
-				"Denver":"10",
-				"Houston":"2",
-				"Indianapolis":"12",
-				"Jacksonville":"11",
-				"Los Angeles":"7",
-				"Memphis":"15",
-				"Miami":"18",
-				"Minneapolis":"5",
-				"Oakland":"22",
-				"Philadelphia":"16",
-				"Phoenix":"17",
-				"Portland":"20",
-				"San Antonio":"9",
-				"San Diego":"6",
-				"Seattle":"13"
+				"Atlanta":"Atlanta",
+				"Austin":"Austin",
+				"Boston":"Boston",
+				"Charlotte":"Charlotte",
+				"Chicago":"Chicago",
+				"Columbus":"Columbus",
+				"Dallas":"Dallas",
+				"Denver":"Denver",
+				"Houston":"Houston",
+				"Indianapolis":"Indianapolis",
+				"Jacksonville":"Jacksonville",
+				"Los Angeles":"Los Angeles",
+				"Memphis":"Memphis",
+				"Miami":"Miami",
+				"Minneapolis":"Minneapolis",
+				"Oakland":"Oakland",
+				"Philadelphia":"Philadelphia",
+				"Phoenix":"Phoenix",
+				"Portland":"Portland",
+				"San Antonio":"San Antonio",
+				"San Diego":"San Diego",
+				"Seattle":"Seattle"
 				};
 			let allFilters = Object.keys(filterItems).map(filter => {
 				if (this.state.filters.includes(filterItems[filter]))
