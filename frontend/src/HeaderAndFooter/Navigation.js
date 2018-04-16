@@ -18,7 +18,7 @@ class Navigation extends Component {
 			alert('"%" is not an allowed character.');
 		} else {
 			this.setState({queryInput:this.refs.input.value}, function(){
-				window.location = '/search?q=' + this.state.queryInput;			});
+				window.location = '/search?q=' + URL.convert(this.state.queryInput, " ", "+");			});
 		}
 		e.preventDefault();
 	}
