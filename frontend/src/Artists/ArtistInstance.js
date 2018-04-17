@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/artist_instance.css';
-import Black from '../assets/images/black_background.jpg';
-import album1 from '../assets/images/travis_scott_huncho.jpg';
-import album2 from '../assets/images/travis_scott_album.jpg';
-import album3 from '../assets/images/travis_scott_rodeo.jpg';
 import banner from '../assets/images/banner.jpg';
 import Album from "./Album"
 import URL from '../URLHelperFunctions';
@@ -22,7 +18,7 @@ class ArtistInstance extends Component {
 			doneLoading: false,
 			status:200,
 			image: {Loading},
-			artistData: 
+			artistData:
 				{
 					"albums": [
 					],
@@ -34,7 +30,7 @@ class ArtistInstance extends Component {
 					"image": Loading,
 					"name": "Loading...",
 					"songs": [
-						
+
 					],
 				}
 		}
@@ -93,6 +89,12 @@ class ArtistInstance extends Component {
 				<Concert venue={concert.venue} cityId={concert.city_id} time={dateandtime} />
 			);
 		});
+		let bio = "Bio not available.";
+		let biolink = "";
+		if(this.state.artistData.bio.indexOf('<a') != -1){
+			bio = this.state.artistData.bio.substring(0, this.state.artistData.bio.indexOf('<a'));
+			biolink = <a href={this.state.artistData.bio.substring(this.state.artistData.bio.indexOf('href=\'') + 6, this.state.artistData.bio.indexOf('\'>'))}>Read more about this artist on last.fm</a>;
+		}
 
 		var internalContent;
 		if (Math.floor(this.state.status/100)!==2 ) {
@@ -128,7 +130,7 @@ class ArtistInstance extends Component {
 							</div>
 
 							<div className="row">
-								
+
 								{artistAlbums}
 
 							</div>
@@ -161,7 +163,8 @@ class ArtistInstance extends Component {
 							<div className="containerArtistBio">
 								<div className="">
 									<p className="orange">Bio</p>
-									<p>{this.state.artistData.bio}</p>
+									<p>{bio}</p>
+									{biolink}
 
 								</div>
 							</div>
