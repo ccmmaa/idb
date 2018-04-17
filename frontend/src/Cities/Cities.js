@@ -18,7 +18,8 @@ class Cities extends Component {
 			model: "city",
 			filterBy: "state",
 			doneLoading: false,
-			error: false,
+			status: 200,
+			statusText: "",
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("city_id", ["city_id","name","state"]),
@@ -81,11 +82,12 @@ class Cities extends Component {
 				dataType: 'json',
 				cache: false,
 				success: function(data) {
-					this.setState({allItems: data["objects"], "doneLoading": true, "error": false, "page": (pageNumber), "lastpage": data["total_pages"]});
+					this.setState({allItems: data["objects"], "doneLoading": true, "status": 200, "page": (pageNumber), "lastpage": data["total_pages"]});
 				}.bind(this),
 				error: function(xhr, status, error) {
 					var state = this.state;
-					state.error = true;
+					state.status = xhr.status;
+					state.statusText = xhr.statusText;
 					this.setState(state);
 				}.bind(this)
 			});
@@ -176,10 +178,7 @@ class Cities extends Component {
 		console.log(this.state);
 		window.history.pushState("","", "/cities"+URL.encodeSortFilter(this.state, "city_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
-		if (this.state.error) {
-			internalContent = <Error />;
-		}
-		else if (this.state.doneLoading) {
+		if (this.state.doneLoading) {
 			var allItems = this.state.allItems.map(city => {
 				if (city.name != "n/a") {
 					return(
@@ -243,6 +242,9 @@ class Cities extends Component {
 								</div>
 							</div>;
 
+		}
+		if (Math.floor(this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
 		}
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 								Page {this.state.page} out of {this.state.lastpage}</p>;

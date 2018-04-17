@@ -17,7 +17,7 @@ class Albums extends Component {
 			model: "album",
 			filterBy: "year",
 			doneLoading: false,
-			error: false,
+			status: 200,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("album_id", ["album_id","name","artist__name","artist__gen_genre","year","producer"]),
@@ -104,11 +104,11 @@ class Albums extends Component {
 				dataType: 'json',
 				cache: false,
 				success: function(data) {
-					this.setState({allItems: data["objects"], "doneLoading": true, "error": false, "page": (pageNumber), "lastpage": data["total_pages"]});
+					this.setState({allItems: data["objects"], "doneLoading": true, "status": 200, "page": (pageNumber), "lastpage": data["total_pages"]});
 				}.bind(this),
 				error: function(xhr, status, error) {
 					var state = this.state;
-					state.error = true;
+					state.status = xhr.status;
 					this.setState(state);
 				}.bind(this)
 			});
@@ -200,8 +200,8 @@ class Albums extends Component {
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
-		if (this.state.error) {
-			internalContent = <Error />;
+		if ((this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
 		}
 		else if (this.state.doneLoading) {
 			var allItems = this.state.allItems.map(album => {

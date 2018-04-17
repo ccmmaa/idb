@@ -5,6 +5,7 @@ import '../assets/css/album_instance.css';
 import Loading from '../assets/images/loading.gif';
 import URL from '../URLHelperFunctions';
 import $ from 'jquery';
+import Error from '../Error';
 
 
 class AlbumInstance extends Component {
@@ -15,6 +16,7 @@ class AlbumInstance extends Component {
 		console.log(super());
 		this.state = {
 			songFound: false,
+			status:200,
 			doneLoading: false,
 			albumData:
 			{
@@ -44,11 +46,11 @@ class AlbumInstance extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"albumData": data, "doneLoading": true, "songFound": true});
+				this.setState({"albumData": data, "doneLoading": true, "songFound": true, "status": 200});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
+				this.setState({"doneLoading": true, "status": xhr.status});
+			}.bind(this)
 		});
 	}
 
@@ -58,55 +60,59 @@ class AlbumInstance extends Component {
 				<li className="list-group-item"><a href={"/songs/"+song.song_id}>{song.name}</a></li>
 			);
 		});
-		if (this.state.doneLoading && !this.state.songFound) {
-			return (
-				<h1>Song Not Found</h1>);
+		
+		var genre = URL.capitalizeWords(this.state.albumData.artist.genre);
+		if (genre == "") {
+			genre = "None";
+		}
+		var internalContent;
+		if (Math.floor(this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
 		}
 		else {
-			var genre = URL.capitalizeWords(this.state.albumData.artist.genre);
-			if (genre == "") {
-				genre = "None";
-			}
-			return(
-				<div className="pageContent">
-					<Navigation activeTab={"albums"}/>
+			internalContent = 
+			<main role="main">
 
-					<main role="main">
+					<div>
+						<div className="container">
+							<div className="row">
+								<div className="col-lg-4 albumsCol">
+									<img src={this.state.albumData.artwork} alt="Album Art" className="img-thumbnail card-shadows " />
+									<p className="h1">{this.state.albumData.name}</p>
+									<p className="h3"><a href={"/artists/"+this.state.albumData.artist.artist_id}>{this.state.albumData.artist.name}</a></p>
+								</div>
 
-						<div>
-							<div className="container">
-								<div className="row">
-									<div className="col-lg-4 albumsCol">
-										<img src={this.state.albumData.artwork} alt="Album Art" className="img-thumbnail card-shadows " />
-										<p className="h1">{this.state.albumData.name}</p>
-										<p className="h3"><a href={"/artists/"+this.state.albumData.artist.artist_id}>{this.state.albumData.artist.name}</a></p>
-									</div>
-
-									<div className="col-lg-5 albumsCol">
-											<p className="h2">Song List</p>
-											<ul className="list-group list-group-flush">
-												{allSongs}
-											</ul>
-									</div>
-									<div className="col-lg-3 albumsCol">
-										<p className="h6"><span>Genre: </span>{genre}</p>
-										<p className="h6"><span>Released: </span>{this.state.albumData.year}</p>
-
-									</div>
+								<div className="col-lg-5 albumsCol">
+										<p className="h2">Song List</p>
+										<ul className="list-group list-group-flush">
+											{allSongs}
+										</ul>
+								</div>
+								<div className="col-lg-3 albumsCol">
+									<p className="h6"><span>Genre: </span>{genre}</p>
+									<p className="h6"><span>Released: </span>{this.state.albumData.year}</p>
 
 								</div>
+
 							</div>
-							<br />
-							<br />
 						</div>
-					</main>
-					<div className="container">
-						<hr />
+						<br />
+						<br />
 					</div>
-					<Footer />
-				</div>
-			);
+				</main>;
 		}
+		return(
+			<div className="pageContent">
+				<Navigation activeTab={"albums"}/>
+
+				{internalContent}
+				
+				<div className="container">
+					<hr />
+				</div>
+				<Footer />
+			</div>
+		);
 	}
 }
 export default AlbumInstance;

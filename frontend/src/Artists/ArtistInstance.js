@@ -12,7 +12,7 @@ import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
 import Concert from './Concert';
-
+import Error from '../Error';
 
 class ArtistInstance extends Component {
 	constructor() {
@@ -20,6 +20,7 @@ class ArtistInstance extends Component {
 		this.state= {
 			artistFound: false,
 			doneLoading: false,
+			status:200,
 			image: {Loading},
 			artistData: 
 				{
@@ -45,11 +46,11 @@ class ArtistInstance extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"artistData": data, "artistFound": true, "doneLoading": true});
+				this.setState({"artistData": data, "artistFound": true, "doneLoading": true, "status": 200});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
+				this.setState({"doneLoading": true, "status": xhr.status});
+			}.bind(this)
 		});
 	}
 
@@ -93,11 +94,13 @@ class ArtistInstance extends Component {
 			);
 		});
 
-		return(
-			<div className="pageContent">
-				<Navigation activeTab={"artists"}/>
-
-				<main role="main">
+		var internalContent;
+		if (Math.floor(this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
+		}
+		else {
+			internalContent = 
+			<main role="main">
 					<div className="artistInstanceCarousel">
 						<div className="carousel-inner">
 							 <div className="carousel-item active">
@@ -165,7 +168,15 @@ class ArtistInstance extends Component {
 						</div>
 					</div>
 
-				</main>
+				</main>;
+		}
+
+		return(
+			<div className="pageContent">
+				<Navigation activeTab={"artists"}/>
+
+				{internalContent}
+				
 				<div className="container">
 					<hr />
 				</div>

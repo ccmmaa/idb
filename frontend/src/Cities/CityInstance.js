@@ -6,7 +6,7 @@ import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import LoadingH from '../assets/images/loadingHorizontal.gif';
 import Loading from '../assets/images/loading.gif';
-
+import Error from '../Error';
 import Concert from "./Concert"
 
 
@@ -17,6 +17,8 @@ class CityInstance extends Component {
 		this.state = {
 			cityData:{
 				"doneLoading": false,
+				status:200,
+				statusText: "",
 				"city_id": 1,
 				"concerts": [
 				],
@@ -46,11 +48,16 @@ class CityInstance extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"cityData": data, "doneLoading": true});
+				this.setState({"cityData": data, "doneLoading": true, "status": 200});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
+				this.setState({"doneLoading": true, "status": xhr.status, "statusText": xhr.statusText});
+				// console.log("Error");
+				console.log(xhr);
+				// console.log(status);
+				// console.log(error);
+				// // console.log("Get ERROR: " + error);
+			}.bind(this)
 		});
 	}
 
@@ -71,11 +78,11 @@ class CityInstance extends Component {
 		if (this.state.doneLoading === true) {
 			map = <iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + URL.convert(this.state.cityData.name + "+" + this.state.cityData.state, ' ', '+')} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>;
 		}
-		return(
-			<div className="pageContent">
-				<Navigation activeTab={"cities"}/> 
 
-				<main role="main">
+		var internalContent;
+		if (Math.floor(this.state.status/100)===2 ) {
+			internalContent = 
+			<main role="main">
 
 					<div align="center">
 						<div className="carousel-item titleImage active">
@@ -125,8 +132,20 @@ class CityInstance extends Component {
 						<hr/>
 					</div>
 
-				</main>	
+				</main>;
+		}
+		else {
+			// alert(this.state.status);
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;	
+		}
+		return(
+			<div className="pageContent">
+				<Navigation activeTab={"cities"}/> 
+
+				{internalContent}
+					
 				<Footer />
+				}
 			</div>
 		);
 	}

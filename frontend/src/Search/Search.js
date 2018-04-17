@@ -42,42 +42,42 @@ class Search extends Component {
 	}
 
 	prevPageAlbum() {
-		if (this.state.pageAlbum != 1)
+		if (this.state.pageAlbum !== 1)
 		this.getAlbums(this.state.pageAlbum - 1);
 	}
 
 	nextPageAlbum() {
-		if (this.state.pageAlbum != this.state.lastpageAlbum)
+		if (this.state.pageAlbum !== this.state.lastpageAlbum)
 		this.getAlbums(this.state.pageAlbum + 1);
 	}
 
 	prevPageArtist() {
-		if (this.state.pageArtist != 1)
+		if (this.state.pageArtist !== 1)
 		this.getArtists(this.state.pageArtist - 1);
 	}
 
 	nextPageArtist() {
-		if (this.state.pageArtist != this.state.lastpageArtist)
+		if (this.state.pageArtist !== this.state.lastpageArtist)
 		this.getArtists(this.state.pageArtist + 1);
 	}
 
 	prevPageSong() {
-		if (this.state.pageSong != 1)
+		if (this.state.pageSong !== 1)
 		this.getSongs(this.state.pageSong - 1);
 	}
 
 	nextPageSong() {
-		if (this.state.pageSong != this.state.lastpageSong)
+		if (this.state.pageSong !== this.state.lastpageSong)
 		this.getSongs(this.state.pageSong + 1);
 	}
 
 	prevPageCity() {
-		if (this.state.pageCity != 1)
+		if (this.state.pageCity !== 1)
 		this.getCities(this.state.pageCity - 1);
 	}
 
 	nextPageCity() {
-		if (this.state.pageCity != this.state.lastpageCity)
+		if (this.state.pageCity !== this.state.lastpageCity)
 		this.getCities(this.state.pageCity + 1);
 	}
 
@@ -151,7 +151,7 @@ class Search extends Component {
 
 	paginationBarAlbum(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1) {
+		if (currentPage!==1) {
 			bar.push(<span><span onClick={() => this.getAlbums(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageAlbum()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
@@ -173,7 +173,7 @@ class Search extends Component {
 		}
 		else {
 			for (var index = currentPage-scale/2+1; index <= currentPage + scale/2; index++) {
-				if (index != 0)
+				if (index !== 0)
 				bar.push(this.pageBarHelperAlbum(index, currentPage));
 			}
 		}
@@ -189,14 +189,14 @@ class Search extends Component {
 	}
 
 	pageBarHelperAlbum(index, currentPage) {
-		if (index == currentPage)
+		if (index === currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getAlbums(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
 
 	paginationBarArtist(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1) {
+		if (currentPage!==1) {
 			bar.push(<span><span onClick={() => this.getArtists(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageArtist()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
@@ -218,7 +218,7 @@ class Search extends Component {
 		}
 		else {
 			for (var index = currentPage-scale/2+1; index <= currentPage + scale/2; index++) {
-				if (index != 0)
+				if (index !== 0)
 				bar.push(this.pageBarHelperArtist(index, currentPage));
 			}
 		}
@@ -234,14 +234,14 @@ class Search extends Component {
 	}
 
 	pageBarHelperArtist(index, currentPage) {
-		if (index == currentPage)
+		if (index === currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getArtists(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
 
 	paginationBarSong(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1) {
+		if (currentPage!==1) {
 			bar.push(<span><span onClick={() => this.getSongs(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageSong()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
@@ -263,7 +263,7 @@ class Search extends Component {
 		}
 		else {
 			for (var index = currentPage-scale/2+1; index <= currentPage + scale/2; index++) {
-				if (index != 0)
+				if (index !== 0)
 				bar.push(this.pageBarHelperSong(index, currentPage));
 			}
 		}
@@ -279,14 +279,14 @@ class Search extends Component {
 	}
 
 	pageBarHelperSong(index, currentPage) {
-		if (index == currentPage)
+		if (index === currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getSongs(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
 
 	paginationBarCity(currentPage, lastPage, scale) {
 		var bar = [];
-		if (currentPage!=1) {
+		if (currentPage!==1) {
 			bar.push(<span><span onClick={() => this.getCities(1)} className="paginationClickable">{"<< First"}</span>&nbsp;&nbsp;&nbsp;</span>);
 			bar.push(<span><span onClick={() => this.prevPageCity()} className="paginationClickable">{"< Previous"}</span>&nbsp;&nbsp;&nbsp;</span>);
 		}
@@ -308,7 +308,7 @@ class Search extends Component {
 		}
 		else {
 			for (var index = currentPage-scale/2+1; index <= currentPage + scale/2; index++) {
-				if (index != 0)
+				if (index !== 0)
 				bar.push(this.pageBarHelperCity(index, currentPage));
 			}
 		}
@@ -324,7 +324,7 @@ class Search extends Component {
 	}
 
 	pageBarHelperCity(index, currentPage) {
-		if (index == currentPage)
+		if (index === currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getCities(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -440,7 +440,7 @@ class Search extends Component {
 	}
 	if (this.state.doneLoadingCity) {
 	  var allCities = this.state.cityData.map(city => {
-		if (city.name != "n/a") {
+		if (city.name !== "n/a") {
 		  return(
 						<div className="card-shadows-orange model-cards modelCard">
 							<div className="ingrid" text-align="center">
