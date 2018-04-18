@@ -177,7 +177,7 @@ class Cities extends Component {
 	render() {
 		console.log(this.state);
 		window.history.pushState("","", "/cities"+URL.encodeSortFilter(this.state, "city_id"));
-		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
+		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /><p>If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome's Settings>Advanced>Privacy</p></center>;
 		if (this.state.doneLoading) {
 			var allItems = this.state.allItems.map(city => {
 				if (city.name != "n/a") {

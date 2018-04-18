@@ -8,25 +8,26 @@ class Error extends Component {
 	render() {
 		var status = this.props.status;
 		var message = this.props.statusText;
+		var detail;
 
 		var image = ErrorImg;
-		// alert(status);
 		if (status === 404) {
 			image = NotFound;
 			message = "The Requested Resource cannot be found";
 		}
 		else if (status == 400) {
 			image = NotFound;
-			message = "Bad Request";
+			message = "Bad Request.";
+			detail = <p>The page requested may be out of valid range</p>;
+
 		}
 		else if (status== undefined) {
 			status = 0;
-			// alert("Undefined Status");
 			message = "The requested URL can't be reached. The service took too long to respond.";
 		}
 		
 		return(
-			<center><h2>({status}) {message}</h2><img className="errorIcon" src={image} /></center>
+			<center><h2>({status}) {message}</h2><img className="errorIcon" src={image} />{detail}</center>
 		);	
 	
 		

@@ -38,7 +38,7 @@ class SongInstance extends Component {
 				},
 				"artist_id": 1,
 				"itunes": "https://www.apple.com/itunes/charts/songs/",
-				"lyrics": "Loading...",
+				"lyrics": 'If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome\'s Settings>Advanced>Privacy',
 				"name": "Loading Song...",
 				"song_id": 1,
 				"spotify": Loading

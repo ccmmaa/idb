@@ -26,7 +26,7 @@ class AlbumInstance extends Component {
 					"bio": "",
 					"genre": "",
 					"image": Loading,
-					"name": "Loading Artist..."
+					"name": 'If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome\'s Settings>Advanced>Privacy'
 				},
 				"artist_id": 1,
 				"artwork": Loading,

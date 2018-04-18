@@ -221,7 +221,7 @@ class Albums extends Component {
 
 	render() {
 		window.history.pushState("","", "/albums"+URL.encodeSortFilter(this.state, "album_id"));
-		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
+		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /><p>If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome's Settings>Advanced>Privacy</p></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
 		if ((this.state.status/100)!==2 ) {
