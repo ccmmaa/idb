@@ -87,10 +87,10 @@ manager.create_api(Song, methods=['GET'], url_prefix="/grid",include_columns=['s
 manager.create_api(City, methods=['GET'], url_prefix="/grid",include_columns=['city_id','name','state','image'])
 
 # Create API calls for valid IDs
-manager.create_api(Artist, methods=['GET'], url_prefix="/validIDs",include_columns=['artist_id'])
-manager.create_api(Album, methods=['GET'], url_prefix="/validIDs",include_columns=['album_id'])
-manager.create_api(Song, methods=['GET'], url_prefix="/validIDs",include_columns=['song_id'])
-manager.create_api(City, methods=['GET'], url_prefix="/validIDs",include_columns=['city_id'])
+manager.create_api(Artist, methods=['GET'], url_prefix="/validIDs",include_columns=['artist_id','name'])
+manager.create_api(Album, methods=['GET'], url_prefix="/validIDs",include_columns=['album_id','name'])
+manager.create_api(Song, methods=['GET'], url_prefix="/validIDs",include_columns=['song_id','name'])
+manager.create_api(City, methods=['GET'], url_prefix="/validIDs",include_columns=['city_id','name'])
 
 
 
