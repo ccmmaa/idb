@@ -76,7 +76,7 @@ class Songs extends Component {
 		if (!this.state.order)
 			orderDirection = 'desc';
 		var filterString = '';
-		if (this.state.filters.length > 0) {
+		if (this.state.filters.length > 0 || this.state.genres.length > 0) {
 			filterString = ',"filters":[{"or":[';
 			var index = 0;
 			for (var filter of this.state.filters) {
@@ -86,6 +86,14 @@ class Songs extends Component {
 				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}}';
 				index++;
 				console.log(filter);
+			}
+			for (var genre of this.state.genres) {
+				if (index !== 0) {
+					filterString +=",";
+				}
+				filterString += '{"name":"artist","op":"has","val":{"name":"gen_genre","op":"eq","val":"' + genre + '"}}';
+				index++;
+				// console.log(filter);
 			}
 			filterString += ']}]';
 		}
@@ -226,7 +234,7 @@ class Songs extends Component {
 	}
 
 	render() {
-		window.history.pushState("","", "/songs"+URL.encodeSortFilter(this.state, "song_id"));
+		window.history.replaceState("","", "/songs"+URL.encodeSortFilter(this.state, "song_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /><p>If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome's Settings>Advanced>Privacy</p></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;

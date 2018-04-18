@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {a} from 'react-router-dom';
 import NavTabItem from './NavTabItem';
 import URL from '../URLHelperFunctions';
+import '../assets/css/navigation.css';
 
 class Navigation extends Component {
 	constructor(){

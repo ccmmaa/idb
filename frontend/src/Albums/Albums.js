@@ -85,7 +85,7 @@ class Albums extends Component {
 		if (!this.state.order)
 			orderDirection = 'desc';
 		var filterString = '';
-		if (this.state.filters.length > 0) {
+		if (this.state.filters.length > 0 || this.state.genres.length > 0) {
 			filterString = ',"filters":[{"or":[';
 			var index = 0;
 			for (var filter of this.state.filters) {
@@ -94,7 +94,13 @@ class Albums extends Component {
 				}
 				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}';
 				index++;
-				console.log(filter);
+			}
+			for (var genre of this.state.genres) {
+				if (index !== 0) {
+					filterString +=",";
+				}
+				filterString += '{"name":"artist","op":"has","val":{"name":"gen_genre","op":"eq","val":"' + genre + '"}}';
+				index++;
 			}
 			filterString += ']}]';
 		}
@@ -220,7 +226,7 @@ class Albums extends Component {
 	}
 
 	render() {
-		window.history.pushState("","", "/albums"+URL.encodeSortFilter(this.state, "album_id"));
+		window.history.replaceState("","", "/albums"+URL.encodeSortFilter(this.state, "album_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /><p>If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome's Settings>Advanced>Privacy</p></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
@@ -238,7 +244,7 @@ class Albums extends Component {
 							<h2><a href={"/albums/" + album.album_id}>{album.name}</a></h2><h6>by <a href={"/artists/" + album.artist.artist_id}>{album.artist.name}</a></h6>
 							<p>{album.producer}
 							 <br />{album.year}<br />
-							 {URL.capitalizeWords(album.artist.gen_genre)}</p>
+							 {URL.capitalizeWords(album.artist.genre)}</p>
 							<p><a className="btn btn-secondary" href={"/albums/" + album.album_id} role="button">View Album &raquo;</a></p>
 						</div>
 					</div>

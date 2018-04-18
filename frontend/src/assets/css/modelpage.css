@@ -133,6 +133,7 @@ body {
     border-radius: 2vw;
     margin:5px;
     padding:1vw;
+    min-width: 100px;
 }
 .pageLoadingIndicator {
     width: 20%;
@@ -167,4 +168,8 @@ body {
 
 .clickable {
   cursor: pointer;
+}
+
+p {
+  /*font-size: max(1em, 12px);*/
 }
