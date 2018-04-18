@@ -232,7 +232,7 @@ class Cities extends Component {
 									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
 									{orderButton}<br/><br/>
-									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
+									<strong>State</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
 									{allFilters}<br />
 								</div>
 								<div className="allThings">

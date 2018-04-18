@@ -174,6 +174,29 @@ class URLHelperFunctions {
 		return result;
 	}
 
+	static getGenres(standard) {
+		let options = ["country", "pop", "trap", "other", "hip%20hop", "indie", "rap", "metal", "mexican", "funk", "electronic", "jazz", "rock", "latin"];
+		var result = standard;
+		let paramName = "genres=";
+		let qs = this.queryString().split("&");
+		try {
+			for (var param of qs) {
+				if (param.includes(paramName)) {
+					let entry = param.substring(paramName.length+1, param.length-1);
+					result = [];
+					let filters = (entry.split(","));
+					for (var filter of filters) {
+						if (options.includes(filter)){
+							result.push(filter);
+						}
+					}	
+				}
+			}
+		} catch (err){}	
+		console.log(result);
+		return result;
+	}
+
 	static getFiltersInt(standard, options) {
 		var result = standard;
 		let paramName = "filters=";
@@ -221,9 +244,13 @@ class URLHelperFunctions {
 			edited = true;
 			result += "dir=" + "desc" + "&";
 		}
-		if (state.filters.length>0) {
+		if (state.filters != undefined && state.filters.length>0) {
 			edited = true;
 			result += "filters=[" + state.filters + "]" + "&";
+		}
+		if (state.genres != undefined && state.genres.length>0) {
+			edited = true;
+			result += "genres=[" + state.genres + "]" + "&";
 		}
 		if (state.page != 1) {
 			edited = true;

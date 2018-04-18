@@ -27,6 +27,7 @@ class Songs extends Component {
 			sort: URL.getSortItem("song_id", ["song_id","name","album__name","album__year","artist__gen_genre","artist__name"]),
 			order: URL.getSortDirection("asc"),
 			filters: URL.getFilters([], ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22"]),
+			genres: URL.getGenres([]),
 			allItems:[
 				{
 					"album": {
@@ -199,6 +200,29 @@ class Songs extends Component {
 		this.getPage(this.state.page);
 	}
 
+	addRemoveGenre(genre) {
+		var state = this.state;
+		if (!state.genres.includes(genre)) {
+			state.genres.push(genre);
+		}
+		else {
+			var index = state.genres.indexOf(genre);
+			state.genres.splice(index, 1);
+		}
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+		console.log("[" + state.genres + "]");
+	}
+
+	clearGenres() {
+		var state = this.state;
+		state.genres = [];
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+	}
+
 	render() {
 		window.history.pushState("","", "/songs"+URL.encodeSortFilter(this.state, "song_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
@@ -266,13 +290,39 @@ class Songs extends Component {
 				}
 			});
 
+			let genreItems =
+			{"Country": "country",
+			"Pop": "pop",
+			"Trap": "trap",
+			"Other": "other",
+			"Hip Hop": "hip%20hop",
+			"Indie": "indie",
+			"Rap": "rap",
+			"Metal": "metal",
+			"Mexican": "mexican",
+			"Funk": "funk",
+			"Electronic": "electronic",
+			"Jazz": "jazz",
+			"Rock": "rock",
+			"Latin": "latin"
+			};
+			let allGenres = Object.keys(genreItems).map(genre => {
+				if (this.state.genres.includes(genreItems[genre]))
+					return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked/>&nbsp;{genre}<br /></span>);
+				else {
+					return(<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox"/>&nbsp;{genre}<br /></span>);
+				}
+			});
+
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
 									{orderButton}<br/><br/>
-									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
+									<strong>City</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
 									{allFilters}<br />
+									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+									{allGenres}<br />
 								</div>
 								<div className="allThings">
 									<center>

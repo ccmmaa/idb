@@ -23,6 +23,7 @@ class Albums extends Component {
 			sort: URL.getSortItem("album_id", ["album_id","name","artist__name","artist__gen_genre","year","producer"]),
 			order: URL.getSortDirection("asc"),
 			filters: URL.getFiltersInt([], [1973,1976,1979,1980,1982,1983,1987,1994,1997,2000,2002,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]),
+			genres: URL.getGenres([]),
 			allItems: [
 				{
 					"album_id": 1,
@@ -195,6 +196,29 @@ class Albums extends Component {
 		this.getPage(this.state.page);
 	}
 
+	addRemoveGenre(genre) {
+		var state = this.state;
+		if (!state.genres.includes(genre)) {
+			state.genres.push(genre);
+		}
+		else {
+			var index = state.genres.indexOf(genre);
+			state.genres.splice(index, 1);
+		}
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+		console.log("[" + state.genres + "]");
+	}
+
+	clearGenres() {
+		var state = this.state;
+		state.genres = [];
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+	}
+
 	render() {
 		window.history.pushState("","", "/albums"+URL.encodeSortFilter(this.state, "album_id"));
 		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
@@ -267,13 +291,39 @@ class Albums extends Component {
 				}
 			});
 
+			let genreItems =
+			{"Country": "country",
+			"Pop": "pop",
+			"Trap": "trap",
+			"Other": "other",
+			"Hip Hop": "hip%20hop",
+			"Indie": "indie",
+			"Rap": "rap",
+			"Metal": "metal",
+			"Mexican": "mexican",
+			"Funk": "funk",
+			"Electronic": "electronic",
+			"Jazz": "jazz",
+			"Rock": "rock",
+			"Latin": "latin"
+			};
+			let allGenres = Object.keys(genreItems).map(genre => {
+				if (this.state.genres.includes(genreItems[genre]))
+					return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked/>&nbsp;{genre}<br /></span>);
+				else {
+					return(<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox"/>&nbsp;{genre}<br /></span>);
+				}
+			});
+
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
 									{orderButton}<br/><br/>
-									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
+									<strong>Year</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
 									{allFilters}<br />
+									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+									{allGenres}<br />
 								</div>
 								<div className="allThings">
 									<center>

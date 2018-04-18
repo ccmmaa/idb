@@ -24,20 +24,7 @@ class Artists extends Component {
 			lastpage:1,
 			sort: URL.getSortItem("artist_id", ["artist_id", "name", "gen_genre"]),
 			order: URL.getSortDirection("asc"),
-			filters: URL.getFilters([], ["country",
-			"pop",
-			"trap",
-			"other",
-			"hip hop",
-			"indie",
-			"rap",
-			"metal",
-			"mexican",
-			"funk",
-			"electronic",
-			"jazz",
-			"rock",
-			"latin"]),
+			genres: URL.getGenres([]),
 			allItems:[
 				{
 					"albums": [
@@ -64,10 +51,10 @@ class Artists extends Component {
 		if (!this.state.order)
 			orderDirection = 'desc';
 		var filterString = '';
-		if (this.state.filters.length > 0) {
+		if (this.state.genres.length > 0) {
 			filterString = ',"filters":[{"or":[';
 			var index = 0;
-			for (var filter of this.state.filters) {
+			for (var filter of this.state.genres) {
 				if (index !== 0) {
 					filterString +=",";
 				}
@@ -167,23 +154,24 @@ class Artists extends Component {
 		this.getPage(this.state.page);
 	}
 
-	addRemoveFilter(filter) {
+	addRemoveGenre(genre) {
 		var state = this.state;
-		if (!state.filters.includes(filter)) {
-			state.filters.push(filter);
+		if (!state.genres.includes(genre)) {
+			state.genres.push(genre);
 		}
 		else {
-			var index = state.filters.indexOf(filter);
-			state.filters.splice(index, 1);
+			var index = state.genres.indexOf(genre);
+			state.genres.splice(index, 1);
 		}
 		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);
+		console.log("[" + state.genres + "]");
 	}
 
-	clearFilters() {
+	clearGenres() {
 		var state = this.state;
-		state.filters = [];
+		state.genres = [];
 		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);
@@ -220,27 +208,27 @@ class Artists extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			let filterItems =
-			{Country: "country",
-			Pop: "pop",
-			Trap: "trap",
-			Other: "other",
-			"Hip Hop": "hip hop",
-			Indie: "indie",
-			Rap: "rap",
-			Metal: "metal",
-			Mexican: "mexican",
-			Funk: "funk",
-			Electronic: "electronic",
-			Jazz: "jazz",
-			Rock: "rock",
-			Latin: "latin"
+			let genreItems =
+			{"Country": "country",
+			"Pop": "pop",
+			"Trap": "trap",
+			"Other": "other",
+			"Hip Hop": "hip%20hop",
+			"Indie": "indie",
+			"Rap": "rap",
+			"Metal": "metal",
+			"Mexican": "mexican",
+			"Funk": "funk",
+			"Electronic": "electronic",
+			"Jazz": "jazz",
+			"Rock": "rock",
+			"Latin": "latin"
 			};
-			let allFilters = Object.keys(filterItems).map(filter => {
-				if (this.state.filters.includes(filterItems[filter]))
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
+			let allGenres = Object.keys(genreItems).map(genre => {
+				if (this.state.genres.includes(genreItems[genre]))
+					return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked/>&nbsp;{genre}<br /></span>);
 				else {
-					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
+					return(<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox"/>&nbsp;{genre}<br /></span>);
 				}
 			});
 			internalContent = <div>
@@ -248,8 +236,8 @@ class Artists extends Component {
 									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
 									{orderButton}<br/><br/>
-									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
-									{allFilters}<br />
+									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+									{allGenres}<br />
 								</div>
 								<div className="allThings">
 									<center>
