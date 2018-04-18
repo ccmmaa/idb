@@ -87,7 +87,7 @@ class Songs extends Component {
 					if (index !== 0) {
 						filter1 +=",";
 					}
-					filter1 += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}';
+					filter1 += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}}';
 					index++;
 				}
 				filter1 += "]}";
