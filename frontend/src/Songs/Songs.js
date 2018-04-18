@@ -77,25 +77,37 @@ class Songs extends Component {
 			orderDirection = 'desc';
 		var filterString = '';
 		if (this.state.filters.length > 0 || this.state.genres.length > 0) {
-			filterString = ',"filters":[{"or":[';
+			filterString = ',"filters":[';
+			var filter1 = "";
+			var filter2 = "";
 			var index = 0;
-			for (var filter of this.state.filters) {
-				if (index !== 0) {
-					filterString +=",";
+			if (this.state.filters.length > 0) {
+				filter1 = '{"or":[';
+				for (var filter of this.state.filters) {
+					if (index !== 0) {
+						filter1 +=",";
+					}
+					filter1 += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}}';
+					index++;
 				}
-				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}}';
-				index++;
-				console.log(filter);
+				filter1 += "]}";
 			}
-			for (var genre of this.state.genres) {
-				if (index !== 0) {
-					filterString +=",";
+			if (this.state.genres.length > 0) {
+				if (index != 0)
+					filter2 += ",";
+				filter2 += '{"or":[';
+				index = 0;
+				for (var genre of this.state.genres) {
+					if (index !== 0) {
+						filter2 +=",";
+					}
+					filter2 += '{"name":"artist","op":"has","val":{"name":"gen_genre","op":"eq","val":"' + genre + '"}}';
+					index++;
 				}
-				filterString += '{"name":"artist","op":"has","val":{"name":"gen_genre","op":"eq","val":"' + genre + '"}}';
-				index++;
-				// console.log(filter);
+				filter2 += "]}";
 			}
-			filterString += ']}]';
+			filterString += filter1 + filter2;
+			filterString += ']';
 		}
 		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
