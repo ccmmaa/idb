@@ -1,19 +1,19 @@
 /*
 Import this with something like:
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 
 Examples of use: 
 URL.toString("The_Name_or_title_of_something") returns "The Name or title of something"
 URL.toUrl("The Name or title of something") returns "The_Name_or_title_of_something"
 */
-class URLSpaceUnderscore {
+class URLHelperFunctions {
 
 	static toString(url) {
-		return URLSpaceUnderscore.convert(url, '_', ' ');
+		return this.convert(url, '_', ' ');
 	}
 
 	static toUrl(string) {
-		return URLSpaceUnderscore.convert(string, ' ', '_');
+		return this.convert(string, ' ', '_');
 	}
 
 	static lastUrlItem(itemNumber) {
@@ -62,8 +62,6 @@ class URLSpaceUnderscore {
 		// else if (pageNumber > totalPages)
 		// 	return totalPages;
 		else return pageNumber;
-
-
 	}
 
 	static capitalizeWords(words) {
@@ -176,6 +174,29 @@ class URLSpaceUnderscore {
 		return result;
 	}
 
+	static getGenres(standard) {
+		let options = ["country", "pop", "trap", "other", "hip%20hop", "indie", "rap", "metal", "mexican", "funk", "electronic", "jazz", "rock", "latin"];
+		var result = standard;
+		let paramName = "genres=";
+		let qs = this.queryString().split("&");
+		try {
+			for (var param of qs) {
+				if (param.includes(paramName)) {
+					let entry = param.substring(paramName.length+1, param.length-1);
+					result = [];
+					let filters = (entry.split(","));
+					for (var filter of filters) {
+						if (options.includes(filter)){
+							result.push(filter);
+						}
+					}	
+				}
+			}
+		} catch (err){}	
+		console.log(result);
+		return result;
+	}
+
 	static getFiltersInt(standard, options) {
 		var result = standard;
 		let paramName = "filters=";
@@ -222,17 +243,18 @@ class URLSpaceUnderscore {
 		if (!state.order) {
 			edited = true;
 			result += "dir=" + "desc" + "&";
-
 		}
-		if (state.filters.length>0) {
+		if (state.filters != undefined && state.filters.length>0) {
 			edited = true;
 			result += "filters=[" + state.filters + "]" + "&";
-
+		}
+		if (state.genres != undefined && state.genres.length>0) {
+			edited = true;
+			result += "genres=[" + state.genres + "]" + "&";
 		}
 		if (state.page != 1) {
 			edited = true;
 			result += "p=" + state.page + "&";
-
 		}
 		if (edited)
 			return result.substring(0, result.length-1);
@@ -242,4 +264,4 @@ class URLSpaceUnderscore {
 
 	
 } 
-export default URLSpaceUnderscore;
+export default URLHelperFunctions;

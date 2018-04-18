@@ -4,37 +4,28 @@ import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/modelpage.css';
 import ArtistSlide from '../assets/images/artistmodel.jpg';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import LoadingH from '../assets/images/loadingHorizontal.gif';
 import Loading from '../assets/images/loading.gif';
 import $ from 'jquery';
+import Error from '../Error';
 
 
 class Artists extends Component {
-
+	
 	constructor() {
 		super();
 		this.state = {
+			model: "artist",
+			filterBy: "gen_genre",
 			doneLoading: false,
+			status: 200,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("artist_id", ["artist_id", "name", "gen_genre"]),
 			order: URL.getSortDirection("asc"),
-			filters: URL.getFilters([], ["country",
-			"pop",
-			"trap",
-			"other",
-			"hip hop",
-			"indie",
-			"rap",
-			"metal",
-			"mexican",
-			"funk",
-			"electronic",
-			"jazz",
-			"rock",
-			"latin"]),
-			allArtists:[
+			genres: URL.getGenres([]),
+			allItems:[
 				{
 					"albums": [
 					],
@@ -50,45 +41,44 @@ class Artists extends Component {
 				}
 			]
 		}
-		// window.history.pushState("","", "test");
-		// window.history.pushState("","", "test2");
 	}
 
-
-
 	getPage(pageNumber) {
+		let model = this.state.model;
+		let filterFieldName = this.state.filterBy;
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
 			orderDirection = 'desc';
 		var filterString = '';
-		if (this.state.filters.length > 0) {
+		if (this.state.genres.length > 0) {
 			filterString = ',"filters":[{"or":[';
 			var index = 0;
-			for (var filter of this.state.filters) {
+			for (var filter of this.state.genres) {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"gen_genre","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}';
 				index++;
 				console.log(filter);
 			}
 			filterString += ']}]';
 		}
-		console.log('http://api.musepy.me/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
+		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
-					// url: 'http://api.musepy.me/artist?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/grid/artist?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({"allArtists":data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
-					}.bind(this),
-					error: function(xhr, status, error) {
-						// console.log("Get ERROR: " + error);
-					}
-				});
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({allItems: data["objects"], "doneLoading": true, "status": 200, "page": (pageNumber), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					var state = this.state;
+					state.status = xhr.status;
+					this.setState(state);
+				}.bind(this)
+			});
 	}
 
 	componentWillMount() {
@@ -143,9 +133,9 @@ class Artists extends Component {
 		}
 		return bar;
 	}
-	
+
 	pageBarHelper(index, currentPage) {
-		if (index == currentPage) 
+		if (index == currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -164,44 +154,46 @@ class Artists extends Component {
 		this.getPage(this.state.page);
 	}
 
-	addRemoveFilter(filter) {
+	addRemoveGenre(genre) {
 		var state = this.state;
-		if (!state.filters.includes(filter)) {
-			state.filters.push(filter);
+		if (!state.genres.includes(genre)) {
+			state.genres.push(genre);
 		}
 		else {
-			var index = state.filters.indexOf(filter);
-			state.filters.splice(index, 1);
+			var index = state.genres.indexOf(genre);
+			state.genres.splice(index, 1);
 		}
-		// alert(state.filters);
 		state.page=1;
-		this.setState(state);	
+		this.setState(state);
 		this.getPage(this.state.page);
+		console.log("[" + state.genres + "]");
 	}
 
-	clearFilters() {
+	clearGenres() {
 		var state = this.state;
-		state.filters = [];
+		state.genres = [];
 		state.page=1;
 		this.setState(state);
 		this.getPage(this.state.page);
 	}
 
 	render() {
-		window.history.pushState("","", "/artists"+URL.encodeSortFilter(this.state, "artist_id"));
-		var internalContent = <center><img src={LoadingH} className="pageLoadingIndicator" /></center>;
+		window.history.replaceState("","", "/artists"+URL.encodeSortFilter(this.state, "artist_id"));
+		var internalContent = <center><img src={LoadingH} className="pageLoadingIndicator" /><p>If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome's Settings>Advanced>Privacy</p></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
-		if (this.state.doneLoading) {
-			var allArtists = this.state.allArtists.map(artist => {
-				// var bio = artist.bio.substring(0, 100) + "...";
+		if (Math.floor(this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
+		}
+		else if (this.state.doneLoading) {
+			var allItems = this.state.allItems.map(artist => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 						  <a className="" href={"/artists/" + artist.artist_id} role="button">
 						  <img className="rounded-circle" src={artist.image} alt="Artist photo" width="140" height="140" />
 						  </a>
-						  <h2>{artist.name}</h2>
+						  <h2><a href={"/artists/" + artist.artist_id}>{artist.name}</a></h2>
 						  <p>Genre: {URL.capitalizeWords(artist.genre)}</p>
 						  <p><a className="btn btn-secondary" href={"/artists/" + artist.artist_id} role="button">View &raquo;</a></p>
 						</div>
@@ -216,43 +208,36 @@ class Artists extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			// let allFilters = this.state.filters.map(filter => {
-			// 	return(filter + ", ");
-			// });
-			let filterItems = 
-			{Country: "country",
-			Pop: "pop",
-			Trap: "trap",
-			Other: "other",
-			"Hip Hop": "hip hop",
-			Indie: "indie",
-			Rap: "rap",
-			Metal: "metal",
-			Mexican: "mexican",
-			Funk: "funk",
-			Electronic: "electronic",
-			Jazz: "jazz",
-			Rock: "rock",
-			Latin: "latin"
+			let genreItems =
+			{"Country": "country",
+			"Pop": "pop",
+			"Trap": "trap",
+			"Other": "other",
+			"Hip Hop": "hip%20hop",
+			"Indie": "indie",
+			"Rap": "rap",
+			"Metal": "metal",
+			"Mexican": "mexican",
+			"Funk": "funk",
+			"Electronic": "electronic",
+			"Jazz": "jazz",
+			"Rock": "rock",
+			"Latin": "latin"
 			};
-			let allFilters = Object.keys(filterItems).map(filter => {
-				if (this.state.filters.includes(filterItems[filter]))
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
-				}
+			let allGenres = Object.keys(genreItems).map(genre => {
+				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
 			});
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
 									{orderButton}<br/><br/>
-									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
-									{allFilters}<br />
+									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+									{allGenres}<br />
 								</div>
 								<div className="allThings">
 									<center>
-									   {allArtists}
+									   {allItems}
 									</center>
 								</div>
 							</div>;
@@ -260,11 +245,11 @@ class Artists extends Component {
 
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"artists"}/> 
+				<Navigation activeTab={"artists"}/>
 
 				<main role="main">
 					<div align="center">
-						
+
 						<div className="carousel-item titleImage active">
 							<img className="second-slide" src={ArtistSlide} alt="Second slide"/>
 							<div className="container">
@@ -274,7 +259,7 @@ class Artists extends Component {
 							</div>
 						</div>
 					</div>
-					
+
 					<div className="container">
 						<hr/>
 						<center><h1>Artists</h1></center>
@@ -283,7 +268,7 @@ class Artists extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-							
+
 							{internalContent}
 
 							{pagination}
@@ -300,5 +285,5 @@ class Artists extends Component {
 			</div>
 		);
 	}
-} 
+}
 export default Artists;

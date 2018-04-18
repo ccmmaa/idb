@@ -4,11 +4,12 @@ import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/modelpage.css';
 import SongSlide from '../assets/images/songmodel.jpg';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
+import Error from '../Error';
 
-
+//city","op":"has","val":{"name":"name
 
 
 class Songs extends Component {
@@ -16,14 +17,20 @@ class Songs extends Component {
 	constructor() {
 		super();
 		this.state = {
+			model: "song",
+			filterBy: 'city","op":"has","val":{"name":"name',
 			doneLoading: false,
+			status: 200,
 			page: 1,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("song_id", ["song_id","name","album__name","album__year","artist__gen_genre","artist__name"]),
 			order: URL.getSortDirection("asc"),
-			filters: URL.getFilters([], ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22"]),
-			allSongs:[
+			filters: URL.getFilters([], ["Atlanta","Austin","Boston","Charlotte","Chicago","Columbus","Dallas","Denver","Houston",
+				"Indianapolis","Jacksonville","Los%20Angeles","Memphis","Miami","Minneapolis","Oakland","Philadelphia","Phoenix",
+				"Portland","San%20Antonio","San%20Diego","Seattle"]),
+			genres: URL.getGenres([]),
+			allItems:[
 				{
 					"album": {
 						"album_id": 1,
@@ -62,38 +69,50 @@ class Songs extends Component {
 	}
 
 	getPage(pageNumber) {
+		let model = this.state.model;
+		let filterFieldName = this.state.filterBy;
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
 			orderDirection = 'desc';
 		var filterString = '';
-		if (this.state.filters.length > 0) {
+		if (this.state.filters.length > 0 || this.state.genres.length > 0) {
 			filterString = ',"filters":[{"or":[';
 			var index = 0;
 			for (var filter of this.state.filters) {
 				if (index !== 0) {
 					filterString +=",";
 				}
-				filterString += '{"name":"city_id","op":"eq","val":"' + filter + '"}';
+				filterString += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}}';
 				index++;
 				console.log(filter);
 			}
+			for (var genre of this.state.genres) {
+				if (index !== 0) {
+					filterString +=",";
+				}
+				filterString += '{"name":"artist","op":"has","val":{"name":"gen_genre","op":"eq","val":"' + genre + '"}}';
+				index++;
+				// console.log(filter);
+			}
 			filterString += ']}]';
 		}
-		console.log('http://api.musepy.me/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
+		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
-					// url: 'http://api.musepy.me/song?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/grid/song?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({"allSongs": data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
-					}.bind(this),
-					error: function(xhr, status, error) {
-						// console.log("Get ERROR: " + error);
-					}
-				});
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({allItems: data["objects"], "doneLoading": true, "status": 200, "page": (pageNumber), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					var state = this.state;
+					state.status = xhr.status;
+					state.statusText = xhr.statusText;
+					this.setState(state);
+				}.bind(this)
+			});
 	}
 
 	componentWillMount() {
@@ -148,9 +167,9 @@ class Songs extends Component {
 		}
 		return bar;
 	}
-	
+
 	pageBarHelper(index, currentPage) {
-		if (index == currentPage) 
+		if (index == currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable orange">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -178,9 +197,8 @@ class Songs extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		// alert(state.filters);
 		state.page=1;
-		this.setState(state);	
+		this.setState(state);
 		this.getPage(this.state.page);
 	}
 
@@ -192,20 +210,43 @@ class Songs extends Component {
 		this.getPage(this.state.page);
 	}
 
+	addRemoveGenre(genre) {
+		var state = this.state;
+		if (!state.genres.includes(genre)) {
+			state.genres.push(genre);
+		}
+		else {
+			var index = state.genres.indexOf(genre);
+			state.genres.splice(index, 1);
+		}
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+		console.log("[" + state.genres + "]");
+	}
+
+	clearGenres() {
+		var state = this.state;
+		state.genres = [];
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+	}
+
 	render() {
-		window.history.pushState("","", "/songs"+URL.encodeSortFilter(this.state, "song_id"));
-		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
+		window.history.replaceState("","", "/songs"+URL.encodeSortFilter(this.state, "song_id"));
+		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /><p>If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome's Settings>Advanced>Privacy</p></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
 		if (this.state.doneLoading) {
-			 var allSongs = this.state.allSongs.map(song => {
+			var allItems = this.state.allItems.map(song => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 						  <a className="" href={"/songs/" + song["song_id"]} role="button">
 						  <img className="rounded-circle" src={song["album"]["artwork"]} alt="Generic placeholder image" width="140" height="140" />
 						  </a>
-						  <h2>{song["name"]}</h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6>
+						  <h2><a href={"/songs/" + song["song_id"]}>{song["name"]}</a></h2><h6>by <a href={"/artists/" + song["artist"]["artist_id"]}>{song["artist"]["name"]}</a></h6>
 						  <span>
 							  <a href={"/albums/" + song.album_id}>{song.album.name}</a>, {song.album.year}<br />
 							  {URL.capitalizeWords(song.artist.genre)}<br />
@@ -227,64 +268,83 @@ class Songs extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			// let allFilters = this.state.filters.map(filter => {
-			// 	return(filter + ", ");
-			// });
 			let filterItems = {
-				"Atlanta":"4",
-				"Austin":"1", 
-				"Boston":"8",
-				"Charlotte":"21",
-				"Chicago":"19",
-				"Columbus":"14",
-				"Dallas":"3",
-				"Denver":"10",
-				"Houston":"2", 
-				"Indianapolis":"12",
-				"Jacksonville":"11",
-				"Los Angeles":"7",
-				"Memphis":"15",
-				"Miami":"18",
-				"Minneapolis":"5",
-				"Oakland":"22",
-				"Philadelphia":"16",
-				"Phoenix":"17",
-				"Portland":"20",
-				"San Antonio":"9",
-				"San Diego":"6",
-				"Seattle":"13"
+				"Atlanta":"Atlanta",
+				"Austin":"Austin",
+				"Boston":"Boston",
+				"Charlotte":"Charlotte",
+				"Chicago":"Chicago",
+				"Columbus":"Columbus",
+				"Dallas":"Dallas",
+				"Denver":"Denver",
+				"Houston":"Houston",
+				"Indianapolis":"Indianapolis",
+				"Jacksonville":"Jacksonville",
+				"Los Angeles":"Los%20Angeles",
+				"Memphis":"Memphis",
+				"Miami":"Miami",
+				"Minneapolis":"Minneapolis",
+				"Oakland":"Oakland",
+				"Philadelphia":"Philadelphia",
+				"Phoenix":"Phoenix",
+				"Portland":"Portland",
+				"San Antonio":"San%20Antonio",
+				"San Diego":"San%20Diego",
+				"Seattle":"Seattle"
 				};
 			let allFilters = Object.keys(filterItems).map(filter => {
-				if (this.state.filters.includes(filterItems[filter]))
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
-				}
+				return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
-			
+
+			let genreItems =
+			{"Country": "country",
+			"Pop": "pop",
+			"Trap": "trap",
+			"Other": "other",
+			"Hip Hop": "hip%20hop",
+			"Indie": "indie",
+			"Rap": "rap",
+			"Metal": "metal",
+			"Mexican": "mexican",
+			"Funk": "funk",
+			"Electronic": "electronic",
+			"Jazz": "jazz",
+			"Rock": "rock",
+			"Latin": "latin"
+			};
+			let allGenres = Object.keys(genreItems).map(genre => {
+				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
+			});
+
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
 									{orderButton}<br/><br/>
-									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
+									<strong>City</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
 									{allFilters}<br />
+									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+									{allGenres}<br />
 								</div>
 								<div className="allThings">
 									<center>
-									   {allSongs}
+									   {allItems}
 									</center>
 								</div>
 							</div>;
 		}
-		
+
+		if (Math.floor(this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
+		}
+
 		return(
 			<div className="pageContent">
-				<Navigation activeTab={"songs"}/> 
+				<Navigation activeTab={"songs"}/>
 
 				<main role="main">
 					<div align="center">
-						
+
 						<div className="carousel-item titleImage active">
 							<img className="first-slide" src={SongSlide} alt="First slide" />
 							<div className="container">
@@ -294,7 +354,7 @@ class Songs extends Component {
 							</div>
 						</div>
 					</div>
-					
+
 					<div className="container">
 						<hr />
 						<center><h1>Songs</h1></center>
@@ -303,7 +363,7 @@ class Songs extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-							
+
 							{internalContent}
 
 							{pagination}
@@ -321,5 +381,5 @@ class Songs extends Component {
 			</div>
 		);
 	}
-} 
+}
 export default Songs;
