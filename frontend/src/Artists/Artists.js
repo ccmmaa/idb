@@ -225,11 +225,7 @@ class Artists extends Component {
 			"Latin": "latin"
 			};
 			let allGenres = Object.keys(genreItems).map(genre => {
-				if (this.state.genres.includes(genreItems[genre]))
-					return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked/>&nbsp;{genre}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox"/>&nbsp;{genre}<br /></span>);
-				}
+				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
 			});
 			internalContent = <div>
 								<div className="sortAndFilter">

@@ -26,7 +26,9 @@ class Songs extends Component {
 			lastpage:1,
 			sort: URL.getSortItem("song_id", ["song_id","name","album__name","album__year","artist__gen_genre","artist__name"]),
 			order: URL.getSortDirection("asc"),
-			filters: URL.getFilters([], ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22"]),
+			filters: URL.getFilters([], ["Atlanta","Austin","Boston","Charlotte","Chicago","Columbus","Dallas","Denver","Houston",
+				"Indianapolis","Jacksonville","Los%20Angeles","Memphis","Miami","Minneapolis","Oakland","Philadelphia","Phoenix",
+				"Portland","San%20Antonio","San%20Diego","Seattle"]),
 			genres: URL.getGenres([]),
 			allItems:[
 				{
@@ -270,7 +272,7 @@ class Songs extends Component {
 				"Houston":"Houston",
 				"Indianapolis":"Indianapolis",
 				"Jacksonville":"Jacksonville",
-				"Los Angeles":"Los Angeles",
+				"Los Angeles":"Los%20Angeles",
 				"Memphis":"Memphis",
 				"Miami":"Miami",
 				"Minneapolis":"Minneapolis",
@@ -278,16 +280,12 @@ class Songs extends Component {
 				"Philadelphia":"Philadelphia",
 				"Phoenix":"Phoenix",
 				"Portland":"Portland",
-				"San Antonio":"San Antonio",
-				"San Diego":"San Diego",
+				"San Antonio":"San%20Antonio",
+				"San Diego":"San%20Diego",
 				"Seattle":"Seattle"
 				};
 			let allFilters = Object.keys(filterItems).map(filter => {
-				if (this.state.filters.includes(filterItems[filter]))
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
-				}
+				return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
 
 			let genreItems =
@@ -307,11 +305,7 @@ class Songs extends Component {
 			"Latin": "latin"
 			};
 			let allGenres = Object.keys(genreItems).map(genre => {
-				if (this.state.genres.includes(genreItems[genre]))
-					return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked/>&nbsp;{genre}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox"/>&nbsp;{genre}<br /></span>);
-				}
+				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
 			});
 
 			internalContent = <div>

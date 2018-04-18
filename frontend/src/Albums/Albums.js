@@ -284,13 +284,8 @@ class Albums extends Component {
 				"2018":2018
 				};
 			let allFilters = Object.keys(filterItems).map(filter => {
-				if (this.state.filters.includes(filterItems[filter]))
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
-				}
+					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
-
 			let genreItems =
 			{"Country": "country",
 			"Pop": "pop",
@@ -308,11 +303,8 @@ class Albums extends Component {
 			"Latin": "latin"
 			};
 			let allGenres = Object.keys(genreItems).map(genre => {
-				if (this.state.genres.includes(genreItems[genre]))
-					return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked/>&nbsp;{genre}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox"/>&nbsp;{genre}<br /></span>);
-				}
+				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
+
 			});
 
 			internalContent = <div>

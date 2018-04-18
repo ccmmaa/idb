@@ -220,11 +220,7 @@ class Cities extends Component {
 				Washington: "Washington"
 				};
 			let allFilters = Object.keys(filterItems).map(filter => {
-				if (this.state.filters.includes(filterItems[filter]))
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
-				}
+				return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
 
 			internalContent = <div>
