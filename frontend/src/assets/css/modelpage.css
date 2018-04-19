@@ -173,3 +173,7 @@ body {
 p {
 	/*font-size: max(1em, 12px);*/
 }
+
+.no_results {
+	padding-right: 15vw;
+}
