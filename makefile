@@ -27,7 +27,7 @@ stories:
 
 # make uml      - prints link to uml diagram
 uml:
-	@echo "https://requiemforourdreams.gitbook.io/report/database#uml-diagram"
+	@echo "https://github.com/ccmmaa/idb/blob/master/umldiagram.png"
 
 # make selenium - runs selenium tests
 selenium:
