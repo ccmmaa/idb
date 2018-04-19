@@ -265,6 +265,9 @@ class Albums extends Component {
 					</div>
 				);
 			});
+			if (this.state.allItems.length === 0) {
+				allItems = <h2 className="no_results">No results.</h2>;
+			}
 			let sortDropDown = <select className="sort-drop-down" onChange={event =>this.changeSort(event.target.value)} aria-labelledby="sort_by_text" value={this.state.sort}>
 									<option value="album_id">Album ID</option>
 									<option value="name">Album Name</option>
