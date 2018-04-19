@@ -1,6 +1,6 @@
-# Sunkist
+# Musepy
 
-### A GitPitch Presentation Template
+### Requiem for Our Dreams
 
 ---
 
