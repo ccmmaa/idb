@@ -17,8 +17,3 @@ class NavTabItem extends Component {
 	}
 }
 export default NavTabItem;
-
-/*
-				<LinkContainer to={this.props.tab.href}><a>{this.props.tab.text}</a></LinkContainer>
-
-*/

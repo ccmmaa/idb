@@ -61,7 +61,6 @@ class SongInstance extends Component {
 			}.bind(this),
 			error: function(xhr, status, error) {
 				console.log("error");
-				
 			}.bind(this)
 		});
 	}
@@ -76,10 +75,8 @@ class SongInstance extends Component {
 			}.bind(this),
 			error: function(xhr, status, error) {
 				this.setState({"doneLoading": true, "status": xhr.status, "statusText": xhr.statusText});
-				// console.log("Get ERROR: " + error);
 			}.bind(this)
 		});
-
 	}
 
 	render() {
@@ -91,7 +88,7 @@ class SongInstance extends Component {
 				<span>{lyricsPart} <br/></span>
 			);
 		});
-		// let loaded = this.state.doneLoading;
+
 		var internalContent;
 		if (Math.floor(this.state.status/100)===2 ) {
 			internalContent = 

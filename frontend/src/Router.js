@@ -14,8 +14,6 @@ import CityInstance from './Cities/CityInstance';
 import About from './About/About';
 import Search from './Search/Search';
 
-// import Something from './Somewhere'
-
 class Router extends Component {
 
 	render() {
@@ -33,12 +31,9 @@ class Router extends Component {
 				<Route exact path="/cities/:cityID" component={CityInstance} />
 				<Route exact path="/about" component={About} />
 				<Route exact path="/search" component={Search} />
-
 			</Switch>
 		)
 	}
 }
 
 export default Router;
-
-//				<Route exact path="/" component={Something}/>

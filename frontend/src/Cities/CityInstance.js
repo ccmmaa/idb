@@ -9,7 +9,6 @@ import Loading from '../assets/images/loading.gif';
 import Error from '../Error';
 import Concert from "./Concert"
 
-
 class CityInstance extends Component {
 
 	constructor() {
@@ -25,8 +24,7 @@ class CityInstance extends Component {
 				"image": "http://www.celebrityslice.com/wp-content/uploads/2015/08/city-wallpaper-7.jpg",
 				"name": "",
 				"playlist": LoadingH,
-				"songs": [
-					{
+				"songs": [{
 						"album_id": 1,
 						"artist_id": 1,
 						"city_id": 1,
@@ -52,11 +50,7 @@ class CityInstance extends Component {
 			}.bind(this),
 			error: function(xhr, status, error) {
 				this.setState({"doneLoading": true, "status": xhr.status, "statusText": xhr.statusText});
-				// console.log("Error");
 				console.log(xhr);
-				// console.log(status);
-				// console.log(error);
-				// // console.log("Get ERROR: " + error);
 			}.bind(this)
 		});
 	}
@@ -97,21 +91,17 @@ class CityInstance extends Component {
 					<div class="container">
 						<hr/>
 					</div>
-										
 					<div className="container">
 						<div className="row mapPart1">
 							<div id="map">
 								{map}
 							</div>
 
-
 							<div id="playlist">
 								<p class = "h2">The Sound of <br />	{this.state.cityData.name}, {this.state.cityData.state}</p>
 								<iframe id="spotify" className="shadow" src={this.BuildSpotifyEmbedUrl()} width="450" height="80" frameborder="0" allowtransparency="true"></iframe>
-								
 								<ul className="list-group list-group-flush citySongList">
 									{albumSongs}
-									
 								</ul>
 							</div>
 						</div>
@@ -119,11 +109,9 @@ class CityInstance extends Component {
 					<center>
 						<div id="concerts">
 							<p class = "h2">Upcoming Concerts</p>
-								<ul className="list-group">
-									
-									{concerts}
-
-								</ul>
+							<ul className="list-group">
+								{concerts}
+							</ul>
 						</div>
 					</center>
 					<br />	
@@ -131,21 +119,16 @@ class CityInstance extends Component {
 					<div class="container">
 						<hr/>
 					</div>
-
 				</main>;
 		}
 		else {
-			// alert(this.state.status);
 			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;	
 		}
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"cities"}/> 
-
 				{internalContent}
-					
 				<Footer />
-				}
 			</div>
 		);
 	}

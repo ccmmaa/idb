@@ -8,9 +8,7 @@ import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 import Error from '../Error';
-
-//city","op":"has","val":{"name":"name
-
+import FilterHelper from '../FilterHelper';
 
 class Songs extends Component {
 
@@ -26,9 +24,7 @@ class Songs extends Component {
 			lastpage:1,
 			sort: URL.getSortItem("song_id", ["song_id","name","album__name","album__year","artist__gen_genre","artist__name"]),
 			order: URL.getSortDirection("asc"),
-			filters: URL.getFilters([], ["Atlanta","Austin","Boston","Charlotte","Chicago","Columbus","Dallas","Denver","Houston",
-				"Indianapolis","Jacksonville","Los%20Angeles","Memphis","Miami","Minneapolis","Oakland","Philadelphia","Phoenix",
-				"Portland","San%20Antonio","San%20Diego","Seattle"]),
+			filters: URL.getFilters([], FilterHelper.validCities()),
 			genres: URL.getGenres([]),
 			allItems:[
 				{
@@ -110,7 +106,7 @@ class Songs extends Component {
 			filterString += ']';
 		}
 		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
-		if (pageNumber > 0)
+		if (pageNumber > 0) {
 			$.ajax({
 				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
 				dataType: 'json',
@@ -125,6 +121,7 @@ class Songs extends Component {
 					this.setState(state);
 				}.bind(this)
 			});
+		}
 	}
 
 	componentWillMount() {
@@ -280,70 +277,33 @@ class Songs extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			let filterItems = {
-				"Atlanta":"Atlanta",
-				"Austin":"Austin",
-				"Boston":"Boston",
-				"Charlotte":"Charlotte",
-				"Chicago":"Chicago",
-				"Columbus":"Columbus",
-				"Dallas":"Dallas",
-				"Denver":"Denver",
-				"Houston":"Houston",
-				"Indianapolis":"Indianapolis",
-				"Jacksonville":"Jacksonville",
-				"Los Angeles":"Los%20Angeles",
-				"Memphis":"Memphis",
-				"Miami":"Miami",
-				"Minneapolis":"Minneapolis",
-				"Oakland":"Oakland",
-				"Philadelphia":"Philadelphia",
-				"Phoenix":"Phoenix",
-				"Portland":"Portland",
-				"San Antonio":"San%20Antonio",
-				"San Diego":"San%20Diego",
-				"Seattle":"Seattle"
-				};
+			let filterItems = FilterHelper.citiesDict();
 			let allFilters = Object.keys(filterItems).map(filter => {
 				return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
 
-			let genreItems =
-			{"Country": "country",
-			"Pop": "pop",
-			"Trap": "trap",
-			"Other": "other",
-			"Hip Hop": "hip%20hop",
-			"Indie": "indie",
-			"Rap": "rap",
-			"Metal": "metal",
-			"Mexican": "mexican",
-			"Funk": "funk",
-			"Electronic": "electronic",
-			"Jazz": "jazz",
-			"Rock": "rock",
-			"Latin": "latin"
-			};
+			let genreItems = FilterHelper.genresDict();
 			let allGenres = Object.keys(genreItems).map(genre => {
 				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
 			});
 
-			internalContent = <div>
-								<div className="sortAndFilter">
-									<strong>Sort by</strong><br />
-									{sortDropDown}&nbsp;
-									{orderButton}<br/><br/>
-									<strong>City</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
-									{allFilters}<br />
-									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
-									{allGenres}<br />
-								</div>
-								<div className="allThings">
-									<center>
-									   {allItems}
-									</center>
-								</div>
-							</div>;
+			internalContent = 
+				<div>
+					<div className="sortAndFilter">
+						<strong>Sort by</strong><br />
+						{sortDropDown}&nbsp;
+						{orderButton}<br/><br/>
+						<strong>City</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
+						{allFilters}<br />
+						<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+						{allGenres}<br />
+					</div>
+					<div className="allThings">
+						<center>
+							{allItems}
+						</center>
+					</div>
+				</div>;
 		}
 
 		if (Math.floor(this.state.status/100)!==2 ) {
@@ -375,21 +335,15 @@ class Songs extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-
 							{internalContent}
-
 							{pagination}
 						</div>
 					</div>
-
 					<div className="container">
 						<hr />
 					</div>
 				</main>
-
-
 				<Footer />
-
 			</div>
 		);
 	}

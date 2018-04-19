@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import URL from '../URLHelperFunctions';
 
-
-
-
 class Album extends Component {
 
 	constructor() {
@@ -16,7 +13,6 @@ class Album extends Component {
 
 	componentWillMount() {
 		this.getiTunesUrl(URL.convert(this.props.albumName + " " + this.props.artist, " ", "+"));
-		// alert(URL.convert(this.props.albumName + this.props.artist, " ", "+"));
 	}
 
 	getiTunesUrl(searchTerm) {
@@ -33,8 +29,7 @@ class Album extends Component {
 				}
 			}.bind(this),
 			error: function(xhr, status, error) {
-				console.log("error");
-				
+				console.log(xhr);
 			}
 		});
 	}

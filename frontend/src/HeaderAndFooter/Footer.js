@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import {a} from 'react-router-dom';
 
-
 class Footer extends Component {
 	
 	render() {
-
 		return(
 			<div> 
 				<footer className="container">

@@ -10,7 +10,6 @@ import Laurence from '../assets/images/portraits/laurence.jpg';
 import Sabrina from '../assets/images/portraits/sabrina.jpg';
 import $ from 'jquery';
 
-
 class About extends Component {
 
 	constructor() {
@@ -81,7 +80,7 @@ class About extends Component {
 					}
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
+				console.log(xhr);
 			}
 		});
 	}
@@ -94,7 +93,6 @@ class About extends Component {
 	}
 
 	getGithubCommits() {		
-
 		let cris_commits_1 = this.getRequestLength(this.url_commits('author=ccmmaa'), "cris", "commits");
 		let cris_commits_2 = this.getRequestLength(this.url_commits('author=ccmmaa@cs.utexas.edu'), "cris", "commits");
 		let cris_issues = this.getRequestLength(this.url_issues('creator=ccmmaa;state=all'), "cris", "issues");
@@ -114,7 +112,6 @@ class About extends Component {
 
 		let sabr_commits = this.getRequestLength(this.url_commits('author=SabrinaHerrero'), "sabr", "commits");
 		let sabr_issues = this.getRequestLength(this.url_issues('creator=SabrinaHerrero;state=all'),  "sabr", "issues");
-
 	}
 
 	componentWillMount() {
@@ -182,10 +179,7 @@ class About extends Component {
 				"tests": state.tests.sabr
 			}
 		}
-		// console.log("Data Dump: Chia: " + state.commits.chia + ",   Cris: " + state.commits.cris + ",    Faiz: " + state.commits.faiz + ",   Laur: " + state.commits.laur + ",   Sabr: " + state.commits.sabr);
-
 		let names = ["chiahua", "cristina", "faiz", "laurence", "sabrina"];
-
 		let allMembers = names.map(member => {
 			return(
 				<div className="team-member-card card-shadows about-cards">
@@ -253,7 +247,6 @@ class About extends Component {
 						</div>
 
 		       			<hr />
-		        
 						
 						<div className="row featurette">
 							<div>
