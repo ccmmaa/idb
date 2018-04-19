@@ -61,8 +61,6 @@ class URLHelperFunctions {
 		let pageNumber = url.substring(indexOfP + 3);
 		if (pageNumber < 1)
 			return 1;
-		// else if (pageNumber > totalPages)
-		// 	return totalPages;
 		else return pageNumber;
 	}
 

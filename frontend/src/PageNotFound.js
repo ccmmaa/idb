@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 
 /*
 Inject this page in between the Navitation and Footer Elements:
-
 <Navigation activeTab={"songs"}/> 
-
 <PageNotFound />
-
 <Footer />
 */
 

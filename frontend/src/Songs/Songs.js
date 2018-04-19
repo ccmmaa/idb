@@ -13,7 +13,6 @@ import FilterHelper from '../FilterHelper';
 class Songs extends Component {
 
 	constructor() {
-		// alert(URL.getFilters([], FilterHelper.validStates()));
 		super();
 		this.state = {
 			model: "song",

@@ -212,20 +212,21 @@ class Artists extends Component {
 			let allGenres = Object.keys(genreItems).map(genre => {
 				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
 			});
-			internalContent = <div>
-								<div className="sortAndFilter">
-									<strong>Sort by</strong><br />
-									{sortDropDown}&nbsp;
-									{orderButton}<br/><br/>
-									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
-									{allGenres}<br />
-								</div>
-								<div className="allThings">
-									<center>
-									   {allItems}
-									</center>
-								</div>
-							</div>;
+			internalContent = 
+				<div>
+					<div className="sortAndFilter">
+						<strong>Sort by</strong><br />
+						{sortDropDown}&nbsp;
+						{orderButton}<br/><br/>
+						<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+						{allGenres}<br />
+					</div>
+					<div className="allThings">
+						<center>
+						   {allItems}
+						</center>
+					</div>
+				</div>;
 		}
 
 		return(
