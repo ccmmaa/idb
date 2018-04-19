@@ -1,5 +1,18 @@
 .PHONY: backend frontend
 
+GithubID = ccmmaa
+RepoName = idb
+SHA      = dd19a5b9c7a8d9ae4815d77f51fcceb9fa251388
+
+githubid:
+	@echo "${GithubID}"
+
+reponame:
+	@echo "${RepoName}"
+
+sha:
+	@echo "${SHA}"
+
 # make github   - prints link to github repo
 github:
 	@echo "https://github.com/ccmmaa/idb"
@@ -14,7 +27,7 @@ stories:
 
 # make uml      - prints link to uml diagram
 uml:
-	@echo "https://requiemforourdreams.gitbook.io/report/database#uml-diagram"
+	@echo "https://github.com/ccmmaa/idb/blob/master/umldiagram.png"
 
 # make selenium - runs selenium tests
 selenium:

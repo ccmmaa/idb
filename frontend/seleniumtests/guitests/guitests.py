@@ -1,8 +1,8 @@
-from ApplicationPages import *
+from TestSuite.ApplicationPages import *
 import unittest
 
-
 class GuiTests(unittest.TestCase):
+
 
     def test_loadWebApp(self):
         Browser().gotoMusepy()
@@ -143,61 +143,6 @@ class GuiTests(unittest.TestCase):
         self.assertTrue(Navigation().isSongInstancePage())
         Browser().close()
 
-    def test_artistInstanceLinkCity(self):
-        Browser().gotoMusepy()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoArtists()
-        self.assertTrue(Navigation().isArtistsPage())
-        ArtistsPage().selectInstance()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        ArtistInstancePage().selectCity()
-        self.assertTrue(Navigation().isCityInstancePage())
-        Browser().close()
-
-    def test_albumInstanceLinkArtist(self):
-        Browser().gotoMusepy()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoAlbums()
-        self.assertTrue(Navigation().isAlbumsPage())
-        AlbumsPage().selectInstance()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        AlbumInstancePage().selectArtist()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().close()
-
-    def test_albumInstanceLinkSong(self):
-        Browser().gotoMusepy()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoAlbums()
-        self.assertTrue(Navigation().isAlbumsPage())
-        AlbumsPage().selectInstance()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        AlbumInstancePage().selectSong()
-        self.assertTrue(Navigation().isSongInstancePage())
-        Browser().close()
-
-    def test_cityInstanceLinkSong(self):
-        Browser().gotoMusepy()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoCities()
-        self.assertTrue(Navigation().isCitiesPage())
-        CitiesPage().selectInstance()
-        self.assertTrue(Navigation().isCityInstancePage())
-        CityInstancePage().selectSong()
-        self.assertTrue(Navigation().isSongInstancePage())
-        Browser().close()
-
-    def test_cityInstanceLinkArtist(self):
-        Browser().gotoMusepy()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoCities()
-        self.assertTrue(Navigation().isCitiesPage())
-        CitiesPage().selectInstance()
-        self.assertTrue(Navigation().isCityInstancePage())
-        CityInstancePage().selectArtist()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().close()
-
     def test_footerLinkGitHub(self):
         Browser().gotoMusepy()
         self.assertTrue(Navigation().isHomePage())
@@ -210,89 +155,6 @@ class GuiTests(unittest.TestCase):
         self.assertTrue(Navigation().isHomePage())
         Footer().gotoGitBook()
         self.assertTrue(Footer().isGitBook())
-        Browser().close()
-
-    def test_backNavigation(self):
-        Browser().gotoMusepy()
-        self.assertTrue(Navigation().isHomePage())
-        Footer().gotoGitBook()
-        Browser().back()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoArtists()
-        self.assertTrue(Navigation().isArtistsPage())
-        ArtistsPage().selectInstance()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().back()
-        Browser().back()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoSongs()
-        self.assertTrue(Navigation().isSongsPage())
-        SongsPage().selectInstance()
-        self.assertTrue(Navigation().isSongInstancePage())
-        SongInstancePage().selectAlbum()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isSongInstancePage())
-        SongInstancePage().selectArtist()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        ArtistInstancePage().selectAlbum()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        AlbumInstancePage().selectArtist()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isSongInstancePage())
-        Browser().close()
-
-    def test_forwardNavigation(self):
-        Browser().gotoMusepy()
-        self.assertTrue(Navigation().isHomePage())
-        Footer().gotoGitBook()
-        Browser().back()
-        self.assertTrue(Navigation().isHomePage())
-        Navigation().gotoArtists()
-        self.assertTrue(Navigation().isArtistsPage())
-        Browser().back()
-        self.assertTrue(Navigation().isHomePage())
-        Browser().forward()
-        self.assertTrue(Navigation().isArtistsPage())
-        ArtistsPage().selectInstance()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().back()
-        Browser().back()
-        Browser().forward()
-        self.assertTrue(Navigation().isArtistsPage())
-        Navigation().gotoSongs()
-        self.assertTrue(Navigation().isSongsPage())
-        SongsPage().selectInstance()
-        self.assertTrue(Navigation().isSongInstancePage())
-        SongInstancePage().selectAlbum()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isSongInstancePage())
-        Browser().forward()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        AlbumInstancePage().selectArtist()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        ArtistInstancePage().selectAlbum()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        AlbumInstancePage().selectArtist()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().back()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        Browser().forward()
-        self.assertTrue(Navigation().isArtistInstancePage())
-        Browser().forward()
-        self.assertTrue(Navigation().isAlbumInstancePage())
-        Browser().forward()
-        self.assertTrue(Navigation().isArtistInstancePage())
         Browser().close()
 
     def test_searchAlbum(self):
@@ -370,6 +232,7 @@ class GuiTests(unittest.TestCase):
         CitiesPage().selectSortBy("City Name")
         self.assertTrue(Navigation().isCitiesPage())
         Browser().close()
+
 
     def test_filterArtistPage(self):
         Browser().gotoMusepy()
@@ -450,6 +313,7 @@ class GuiTests(unittest.TestCase):
         CitiesPage().selectSortBy("City Name")
         self.assertTrue(Navigation().isCitiesPage())
         Browser().close()
+    
 
     def test_paginationArtistPage(self):
         Browser().gotoMusepy()
@@ -518,7 +382,6 @@ class GuiTests(unittest.TestCase):
         CitiesPage().selectPagination("< Previous")
         self.assertTrue(Navigation().isCitiesPage())
         Browser().close()
-
 
 if __name__ == '__main__':
     unittest.main()
