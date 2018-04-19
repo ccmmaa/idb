@@ -8,6 +8,7 @@ import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 import Error from '../Error';
+import FilterHelper from '../FilterHelper';
 
 class Albums extends Component {
 
@@ -22,7 +23,7 @@ class Albums extends Component {
 			lastpage:1,
 			sort: URL.getSortItem("album_id", ["album_id","name","artist__name","artist__gen_genre","year","producer"]),
 			order: URL.getSortDirection("asc"),
-			filters: URL.getFiltersInt([], [1973,1976,1979,1980,1982,1983,1987,1994,1997,2000,2002,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]),
+			filters: URL.getFiltersInt([], FilterHelper.validYears()),
 			genres: URL.getGenres([]),
 			allItems: [
 				{
@@ -275,53 +276,11 @@ class Albums extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			let filterItems = {
-				"1973":1973,
-				"1976":1976,
-				"1979":1979,
-				"1980":1980,
-				"1982":1982,
-				"1983":1983,
-				"1987":1987,
-				"1994":1994,
-				"1997":1997,
-				"2000":2000,
-				"2002":2002,
-				"2004":2004,
-				"2005":2005,
-				"2006":2006,
-				"2007":2007,
-				"2008":2008,
-				"2009":2009,
-				"2010":2010,
-				"2011":2011,
-				"2012":2012,
-				"2013":2013,
-				"2014":2014,
-				"2015":2015,
-				"2016":2016,
-				"2017":2017,
-				"2018":2018
-				};
+			let filterItems = FilterHelper.yearsDict();
 			let allFilters = Object.keys(filterItems).map(filter => {
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
+				return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
-			let genreItems =
-			{"Country": "country",
-			"Pop": "pop",
-			"Trap": "trap",
-			"Other": "other",
-			"Hip Hop": "hip%20hop",
-			"Indie": "indie",
-			"Rap": "rap",
-			"Metal": "metal",
-			"Mexican": "mexican",
-			"Funk": "funk",
-			"Electronic": "electronic",
-			"Jazz": "jazz",
-			"Rock": "rock",
-			"Latin": "latin"
-			};
+			let genreItems = FilterHelper.genresDict();
 			let allGenres = Object.keys(genreItems).map(genre => {
 				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
 
@@ -378,7 +337,6 @@ class Albums extends Component {
 					<div className="container">
 						<hr />
 					</div>
-
 				</main>
 				<Footer />
 			</div>

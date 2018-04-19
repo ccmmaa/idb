@@ -9,7 +9,7 @@ import LoadingH from '../assets/images/loadingHorizontal.gif';
 import Loading from '../assets/images/loading.gif';
 import $ from 'jquery';
 import Error from '../Error';
-
+import FilterHelper from '../FilterHelper';
 
 class Artists extends Component {
 	
@@ -25,8 +25,7 @@ class Artists extends Component {
 			sort: URL.getSortItem("artist_id", ["artist_id", "name", "gen_genre"]),
 			order: URL.getSortDirection("asc"),
 			genres: URL.getGenres([]),
-			allItems:[
-				{
+			allItems:[{
 					"albums": [
 					],
 					"artist_id": 1,
@@ -37,7 +36,7 @@ class Artists extends Component {
 					"image": "https://retchhh.files.wordpress.com/2015/03/loading10.gif?w=300&h=285",
 					"name": "Loading...",
 					"songs": [
-					],
+					]
 				}
 			]
 		}
@@ -65,7 +64,7 @@ class Artists extends Component {
 			filterString += ']}]';
 		}
 		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
-		if (pageNumber > 0)
+		if (pageNumber > 0) {
 			$.ajax({
 				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
 				dataType: 'json',
@@ -79,6 +78,7 @@ class Artists extends Component {
 					this.setState(state);
 				}.bind(this)
 			});
+		}
 	}
 
 	componentWillMount() {
@@ -208,39 +208,25 @@ class Artists extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			let genreItems =
-			{"Country": "country",
-			"Pop": "pop",
-			"Trap": "trap",
-			"Other": "other",
-			"Hip Hop": "hip%20hop",
-			"Indie": "indie",
-			"Rap": "rap",
-			"Metal": "metal",
-			"Mexican": "mexican",
-			"Funk": "funk",
-			"Electronic": "electronic",
-			"Jazz": "jazz",
-			"Rock": "rock",
-			"Latin": "latin"
-			};
+			let genreItems = FilterHelper.genresDict();;
 			let allGenres = Object.keys(genreItems).map(genre => {
 				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
 			});
-			internalContent = <div>
-								<div className="sortAndFilter">
-									<strong>Sort by</strong><br />
-									{sortDropDown}&nbsp;
-									{orderButton}<br/><br/>
-									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
-									{allGenres}<br />
-								</div>
-								<div className="allThings">
-									<center>
-									   {allItems}
-									</center>
-								</div>
-							</div>;
+			internalContent = 
+				<div>
+					<div className="sortAndFilter">
+						<strong>Sort by</strong><br />
+						{sortDropDown}&nbsp;
+						{orderButton}<br/><br/>
+						<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+						{allGenres}<br />
+					</div>
+					<div className="allThings">
+						<center>
+						   {allItems}
+						</center>
+					</div>
+				</div>;
 		}
 
 		return(
@@ -249,7 +235,6 @@ class Artists extends Component {
 
 				<main role="main">
 					<div align="center">
-
 						<div className="carousel-item titleImage active">
 							<img className="second-slide" src={ArtistSlide} alt="Second slide"/>
 							<div className="container">
@@ -259,7 +244,6 @@ class Artists extends Component {
 							</div>
 						</div>
 					</div>
-
 					<div className="container">
 						<hr/>
 						<center><h1>Artists</h1></center>
@@ -279,9 +263,7 @@ class Artists extends Component {
 						<hr/>
 					</div>
 				</main>
-
 				<Footer />
-
 			</div>
 		);
 	}
