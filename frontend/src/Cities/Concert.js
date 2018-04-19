@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
 import '../assets/css/concertComponent.css';
@@ -19,7 +19,7 @@ class Concert extends Component {
 		$.ajax({
 			url: 'http://api.musepy.me/artist/' + this.props.concert.artist_id,
 			dataType: 'json',
-			cache: false,
+			cache: true,
 			success: function(data) {
 				console.log("Dump" + data.image);
 				this.setState({"artistName": data.name, "artistImage": data.image});

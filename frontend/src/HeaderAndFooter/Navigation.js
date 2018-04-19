@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {a} from 'react-router-dom';
 import NavTabItem from './NavTabItem';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
+import '../assets/css/navigation.css';
 
 class Navigation extends Component {
 	constructor(){
@@ -18,7 +19,7 @@ class Navigation extends Component {
 			alert('"%" is not an allowed character.');
 		} else {
 			this.setState({queryInput:this.refs.input.value}, function(){
-				window.location = '/search?q=' + this.state.queryInput;			});
+				window.location = '/search?q=' + URL.convert(this.state.queryInput, " ", "+");			});
 		}
 		e.preventDefault();
 	}

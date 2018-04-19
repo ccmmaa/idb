@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 
 
 
@@ -46,7 +46,7 @@ class Album extends Component {
 					<img className="rounded-0" src={this.props.albumArt} alt="Album Art" width="100%" height="100%" />
 					<h4><a href={"/albums/" + this.props.albumId}>{this.props.albumName}</a></h4>
 				</div>
-				<center><a href={this.state.itunesUrl} target="_blank"><span className="badge badge-primary badge-pill">Buy</span></a></center>
+				<center><a href={this.state.itunesUrl} target="_blank"><span className="badge-primary badge badge-pill">Buy</span></a></center>
 			</div>
 		);
 	}

@@ -14,7 +14,7 @@ import SongInstance from '../src/Songs/SongInstance';
 import ArtistInstance from '../src/Artists/ArtistInstance';
 import AlbumInstance from '../src/Albums/AlbumInstance';
 import CityInstance from '../src/Cities/CityInstance';
-import Search from '..src/Search/Search';
+import Search from '../src/Search/Search';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 

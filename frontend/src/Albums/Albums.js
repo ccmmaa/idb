@@ -4,22 +4,27 @@ import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/carousel.css';
 import '../assets/css/modelpage.css';
 import AlbumSlide from '../assets/images/albummodel.jpg';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
+import Error from '../Error';
 
 class Albums extends Component {
 
 	constructor() {
 		super();
 		this.state = {
+			model: "album",
+			filterBy: "year",
 			doneLoading: false,
+			status: 200,
 			page: URL.getPage(1),
 			lastpage:1,
 			sort: URL.getSortItem("album_id", ["album_id","name","artist__name","artist__gen_genre","year","producer"]),
 			order: URL.getSortDirection("asc"),
 			filters: URL.getFiltersInt([], [1973,1976,1979,1980,1982,1983,1987,1994,1997,2000,2002,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018]),
-			allAlbums: [
+			genres: URL.getGenres([]),
+			allItems: [
 				{
 					"album_id": 1,
 					"artist": {
@@ -73,38 +78,61 @@ class Albums extends Component {
 	}
 
 	getPage(pageNumber) {
+		let model = this.state.model;
+		let filterFieldName = this.state.filterBy;
 		console.log("Request page " + pageNumber);
 		var orderDirection = 'asc';
 		if (!this.state.order)
 			orderDirection = 'desc';
 		var filterString = '';
-		if (this.state.filters.length > 0) {
-			filterString = ',"filters":[{"or":[';
+		if (this.state.filters.length > 0 || this.state.genres.length > 0) {
+			filterString = ',"filters":[';
+			var filter1 = "";
+			var filter2 = "";
 			var index = 0;
-			for (var filter of this.state.filters) {
-				if (index !== 0) {
-					filterString +=",";
+			if (this.state.filters.length > 0) {
+				filter1 = '{"or":[';
+				for (var filter of this.state.filters) {
+					if (index !== 0) {
+						filter1 +=",";
+					}
+					filter1 += '{"name":"' + filterFieldName + '","op":"eq","val":"' + filter + '"}';
+					index++;
 				}
-				filterString += '{"name":"year","op":"eq","val":"' + filter + '"}';
-				index++;
-				console.log(filter);
+				filter1 += "]}";
 			}
-			filterString += ']}]';
+			if (this.state.genres.length > 0) {
+				if (index != 0)
+					filter2 += ",";
+				filter2 += '{"or":[';
+				index = 0;
+				for (var genre of this.state.genres) {
+					if (index !== 0) {
+						filter2 +=",";
+					}
+					filter2 += '{"name":"artist","op":"has","val":{"name":"gen_genre","op":"eq","val":"' + genre + '"}}';
+					index++;
+				}
+				filter2 += "]}";
+			}
+			filterString += filter1 + filter2;
+			filterString += ']';
 		}
-		console.log('http://api.musepy.me/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
+		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
 		if (pageNumber > 0)
 			$.ajax({
-					// url: 'http://api.musepy.me/album?results_per_page=16&page=' + pageNumber,
-					url: 'http://api.musepy.me/grid/album?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, 
-					dataType: 'json',
-					cache: false,
-					success: function(data) {
-						this.setState({"allAlbums": data["objects"], "doneLoading": true, "page": (pageNumber), "lastpage": data["total_pages"]});
-					}.bind(this),
-					error: function(xhr, status, error) {
-						// console.log("Get ERROR: " + error);
-					}
-				});
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
+				dataType: 'json',
+				cache: false,
+				success: function(data) {
+					this.setState({allItems: data["objects"], "doneLoading": true, "status": 200, "page": (pageNumber), "lastpage": data["total_pages"]});
+				}.bind(this),
+				error: function(xhr, status, error) {
+					var state = this.state;
+					state.status = xhr.status;
+					this.setState(state);
+				}.bind(this)
+			});
 	}
 
 	paginationBar(currentPage, lastPage, scale) {
@@ -145,9 +173,9 @@ class Albums extends Component {
 		}
 		return bar;
 	}
-	
+
 	pageBarHelper(index, currentPage) {
-		if (index == currentPage) 
+		if (index == currentPage)
 			return(<span>{index}&nbsp;&nbsp;&nbsp;</span>);
 		else return(<span><span onClick={() => this.getPage(index)} className="paginationClickable orange">{index}</span>&nbsp;&nbsp;&nbsp;</span>);
 	}
@@ -175,9 +203,8 @@ class Albums extends Component {
 			var index = state.filters.indexOf(filter);
 			state.filters.splice(index, 1);
 		}
-		// alert(state.filters);
 		state.page=1;
-		this.setState(state);	
+		this.setState(state);
 		this.getPage(this.state.page);
 	}
 
@@ -189,23 +216,49 @@ class Albums extends Component {
 		this.getPage(this.state.page);
 	}
 
+	addRemoveGenre(genre) {
+		var state = this.state;
+		if (!state.genres.includes(genre)) {
+			state.genres.push(genre);
+		}
+		else {
+			var index = state.genres.indexOf(genre);
+			state.genres.splice(index, 1);
+		}
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+		console.log("[" + state.genres + "]");
+	}
+
+	clearGenres() {
+		var state = this.state;
+		state.genres = [];
+		state.page=1;
+		this.setState(state);
+		this.getPage(this.state.page);
+	}
+
 	render() {
-		window.history.pushState("","", "/albums"+URL.encodeSortFilter(this.state, "album_id"));
-		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /></center>;
+		window.history.replaceState("","", "/albums"+URL.encodeSortFilter(this.state, "album_id"));
+		var internalContent = <center><img src={Loading} className="pageLoadingIndicator" /><p>If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome's Settings>Advanced>Privacy</p></center>;
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
 			Page {this.state.page} out of {this.state.lastpage}</p>;
-		if (this.state.doneLoading) {
-			var allAlbums = this.state.allAlbums.map(album => {
+		if ((this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
+		}
+		else if (this.state.doneLoading) {
+			var allItems = this.state.allItems.map(album => {
 				return(
 					<div className="card-shadows-orange model-cards modelCard">
 						<div className="ingrid" text-align="center">
 							<a className="" href={"/albums/" + album.album_id} role="button">
 							<img className="rounded-circle" src={album.artwork} alt={album.name} width="140" height="140" />
 							</a>
-							<h2>{album.name}</h2><h6>by <a href={"/artists/" + album.artist.artist_id}>{album.artist.name}</a></h6>
+							<h2><a href={"/albums/" + album.album_id}>{album.name}</a></h2><h6>by <a href={"/artists/" + album.artist.artist_id}>{album.artist.name}</a></h6>
 							<p>{album.producer}
 							 <br />{album.year}<br />
-							 {URL.capitalizeWords(album.artist.gen_genre)}</p>
+							 {URL.capitalizeWords(album.artist.genre)}</p>
 							<p><a className="btn btn-secondary" href={"/albums/" + album.album_id} role="button">View Album &raquo;</a></p>
 						</div>
 					</div>
@@ -222,9 +275,6 @@ class Albums extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			// let allFilters = this.state.filters.map(filter => {
-			// 	return(filter + ", ");
-			// });
 			let filterItems = {
 				"1973":1973,
 				"1976":1976,
@@ -254,36 +304,53 @@ class Albums extends Component {
 				"2018":2018
 				};
 			let allFilters = Object.keys(filterItems).map(filter => {
-				if (this.state.filters.includes(filterItems[filter]))
-					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked/>&nbsp;{filter}<br /></span>);
-				else {
-					return(<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox"/>&nbsp;{filter}<br /></span>);
-				}
+					return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
-			
+			let genreItems =
+			{"Country": "country",
+			"Pop": "pop",
+			"Trap": "trap",
+			"Other": "other",
+			"Hip Hop": "hip%20hop",
+			"Indie": "indie",
+			"Rap": "rap",
+			"Metal": "metal",
+			"Mexican": "mexican",
+			"Funk": "funk",
+			"Electronic": "electronic",
+			"Jazz": "jazz",
+			"Rock": "rock",
+			"Latin": "latin"
+			};
+			let allGenres = Object.keys(genreItems).map(genre => {
+				return (<span className="clickable" onClick={() => this.addRemoveGenre(genreItems[genre])}><input type="checkbox" checked={this.state.genres.includes(genreItems[genre])}/>&nbsp;{genre}<br /></span>);
+
+			});
+
 			internalContent = <div>
 								<div className="sortAndFilter">
 									<strong>Sort by</strong><br />
 									{sortDropDown}&nbsp;
 									{orderButton}<br/><br/>
-									<strong>Filters</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
+									<strong>Year</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearFilters()}>clear</span><br />
 									{allFilters}<br />
+									<strong>Genre</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="clickable" onClick={() => this.clearGenres()}>clear</span><br />
+									{allGenres}<br />
 								</div>
 								<div className="allThings">
 									<center>
-									   {allAlbums}
+									   {allItems}
 									</center>
 								</div>
 							</div>;
 		}
-		
 
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"albums"}/>
 				<main role="main">
 					<div align="center">
-						
+
 						<div className="carousel-item titleImage active">
 							<img className="third-slide" src={AlbumSlide} alt="Third slide" />
 							<div className="container">
@@ -291,9 +358,9 @@ class Albums extends Component {
 									<h1><span className="orange">Discover</span> new albums.</h1>
 								</div>
 							</div>
-						</div>	
+						</div>
 					</div>
-					
+
 					<div className="container">
 						<hr />
 						<center><h1>Albums</h1></center>
@@ -302,7 +369,7 @@ class Albums extends Component {
 					<div className="container2 marketing">
 						<div className="row">
 							{pagination}
-							
+
 							{internalContent}
 
 							{pagination}
@@ -317,5 +384,5 @@ class Albums extends Component {
 			</div>
 		);
 	}
-} 
+}
 export default Albums;

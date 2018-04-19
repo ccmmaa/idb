@@ -1,4 +1,4 @@
-from TestSuite.ApplicationPages import *
+from ApplicationPages import *
 import unittest
 
 
