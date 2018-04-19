@@ -7,7 +7,6 @@ import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import Error from '../Error';
 
-
 class AlbumInstance extends Component {
 
 	constructor() {

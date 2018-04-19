@@ -9,6 +9,7 @@ import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
 import Concert from './Concert';
 import Error from '../Error';
+import FilterHelper from '../FilterHelper';
 
 class ArtistInstance extends Component {
 	constructor() {
@@ -18,21 +19,13 @@ class ArtistInstance extends Component {
 			doneLoading: false,
 			status:200,
 			image: {Loading},
-			artistData:
-				{
-					"albums": [
-					],
-					"artist_id": 1,
-					"bio": "",
-					"concerts": [
-					],
-					"genre": "",
-					"image": Loading,
-					"name": "Loading...",
-					"songs": [
+			artistData: {
+				"albums": [
+				], "artist_id": 1, "bio": "", "concerts": [
+				], "genre": "", "image": Loading, "name": "Loading...", "songs": [
 
-					],
-				}
+				],
+			}
 		}
 	}
 
@@ -51,7 +44,6 @@ class ArtistInstance extends Component {
 	}
 
 	render() {
-
 		let artistAlbums = this.state.artistData.albums.map(album => {
 			return(
 				<Album albumId={album.album_id} albumArt={album.artwork} albumName={album.name} artist={this.state.artistData.name}/>
@@ -66,20 +58,7 @@ class ArtistInstance extends Component {
 			let date = concert.time.substring(0, concert.time.indexOf('T'));
 			let firstDash = date.indexOf('-');
 			let lastDash = date.lastIndexOf('-');
-			let months = {
-				"01": "Jan",
-				"02": "Feb",
-				"03": "Mar",
-				"04": "Apr",
-				"05": "May",
-				"06": "Jun",
-				"07": "Jul",
-				"08": "Aug",
-				"09": "Sep",
-				"10": "Oct",
-				"11": "Nov",
-				"12": "Dec"
-			}
+			let months = FilterHelper.monthsDict();
 			let year = date.substring(0, firstDash);
 			let month = date.substring(firstDash + 1, lastDash);
 			let day = date.substring(lastDash + 1);
@@ -102,7 +81,7 @@ class ArtistInstance extends Component {
 		}
 		else {
 			internalContent = 
-			<main role="main">
+				<main role="main">
 					<div className="artistInstanceCarousel">
 						<div className="carousel-inner">
 							 <div className="carousel-item active">
@@ -185,7 +164,6 @@ class ArtistInstance extends Component {
 				</div>
 
 				<Footer />
-
 			</div>
 		);
 	}

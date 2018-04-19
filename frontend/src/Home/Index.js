@@ -18,13 +18,9 @@ class Index extends Component {
 		return(
 			<div className="pageContent">
 				<Navigation activeTab={"index"} />
-
 				<main role="main" onLoad="func()">
-
 					<MyCarousel />
-
 					<div className="container marketing">
-
 						<div className="index_row">
 							<div className="col-lg-3">
 								<img className="rounded-circle" src={middle1} alt="Generic placeholder image" width="140" height="140" />
@@ -95,7 +91,6 @@ class Index extends Component {
 						</div>
 					</div>
 				</main>
-
 				<Footer />
 				<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossOrigin="anonymous"></script>
 				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossOrigin="anonymous"></script>
@@ -103,6 +98,5 @@ class Index extends Component {
 			</div>
 		);
 	}
-
 }
 export default Index;

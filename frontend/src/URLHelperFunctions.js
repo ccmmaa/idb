@@ -6,6 +6,8 @@ Examples of use:
 URL.toString("The_Name_or_title_of_something") returns "The Name or title of something"
 URL.toUrl("The Name or title of something") returns "The_Name_or_title_of_something"
 */
+import FilterHelper from './FilterHelper';
+
 class URLHelperFunctions {
 
 	static toString(url) {
@@ -170,12 +172,11 @@ class URLHelperFunctions {
 				}
 			}
 		} catch (err){}	
-		console.log(result);
 		return result;
 	}
 
 	static getGenres(standard) {
-		let options = ["country", "pop", "trap", "other", "hip%20hop", "indie", "rap", "metal", "mexican", "funk", "electronic", "jazz", "rock", "latin"];
+		let options = FilterHelper.validGenres();
 		var result = standard;
 		let paramName = "genres=";
 		let qs = this.queryString().split("&");
@@ -193,7 +194,6 @@ class URLHelperFunctions {
 				}
 			}
 		} catch (err){}	
-		console.log(result);
 		return result;
 	}
 
@@ -216,7 +216,6 @@ class URLHelperFunctions {
 				}
 			}
 		} catch (err){}	
-		console.log(result);
 		return result;
 	}
 

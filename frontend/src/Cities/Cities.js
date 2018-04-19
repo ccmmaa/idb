@@ -8,7 +8,7 @@ import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loadingHorizontal.gif';
 import $ from 'jquery';
 import Error from '../Error';
-
+import FilterHelper from '../FilterHelper';
 
 class Cities extends Component {
 
@@ -24,16 +24,9 @@ class Cities extends Component {
 			lastpage:1,
 			sort: URL.getSortItem("city_id", ["city_id","name","state"]),
 			order: URL.getSortDirection("asc"),
-			filters: URL.getFilters([], ["Arizona","California","Colorado","Florida","Georgia","Illinois","Indiana","Massachusetts","Minnesota","North%20Carolina","Ohio","Oregon","Pennsylvania","Tennessee","Texas","Washington"]),
-			allItems:[
-				{
-					"city_id": 1,
-					"concerts": [],
-					"image": "http://www.celebrityslice.com/wp-content/uploads/2015/08/city-wallpaper-7.jpg",
-					"name": "Loading...",
-					"playlist": "https://open.spotify.com/user/thesoundsofspotify/playlist/3gz7G6lax8nkXZ3vBr3n4i",
-					"songs": [],
-					"state": "Loading..."
+			filters: URL.getFilters([], FilterHelper.validStates()),
+			allItems:[{
+					"city_id": 1, 	"concerts": [], 	"image": "http://www.celebrityslice.com/wp-content/uploads/2015/08/city-wallpaper-7.jpg", 	"name": "Loading...", 	"playlist": "https://open.spotify.com/user/thesoundsofspotify/playlist/3gz7G6lax8nkXZ3vBr3n4i", 	"songs": [], 	"state": "Loading..."
 				}
 			]
 
@@ -76,21 +69,18 @@ class Cities extends Component {
 			filterString += ']}]';
 		}
 		console.log('http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber);
-		if (pageNumber > 0)
+		if (pageNumber > 0) {
 			$.ajax({
-				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber,
-				dataType: 'json',
-				cache: false,
-				success: function(data) {
+				url: 'http://api.musepy.me/grid/' + model + '?q={"order_by":[{"field":"' + this.state.sort + '","direction":"' + orderDirection + '"}]' + filterString + '}&results_per_page=16&page=' + pageNumber, dataType: 'json', cache: false, success: function(data) {
 					this.setState({allItems: data["objects"], "doneLoading": true, "status": 200, "page": (pageNumber), "lastpage": data["total_pages"]});
-				}.bind(this),
-				error: function(xhr, status, error) {
+				}.bind(this), error: function(xhr, status, error) {
 					var state = this.state;
 					state.status = xhr.status;
 					state.statusText = xhr.statusText;
 					this.setState(state);
 				}.bind(this)
 			});
+		}
 	}
 
 	paginationBar(currentPage, lastPage, scale) {
@@ -202,23 +192,7 @@ class Cities extends Component {
 			var orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9650;&nbsp;</span>
 			if (this.state.order == false)
 				orderButton = <span className="orderDirection clickable" onClick={() => this.toggleAscDec()}>&nbsp;&#9660;&nbsp;</span>
-			let filterItems = {Arizona: "Arizona",
-				California: "California",
-				Colorado: "Colorado",
-				Florida: "Florida",
-				Georgia: "Georgia",
-				Illinois: "Illinois",
-				Indiana: "Indiana",
-				Massachusetts: "Massachusetts",
-				Minnesota: "Minnesota",
-				"North Carolina": "North%20Carolina",
-				Ohio: "Ohio",
-				Oregon: "Oregon",
-				Pennsylvania: "Pennsylvania",
-				Tennessee: "Tennessee",
-				Texas: "Texas",
-				Washington: "Washington"
-				};
+			let filterItems = FilterHelper.statesDict();
 			let allFilters = Object.keys(filterItems).map(filter => {
 				return (<span className="clickable" onClick={() => this.addRemoveFilter(filterItems[filter])}><input type="checkbox" checked={this.state.filters.includes(filterItems[filter])}/>&nbsp;{filter}<br /></span>);
 			});
@@ -243,7 +217,7 @@ class Cities extends Component {
 			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
 		}
 		let pagination = <p>{this.paginationBar(this.state.page, this.state.lastpage, 10)}<br />
-								Page {this.state.page} out of {this.state.lastpage}</p>;
+			Page {this.state.page} out of {this.state.lastpage}</p>;
 
 		return(
 			<div className="pageContent">
@@ -251,7 +225,6 @@ class Cities extends Component {
 
 				<main role="main">
 					<div align="center">
-
 						<div className="carousel-item titleImage active">
 							<img className="fourth-slide" src={CitySlide} alt="Fourth slide"/>
 							<div className="container">
@@ -269,7 +242,6 @@ class Cities extends Component {
 						<hr/>
 					</div>
 					<div className="container2 marketing">
-
 						<div className="row">
 
 							{pagination}
@@ -284,9 +256,7 @@ class Cities extends Component {
 						<hr/>
 					</div>
 				</main>
-
 				<Footer />
-
 			</div>
 		);
 	}

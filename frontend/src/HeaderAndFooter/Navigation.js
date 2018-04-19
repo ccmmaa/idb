@@ -19,7 +19,8 @@ class Navigation extends Component {
 			alert('"%" is not an allowed character.');
 		} else {
 			this.setState({queryInput:this.refs.input.value}, function(){
-				window.location = '/search?q=' + URL.convert(this.state.queryInput, " ", "+");			});
+				window.location = '/search?q=' + URL.convert(this.state.queryInput, " ", "+");
+			});
 		}
 		e.preventDefault();
 	}
@@ -46,9 +47,7 @@ class Navigation extends Component {
 				</button>
 				<div className="collapse navbar-collapse" id="navbarCollapse">
 					<ul className="navbar-nav mr-auto">
-
 						{tabItems}
-
 					</ul>
 					<form className="form-inline mt-2 mt-md-0" onSubmit={this.handleSearch.bind(this)}>
 						<input id="searchField" className="form-control mr-sm-2" ref="input" defaultValue={this.props.query} type="text" placeholder="Search" aria-label="Search" />
