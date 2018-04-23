@@ -6,7 +6,7 @@ import re
 
 def loop():
     while True:
-        delay = 20;
+        delay = 5;
         print("Launching API")
         subprocess.Popen(['sudo', 'python', 'main.py', '&'], stdout=subprocess.PIPE)
         time.sleep(delay);
