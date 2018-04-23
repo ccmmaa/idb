@@ -6,7 +6,7 @@ import re
 
 def loop():
     while True:
-        delay = 5;
+        delay = 600;
         print("Launching API")
         subprocess.Popen(['sudo', 'python', 'main.py', '&'], stdout=subprocess.PIPE)
         time.sleep(delay);
@@ -32,7 +32,7 @@ def loop():
 
         print("Killing API")
         subprocess.call(command)
-        time.sleep(delay);
+        # time.sleep(delay);
 
 if __name__ == "__main__":
     loop()
