@@ -24,13 +24,14 @@ def loop():
             
         command = ['sudo', 'kill', '-9']; 
         array = pids.split()
+        print(array)
         index = 0
         for pid in array:
-            command[2+index] = pid
+            command += [array[index]]
             index += 1
 
         print("Killing API")
-        subprocess.Popen(command, stdout=subprocess.PIPE)
+        subprocess.call(command)
         time.sleep(delay);
 
 if __name__ == "__main__":
