@@ -7,6 +7,7 @@ import re
 def loop():
     while True:
         delay = 20;
+        print("Launching API")
         subprocess.Popen(['sudo', 'python', 'main.py', '&'], stdout=subprocess.PIPE)
         time.sleep(delay);
         proc1 = subprocess.Popen(['ps', 'ax'], stdout=subprocess.PIPE)
@@ -27,7 +28,8 @@ def loop():
         for pid in array:
             command[2+index] = pid
             index += 1
-            
+
+        print("Killing API")
         subprocess.Popen(command, stdout=subprocess.PIPE)
         time.sleep(delay);
 
