@@ -53,11 +53,28 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "74afbfab-0f05-4f66-8a2c-eea2f28adbac",
+								"id": "6e690bf0-cf7d-4875-8916-6c5f6d261efb",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"response is ok\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(Object.keys(jsonData).length).to.eql(8);",
+									"});",
+									"",
+									"pm.test(\"Keys are correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(\"album_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"artist\" in jsonData).to.eql(true);",
+									"    pm.expect(\"artist_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"artwork\" in jsonData).to.eql(true);",
+									"    pm.expect(\"name\" in jsonData).to.eql(true);",
+									"    pm.expect(\"producer\" in jsonData).to.eql(true);",
+									"    pm.expect(\"songs\" in jsonData).to.eql(true);",
+									"    pm.expect(\"year\" in jsonData).to.eql(true);",
 									"});"
 								]
 							}
@@ -462,11 +479,29 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "777cf9b4-00d7-479f-b4e8-43ed041fc988",
+								"id": "231fff1e-477a-420e-87bb-a92a808eecce",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"response is ok\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(Object.keys(jsonData).length).to.eql(9);",
+									"});",
+									"",
+									"pm.test(\"Keys are correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(\"albums\" in jsonData).to.eql(true);",
+									"    pm.expect(\"artist_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"bio\" in jsonData).to.eql(true);",
+									"    pm.expect(\"concerts\" in jsonData).to.eql(true);",
+									"    pm.expect(\"gen_genre\" in jsonData).to.eql(true);",
+									"    pm.expect(\"genre\" in jsonData).to.eql(true);",
+									"    pm.expect(\"image\" in jsonData).to.eql(true);",
+									"    pm.expect(\"name\" in jsonData).to.eql(true);",
+									"    pm.expect(\"songs\" in jsonData).to.eql(true);",
 									"});"
 								]
 							}
@@ -871,11 +906,27 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "97fe1187-7a9d-4a9a-a66b-ec499854acda",
+								"id": "6a9b7ac6-f36c-459f-8f9b-933dc4e61bd5",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"response is ok\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(Object.keys(jsonData).length).to.eql(7);",
+									"});",
+									"",
+									"pm.test(\"Keys are correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(\"city_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"concerts\" in jsonData).to.eql(true);",
+									"    pm.expect(\"image\" in jsonData).to.eql(true);",
+									"    pm.expect(\"name\" in jsonData).to.eql(true);",
+									"    pm.expect(\"playlist\" in jsonData).to.eql(true);",
+									"    pm.expect(\"songs\" in jsonData).to.eql(true);",
+									"    pm.expect(\"state\" in jsonData).to.eql(true);",
 									"});"
 								]
 							}
@@ -1280,11 +1331,31 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "079e62d7-52c7-4909-a283-59dc1d8dbb90",
+								"id": "f3d336ea-af87-4a0f-9617-763ca9e26907",
 								"type": "text/javascript",
 								"exec": [
 									"pm.test(\"response is ok\", function () {",
 									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(Object.keys(jsonData).length).to.eql(11);",
+									"});",
+									"",
+									"pm.test(\"Keys are correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(\"album\" in jsonData).to.eql(true);",
+									"    pm.expect(\"album_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"artist\" in jsonData).to.eql(true);",
+									"    pm.expect(\"artist_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"city\" in jsonData).to.eql(true);",
+									"    pm.expect(\"city_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"itunes\" in jsonData).to.eql(true);",
+									"    pm.expect(\"lyrics\" in jsonData).to.eql(true);",
+									"    pm.expect(\"name\" in jsonData).to.eql(true);",
+									"    pm.expect(\"song_id\" in jsonData).to.eql(true);",
+									"    pm.expect(\"spotify\" in jsonData).to.eql(true);",
 									"});"
 								]
 							}
@@ -1638,6 +1709,1191 @@
 							]
 						},
 						"description": "get the details of the specific album"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Searching",
+			"description": "",
+			"item": [
+				{
+					"name": "Search Through Artist Names",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e0221b5-9684-48e2-8643-83b21bfceca2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].name).to.include(\"hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?q={\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Through Artist Bio",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "3952a3c2-1dac-40db-8853-a7864dc27cdb",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].bio).to.include(\"hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?q={\"filters\":[{\"name\":\"bio\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"bio\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Through Album Names",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "93b01b33-562f-4338-a6b3-86c9e97e59b5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].name).to.include(\"hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?q={\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Through Album Years",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57a89131-bf13-4ae9-8fc8-81eefdef54b2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].year).to.include(\"hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?q={\"filters\":[{\"name\":\"year\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"year\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Through City Names",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b01a40f-d37f-4abb-8147-3fd3cd4606ba",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].name).to.include(\"hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?q={\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Through City States",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "45474adb-55f6-4367-ab97-068512af3cc0",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].state).to.include(\"hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?q={\"filters\":[{\"name\":\"state\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"state\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Through Song Names",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bb6427d4-b05f-4d81-a183-bbe943cbada0",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].name).to.include(\"Hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?q={\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"name\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search Through Song Lyrics",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "946a2231-2f6a-4f75-bbe3-1701378b50a9",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Body matches string\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].lyrics).to.include(\"hell\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?q={\"filters\":[{\"name\":\"lyrics\",\"op\":\"like\",\"val\":\"%hell%\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"lyrics\",\"op\":\"like\",\"val\":\"%hell%\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sorting",
+			"description": "",
+			"item": [
+				{
+					"name": "Album Sort by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1a2a2926-a76b-425e-9f2e-d3f84bf53792",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].name;",
+									"    pm.expect(firstName).to.eql(\"Zone\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var lastName = (jsonData.objects)[last].name;",
+									"    pm.expect(lastName).to.eql(\"Why so Serious\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/album?q={\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Album Sort by Artist Genre",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a45fd3ae-bb7a-4720-93d7-d7f8d9808afc",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].name;",
+									"    pm.expect(firstName).to.eql(\"Who Trippin Da GangTape\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var firstName = (jsonData.objects)[last].name;",
+									"    pm.expect(firstName).to.eql(\"20 Kilates\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/album?q={\"order_by\":[{\"field\":\"artist__genre\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"artist__genre\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Album Sort by Year",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "95e8acab-812d-4171-9ad2-ba8c0d0e6ed5",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].name;",
+									"    pm.expect(firstName).to.eql(\"16 / 94 - EP\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var firstName = (jsonData.objects)[last].name;",
+									"    pm.expect(firstName).to.eql(\"Cocky\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/album?q={\"order_by\":[{\"field\":\"year\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"year\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Album Sort by Producer",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "9902b2d2-40dd-4862-b7d4-e946fa32ee2a",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].producer;",
+									"    pm.expect(firstName).to.eql(\"Winding Road Music\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var firstName = (jsonData.objects)[last].producer;",
+									"    pm.expect(firstName).to.eql(\"Warner Bros.\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/album?q={\"order_by\":[{\"field\":\"producer\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"producer\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Song Sort by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d7ba1dba-d9b9-4142-87be-5c9d5d3c2adf",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].name;",
+									"    pm.expect(firstName).to.eql(\"¿Qué Hubiera Sido De Mi Vida?\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var firstName = (jsonData.objects)[last].name;",
+									"    pm.expect(firstName).to.eql(\"Yuck\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/song?q={\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Song Sort by Album Year",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "468dd496-87b2-45c5-b83a-b9a5e84d4c46",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].name;",
+									"    pm.expect(firstName).to.eql(\"Couldn\\'t Make You Love Me\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var firstName = (jsonData.objects)[last].name;",
+									"    pm.expect(firstName).to.eql(\"Fell in Love on Whiskey\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/song?q={\"order_by\":[{\"field\":\"album__year\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"album__year\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Artist Sort by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e14f6d3a-9f42-46fe-9d5e-094c0dd09d52",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].name;",
+									"    pm.expect(firstName).to.eql(\"Whitney Houston\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var firstName = (jsonData.objects)[last].name;",
+									"    pm.expect(firstName).to.eql(\"Thayne Jasperson\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/artist?q={\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "City Sort by Name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "861147ce-e685-4455-9da5-57f9f63d71c6",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Correct first value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var firstName = (jsonData.objects)[0].name;",
+									"    pm.expect(firstName).to.eql(\"Seattle\");",
+									"});",
+									"",
+									"pm.test(\"Correct last value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    var last = (jsonData.objects).length - 1;",
+									"    var firstName = (jsonData.objects)[last].name;",
+									"    pm.expect(firstName).to.eql(\"Miami\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me:/city?q={\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me:"
+							],
+							"port": "",
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"name\",\"direction\":\"desc\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Filtering",
+			"description": "",
+			"item": [
+				{
+					"name": "Artist Filter by Pop or Hip Hop",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ef2306b-1f8c-4a07-8d87-982a510396d0",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.num_results).to.eql(11);",
+									"});",
+									"",
+									"pm.test(\"Contain the correct filter value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].gen_genre).to.eql(\"pop\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?q={\"order_by\":[{\"field\":\"artist_id\",\"direction\":\"asc\"}],\"filters\":[{\"or\":[{\"name\":\"gen_genre\",\"op\":\"eq\",\"val\":\"pop\"}]}]}&results_per_page=16&page=1",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"artist_id\",\"direction\":\"asc\"}],\"filters\":[{\"or\":[{\"name\":\"gen_genre\",\"op\":\"eq\",\"val\":\"pop\"}]}]}"
+								},
+								{
+									"key": "results_per_page",
+									"value": "16"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Album Filter by Year 2017",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ef773f19-4c87-4ac3-90a1-c18bb0abc977",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.num_results).to.eql(146);",
+									"});",
+									"",
+									"pm.test(\"Contain the correct filter value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].year).to.eql(\"2017\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?q={\"order_by\":[{\"field\":\"album_id\",\"direction\":\"asc\"}],\"filters\":[{\"or\":[{\"name\":\"year\",\"op\":\"eq\",\"val\":\"2017\"}]}]}&results_per_page=16&page=1",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"album_id\",\"direction\":\"asc\"}],\"filters\":[{\"or\":[{\"name\":\"year\",\"op\":\"eq\",\"val\":\"2017\"}]}]}"
+								},
+								{
+									"key": "results_per_page",
+									"value": "16"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "City Filter by State Texas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b00e9643-98bd-4304-ad82-a305af25ea21",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.num_results).to.eql(4);",
+									"});",
+									"",
+									"",
+									"pm.test(\"Contain the correct filter value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].state).to.eql(\"Texas\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/city?q={\"order_by\":[{\"field\":\"city_id\",\"direction\":\"asc\"}],\"filters\":[{\"or\":[{\"name\":\"state\",\"op\":\"eq\",\"val\":\"Texas\"}]}]}&results_per_page=16&page=1",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"city"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"order_by\":[{\"field\":\"city_id\",\"direction\":\"asc\"}],\"filters\":[{\"or\":[{\"name\":\"state\",\"op\":\"eq\",\"val\":\"Texas\"}]}]}"
+								},
+								{
+									"key": "results_per_page",
+									"value": "16"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Song filter by City Austin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "704c6e6d-151b-4711-8217-3d620a250ccd",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.num_results).to.eql(356);",
+									"});",
+									"",
+									"pm.test(\"Contain the correct filter value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].city_id).to.eql(1);",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/song?q={\"filters\":[{\"name\":\"city_id\",\"op\":\"eq\",\"val\":\"1\"}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"song"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"name\":\"city_id\",\"op\":\"eq\",\"val\":\"1\"}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Artist Filter by Metal or Hip Hop",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8c7d83b0-1c15-4e9b-b247-7407e6e69ad1",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.num_results).to.eql(1);",
+									"});",
+									"",
+									"pm.test(\"Contain the correct filter value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].gen_genre).to.eql(\"metal\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/artist?q={\"filters\":[{\"or\":[{\"name\":\"genre\",\"op\":\"eq\",\"val\":\"alternative%20metal\"}]}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"artist"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"or\":[{\"name\":\"genre\",\"op\":\"eq\",\"val\":\"alternative%20metal\"}]}]}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Album Filter by Year 2018",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "48b7a45b-44c4-484b-b365-721aa70224a2",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Number of data rows\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.num_results).to.eql(5);",
+									"});",
+									"",
+									"pm.test(\"Contain the correct filter value\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    for(i = 0; i < (jsonData.objects).length; i++){",
+									"        pm.expect((jsonData.objects)[i].year).to.eql(\"2008\");",
+									"    }",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://api.musepy.me/album?q={\"filters\":[{\"or\":[{\"name\":\"year\",\"op\":\"eq\",\"val\":\"2008\"}]}]}",
+							"protocol": "http",
+							"host": [
+								"api",
+								"musepy",
+								"me"
+							],
+							"path": [
+								"album"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "{\"filters\":[{\"or\":[{\"name\":\"year\",\"op\":\"eq\",\"val\":\"2008\"}]}]}"
+								}
+							]
+						}
 					},
 					"response": []
 				}

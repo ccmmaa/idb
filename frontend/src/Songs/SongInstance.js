@@ -3,10 +3,10 @@ import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import PageNotFound from '../PageNotFound';
 import '../assets/css/song_instance.css';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import Loading from '../assets/images/loading.gif';
 import $ from 'jquery';
-
+import Error from '../Error';
 
 class SongInstance extends Component {
 
@@ -14,6 +14,8 @@ class SongInstance extends Component {
 		super();
 		this.state = {
 			doneLoading: false,
+			status:200,
+			statusText: "",
 			video: Loading,
 			songData: 
 			{
@@ -36,7 +38,7 @@ class SongInstance extends Component {
 				},
 				"artist_id": 1,
 				"itunes": "https://www.apple.com/itunes/charts/songs/",
-				"lyrics": "Loading...",
+				"lyrics": 'If this page seems to load forever, try turning off the option "Use a prediction service to load pages more quickly" in Chrome\'s Settings>Advanced>Privacy',
 				"name": "Loading Song...",
 				"song_id": 1,
 				"spotify": Loading
@@ -59,8 +61,7 @@ class SongInstance extends Component {
 			}.bind(this),
 			error: function(xhr, status, error) {
 				console.log("error");
-				
-			}
+			}.bind(this)
 		});
 	}
 
@@ -68,15 +69,14 @@ class SongInstance extends Component {
 		$.ajax({
 			url: 'http://api.musepy.me/song/' + URL.lastUrlItem(0),
 			dataType: 'json',
-			cache: false,
+			cache: true,
 			success: function(data) {
-				this.setState({"songData": data, "doneLoading": true});
+				this.setState({"songData": data, "doneLoading": true, "status": 200});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
+				this.setState({"doneLoading": true, "status": xhr.status, "statusText": xhr.statusText});
+			}.bind(this)
 		});
-
 	}
 
 	render() {
@@ -88,12 +88,11 @@ class SongInstance extends Component {
 				<span>{lyricsPart} <br/></span>
 			);
 		});
-		let loaded = this.state.doneLoading;
-		return(
-			<div className="pageContent">
-				<Navigation activeTab={"songs"}/> 
 
-				<main role="main">
+		var internalContent;
+		if (Math.floor(this.state.status/100)===2 ) {
+			internalContent = 
+			<main role="main">
 					<div align="center">
 						<br />
 						<h1>{this.state.songData.name}</h1><h6>by <a href={"/artists/"+this.state.songData.artist_id}>{this.state.songData.artist.name}</a></h6>
@@ -125,18 +124,21 @@ class SongInstance extends Component {
 					<div className="container">
 						<hr />
 					</div>
-				</main>
+				</main>;
+		}		
+		else {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;	
+		}
+
+		return(
+			<div className="pageContent">
+				<Navigation activeTab={"songs"}/> 
+
+				{internalContent}
+
 				<Footer />
 			</div>
 		);
 	}
 } 
 export default SongInstance;
-
-/*
-Not Enough Information:
-									<p><a className="btn btn-success btn-sm" href="https://itunes.apple.com/us/album/rainbow/1253688426" role="button">Purchase &raquo;</a></p>
-									<p align="left"><a className="btn btn-secondary btn-lg" href="#" role="button">View Other Music from this City &raquo;</a></p>
-
-
-*/

@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/city_instance.css';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import LoadingH from '../assets/images/loadingHorizontal.gif';
 import Loading from '../assets/images/loading.gif';
-
+import Error from '../Error';
 import Concert from "./Concert"
-
 
 class CityInstance extends Component {
 
@@ -17,14 +16,15 @@ class CityInstance extends Component {
 		this.state = {
 			cityData:{
 				"doneLoading": false,
+				status:200,
+				statusText: "",
 				"city_id": 1,
 				"concerts": [
 				],
 				"image": "http://www.celebrityslice.com/wp-content/uploads/2015/08/city-wallpaper-7.jpg",
 				"name": "",
 				"playlist": LoadingH,
-				"songs": [
-					{
+				"songs": [{
 						"album_id": 1,
 						"artist_id": 1,
 						"city_id": 1,
@@ -46,11 +46,12 @@ class CityInstance extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"cityData": data, "doneLoading": true});
+				this.setState({"cityData": data, "doneLoading": true, "status": 200});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
+				this.setState({"doneLoading": true, "status": xhr.status, "statusText": xhr.statusText});
+				console.log(xhr);
+			}.bind(this)
 		});
 	}
 
@@ -71,11 +72,11 @@ class CityInstance extends Component {
 		if (this.state.doneLoading === true) {
 			map = <iframe src={"https://www.google.com/maps/embed/v1/place?key=AIzaSyBLzbYgNk0kZtGmqrS52qbvW0zZi43WeFw&q=" + URL.convert(this.state.cityData.name + "+" + this.state.cityData.state, ' ', '+')} allowfullscreen className="mapIframe" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>;
 		}
-		return(
-			<div className="pageContent">
-				<Navigation activeTab={"cities"}/> 
 
-				<main role="main">
+		var internalContent;
+		if (Math.floor(this.state.status/100)===2 ) {
+			internalContent = 
+			<main role="main">
 
 					<div align="center">
 						<div className="carousel-item titleImage active">
@@ -90,21 +91,17 @@ class CityInstance extends Component {
 					<div class="container">
 						<hr/>
 					</div>
-										
 					<div className="container">
 						<div className="row mapPart1">
 							<div id="map">
 								{map}
 							</div>
 
-
 							<div id="playlist">
 								<p class = "h2">The Sound of <br />	{this.state.cityData.name}, {this.state.cityData.state}</p>
 								<iframe id="spotify" className="shadow" src={this.BuildSpotifyEmbedUrl()} width="450" height="80" frameborder="0" allowtransparency="true"></iframe>
-								
 								<ul className="list-group list-group-flush citySongList">
 									{albumSongs}
-									
 								</ul>
 							</div>
 						</div>
@@ -112,11 +109,9 @@ class CityInstance extends Component {
 					<center>
 						<div id="concerts">
 							<p class = "h2">Upcoming Concerts</p>
-								<ul className="list-group">
-									
-									{concerts}
-
-								</ul>
+							<ul className="list-group">
+								{concerts}
+							</ul>
 						</div>
 					</center>
 					<br />	
@@ -124,8 +119,15 @@ class CityInstance extends Component {
 					<div class="container">
 						<hr/>
 					</div>
-
-				</main>	
+				</main>;
+		}
+		else {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;	
+		}
+		return(
+			<div className="pageContent">
+				<Navigation activeTab={"cities"}/> 
+				{internalContent}
 				<Footer />
 			</div>
 		);

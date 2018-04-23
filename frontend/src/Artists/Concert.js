@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-
 class Concert extends Component {
 
 	constructor() {
@@ -25,7 +24,7 @@ class Concert extends Component {
 				this.setState({"location": result, "venue": this.props.venue});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
+				console.log(xhr);
 			}
 		});
 	}

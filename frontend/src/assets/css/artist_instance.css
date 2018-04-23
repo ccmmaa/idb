@@ -1,17 +1,17 @@
-h2{
-  margin-left: 11px;
+h2 {
+	margin-left: 11px;
 }
 .row > div{
 	display: inline-block;
-  text-align: left;
+	text-align: left;
 }
 
 .col-lg-2{
-  vertical-align: top;
+	vertical-align: top;
 }
 
 .artistInstanceCarousel .carousel-item{
-  height: 20rem;
+	height: 20rem;
 }
 
 .artistImage {

@@ -2,17 +2,14 @@ import React, { Component } from 'react';
 import Navigation from '../HeaderAndFooter/Navigation';
 import Footer from '../HeaderAndFooter/Footer';
 import '../assets/css/artist_instance.css';
-import Black from '../assets/images/black_background.jpg';
-import album1 from '../assets/images/travis_scott_huncho.jpg';
-import album2 from '../assets/images/travis_scott_album.jpg';
-import album3 from '../assets/images/travis_scott_rodeo.jpg';
 import banner from '../assets/images/banner.jpg';
 import Album from "./Album"
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
 import Concert from './Concert';
-
+import Error from '../Error';
+import FilterHelper from '../FilterHelper';
 
 class ArtistInstance extends Component {
 	constructor() {
@@ -20,22 +17,15 @@ class ArtistInstance extends Component {
 		this.state= {
 			artistFound: false,
 			doneLoading: false,
+			status:200,
 			image: {Loading},
-			artistData: 
-				{
-					"albums": [
-					],
-					"artist_id": 1,
-					"bio": "",
-					"concerts": [
-					],
-					"genre": "",
-					"image": Loading,
-					"name": "Loading...",
-					"songs": [
-						
-					],
-				}
+			artistData: {
+				"albums": [
+				], "artist_id": 1, "bio": "", "concerts": [
+				], "genre": "", "image": Loading, "name": "Loading...", "songs": [
+
+				],
+			}
 		}
 	}
 
@@ -45,19 +35,18 @@ class ArtistInstance extends Component {
 			dataType: 'json',
 			cache: false,
 			success: function(data) {
-				this.setState({"artistData": data, "artistFound": true, "doneLoading": true});
+				this.setState({"artistData": data, "artistFound": true, "doneLoading": true, "status": 200});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
-			}
+				this.setState({"doneLoading": true, "status": xhr.status});
+			}.bind(this)
 		});
 	}
 
 	render() {
-
 		let artistAlbums = this.state.artistData.albums.map(album => {
 			return(
-				<Album albumId={album.album_id} albumArt={album.artwork} albumName={album.name}/>
+				<Album albumId={album.album_id} albumArt={album.artwork} albumName={album.name} artist={this.state.artistData.name}/>
 			);
 		});
 		let popularSongs = this.state.artistData.songs.map(song => {
@@ -69,20 +58,7 @@ class ArtistInstance extends Component {
 			let date = concert.time.substring(0, concert.time.indexOf('T'));
 			let firstDash = date.indexOf('-');
 			let lastDash = date.lastIndexOf('-');
-			let months = {
-				"01": "Jan",
-				"02": "Feb",
-				"03": "Mar",
-				"04": "Apr",
-				"05": "May",
-				"06": "Jun",
-				"07": "Jul",
-				"08": "Aug",
-				"09": "Sep",
-				"10": "Oct",
-				"11": "Nov",
-				"12": "Dec"
-			}
+			let months = FilterHelper.monthsDict();
 			let year = date.substring(0, firstDash);
 			let month = date.substring(firstDash + 1, lastDash);
 			let day = date.substring(lastDash + 1);
@@ -92,11 +68,19 @@ class ArtistInstance extends Component {
 				<Concert venue={concert.venue} cityId={concert.city_id} time={dateandtime} />
 			);
 		});
+		let bio = "Bio not available.";
+		let biolink = "";
+		if(this.state.artistData.bio.indexOf('<a') != -1){
+			bio = this.state.artistData.bio.substring(0, this.state.artistData.bio.indexOf('<a'));
+			biolink = <a href={this.state.artistData.bio.substring(this.state.artistData.bio.indexOf('href=\'') + 6, this.state.artistData.bio.indexOf('\'>'))}>Read more about this artist on last.fm</a>;
+		}
 
-		return(
-			<div className="pageContent">
-				<Navigation activeTab={"artists"}/>
-
+		var internalContent;
+		if (Math.floor(this.state.status/100)!==2 ) {
+			internalContent = <Error status={this.state.status} statusText={this.state.statusText}/>;
+		}
+		else {
+			internalContent = 
 				<main role="main">
 					<div className="artistInstanceCarousel">
 						<div className="carousel-inner">
@@ -125,7 +109,7 @@ class ArtistInstance extends Component {
 							</div>
 
 							<div className="row">
-								
+
 								{artistAlbums}
 
 							</div>
@@ -158,20 +142,28 @@ class ArtistInstance extends Component {
 							<div className="containerArtistBio">
 								<div className="">
 									<p className="orange">Bio</p>
-									<p>{this.state.artistData.bio}</p>
+									<p>{bio}</p>
+									{biolink}
 
 								</div>
 							</div>
 						</div>
 					</div>
 
-				</main>
+				</main>;
+		}
+
+		return(
+			<div className="pageContent">
+				<Navigation activeTab={"artists"}/>
+
+				{internalContent}
+				
 				<div className="container">
 					<hr />
 				</div>
 
 				<Footer />
-
 			</div>
 		);
 	}

@@ -50,6 +50,10 @@ class Navigation:
             return True
         print(browser.find_element_by_class_name("navbar").find_element_by_class_name("active").tag_name)
 
+    def isSearchResultsPage(self):
+        if(browser.find_element_by_xpath("//h1[text() = 'Search']")):
+            return True
+
     def gotoHome(self):
         homelink = browser.find_element_by_xpath("//li/a[text() = 'Home']")
         homelink.click()
@@ -57,18 +61,22 @@ class Navigation:
     def gotoSongs(self):
         songslink = browser.find_element_by_xpath("//li/a[text() = 'Songs']")
         songslink.click()
+        time.sleep(2)
 
     def gotoArtists(self):
         artistslink = browser.find_element_by_xpath("//li/a[text() = 'Artists']")
         artistslink.click()
+        time.sleep(2)
 
     def gotoAlbums(self):
         albumslink = browser.find_element_by_xpath("//li/a[text() = 'Albums']")
         albumslink.click()
+        time.sleep(2)
 
     def gotoCities(self):
         citieslink = browser.find_element_by_xpath("//li/a[text() = 'Cities']")
         citieslink.click()
+        time.sleep(2)
 
     def gotoAbout(self):
         aboutlink = browser.find_element_by_xpath("//li/a[text() = 'About']")
@@ -89,6 +97,17 @@ class Navigation:
     def isCityInstancePage(self):
         if browser.find_element_by_xpath("//*[contains(text(), 'The Sound of')]"):
             return True
+
+    def hasSearchFunction(self):
+        if browser.find_element_by_xpath("//button[text() = 'Search']"):
+            return True
+    def inputSearchQuery(self, str):
+        inputQuery = browser.find_element_by_class_name("form-control")
+        inputQuery.send_keys(str)
+        searchBtn = browser.find_element_by_xpath("//button[text() = 'Search']")
+        searchBtn.click()
+        time.sleep(2)
+
 
 class HomePage:
 
@@ -126,74 +145,184 @@ class HomePage:
 
 class SongsPage:
     def selectInstance(self):
+        time.sleep(2)
         countinstances = len(browser.find_elements_by_class_name("modelCard"))
         instance = browser.find_elements_by_xpath("//p/a[text() = 'View »']")
         instance.__getitem__(random.randint(0, countinstances-1)).click()
+
+    def selectSortBy(self, str):
+        time.sleep(2)
+        sortDropdown = browser.find_element_by_class_name("sort-drop-down").click()
+        sortType = browser.find_element_by_xpath("//option[text() = '" + str + "']")
+        sortType.click()
+        time.sleep(2)
+
+    def selectFilter(self):
+        time.sleep(2)
+        filter = browser.find_element_by_xpath("//input[@type = 'checkbox']")
+        filter.click()
+        time.sleep(1)
+
+    def selectPagination(self, str):
+        time.sleep(2)
+        page = browser.find_element_by_xpath("//p/span/span[text() = '" + str + "']")
+        page.click()
+        time.sleep(1)
 
 class ArtistsPage:
     def selectInstance(self):
+        time.sleep(2)
         countinstances = len(browser.find_elements_by_class_name("modelCard"))
         instance = browser.find_elements_by_xpath("//p/a[text() = 'View »']")
         instance.__getitem__(random.randint(0, countinstances-1)).click()
+
+    def selectSortBy(self, str):
+        time.sleep(2)
+        sortDropdown = browser.find_element_by_class_name("sort-drop-down").click()
+        sortType = browser.find_element_by_xpath("//option[text() = '" + str + "']")
+        sortType.click()
+        time.sleep(2)
+
+    def selectFilter(self):
+        time.sleep(2)
+        filter = browser.find_element_by_xpath("//input[@type = 'checkbox']")
+        filter.click()
+        time.sleep(2)
+
+    def selectPagination(self, str):
+        time.sleep(2)
+        page = browser.find_element_by_xpath("//p/span/span[text() = '" + str + "']")
+        page.click()
+        time.sleep(1)
 
 class AlbumsPage:
     def selectInstance(self):
+        time.sleep(2)
         countinstances = len(browser.find_elements_by_class_name("modelCard"))
         instance = browser.find_elements_by_xpath("//p/a[text() = 'View »']")
         instance.__getitem__(random.randint(0, countinstances-1)).click()
+
+    def selectSortBy(self, str):
+        time.sleep(2)
+        sortDropdown = browser.find_element_by_class_name("sort-drop-down").click()
+        sortType = browser.find_element_by_xpath("//option[text() = '" + str + "']")
+        sortType.click()
+        time.sleep(2)
+
+    def selectFilter(self):
+        time.sleep(2)
+        filter = browser.find_element_by_xpath("//input[@type = 'checkbox']")
+        filter.click()
+        time.sleep(2)
+
+    def selectPagination(self, str):
+        time.sleep(2)
+        page = browser.find_element_by_xpath("//p/span/span[text() = '" + str + "']")
+        page.click()
+        time.sleep(1)
 
 class CitiesPage:
     def selectInstance(self):
+        time.sleep(2)
         countinstances = len(browser.find_elements_by_class_name("modelCard"))
         instance = browser.find_elements_by_xpath("//p/a[text() = 'View »']")
         instance.__getitem__(random.randint(0, countinstances-1)).click()
 
+    def selectSortBy(self, str):
+        time.sleep(2)
+        sortDropdown = browser.find_element_by_class_name("sort-drop-down").click()
+        sortType = browser.find_element_by_xpath("//option[text() = '" + str + "']")
+        sortType.click()
+        time.sleep(2)
+
+    def selectFilter(self):
+        time.sleep(2)
+        filter = browser.find_element_by_xpath("//input[@type = 'checkbox']")
+        filter.click()
+        time.sleep(2)
+
+    def selectPagination(self, str):
+        time.sleep(2)
+        page = browser.find_element_by_xpath("//p/span/span[text() = '" + str + "']")
+        page.click()
+        time.sleep(1)
+
 class SongInstancePage:
     def selectArtist(self):
+        time.sleep(2)
         viewArtistBtn = browser.find_element_by_xpath("//p/a[text() = 'View this Artist »']")
         viewArtistBtn.click()
 
     def selectAlbum(self):
+        time.sleep(2)
         viewAlbumBtn = browser.find_element_by_xpath("//p/a[text() = 'View this Album »']")
         viewAlbumBtn.click()
 
 class ArtistInstancePage:
     def selectAlbum(self):
+        time.sleep(2)
         countalbums = len(browser.find_elements_by_xpath("//div/div/img[@class = 'rounded-0']"))
         albums = browser.find_elements_by_xpath("//div/div/h4/a")
         albums.__getitem__(random.randint(0, countalbums-1)).click()
 
     def selectSong(self):
+        time.sleep(2)
         countsongs = len(browser.find_elements_by_xpath("//p[text() = 'Popular Songs']/../ul/li/a"))
         songs = browser.find_elements_by_xpath("//p[text() = 'Popular Songs']/../ul/li/a")
         songs.__getitem__(random.randint(0, countsongs-1)).click()
 
     def selectCity(self):
+        time.sleep(2)
         countcities = len(browser.find_elements_by_xpath("//p[text() = 'Upcoming Concerts']/../ul/li/a"))
         city = browser.find_elements_by_xpath("//p[text() = 'Upcoming Concerts']/../ul/li/a")
         city.__getitem__(random.randint(0, countcities-1)).click()
 
 class AlbumInstancePage:
     def selectArtist(self):
+        time.sleep(2)
         artist = browser.find_element_by_xpath("//p[@class = 'h3']/a")
         artist.click()
 
     def selectSong(self):
+        time.sleep(2)
         countsongs = len(browser.find_elements_by_xpath("//p[text() = 'Song List']/../ul/li/a"))
         songs = browser.find_elements_by_xpath("//p[text() = 'Song List']/../ul/li/a")
         songs.__getitem__(random.randint(0, countsongs-1)).click()
 
 class CityInstancePage:
     def selectSong(self):
+        time.sleep(2)
         countsongs = len(browser.find_elements_by_xpath("//div[@id = 'playlist']/ul/li/a"))
         print(countsongs)
         songs = browser.find_elements_by_xpath("//div[@id = 'playlist']/ul/li/a")
         songs.__getitem__(random.randint(0, countsongs-1)).click()
 
     def selectArtist(self):
+        time.sleep(2)
         countartists = len(browser.find_elements_by_xpath("//p[text() = 'Upcoming Concerts']/../ul/li/p/a"))
         artists = browser.find_elements_by_xpath("//p[text() = 'Upcoming Concerts']/../ul/li/p/a")
         artists.__getitem__(random.randint(0, countartists-1)).click()
+
+class SearchResultsPage:
+    def selectAlbumInstance(self):
+        time.sleep(2)
+        albumResults = browser.find_elements_by_xpath("//h3[text() = 'Album Results']/../../*[@class = 'card-shadows-orange model-cards modelCard']")
+        albumResults.__getitem__(0).find_element_by_xpath("//h2/a").click()
+
+    def selectArtistInstance(self):
+        time.sleep(2)
+        artistResults = browser.find_elements_by_xpath("//h3[text() = 'Artist Results']/../../*[@class = 'card-shadows-orange model-cards modelCard']")
+        artistResults.__getitem__(0).find_element_by_xpath("//h2/a").click()
+
+    def selectSongInstance(self):
+        time.sleep(2)
+        songResults = browser.find_elements_by_xpath("//h3[text() = 'Song Results']/../../*[@class = 'card-shadows-orange model-cards modelCard']")
+        songResults.__getitem__(0).find_element_by_xpath("//h2/a").click()
+
+    def selectCityInstance(self):
+        time.sleep(2)
+        cityResults = browser.find_elements_by_xpath("//h3[text() = 'City Results']/../../*[@class = 'card-shadows-orange model-cards modelCard']")
+        cityResults.__getitem__(0).find_element_by_xpath("//h2/a").click()
 
 class Footer:
     def gotoGitHubRepo(self):
@@ -211,8 +340,3 @@ class Footer:
     def isGitBook(self):
         if browser.find_elements_by_class_name("book"):
             return True
-
-
-
-
-

@@ -10,7 +10,6 @@ import Laurence from '../assets/images/portraits/laurence.jpg';
 import Sabrina from '../assets/images/portraits/sabrina.jpg';
 import $ from 'jquery';
 
-
 class About extends Component {
 
 	constructor() {
@@ -33,10 +32,10 @@ class About extends Component {
 				total : 0	
 			},
 			tests: {
-				cris : 40,
-				chia : 0,
+				cris : 62,
+				chia : 9,
 				faiz : 3, 
-				laur : 56, 
+				laur : 76, 
 				sabr : 0, 
 				total : 0	
 			}
@@ -81,7 +80,7 @@ class About extends Component {
 					}
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
+				console.log(xhr);
 			}
 		});
 	}
@@ -94,7 +93,6 @@ class About extends Component {
 	}
 
 	getGithubCommits() {		
-
 		let cris_commits_1 = this.getRequestLength(this.url_commits('author=ccmmaa'), "cris", "commits");
 		let cris_commits_2 = this.getRequestLength(this.url_commits('author=ccmmaa@cs.utexas.edu'), "cris", "commits");
 		let cris_issues = this.getRequestLength(this.url_issues('creator=ccmmaa;state=all'), "cris", "issues");
@@ -114,7 +112,6 @@ class About extends Component {
 
 		let sabr_commits = this.getRequestLength(this.url_commits('author=SabrinaHerrero'), "sabr", "commits");
 		let sabr_issues = this.getRequestLength(this.url_issues('creator=SabrinaHerrero;state=all'),  "sabr", "issues");
-
 	}
 
 	componentWillMount() {
@@ -140,7 +137,7 @@ class About extends Component {
 				"image": ChiaHua,
 				"name": "Chia-Hua Lu",
 				"bio1": "I am a junior of Computer Science. I also serve as the Senior Officer of Webmastering for ACM.",
-				"bio2":"I designed the About page, contributed to the design, layout, and style of many of the other pages, and assisting Cristina with managing the Python files and the server.",
+				"bio2":"I designed the About page, was in charge of the front end aspect of the All and Instance pages, and assisted Cristina with managing the Python files and the server.",
 				"commits": state.commits.chia,
 				"issues": state.issues.chia,
 				"tests": state.tests.chia
@@ -149,7 +146,7 @@ class About extends Component {
 				"image": Cristina,
 				"name": "Cristina Anderson",
 				"bio1": "I am a senior Computer Science major with a focus in graphics. I am also the president of Crafter's Circle, the UT crafting club! A fun fact about me is that I committed two felonies in Canada",
-				"bio2":"My major responsibilities were the backend, coding with Python and Flask",
+				"bio2":"My major responsibilities were mainly the backend and documentation.",
 				"commits": state.commits.cris,
 				"issues": state.issues.cris,
 				"tests": state.tests.cris
@@ -158,7 +155,7 @@ class About extends Component {
 				"image": Faiz,
 				"name": "Faiz Merchant",
 				"bio1": "I am a sophomore Computer Science major. I enjoy working on personal projects and have an interest in AI. ",
-				"bio2":"I worked mainly on frontend development. I created the pages for all the models where you can look at all the instances, and also creates the pages for the song instances.",
+				"bio2":"I designed the pages for all the models where you can look at all the instances, but I mainly worked on the scraper and backend aspects of the website.",
 				"commits": state.commits.faiz,
 				"issues": state.issues.faiz,
 				"tests": state.tests.faiz
@@ -167,7 +164,7 @@ class About extends Component {
 				"image": Laurence,
 				"name": "Laurence Zhang",
 				"bio1": "I am a senior at UT majoring in Computer Science. Fun fact about me is that I'm a twin.",
-				"bio2":"Designed the splash page with Bootstrap. Also designed the instances for Artists and Albums. Contributed to the website's API design and documentation.",
+				"bio2":"I designed the splash page with Bootstrap, and the instances pages for Artists and Albums. Contributed to the website's design and documentation, and was in charge of the front end tests.",
 				"commits": state.commits.laur,
 				"issues": state.issues.laur,
 				"tests": state.tests.laur
@@ -176,16 +173,13 @@ class About extends Component {
 				"image": Sabrina,
 				"name": "Sabrina Herrero",
 				"bio1": "I'm a junior Computer Science major. I am also the president of HACS, social officer in ACM, and communications officer in Crafter's Circle!",
-				"bio2":"I designed and created the pages for the city model. I also found APIs that we are using.",
+				"bio2":"I designed the pages for the city model and found the APIs that we are using. I mainly worked on the MusePy API and the database. I also assisted the front end team members with API calls.",
 				"commits": state.commits.sabr,
 				"issues": state.issues.sabr,
 				"tests": state.tests.sabr
 			}
 		}
-		// console.log("Data Dump: Chia: " + state.commits.chia + ",   Cris: " + state.commits.cris + ",    Faiz: " + state.commits.faiz + ",   Laur: " + state.commits.laur + ",   Sabr: " + state.commits.sabr);
-
 		let names = ["chiahua", "cristina", "faiz", "laurence", "sabrina"];
-
 		let allMembers = names.map(member => {
 			return(
 				<div className="team-member-card card-shadows about-cards">
@@ -221,7 +215,7 @@ class About extends Component {
 						<div className="row featurette">
 							<div>
 								<h2 className="featurette-heading-orange">Disparate Data, <span className="text-muted">Cities of upcoming Performancess.</span></h2>
-								<p className="lead">On the Cities model, we will provide information on Cities, such as what popular genras are in this city, upcoming concerts, the city playlist, and links to songs from the city playlist.</p>
+								<p className="lead">On the Cities model, we will provide information on Cities, such as what popular genres are in this city, upcoming concerts, the city playlist, and links to songs from the city playlist.</p>
 							</div>
 						</div>
 
@@ -253,7 +247,6 @@ class About extends Component {
 						</div>
 
 		       			<hr />
-		        
 						
 						<div className="row featurette">
 							<div>
@@ -271,20 +264,21 @@ class About extends Component {
 								<div className="lead">
 									<center>
 										<ul id="tools">
-											<li className="card-shadows about-cards"><div><h3>Flask</h3><p>Web framework in Python</p></div><img src="https://opbeat.com/docs/static/images/stacks/logo_flask.svg" /></li>
-											<li className="card-shadows about-cards"><div><h3>Flask SQL Alchemy</h3><p>Extension for Flask that aims to simplify using SQLAlchemy with Flask</p></div><img src="http://flask-sqlalchemy.pocoo.org/2.3/_static/flask-sqlalchemy-logo.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Flask Restless</h3><p>provides simple generation of ReSTful APIs that send and receive messages in JSON format.</p></div><img src="http://flask-restless.readthedocs.io/en/stable/_static/flask-restless-small.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Github</h3><p>Version Control and collaboration tool</p></div><img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-256.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Gitbook</h3><p>Documentation creation tool</p></div><img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/orgs%2Flogos%2Fgitbook%2FLogo.svg?alt=media&token=84da6255-53f6-443c-9ae6-de135cea8cee" /></li>
-											<li className="card-shadows about-cards"><div><h3>Bootstrap</h3><p>Website Templates</p></div><img src="https://getbootstrap.com/assets/img/bootstrap-stack.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Namecheap</h3><p>Domain Name for our website</p></div><img src="http://www.simplestartup.net/wp-content/uploads/2015/01/namecheap2.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Amazon Web Services</h3><p>Web Server and hosting service</p></div><img src="https://i2.wp.com/snowulf.com/wp-content/uploads/2013/05/aws-logo-square-02.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Slack</h3><p>Team communication and collaboration application</p></div><img src="http://blogs.newschool.edu/digitalhumanities/files/2016/02/Slack_Icon.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Doodle</h3><p>Tool to help with scheduling around classes</p></div><img src="https://cdn2.doodle.com/dist/i/7479b568749fca315a2969e30cbee4f5.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>React</h3><p>Dynamic Frontend</p></div><img src="https://cdn-images-1.medium.com/max/1600/1*g6s1lvpfArJGorALkKNhvw.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Selenium</h3><p>Web applications testing</p></div><img src="https://www.seleniumhq.org/images/big-logo.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>MySQL</h3><p>Database to store scraped data</p></div><img src="https://pbs.twimg.com/profile_images/1240079072/logo-mysql-170x170_400x400.png" /></li>
-											<li className="card-shadows about-cards"><div><h3>Postman</h3><p>Application to document and test API</p></div><img src="https://i1.wp.com/thecuriousdev.org/wp-content/uploads/2017/12/gI_62552_200x200_360-logo.png?fit=201%2C201&ssl=1" /></li>
+											<li className="card-shadows about-cards"><div><a href="http://flask.pocoo.org/" target="_blank"><h3>Flask</h3></a><p>Web framework in Python</p></div><img src="https://opbeat.com/docs/static/images/stacks/logo_flask.svg" /></li>
+											<li className="card-shadows about-cards"><div><a href="http://flask-sqlalchemy.pocoo.org/2.3/" target="_blank"><h3>Flask SQL Alchemy</h3></a><p>Extension for Flask that aims to simplify using SQLAlchemy with Flask</p></div><img src="http://flask-sqlalchemy.pocoo.org/2.3/_static/flask-sqlalchemy-logo.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://flask-restless.readthedocs.io/en/stable/" target="_blank"><h3>Flask Restless</h3></a><p>provides simple generation of ReSTful APIs that send and receive messages in JSON format.</p></div><img src="http://flask-restless.readthedocs.io/en/stable/_static/flask-restless-small.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://github.com/" target="_blank"><h3>Github</h3></a><p>Version Control and collaboration tool</p></div><img src="https://cdn4.iconfinder.com/data/icons/iconsimple-logotypes/512/github-256.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://www.gitbook.com/" target="_blank"><h3>Gitbook</h3></a><p>Documentation creation tool</p></div><img src="https://blobscdn.gitbook.com/v0/b/gitbook-28427.appspot.com/o/orgs%2Flogos%2Fgitbook%2FLogo.svg?alt=media&token=84da6255-53f6-443c-9ae6-de135cea8cee" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://getbootstrap.com/" target="_blank"><h3>Bootstrap</h3></a><p>Website Templates</p></div><img src="https://getbootstrap.com/assets/img/bootstrap-stack.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://www.namecheap.com/" target="_blank"><h3>Namecheap</h3></a><p>Domain Name for our website</p></div><img src="http://www.simplestartup.net/wp-content/uploads/2015/01/namecheap2.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://aws.amazon.com/?nc2=h_lg" target="_blank"><h3>Amazon Web Services</h3></a><p>Web Server and hosting service</p></div><img src="https://i2.wp.com/snowulf.com/wp-content/uploads/2013/05/aws-logo-square-02.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://aws.amazon.com/route53/pricing/" target="_blank"><h3>Route53</h3></a><p>DNS to provide readable URL for server</p></div><img src="https://static1.squarespace.com/static/5500a991e4b0ed07e64029e1/55073e80e4b08d28db62c5a3/55e3a3b3e4b031b2b636db9f/1440981939978/route-53-logo.png?format=500w" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://slack.com/features" target="_blank"><h3>Slack</h3></a><p>Team communication and collaboration application</p></div><img src="http://blogs.newschool.edu/digitalhumanities/files/2016/02/Slack_Icon.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://doodle.com/" target="_blank"><h3>Doodle</h3></a><p>Tool to help with scheduling around classes</p></div><img src="https://cdn2.doodle.com/dist/i/7479b568749fca315a2969e30cbee4f5.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://reactjs.org/" target="_blank"><h3>React</h3></a><p>Dynamic Frontend</p></div><img src="https://cdn-images-1.medium.com/max/1600/1*g6s1lvpfArJGorALkKNhvw.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://www.seleniumhq.org/" target="_blank"><h3>Selenium</h3></a><p>Web applications testing</p></div><img src="https://www.seleniumhq.org/images/big-logo.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://www.mysql.com/" target="_blank"><h3>MySQL</h3></a><p>Database to store scraped data</p></div><img src="https://pbs.twimg.com/profile_images/1240079072/logo-mysql-170x170_400x400.png" /></li>
+											<li className="card-shadows about-cards"><div><a href="https://www.getpostman.com/products" target="_blank"><h3>Postman</h3></a><p>Application to document and test API</p></div><img src="https://i1.wp.com/thecuriousdev.org/wp-content/uploads/2017/12/gI_62552_200x200_360-logo.png?fit=201%2C201&ssl=1" /></li>
 											
 										</ul>
 									</center>

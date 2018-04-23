@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {a} from 'react-router-dom';
 import NavTabItem from './NavTabItem';
+import URL from '../URLHelperFunctions';
+import '../assets/css/navigation.css';
 
 class Navigation extends Component {
 	constructor(){
@@ -17,7 +19,8 @@ class Navigation extends Component {
 			alert('"%" is not an allowed character.');
 		} else {
 			this.setState({queryInput:this.refs.input.value}, function(){
-				window.location = '/search?q=' + this.state.queryInput;			});
+				window.location = '/search?q=' + URL.convert(this.state.queryInput, " ", "+");
+			});
 		}
 		e.preventDefault();
 	}
@@ -35,8 +38,7 @@ class Navigation extends Component {
 			return(
 				<NavTabItem key={tab.id} tab={tab} activeTab={this.props.activeTab} />
 			);
-		})
-
+		});
 		return(
 			<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
 				<a className="navbar-brand" href="/index" target="_parent"><span className="spacer">...</span>Muse<span className="orange">Py</span></a>
@@ -45,12 +47,10 @@ class Navigation extends Component {
 				</button>
 				<div className="collapse navbar-collapse" id="navbarCollapse">
 					<ul className="navbar-nav mr-auto">
-
 						{tabItems}
-
 					</ul>
 					<form className="form-inline mt-2 mt-md-0" onSubmit={this.handleSearch.bind(this)}>
-						<input className="form-control mr-sm-2" ref="input" type="text" placeholder="Search" aria-label="Search" />
+						<input id="searchField" className="form-control mr-sm-2" ref="input" defaultValue={this.props.query} type="text" placeholder="Search" aria-label="Search" />
 						<button className="btn btn-outline-success my-2 my-sm-0 color" type="submit">Search</button>
 						<span className="spacer">....</span>
 					</form>

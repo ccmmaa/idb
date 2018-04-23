@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import URL from '../URLSpaceUnderscore';
+import URL from '../URLHelperFunctions';
 import $ from 'jquery';
 import Loading from '../assets/images/loading.gif';
 import '../assets/css/concertComponent.css';
-
+import FilterHelper from '../FilterHelper';
 
 class Concert extends Component {
 
@@ -19,13 +19,13 @@ class Concert extends Component {
 		$.ajax({
 			url: 'http://api.musepy.me/artist/' + this.props.concert.artist_id,
 			dataType: 'json',
-			cache: false,
+			cache: true,
 			success: function(data) {
 				console.log("Dump" + data.image);
 				this.setState({"artistName": data.name, "artistImage": data.image});
 			}.bind(this),
 			error: function(xhr, status, error) {
-				// console.log("Get ERROR: " + error);
+				console.log(xhr);
 			}
 		});
 	}
@@ -34,20 +34,7 @@ class Concert extends Component {
 		let date = this.props.concert.time.substring(0, this.props.concert.time.indexOf('T'));
 		let firstDash = date.indexOf('-');
 		let lastDash = date.lastIndexOf('-');
-		let months = {
-			"01": "Jan",
-			"02": "Feb",
-			"03": "Mar",
-			"04": "Apr",
-			"05": "May",
-			"06": "Jun",
-			"07": "Jul",
-			"08": "Aug",
-			"09": "Sep",
-			"10": "Oct",
-			"11": "Nov",
-			"12": "Dec"
-		}
+		let months = FilterHelper.monthsDict();
 		let year = date.substring(0, firstDash);
 		let month = date.substring(firstDash + 1, lastDash);
 		let day = date.substring(lastDash + 1);

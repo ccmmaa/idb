@@ -14,6 +14,7 @@ import SongInstance from '../src/Songs/SongInstance';
 import ArtistInstance from '../src/Artists/ArtistInstance';
 import AlbumInstance from '../src/Albums/AlbumInstance';
 import CityInstance from '../src/Cities/CityInstance';
+import Search from '../src/Search/Search';
 import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
@@ -32,25 +33,13 @@ describe("MusePy unit tests", function() {
     const wrapper = mount(<Footer />);
     expect(Footer.prototype).to.not.be.null;
   });
-  it("should create Songs object", function() {
-    const wrapper = mount(<Songs />);
-    expect(Songs.prototype).to.not.be.null;
-  });
-  it("should create Artists object", function() {
-    const wrapper = mount(<Artists />);
-    expect(Artists.prototype).to.not.be.null;
-  });
-  it("should create Albums object", function() {
-    const wrapper = mount(<Albums />);
-    expect(Albums.prototype).to.not.be.null;
-  });
-  it("should create Cities object", function() {
-    const wrapper = mount(<Cities />);
-    expect(Cities.prototype).to.not.be.null;
-  });
   it("should create About object", function() {
     const wrapper = mount(<About />);
     expect(About.prototype).to.not.be.null;
+  });
+  it("should create Search object", function() {  //IDB 3
+    const wrapper = mount(<Search />);
+    expect(Search.prototype).to.not.be.null;
   });
   it("should create Song Instance object", function() {
     const wrapper = mount(<SongInstance />);
@@ -77,22 +66,10 @@ describe("MusePy unit tests", function() {
     expect(wrapper.find('.container marketing')).to.have.length(1);
     expect(wrapper.find('.row featurette index_descriptions')).to.have.length(3);
   });*/}
-  it('Songs page should load a list of song instances', function () {
-    const wrapper = shallow(<Songs />);
-    expect(wrapper.find('.pageLoadingIndicator')).to.have.length(1);
-  });
-  it('Artists page should load a list of artist instances', function () {
-    const wrapper = shallow(<Artists />);
-    expect(wrapper.find('.pageLoadingIndicator')).to.have.length(1);
-  });
-  it('Albums page should load a list of album instances', function () {
-    const wrapper = shallow(<Albums />);
-    expect(wrapper.find('.pageLoadingIndicator')).to.have.length(1);
-  });
-  it('Cities page should load a list of city instances', function () {
-    const wrapper = shallow(<Cities />);
-    expect(wrapper.find('.pageLoadingIndicator')).to.have.length(1);
-  });
+  // it('Search page should load search items and pagination bars', function () {    //IDB 3
+  //   const wrapper = shallow(<Search />);
+  //   expect(wrapper.find('.pageLoadingIndicator')).to.have.length(1);
+  // });
   it('Song instance should have a view artist and view album button', function () {
     const wrapper = shallow(<SongInstance />);
     expect(wrapper.find('a.btn-secondary')).to.have.length(2);
@@ -140,18 +117,6 @@ describe("MusePy unit tests", function() {
   it('Album instance should have song list generated', function () {
     const wrapper = shallow(<AlbumInstance />);
     expect(wrapper.find('ul.list-group')).to.have.length(1);
-  });
-  it('City instance should have a map', function () {
-    const wrapper = shallow(<CityInstance />);
-    expect(wrapper.find('#map')).to.have.length(1);
-  });
-  it('City instance should have a city song list', function () {
-    const wrapper = shallow(<CityInstance />);
-    expect(wrapper.find('.citySongList')).to.have.length(1);
-  });
-  it('City instance should have an upcoming concerts list', function () {
-    const wrapper = shallow(<CityInstance />);
-    expect(wrapper.find('#concerts')).to.have.length(1);
   });
   it('About page should have About this Site, Disparate Data, Total Statistics, Data Sources, Tools Used sections', function () {
     const wrapper = shallow(<About />);
