@@ -6,18 +6,16 @@
 
 ## The Team
 
-<br>
-
 - Cristina Anderson
-  + Worked on: backend, general documentation, and tests |
+  + backend, general documentation, and tests |
 - Sabrina Herrero
-  + Worked on: API, setting up front-end calling API, and API documentation |
+  + API, and API documentation |
 - Chia Hua Lu
-  + Worked on: front-end for grid pages, instance pages, filtering, and about page and maintained servers |
+  + front-end and maintained servers |
 - Faiz Merchant
-  + Worked on: backend, scraping, and tests |
+  + backend, scraping, and tests |
 - Laurence Zhang
-  + Worked on: splash page, instances pages, design and documentation, and tests
+  + front-end, documentation, and tests
 
 ---
 
