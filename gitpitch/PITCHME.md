@@ -4,16 +4,73 @@
 
 ---
 
-## Tips!
+## The Team
 
 <br>
 
-@fa[arrows gp-tip](Press F to go Fullscreen)
-
-@fa[microphone gp-tip](Press S for Speaker Notes)
+- Cristina Anderson
+        + Worked on: backend, general documentation, and tests |
+- Sabrina Herrero
+        + Worked on: API, setting up front-end calling API, and API documentation |
+- Chia Hua Lu
+        + Worked on: front-end for grid pages, instance pages, filtering, and about page and maintained servers |
+- Faiz Merchant
+        + Worked on: backend, scraping, and tests |
+- Laurence Zhang
+        + Worked on: splash page, instances pages, design and documentation, and tests |
 
 ---
 
+## [Our Website](http://musepy.me/index)
+
+
+---
+
+## Self Critique
+
++++
+
+## What did we do well?
+
++++
+
+## What did we learn?
+
++++
+
+## What can we do better?
+
++++
+
+## What puzzles us?
+
+---
+
+## Game Frame Critique
+
++++
+
+##  What did they do well?
+
++++
+
+## What did we learn from their website?
+
++++
+
+## What can they do better?
+
++++
+
+## What puzzles us about their website?
+
+---
+
+## Visualization
+
+
+
+<!-- 
 ## Template Features
 
 - Code Presenting |
@@ -118,3 +175,4 @@ http.createServer(function (request, response) {
 ### <span class="white">Get your presentation started!</span>
 ### [Download this template @fa[external-link gp-download]](https://gitpitch.com/template/download/sunkist)
 
+ -->
