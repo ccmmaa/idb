@@ -9,15 +9,15 @@
 <br>
 
 - Cristina Anderson
-        + Worked on: backend, general documentation, and tests
+  + Worked on: backend, general documentation, and tests |
 - Sabrina Herrero
-        + Worked on: API, setting up front-end calling API, and API documentation
+  + Worked on: API, setting up front-end calling API, and API documentation |
 - Chia Hua Lu
-        + Worked on: front-end for grid pages, instance pages, filtering, and about page and maintained servers
+  + Worked on: front-end for grid pages, instance pages, filtering, and about page and maintained servers |
 - Faiz Merchant
-        + Worked on: backend, scraping, and tests
+  + Worked on: backend, scraping, and tests |
 - Laurence Zhang
-        + Worked on: splash page, instances pages, design and documentation, and tests
+  + Worked on: splash page, instances pages, design and documentation, and tests
 
 ---
 
