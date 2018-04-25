@@ -6,16 +6,16 @@
 
 ## The Team
 
-- Cristina Anderson
+- Cristina Anderson |
   + backend, general documentation, and tests |
-- Sabrina Herrero
+- Sabrina Herrero |
   + API, and API documentation |
-- Chia Hua Lu
+- Chia Hua Lu |
   + front-end and maintained servers |
-- Faiz Merchant
+- Faiz Merchant |
   + backend, scraping, and tests |
-- Laurence Zhang
-  + front-end, documentation, and tests
+- Laurence Zhang |
+  + front-end, documentation, and tests |
 
 ---
 
