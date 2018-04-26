@@ -32,7 +32,7 @@
 
 +++
 
-##### Postman Tests
+#### Postman Tests
 ![Postman](https://raw.githubusercontent.com/ccmmaa/idb/master/gitpitch/postmantests.png)
 
 ---
@@ -67,7 +67,7 @@
 - Flask-Restless features |
 - optimizing for both mobile and desktop |
 - how to make the orange boxes on our model pages have the same height |
-- Gitpitch |
+- Gitbook |
 
 ---
 
