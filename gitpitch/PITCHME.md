@@ -20,6 +20,13 @@
 
 ## [Our Website](http://musepy.me/index)
 
++++
+
+![Backend](assets/image/backendtests.jpg)
+
++++
+
+![Mocha](assets/image/mochatests.jpg)
 
 ---
 
@@ -53,6 +60,7 @@
 - Flask-Restless features |
 - optimizing for both mobile and desktop |
 - how to make the orange boxes on our model pages have the same height |
+- Gitpitch |
 
 ---
 
