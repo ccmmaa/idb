@@ -78,6 +78,7 @@
 - filters do not show up in url |
 - add images for developers that didn't have one |
 - pagination by changing url does not work |
+- api documentation was incorrect |
 
 +++
 
