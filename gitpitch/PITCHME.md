@@ -22,11 +22,11 @@
 
 +++
 
-![Backend](assets/image/backendtests.jpg)
+![Backend](img/backendtests.jpg)
 
 +++
 
-![Mocha](assets/image/mochatests.jpg)
+![Mocha](img/mochatests.jpg)
 
 ---
 
