@@ -22,11 +22,11 @@
 
 +++
 
-![Backend](img/backendtests.jpeg)
+![Backend](backendtests.jpeg)
 
 +++
 
-![Mocha](img/mochatests.jpeg)
+![Mocha](mochatests.jpeg)
 
 ---
 
