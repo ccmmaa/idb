@@ -22,11 +22,11 @@
 
 +++
 
-![Backend](backendtests.jpeg)
+![Backend](https://raw.githubusercontent.com/ccmmaa/idb/master/gitpitch/backendtests.jpeg)
 
 +++
 
-![Mocha](mochatests.jpeg)
+![Mocha](https://raw.githubusercontent.com/ccmmaa/idb/master/gitpitch/mochatests.jpeg)
 
 ---
 
