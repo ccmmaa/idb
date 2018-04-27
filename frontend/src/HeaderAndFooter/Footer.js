@@ -8,7 +8,8 @@ class Footer extends Component {
 			<div> 
 				<footer className="container">
 					<p>&copy; 2018 Requiem For Our Dreams &middot; <a href="https://github.com/ccmmaa/idb" target="_parent"> GitHub Repository </a> &middot; 
-						<a href="https://requiemforourdreams.gitbooks.io/report/content/" target="_parent"> GitBook Report </a> </p>
+						<a href="https://requiemforourdreams.gitbooks.io/report/content/" target="_parent"> GitBook Report </a> &middot;
+							<a href="https://laurencez.github.io/" target="_parent"> Visualization </a> </p>
 				</footer>
 				<br />
 			</div>
