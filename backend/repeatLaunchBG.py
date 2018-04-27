@@ -23,7 +23,7 @@ def loop():
 					words = line.split(" ")
 					print(words[1])
 					pids += words[1] + " "
-				except (EndexError):
+				except (IndexError):
 					pass
 			
 		command = ['sudo', 'kill', '-9']; 
