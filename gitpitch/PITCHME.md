@@ -33,7 +33,7 @@
 +++
 
 #### Selenium Tests
-![Selenium](https://raw.githubusercontent.com/ccmmaa/idb/master/gitpitch/seleniumtests.jpeg)
+![Selenium](https://raw.githubusercontent.com/ccmmaa/idb/master/gitpitch/seleniumtests.jpg)
 
 +++
 
