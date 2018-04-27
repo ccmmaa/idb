@@ -6,7 +6,7 @@ import re
 
 def loop():
     while True:
-        delay = 600;
+        delay = 60;
         print("Launching API")
         subprocess.Popen(['sudo', 'python', 'main.py', '&'], stdout=subprocess.PIPE)
         time.sleep(delay);
@@ -19,8 +19,12 @@ def loop():
         pids = "";
         for line in out.split(chr(10)):
             if 'repeatLaunchBG' not in line:
-                words = line.split(" ")
-                pids += words[0] + " "
+            	try:
+	                words = line.split(" ")
+	                print(words[1])
+	                pids += words[1] + " "
+	            except (EndexError):
+	            	pass
             
         command = ['sudo', 'kill', '-9']; 
         array = pids.split()
