@@ -105,5 +105,5 @@
 
 ---
 
-## Visualization
+## [Visualization](https://laurencez.github.io/)
 
